@@ -159,8 +159,8 @@ if (!function_exists('info_block_nav')) {
                     }
                     $link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
                 } elseif ($tc['link'] == 2) { // ext.Link
-                    $ok = (substr($tc['address'], 0, 4) == 'http'
-                           || substr($tc['address'], 0, 3) == 'ftp') ? 1 : 0;
+                    $ok = (0 === strpos($tc['address'], 'http')
+                           || 0 === strpos($tc['address'], 'ftp')) ? 1 : 0;
                     if ($ok == 1) {
                         $contentURL = $tc['address'];
                     }

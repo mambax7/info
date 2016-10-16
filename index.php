@@ -202,14 +202,14 @@ if ($xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_last'] > 1) {
 $xoopsTpl->assign('modules_url', XOOPS_URL . '/modules/' . $module_name);
 $content = '';
 if ($address != '' && $link == 1) {
-    if (substr($address, 0, 1) == '/') {
+    if (0 === strpos($address, '/')) {
         $address = substr($address, 1);
     }
     header('Location: ' . XOOPS_URL . '/' . $address);
     exit();
 } elseif ($address != '' && $link == 2) {
-    if (strtolower(substr($address, 0, 4)) == 'http'
-        || strtolower(substr($address, 0, 3)) == 'ftp'
+    if (0 === stripos($address, 'http')
+        || 0 === stripos($address, 'ftp')
     ) {
         if ($self == 1) {
             if ($title_sicht == 1) {
@@ -236,7 +236,7 @@ if ($address != '' && $link == 1) {
     if ($title_sicht == 1) {
         $xoopsTpl->assign('title', $title);
     }
-    if (substr($address, 0, 1) == '/') {
+    if (0 === strpos($address, '/')) {
         $address = substr($address, 1);
     }
     $includeContent = XOOPS_ROOT_PATH . '/' . $address;
@@ -261,7 +261,7 @@ if ($address != '' && $link == 1) {
                        . '%" height="'
                        . $iframe['height']
                        . '">Plugin Not installed!</object>';
-        } elseif (substr($extension, 0, 3) == 'php' || $extension == 'phtml') {
+        } elseif (0 === strpos($extension, 'php') || $extension == 'phtml') {
             $includeContent = XOOPS_URL . '/' . $address;
             $iframe         = unserialize($iframe);
             if (!isset($iframe['width'])
