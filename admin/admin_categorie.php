@@ -71,7 +71,7 @@ switch ($op) {
             if ($cat == 1) {
                 redirect_header('admin_categorie.php', 3, _INFO_ERROR_NODEFAULT);
             } else {
-                $msg     = _INFO_SETDELETE . '<br />' . sprintf(_INFO_SETDELETE_FRAGE, $cate->getVar('title'));
+                $msg     = _INFO_SETDELETE . '<br>' . sprintf(_INFO_SETDELETE_FRAGE, $cate->getVar('title'));
                 $hiddens = array(
                     'op'   => 'blockcat',
                     'cat'  => $cat,

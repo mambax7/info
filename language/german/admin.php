@@ -9,7 +9,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_HOMEPAGE', 'Kategorie');
     define('_INFO_POSITION', 'Position');
     define('_INFO_LINKNAME', 'Linkname');
-    define('_INFO_EXTURL', 'Datei oder URL <br /><small>bei externer URL mit http:// beginnen</small>');
+    define('_INFO_EXTURL', 'Datei oder URL <br><small>bei externer URL mit http:// beginnen</small>');
     define('_INFO_STORYID', 'ID');
     define('_INFO_VISIBLE', 'Naviblock?');
     define('_INFO_CONTENT', 'Text');
@@ -45,11 +45,11 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_ERROR_NOINSERTDB', 'Datensatz konnte nicht eingetragen werden!');
     define('_INFO_SETDELETE', 'Löschen bestätigen');
     define('_INFO_SETDELETE_FRAGE',
-           'Soll die Kategorie<br /><b>%s</b><br /> mit allen dazugehörigen Seiten wirklich gelöscht werden ?');
+           'Soll die Kategorie<br><b>%s</b><br> mit allen dazugehörigen Seiten wirklich gelöscht werden ?');
     define('_INFO_SETDELETE_LIST', 'In dieser Kategorie befinden sich <b>%s</b> dazugehörige Seiten.');
     define('_INFO_DELFLUSH', 'Löschen abgebrochen');
     define('_INFO_ERROR_NODEFAULT', 'Default-Kategorie kann nicht gelöscht werden');
-    define('_INFO_INFODELETE_FRAGE', 'Soll die Seite<br /><b>%s</b><br /> wirklich gelöscht werden ?');
+    define('_INFO_INFODELETE_FRAGE', 'Soll die Seite<br><b>%s</b><br> wirklich gelöscht werden ?');
     define('_INFO_ADMIN_URLINTERN', 'Interne Links dürfen nicht mit <b>http://</b> beginnen!');
     define('_INFO_LAST_EDITED', 'letzte Änderung');
     define('_INFO_LAST_EDITEDTEXT', 'von <b>%s</b> am <b>%s</b>');
@@ -64,16 +64,16 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_AM_HP_SEITE_NODEF', 'keine definiert');
     define('_INFO_AM_GROUP', 'Gruppe');
     define('_INFO_URL_IFRAME', 'Seite mit IFRAME einbinden');
-    define('_INFO_URL_INTERN', 'URL der Seite<br />Angabe ohne <b>'
+    define('_INFO_URL_INTERN', 'URL der Seite<br>Angabe ohne <b>'
                                . XOOPS_URL
                                . '</b> !<br>Für '
                                . XOOPS_URL
                                . ' tragen Sie nur <b>/</b> ein');
-    define('_INFO_URL_EXTERN', 'URL der Seite<br />Angabe muss mit http:// oder https:// beginnen !');
-    define('_INFO_URL_DATEI', 'Pfad der Datei<br />Angabe ausgehend von XOOPS_ROOT_PATH</b> !');
-    define('_INFO_URL_FRAME', 'Url der Seite<br />Angabe muss mit http:// oder https:// beginnen !');
-    define('_INFO_URL_FRAME_HEIGHT', 'Höhe des Frames<br />Angabe in Pixel !');
-    define('_INFO_URL_FRAME_BORDER', 'Rahmen um den Frame<br />Angabe in Pixel (0 -> keiner)!');
+    define('_INFO_URL_EXTERN', 'URL der Seite<br>Angabe muss mit http:// oder https:// beginnen !');
+    define('_INFO_URL_DATEI', 'Pfad der Datei<br>Angabe ausgehend von XOOPS_ROOT_PATH</b> !');
+    define('_INFO_URL_FRAME', 'Url der Seite<br>Angabe muss mit http:// oder https:// beginnen !');
+    define('_INFO_URL_FRAME_HEIGHT', 'Höhe des Frames<br>Angabe in Pixel !');
+    define('_INFO_URL_FRAME_BORDER', 'Rahmen um den Frame<br>Angabe in Pixel (0 -> keiner)!');
     define('_INFO_ADMIN_ERRURL', 'URL muss mit http:// oder https:// beginnen!');
 
     define('_MIC_INFO_GOMOD', 'Gehe zum Modul');
@@ -83,7 +83,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     //Added in 1.06
     define('_INFO_TITLESICHT', 'Titelüberschrift zeigen');
     define('_INFO_FOOTERSICHT', 'Fusszeile zeigen');
-    define('_INFO_URL_FRAME_WIDTH', 'Breite des IFRAME<br />Angabe in Prozent (0 = 100%)');
+    define('_INFO_URL_FRAME_WIDTH', 'Breite des IFRAME<br>Angabe in Prozent (0 = 100%)');
     define('_INFO_URL_FRAME_ALIGN', 'Ausrichtung des IFRAME');
 
     //Added in 2.0
@@ -119,9 +119,9 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_AM_INFO_INAKTIVE', '[deaktiviert]');
     define('_AM_INFO_NEWADDSITE', 'Neuanlage der Seite');
     define('_AM_INFO_INFOBOX_CAT', 'Sie haben <b>%s</b> Kategorien angelegt.');
-    define('_AM_INFO_SITEDEL_HP', 'Soll die derzeitige Startseite <br /><b>%s</b><br />deaktiviert werden?');
+    define('_AM_INFO_SITEDEL_HP', 'Soll die derzeitige Startseite <br><b>%s</b><br>deaktiviert werden?');
     define('_AM_INFO_INFOBOX_SITE', 'Es befinden sich <b>%s</b> Seiten in diesen Kategorien.');
-    define('_INFO_INFODELETE_AENDERUNG', 'Soll die Änderung an der Seite<br />%s<br />wirklich verworfen werden?');
+    define('_INFO_INFODELETE_AENDERUNG', 'Soll die Änderung an der Seite<br>%s<br>wirklich verworfen werden?');
     define('_AM_INFO_INFOBOX_WAITSITE', 'Es warten <b>%s</b> geänderte Seiten auf Bearbeitung.');
     define('_AM_INFO_CANALLOWHTML', 'HTML benutzen');
 
@@ -131,5 +131,5 @@ if (!defined('_INFO_ADMINTITLE')) {
                               . XOOPS_URL
                               . '/modules/'
                               . basename(dirname(dirname(__DIR__)))
-                              . '/files<br />max. Dateigröße: %s MB');
+                              . '/files<br>max. Dateigröße: %s MB');
 }

@@ -6,7 +6,7 @@ if (!defined('_INFO_FILENOTFOUND')) {
     define('_INFO_URLFORSTORY', 'Die URL dieses Artikels ist:');
     define('_INFO_LAST_UPDATE', 'letzte Änderung:');
     define('_MIC_INFO_EXTERNLINK',
-           "Dieser Link sollte sich jetzt in einem neuen Fenster öffnen<br />Sollte dies nicht der Fall sein, so klicken Sie bitte <a href='%s' target=_blank>hier</a>");
+           "Dieser Link sollte sich jetzt in einem neuen Fenster öffnen<br>Sollte dies nicht der Fall sein, so klicken Sie bitte <a href='%s' target=_blank>hier</a>");
     define('_INFO_PAGENAVTEXT', 'Seite:');
     define('_INFO_DB_UPDATE', 'Datenbank erfolgreich geupdated');
     define('_INFO_TOTOP', 'Nach oben gehen');
@@ -16,7 +16,7 @@ if (!defined('_INFO_FILENOTFOUND')) {
     define('_INFO_MA_NOEDITRIGHT', 'Entschuldigung, Sie haben keine Erlaubnis diese Aktion durchzuführen!');
     define('_MA_INFO_NOEXTENSION', 'Dateiformat wird nicht unterstützt!');
     define('_MA_INFO_WAITTOFREE',
-           'Sie haben bereits eine Änderung gemacht.<br />Warten Sie bis diese freigegeben ist.');
+           'Sie haben bereits eine Änderung gemacht.<br>Warten Sie bis diese freigegeben ist.');
     define('_MA_INFO_WAITTOEDIT',
-           'Ihre Änderung wurde übertragen.<br />Diese wird jetzt überprüft und dann freigegeben.');
+           'Ihre Änderung wurde übertragen.<br>Diese wird jetzt überprüft und dann freigegeben.');
 }

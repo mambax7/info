@@ -312,7 +312,7 @@ if ((int)$content->getVar('link') == 0
     || (int)$content->getVar('link') == 4
     || (int)$content->getVar('link') == 6
 ) {
-    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
+    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br>');
     if (in_array(_CON_INFO_ALLCANUPDATE_HTML, $show_info_perm)
         || $mod_isAdmin
     ) {
@@ -338,7 +338,7 @@ if ((int)$content->getVar('link') == 0
     $form->addElement(new XoopsFormHidden('message', $content->getVar('text', 'n')));
     $form->addElement(new XoopsFormHidden('nohtml', $content->getVar('nohtml')));
     $form->addElement(new XoopsFormHidden('nosmiley', $content->getVar('nosmiley')));
-    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br />');
+    $option_tray = new XoopsFormElementTray(_OPTIONS, '<br>');
     if ($xoopsModuleConfig['com_rule'] && $xoopsModuleConfig['com_rule'] > 0) {
         $comments_checkbox = new XoopsFormCheckBox('', 'nocomments', $content->getVar('nocomments'));
         $comments_checkbox->addOption(1, _INFO_DISABLECOM);

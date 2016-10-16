@@ -141,7 +141,7 @@ echo '</tr>';
 echo '</table>';
 echo '	<table border="0" width="640" cellpadding="10" cellspacing="1" align="center"><tr><td>';
 printf(_INFO_THISCOMESFROM, $xoopsConfig['sitename']);
-echo '<br /><a href="'
+echo '<br><a href="'
      . XOOPS_URL
      . '/modules/'
      . $xoopsModule->dirname()

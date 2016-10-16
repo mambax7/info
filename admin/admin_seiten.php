@@ -154,7 +154,7 @@ switch ($op) {
             $content = $infoHandler->get($id);
             xoops_cp_header();
             echo $indexAdmin->addNavigation('admin_seiten.php');
-            $msg     = _INFO_SETDELETE . '<br /><br />' . sprintf(_INFO_INFODELETE_FRAGE, $content->getVar('title'));
+            $msg     = _INFO_SETDELETE . '<br><br>' . sprintf(_INFO_INFODELETE_FRAGE, $content->getVar('title'));
             $hiddens = array('op' => 'info_delete', 'cat' => $cat, 'id' => $id);
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
             xoops_cp_footer();
@@ -330,7 +330,7 @@ switch ($op) {
                     $sql .= 'frontpage=' . $fpp . '';
                     $sql .= " WHERE info_id='" . (int)$storyid . "'";
                     if (!$result = $xoopsDB->queryF($sql)) {
-                        echo _INFO_ERRORINSERT . '<br />[ ' . $sql . ' ]<hr>';
+                        echo _INFO_ERRORINSERT . '<br>[ ' . $sql . ' ]<hr>';
                     }
                 }
             }

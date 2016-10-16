@@ -6,7 +6,7 @@ if (!defined('_INFO_FILENOTFOUND')) {
     define('_INFO_URLFORSTORY', 'The URL for this story is:');
     define('_INFO_LAST_UPDATE', 'Last Edit:');
     define('_MIC_INFO_EXTERNLINK',
-           "This Link is opened in a new Window<br />If the page does not automatically reload, please click <a href='%s' target=_blank>here</a>");
+           "This Link is opened in a new Window<br>If the page does not automatically reload, please click <a href='%s' target=_blank>here</a>");
     define('_INFO_PAGENAVTEXT', 'Page:');
     define('_INFO_DB_UPDATE', 'Database successfully updated');
     define('_INFO_TOTOP', 'Go to Top');

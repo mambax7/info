@@ -94,7 +94,7 @@ if ($approve == 0) {
 if ($op == 'edit') {
     if (isset($_POST['post'])) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
-            //redirect_header("index.php",3,implode('<br />', $GLOBALS['xoopsSecurity']->getErrors()));
+            //redirect_header("index.php",3,implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
             //exit();
         }
 

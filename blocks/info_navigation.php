@@ -53,7 +53,7 @@ if (!function_exists('info_navblock_edit')) {
                 $form .= '> ' . $row['title'] . ' </option>';
             }
             $form .= '</select>';
-            $form .= '<br />' . _INFO_BL_OPTION1 . '&nbsp;&nbsp;';
+            $form .= '<br>' . _INFO_BL_OPTION1 . '&nbsp;&nbsp;';
             $form .= "<select name='options[2]' size='1'>";
             $form .= "<option value='dynamisch'";
             if (isset($options[2]) && $options[2] == 'dynamisch') {
