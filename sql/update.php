@@ -57,10 +57,10 @@ eval('function xoops_module_update_' . $module_name . '($module) {
 }');
 
 /**
- * @param $module
+ * @param XoopsModule $module
  * @return bool
  */
-function update_infotable($module)
+function update_infotable(XoopsModule $module)
 {
     global $xoopsDB;
     $err = true;
@@ -101,10 +101,10 @@ function update_infotable($module)
 }
 
 /**
- * @param $module
+ * @param XoopsModule $module
  * @return bool
  */
-function check_infotemplates($module)
+function check_infotemplates(XoopsModule $module)
 {
     $err = true;
     if (!file_exists(XOOPS_ROOT_PATH
@@ -187,10 +187,10 @@ function check_infotemplates($module)
 }
 
 /**
- * @param $module
+ * @param XoopsModule $module
  * @return bool
  */
-function check_infotable($module)
+function check_infotable(XoopsModule $module)
 {
     global $xoopsDB;
     $err = true;
