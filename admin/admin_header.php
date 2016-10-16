@@ -32,34 +32,32 @@ require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
 
 global $moduleHandler, $xoopsModule;
-$moduleInfo = $moduleHandler->get($xoopsModule->getVar('mid'));
+$moduleInfo  = $moduleHandler->get($xoopsModule->getVar('mid'));
 $module_name = $xoopsModule->getVar('dirname');
-include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/include/function.php';
+include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/include/function.php';
 
-
-if ( Info_checkXoopsVersion('2.6.0') ) {
-  // XOOPS ab 2.6.0
-  $xoops = Xoops::getInstance();
-  XoopsLoad::load('system', 'system');
-  $indexAdmin = new XoopsModuleAdmin();
+if (Info_checkXoopsVersion('2.6.0')) {
+    // XOOPS ab 2.6.0
+    $xoops = Xoops::getInstance();
+    XoopsLoad::load('system', 'system');
+    $indexAdmin = new XoopsModuleAdmin();
 } else {
-  if ( !Info_checkModuleAdmin() ) {
-    redirect_header('../../../admin.php', 5, _AM_INFO_MODULEADMIN_MISSING, false);
-  }
-  $pathIcon16 = XOOPS_URL .'/'. $moduleInfo->getInfo('icons16');
-  $pathIcon32 = XOOPS_URL .'/'. $moduleInfo->getInfo('icons32');
-  $indexAdmin = new ModuleAdmin();
-} 
+    if (!Info_checkModuleAdmin()) {
+        redirect_header('../../../admin.php', 5, _AM_INFO_MODULEADMIN_MISSING, false);
+    }
+    $pathIcon16 = XOOPS_URL . '/' . $moduleInfo->getInfo('icons16');
+    $pathIcon32 = XOOPS_URL . '/' . $moduleInfo->getInfo('icons32');
+    $indexAdmin = new ModuleAdmin();
+}
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
-include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/infotree.php';
-include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/info.php';
-include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/category.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/infotree.php';
+include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/info.php';
+include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/category.php';
 
-
-$infoHandler 		  = new InfoInfoHandler($xoopsDB,$module_name);
-$infowaitHandler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
-$catHandler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
-$info_tree 			    = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
+$infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
+$infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
+$catHandler      = new InfoCategoryHandler($xoopsDB, $module_name);
+$info_tree       = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $myts = MyTextSanitizer::getInstance();

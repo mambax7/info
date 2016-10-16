@@ -30,19 +30,17 @@
 include_once __DIR__ . '/admin_header.php';
 xoops_cp_header();
 
-$anz_cat      = $catHandler->getCount();
-$anz_site    = $infoHandler->getCount();
-$wait_site    = $infowaitHandler->getCount();
+$anz_cat   = $catHandler->getCount();
+$anz_site  = $infoHandler->getCount();
+$wait_site = $infowaitHandler->getCount();
 
-$indexAdmin->addInfoBox(_INFO_ADMINTITLE) ;
+$indexAdmin->addInfoBox(_INFO_ADMINTITLE);
 
-$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>'
-                                              . sprintf(_AM_INFO_INFOBOX_CAT, $anz_cat) . '</infotext>') ;
-$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>'
-                                              . sprintf(_AM_INFO_INFOBOX_SITE, $anz_site) . '</infotext>') ;
-$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext></infotext>') ;
-$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>'
-                                              . _AM_INFO_INFOBOX_WAITSITE . '</infotext>', $wait_site, 'Red') ;
+$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . sprintf(_AM_INFO_INFOBOX_CAT, $anz_cat) . '</infotext>');
+$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . sprintf(_AM_INFO_INFOBOX_SITE, $anz_site) . '</infotext>');
+$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext></infotext>');
+$indexAdmin->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . _AM_INFO_INFOBOX_WAITSITE . '</infotext>', $wait_site,
+                            'Red');
 
 echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();

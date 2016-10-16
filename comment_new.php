@@ -33,14 +33,13 @@ if (!$xoopsUser && empty($xoopsModuleConfig['com_anonpost'])) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();
 }
-if ($com_itemid > 0 ) {
-	// Get link title
-	$sql = 'SELECT title FROM ' . $xoopsDB->prefix('info') . ' WHERE info_id='
-           . $com_itemid . '';
-	$result = $xoopsDB->query($sql);
-	$row = $xoopsDB->fetchArray($result);
+if ($com_itemid > 0) {
+    // Get link title
+    $sql            = 'SELECT title FROM ' . $xoopsDB->prefix('info') . ' WHERE info_id=' . $com_itemid . '';
+    $result         = $xoopsDB->query($sql);
+    $row            = $xoopsDB->fetchArray($result);
     $com_replytitle = $row['title'];
-    include XOOPS_ROOT_PATH.'/include/comment_new.php';
+    include XOOPS_ROOT_PATH . '/include/comment_new.php';
 } else {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();

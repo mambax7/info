@@ -1,4 +1,4 @@
-<?php 
+<?php
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
 //                    Copyright (c) 2000 xoops.org                           //
@@ -27,45 +27,47 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id $
 
-if (! defined('XOOPS_ROOT_PATH')) {
+if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS_ROOT_PATH not defined!');
 }
 
-return array(    'doc' => 'application/msword' ,
-                            'dot' => 'application/msword' ,
-                            'pdf' => 'application/pdf' ,
-                            'ps' => 'application/postscript' ,
-                            'xla' => 'application/vnd.ms-excel' ,
-                            'xls' => 'application/vnd.ms-excel' ,
-                            'xlt' => 'application/vnd.ms-excel' ,
-                            'ppt' => 'application/vnd.ms-powerpoint' ,
-                            'swf' => 'application/x-shockwave-flash' ,
-                            'xhtml' => 'application/xhtml+xml' ,
-                            'xht' => 'application/xhtml+xml' ,
-                            'xhtml' => 'application/xml' ,
-                            'bmp' => 'image/bmp' ,
-                            'gif' => 'image/gif' ,
-                            'jpeg' => 'image/jpeg' ,
-                            'jpg' => 'image/jpeg' ,
-                            'jpe' => 'image/jpeg' ,
-                            'png' => 'image/png' ,
-                            'tiff' => 'image/tiff' ,
-                            'tif' => 'image/tif' ,
-                            'html' => 'text/html' ,
-                            'htm' => 'text/html' ,
-                            'asc' => 'text/plain' ,
-                            'txt' => 'text/plain' ,
-                            'rtf' => 'text/rtf' ,
-                            'xsl' => 'text/xml' ,
-                            'ogv' => 'video/ogg' ,
-                            'mpeg' => 'video/mpeg' ,
-                            'mpg' => 'video/mpeg' ,
-                            'mpe' => 'video/mpeg' ,
-                            'qt' => 'video/quicktime' ,
-                            'mov' => 'video/quicktime' ,
-                            'avi' => 'video/x-msvideo' ,
-                            'flv' => 'video/x-flv' ,
-                            'mp4' => 'video/mp4' ,
-                            'wmv' => 'video/x-ms-wmv' ,
-                            'webm' => 'video/webm' ,
-                            '3gp' => 'video/quicktime' );
+return array(
+    'doc'   => 'application/msword',
+    'dot'   => 'application/msword',
+    'pdf'   => 'application/pdf',
+    'ps'    => 'application/postscript',
+    'xla'   => 'application/vnd.ms-excel',
+    'xls'   => 'application/vnd.ms-excel',
+    'xlt'   => 'application/vnd.ms-excel',
+    'ppt'   => 'application/vnd.ms-powerpoint',
+    'swf'   => 'application/x-shockwave-flash',
+    'xhtml' => 'application/xhtml+xml',
+    'xht'   => 'application/xhtml+xml',
+    'xhtml' => 'application/xml',
+    'bmp'   => 'image/bmp',
+    'gif'   => 'image/gif',
+    'jpeg'  => 'image/jpeg',
+    'jpg'   => 'image/jpeg',
+    'jpe'   => 'image/jpeg',
+    'png'   => 'image/png',
+    'tiff'  => 'image/tiff',
+    'tif'   => 'image/tif',
+    'html'  => 'text/html',
+    'htm'   => 'text/html',
+    'asc'   => 'text/plain',
+    'txt'   => 'text/plain',
+    'rtf'   => 'text/rtf',
+    'xsl'   => 'text/xml',
+    'ogv'   => 'video/ogg',
+    'mpeg'  => 'video/mpeg',
+    'mpg'   => 'video/mpeg',
+    'mpe'   => 'video/mpeg',
+    'qt'    => 'video/quicktime',
+    'mov'   => 'video/quicktime',
+    'avi'   => 'video/x-msvideo',
+    'flv'   => 'video/x-flv',
+    'mp4'   => 'video/mp4',
+    'wmv'   => 'video/x-ms-wmv',
+    'webm'  => 'video/webm',
+    '3gp'   => 'video/quicktime'
+);

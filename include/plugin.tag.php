@@ -2,17 +2,16 @@
 /**
  * Plugin-Tag for info Module
  *
- * @copyright	The XOOPS Project http://xoops.sf.net
- * @license		http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author		Taiwen Jiang (phppp or D.J.) <phppp@users.sourceforge.net>
- * @version		$Id $
- * @package		module::info
+ * @copyright      The XOOPS Project http://xoops.sf.net
+ * @license        http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @author         Taiwen Jiang (phppp or D.J.) <phppp@users.sourceforge.net>
+ * @version        $Id $
+ * @package        module::info
  */
-
 
 //if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
-$infoname = basename( dirname (__DIR__) ) ;
+$infoname = basename(dirname(__DIR__));
 
 /**
  * Get item fields:
@@ -24,13 +23,13 @@ $infoname = basename( dirname (__DIR__) ) ;
  * uname
  * tags
  *
- * @var		array	$items	associative array of items: [modid][cat_id][itemid]
+ * @var        array $items associative array of items: [modid][cat_id][itemid]
  *
- * @return	boolean
- * 
+ * @return    boolean
+ *
  */
 
-eval (' function ' . $infoname . '_tag_iteminfo(&$items)
+eval(' function ' . $infoname . '_tag_iteminfo(&$items)
 {
 	global $xoopsDB;
 
@@ -71,10 +70,10 @@ eval (' function ' . $infoname . '_tag_iteminfo(&$items)
 /**
  * Remove orphan tag-item links
  *
- * @return	boolean
- * 
+ * @return    boolean
+ *
  */
-eval (' function '. $infoname . '_tag_synchronization($mid)
+eval(' function ' . $infoname . '_tag_synchronization($mid)
 {
 	include_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
 	$itemHandler = new InfoInfoHandler( $xoopsDB, "' . $infoname . '");

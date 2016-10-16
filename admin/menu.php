@@ -27,42 +27,41 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: menu.php 68 2012-12-26 18:22:18Z alfred $
 
-$module_name 	= basename( dirname(__DIR__)) ;
+$module_name   = basename(dirname(__DIR__));
 $moduleHandler = xoops_getHandler('module');
-$xoopsModule 	= XoopsModule::getByDirname($module_name);
-$moduleInfo 	= $moduleHandler->get($xoopsModule->getVar('mid'));
-$pathIcon32 	= $moduleInfo->getInfo('icons32');
+$xoopsModule   = XoopsModule::getByDirname($module_name);
+$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
+$pathIcon32    = $moduleInfo->getInfo('icons32');
 
 include_once dirname(__DIR__) . '/include/constants.php';
 include_once dirname(__DIR__) . '/class/info.php';
 $infowaitHandler = new InfoInfoHandler($GLOBALS['xoopsDB'], $module_name . '_bak');
-$wait_site 	= $infowaitHandler->getCount();
+$wait_site       = $infowaitHandler->getCount();
 
-$adminmenu = array();
-$i=0;
-$adminmenu[$i]['title'] = _MI_INFO_INDEX;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i++]['icon'] 	= '../../'.$pathIcon32.'/home.png' ;
+$adminmenu               = array();
+$i                       = 0;
+$adminmenu[$i]['title']  = _MI_INFO_INDEX;
+$adminmenu[$i]['link']   = 'admin/index.php';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/home.png';
 
+$adminmenu[$i]['title']  = _MI_INFO_ADMENU2;
+$adminmenu[$i]['link']   = 'admin/admin_categorie.php';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/category.png';
 
-$adminmenu[$i]['title'] = _MI_INFO_ADMENU2;
-$adminmenu[$i]['link']  = 'admin/admin_categorie.php';
-$adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/category.png';
+$adminmenu[$i]['title']  = _MI_INFO_ADMENU3;
+$adminmenu[$i]['link']   = 'admin/admin_seiten.php';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/view_detailed.png';
 
-$adminmenu[$i]['title'] = _MI_INFO_ADMENU3;
-$adminmenu[$i]['link']  = 'admin/admin_seiten.php';
-$adminmenu[$i++]['icon'] 	= '../../'.$pathIcon32.'/view_detailed.png';
+$adminmenu[$i]['title']  = '(' . $wait_site . ') ' . _MI_INFO_ADMENU5;
+$adminmenu[$i]['link']   = 'admin/admin_seiten.php?op=approved';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/manage.png';
 
-$adminmenu[$i]['title'] = '(' . $wait_site . ') ' . _MI_INFO_ADMENU5;
-$adminmenu[$i]['link']  = 'admin/admin_seiten.php?op=approved';
-$adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/manage.png';
+$adminmenu[$i]['title']  = _MI_INFO_ADMENU4;
+$adminmenu[$i]['link']   = 'admin/admin_permission.php';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/permissions.png';
 
-$adminmenu[$i]['title'] = _MI_INFO_ADMENU4;
-$adminmenu[$i]['link']  = 'admin/admin_permission.php';
-$adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/permissions.png';
-
-$adminmenu[$i]['title'] = _MI_INFO_ADMENU_ABOUT;
-$adminmenu[$i]['link'] = 'admin/about.php';
-$adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/about.png';
+$adminmenu[$i]['title']  = _MI_INFO_ADMENU_ABOUT;
+$adminmenu[$i]['link']   = 'admin/about.php';
+$adminmenu[$i++]['icon'] = '../../' . $pathIcon32 . '/about.png';
 
 unset($i);

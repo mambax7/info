@@ -29,11 +29,12 @@
 
 include __DIR__ . '/admin_header.php';
 
-include_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
+include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 xoops_cp_header();
 echo $indexAdmin->addNavigation('admin_permission.php');
 
-$form = new XoopsGroupPermForm(_AM_INFO_PERMISSIONS, $xoopsModule->mid(), _CON_INFO_PERMNAME, '', '/admin/admin_permission.php', false);
+$form = new XoopsGroupPermForm(_AM_INFO_PERMISSIONS, $xoopsModule->mid(), _CON_INFO_PERMNAME, '',
+                               '/admin/admin_permission.php', false);
 $form->addItem(_CON_INFO_CANCREATE, _AM_INFO_CANCREATE, 0);
 $form->addItem(_CON_INFO_CANUPDATE, _AM_INFO_CANUPDATE, 0);
 
@@ -52,7 +53,6 @@ $form->addItem(_CON_INFO_CANUPDATE_SITEART, _AM_INFO_CANUPDATE_SITEART, _CON_INF
 $form->addItem(_CON_INFO_CANUPDATE_SITEFULL, _AM_INFO_CANUPDATE_SITEFULL, _CON_INFO_CANUPDATE);
 $form->addItem(_CON_INFO_CANUPDATE_DELETE, _AM_INFO_CANDELETE, _CON_INFO_CANUPDATE);
 
-
 echo $form->render();
-unset ($form);
+unset($form);
 xoops_cp_footer();
