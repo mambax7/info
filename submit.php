@@ -27,11 +27,11 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: submit.php 91 2014-04-19 20:09:50Z alfred $
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 $module_name = basename(__DIR__) ;
 
-include_once 'include/function.php';
-include_once 'include/constants.php';
+include_once __DIR__ . '/include/function.php';
+include_once __DIR__ . '/include/constants.php';
 include_once XOOPS_ROOT_PATH.'/class/xoopsformloader.php';
 include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/infotree.php';
 include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/info.php';
@@ -42,9 +42,9 @@ xoops_loadLanguage( 'modinfo', $module_name);
 $seo = (!empty($xoopsModuleConfig[$module_name.'_seourl']) && $xoopsModuleConfig[$module_name.'_seourl']>0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;
 $myts = MyTextSanitizer::getInstance();
 
-$info_handler 		  = new InfoInfoHandler($xoopsDB,$module_name);
-$infowait_handler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
-$cat_handler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
+$infoHandler 		  = new InfoInfoHandler($xoopsDB,$module_name);
+$infowaitHandler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
+$catHandler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
 $info_tree 			    = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $op  			    = info_cleanVars($_REQUEST,'op','','string');
@@ -56,10 +56,10 @@ $mod_isAdmin 	= ( $xoopsUser && $xoopsUser->isAdmin() ) ? true : false;
 
 //Permission
 $infothisgroups = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_getHandler('groupperm');
-$show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
+$infopermHandler = xoops_getHandler('groupperm');
+$show_info_perm = $infopermHandler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
-$content = $info_handler->get($id);
+$content = $infoHandler->get($id);
 if ( !empty($_POST) ) $content = setPost($content,$_POST);
 
 $approve = 0;
@@ -126,7 +126,7 @@ if ($op == 'edit') {
             $op = 'edit';
             $ret = 1;
             $errors = $uploader->getErrors();
-            include_once 'include/form.php';
+            include_once __DIR__ . '/include/form.php';
             include_once XOOPS_ROOT_PATH.'/footer.php';
             exit();
           }         
@@ -147,7 +147,7 @@ if ($op == 'edit') {
               $op = 'edit';
               $ret = 1;
               $errors = $uploader->getErrors();
-              include_once 'include/form.php';
+              include_once __DIR__ . '/include/form.php';
               include_once XOOPS_ROOT_PATH.'/footer.php';
               exit();
             }
@@ -169,7 +169,7 @@ if ($op == 'edit') {
               $op = 'edit';
               $ret = 1;
               $errors = $uploader->getErrors();
-              include_once 'include/form.php';
+              include_once __DIR__ . '/include/form.php';
               include_once XOOPS_ROOT_PATH.'/footer.php';
               exit();
           }
@@ -178,14 +178,14 @@ if ($op == 'edit') {
     }
   
     if ( (in_array(_CON_INFO_ALLCANUPDATE_SITEFULL,$show_info_perm) && $id == 0) || (in_array(_CON_INFO_CANUPDATE_SITEFULL,$show_info_perm) && $id > 0) || $mod_isAdmin) {	
-      $res = $info_handler->insert($content);
+      $res = $infoHandler->insert($content);
       $eintrag = true;
     } else {
 			$content->setVar('old_id',$id);
 			$content->setVar('info_id',0);
       $content->setNew();
       $eintrag = false;
-			$res = $infowait_handler->insert($content);      
+			$res = $infowaitHandler->insert($content);      
 		}
 
 		if ((int)$_POST['ret'] == 1) {
@@ -211,14 +211,14 @@ if ($op == 'edit') {
 			redirect_header($rurl, 3, _INFO_ERRORINSERT);
 		}
 	} else {
-    if (!$infowait_handler->readbakid($id)) {     
+    if (!$infowaitHandler->readbakid($id)) {     
       $ret = 0;
       include_once XOOPS_ROOT_PATH.'/header.php';
       if ((int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock']
           == 1) {
         $GLOBALS['xoopsTpl']->assign( 'xoops_showrblock', 0 );
       }		
-      include_once 'include/form.php';
+      include_once __DIR__ . '/include/form.php';
       include_once XOOPS_ROOT_PATH.'/footer.php';
     } else {
       $mode=array(
@@ -235,7 +235,7 @@ if ($op == 'edit') {
       redirect_header(makeSeoUrl($mode), 3, _NOPERM);
     } elseif (!empty($_POST['delok']) && (int)$_POST['delok'] == 1) {
       if ( $GLOBALS['xoopsSecurity']->check() ) {        
-        if ($info_handler->delete($content)) {
+        if ($infoHandler->delete($content)) {
           $key = $xoopsModule->getVar('dirname') . '_' . '*';
           clearInfoCache($key);
           redirect_header(XOOPS_URL, 1, _INFO_DBUPDATED);
@@ -270,6 +270,6 @@ if ($op == 'edit') {
   }	
   $op = 'edit';
   $ret = 1;
-  include_once 'include/form.php';
+  include_once __DIR__ . '/include/form.php';
   include_once XOOPS_ROOT_PATH.'/footer.php';  
 }

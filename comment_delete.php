@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: comment_delete.php 31 2012-07-01 11:04:16Z alfred $
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 if (!$xoopsUser) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();

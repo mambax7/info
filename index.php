@@ -27,9 +27,9 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id $
 
-require_once '../../mainfile.php';
-include_once 'include/constants.php';
-include_once 'include/function.php';
+require_once __DIR__ . '/../../mainfile.php';
+include_once __DIR__ . '/include/constants.php';
+include_once __DIR__ . '/include/function.php';
 
 xoops_loadLanguage('modinfo', $module_name);
 xoops_loadLanguage('main', 		$module_name);
@@ -47,7 +47,7 @@ $pid    = (int)$para['pid'];
 $sgroups = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
 $infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
-$xoopsOption['template_main'] = $module_name.'_index.html';
+$GLOBALS['xoopsOption']['template_main'] = $module_name.'_index.html';
 include_once $GLOBALS['xoops']->path( '/header.php' );
 
 if ($id != 0) {
@@ -145,8 +145,8 @@ $xoopsTpl->assign( 'xoops_showlblock', $bl_left );
 $xoopsTpl->assign('footersicht', (int)$footer_sicht);
 $xoTheme->addMeta('meta', 'pagemodule', 'http://www.simple-xoops.de');
 $infothisgroups = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_getHandler('groupperm');
-$show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
+$infopermHandler = xoops_getHandler('groupperm');
+$show_info_perm = $infopermHandler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 $canedit = false;
 if (in_array(_CON_INFO_CANUPDATEALL,$show_info_perm)) {
   $canedit = true;
@@ -204,7 +204,7 @@ if ($address != '' && $link == 1) {
     $includeContent = XOOPS_ROOT_PATH . '/' . $address;
     if (file_exists($includeContent)) {
       $extension = pathinfo($includeContent, PATHINFO_EXTENSION);
-      $allowed = include_once 'include/mimes.php';
+      $allowed = include_once __DIR__ . '/include/mimes.php';
       if (isset($allowed[$extension])) {
         $includeContent = '../../' . $address;
         $iframe=unserialize($iframe);
@@ -233,7 +233,7 @@ if ($address != '' && $link == 1) {
     $xoopsTpl->assign('email_title', _MI_INFO_SENDEMAIL);
     if ( $xoopsModuleConfig['com_rule'] != 0 ) {
       $xoopsTpl->assign('comments', 1);
-      include 'comment_view.php';
+      include __DIR__ . '/comment_view.php';
     }
 } elseif ($address != '' && $link == 5) {
     if ($title_sicht==1)  $xoopsTpl->assign('title', $title); 
@@ -249,7 +249,7 @@ if ($address != '' && $link == 1) {
     $xoopsTpl->assign('info_edit',_EDIT);
     if ( $xoopsModuleConfig['com_rule'] != 0 ) {
       $xoopsTpl->assign('comments', 1);
-      include 'comment_view.php';
+      include __DIR__ . '/comment_view.php';
     }
 } else {	
     if ($link == 6)     {
@@ -305,7 +305,7 @@ if ($address != '' && $link == 1) {
     $xoopsTpl->assign('email_title', _MI_INFO_SENDEMAIL);  
     if ( $xoopsModuleConfig['com_rule'] != 0 ) {
 		$xoopsTpl->assign('comments', 1);
-		include 'comment_view.php';
+		include __DIR__ . '/comment_view.php';
 	}
 }
 $mode=array(

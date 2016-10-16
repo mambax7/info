@@ -27,12 +27,12 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: index.php 69 2013-01-06 18:35:44Z alfred $
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 xoops_cp_header();        
 
-$anz_cat 	  = $cat_handler->getCount();
-$anz_site 	= $info_handler->getCount();
-$wait_site 	= $infowait_handler->getCount();
+$anz_cat 	  = $catHandler->getCount();
+$anz_site 	= $infoHandler->getCount();
+$wait_site 	= $infowaitHandler->getCount();
 
 $indexAdmin->addInfoBox(_INFO_ADMINTITLE) ;
 

@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: comment_new.php 73 2013-03-19 20:14:02Z alfred $
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 $com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if (!$xoopsUser && empty($xoopsModuleConfig['com_anonpost'])) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);

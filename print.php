@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: print.php 73 2013-03-19 20:14:02Z alfred $
 
-include '../../mainfile.php';
+include __DIR__ . '/../../mainfile.php';
 
 error_reporting(0);
 $xoopsLogger->activated = false;
@@ -78,7 +78,7 @@ echo '<td><strong>'.$title.'</strong></td>';
 echo '</tr>';
 echo '<tr valign="top">';
 echo '<td style="padding-top:0px;">';
-$myts =& MyTextSanitizer::getInstance();	
+$myts = MyTextSanitizer::getInstance();	
 $text = str_replace('{X_XOOPSURL}', XOOPS_URL.'/', $text);
 $text = str_replace('{X_SITEURL}', XOOPS_URL.'/', $text);
 if (is_object($xoopsUser))

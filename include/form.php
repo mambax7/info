@@ -48,7 +48,7 @@ $form->addElement(new XoopsFormHidden('frontpage', $content->getVar('frontpage')
 
 if ( (in_array(_CON_INFO_ALLCANUPDATE_CAT,$show_info_perm) && $id == 0) || (in_array(_CON_INFO_CANUPDATE_CAT,$show_info_perm) && $id > 0) || $mod_isAdmin) {
   $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $content->getVar('cat'));
-  $catlist = $cat_handler->getObjects(null,true,false);
+  $catlist = $catHandler->getObjects(null,true,false);
   $cate = array();
   foreach ( $catlist as $cats => $catr ) {
     $cate[$catr['cat_id']] = $catr['title'];
@@ -258,8 +258,8 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     $content->setVar('nohtml',$nohtml);
     $edi = new XoopsFormEditor(_DESCRIPTION, $editor, $editor_configs, $nohtml);
     $form->addElement($edi,true);
-    if (!is_object($module_handler)) $module_handler =& xoops_getHandler('module');
-    $tagmodule = $module_handler->getByDirname('tag');
+    if (!is_object($moduleHandler)) $moduleHandler = xoops_getHandler('module');
+    $tagmodule = $moduleHandler->getByDirname('tag');
     if ( is_object($tagmodule) && $tagmodule->isactive() ) {
       include_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
       $form->addElement(new XoopsFormTag('tags', 100, 255, $content->getVar('tags', 'n')));

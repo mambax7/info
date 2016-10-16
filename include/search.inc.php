@@ -36,10 +36,10 @@ eval('
 function '.$module_name.'_search($queryarray, $andor, $limit, $offset, $userid) {
     global $xoopsDB, $xoopsConfig,$xoopsUser, $xoopsModuleConfig;
 	$module_name = basename( dirname(dirname( __FILE__ ))) ; 
-    $smodule_handler = xoops_gethandler("module");
-	$smodule = $smodule_handler->getByDirname($module_name);
-	$sconfig_handler = xoops_gethandler("config");
-    $sconfigs = $sconfig_handler->getConfigList($smodule->getVar("mid"));
+    $smoduleHandler = xoops_gethandler("module");
+	$smodule = $smoduleHandler->getByDirname($module_name);
+	$sconfigHandler = xoops_gethandler("config");
+    $sconfigs = $sconfigHandler->getConfigList($smodule->getVar("mid"));
 	if ($userid>0) {
 	  if (intval($sconfigs[$module_name."_linklist"]) == 0) return;
 	}

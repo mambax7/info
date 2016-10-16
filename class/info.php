@@ -111,9 +111,9 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
 			if ( parent::insert($object, $force) ) {
 				if ( $object->getVar('tags', 'n') != '' ) {
 					include_once XOOPS_ROOT_PATH . '/modules/tag/include/functions.php';
-					if ( $tag_handler = tag_getTagHandler() ) {
+					if ( $tagHandler = tag_getTagHandler() ) {
 						$module_name = basename(dirname(__DIR__)) ;
-						$tag_handler->updateByItem($object->getVar('tags', 'n'), $object->getVar('info_id'), $module_name);
+						$tagHandler->updateByItem($object->getVar('tags', 'n'), $object->getVar('info_id'), $module_name);
 					}
 				}
 				return true;

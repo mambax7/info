@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: admin_categorie.php 74 2013-03-29 20:25:05Z alfred $
 
-include_once 'admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 
 $op  	= isset($_REQUEST['op']) ? $_REQUEST['op'] 			: 'list';
 if (!in_array( $op, array('list','blockcat','blockcat_insert') )) $op = 'list'; 
@@ -39,7 +39,7 @@ switch ($op) {
     default:
 		xoops_cp_header();        
     echo $indexAdmin->addNavigation('admin_categorie.php');		
-		$catlist = $cat_handler->getObjects(null,true,false);
+		$catlist = $catHandler->getObjects(null,true,false);
     $cate = array();
     foreach ( $catlist as $cats => $catr ) 
 		{
@@ -60,7 +60,7 @@ switch ($op) {
     xoops_cp_footer();
     break;
 	case 'blockcat':
-    $cate = $cat_handler->get($cat);
+    $cate = $catHandler->get($cat);
 		if ($_REQUEST['post'] == _DELETE) {
 			xoops_cp_header();        
 			echo $indexAdmin->addNavigation('admin_categorie.php');       
@@ -75,7 +75,7 @@ switch ($op) {
 			xoops_cp_footer();
 		} elseif ($_REQUEST['post'] == 'itsdelete') {
 			if ( $GLOBALS['xoopsSecurity']->check() ) {
-				if ($cat_handler->delete($cate)) {
+				if ($catHandler->delete($cate)) {
 					redirect_header('admin_categorie.php', 2, _INFO_DBUPDATED);
 				} else {
 					redirect_header('admin_categorie.php', 3, _INFO_ERRORINSERT);
@@ -92,10 +92,10 @@ switch ($op) {
     break;
 	case 'blockcat_insert':
 		if ( $GLOBALS['xoopsSecurity']->check() ) {
-			$cate = $cat_handler->get($cat);
+			$cate = $catHandler->get($cat);
 			$title = $myts->htmlSpecialChars(trim($_POST['title']));
 			$cate->setVar('title',$title);
-			if ($cat_handler->insert($cate)) {
+			if ($catHandler->insert($cate)) {
 				redirect_header('admin_categorie.php', 3, _INFO_DBUPDATED);
 			} else {
 				redirect_header('admin_categorie.php', 3, _INFO_ERRORINSERT);
@@ -107,9 +107,9 @@ switch ($op) {
 }
 
 function makecat($cat=0) {
-  global $cat_handler,$xoopsModule;
+  global $catHandler,$xoopsModule;
 
-	$cate = $cat_handler->get($cat);
+	$cate = $catHandler->get($cat);
 	$tueber = ($cat == 0) ? _INFO_ADDBLOCKCAT : _INFO_EDITBLOCKCAT;
 	$form = new XoopsThemeForm($tueber, $xoopsModule->getVar('dirname') . '_form_edit', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_categorie.php', 'post', true);
 	$form->setExtra('enctype="multipart/form-data"');  

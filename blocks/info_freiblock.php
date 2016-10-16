@@ -46,7 +46,7 @@ if (!function_exists('info_freiblock_show'))
         $row = $xoopsDB->fetchArray($result);
         $text = trim($row['text']);
         if ((int)$row['info_id'] != 0)  {
-            $xoopsOption['template_main'] = $options[0].'_startblock.html';
+            $GLOBALS['xoopsOption']['template_main'] = $options[0].'_startblock.html';
             if ($row['link'] == 6) {
                 ob_start();
                     echo eval($text);

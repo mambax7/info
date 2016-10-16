@@ -27,8 +27,8 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: admin_seiten.php 91 2014-04-19 20:09:50Z alfred $
 
-include_once 'admin_header.php';
-include_once '../include/function.php';
+include_once __DIR__ . '/admin_header.php';
+include_once __DIR__ . '/../include/function.php';
 
 global $xoopsUser, $indexAdmin;
 $op           = info_cleanVars( $_REQUEST, 'op', 'show', 'string');
@@ -38,15 +38,15 @@ $groupid 		  = info_cleanVars( $_REQUEST, 'groupid', 0, 'int');
 $mod_isAdmin 	= ($xoopsUser && $xoopsUser->isAdmin()) ? true : false;
 
 $infothisgroups   = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_getHandler('groupperm');
-$show_info_perm   = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
+$infopermHandler = xoops_getHandler('groupperm');
+$show_info_perm   = $infopermHandler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
 xoops_load('XoopsCache');
 
 switch ($op) {
 	case 'appdel':
     if ($id > 0) {
-			$content = $infowait_handler->get($id);
+			$content = $infowaitHandler->get($id);
       xoops_cp_header();
 			echo $indexAdmin->addNavigation('admin_seiten.php');
 			$msg = sprintf(_INFO_INFODELETE_AENDERUNG,$content->getVar('title'));
@@ -57,8 +57,8 @@ switch ($op) {
 		break;
 	case 'appdelok':
     if ($id > 0) {
-			$content = $infowait_handler->get($id);
-			if ($infowait_handler->delete($content)) { 
+			$content = $infowaitHandler->get($id);
+			if ($infowaitHandler->delete($content)) { 
 				$key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
 				clearInfoCache($key);
 				redirect_header('admin_seiten.php?op=approved', 1, _INFO_DBUPDATED);
@@ -71,7 +71,7 @@ switch ($op) {
 	case 'approved':
 			xoops_cp_header();
 			echo $indexAdmin->addNavigation('admin_seiten.php');			
-			$infowait = $infowait_handler->getAll(null,array('info_id','title','edited_time','edited_user'),false,false);
+			$infowait = $infowaitHandler->getAll(null,array('info_id','title','edited_time','edited_user'),false,false);
 			$form = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=approved');
 			$form->setExtra('enctype="multipart/form-data"'); 
 			xoops_load('XoopsUserUtility');
@@ -90,7 +90,7 @@ switch ($op) {
 			xoops_cp_footer();
 		break;
 	case 'appedit':
-		$content = $infowait_handler->get($id);        
+		$content = $infowaitHandler->get($id);        
 		if ( !empty($_POST['post']) ) {			
 			$content = setPost($content,$_POST);
 			$oldstoryid = $content->getVar('info_id');
@@ -98,9 +98,9 @@ switch ($op) {
 			if ($content->getVar('info_id') == 0) $content->setNew();
 			$content->setVar('edited_time',time());
 			$content->setVar('edited_user',$xoopsUser->uid());
-			if ($info_handler->insert($content)) {
+			if ($infoHandler->insert($content)) {
 				$content->setVar( 'info_id',$oldstoryid );
-				if ($infowait_handler->delete($content)) {
+				if ($infowaitHandler->delete($content)) {
 					$key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
 					clearInfoCache($key);
 					redirect_header('admin_seiten.php?op=approved', 1, _INFO_DBUPDATED);
@@ -115,13 +115,13 @@ switch ($op) {
 			xoops_cp_header();	
 			echo $indexAdmin->addNavigation('admin_seiten.php');
 			$op = 'appedit';
-			include_once '../include/form.php';
+			include_once __DIR__ . '/../include/form.php';
 			xoops_cp_footer();
 		}
         break;
 	case 'delete':
     if ($id > 0) {
-			$content = $info_handler->get($id);
+			$content = $infoHandler->get($id);
       xoops_cp_header();
 			echo $indexAdmin->addNavigation('admin_seiten.php');
 			$msg = _INFO_SETDELETE . '<br /><br />'
@@ -133,8 +133,8 @@ switch ($op) {
 		break;
 	case 'info_delete':
     if ($id > 0) {
-			$content = $info_handler->get($id);
-			if ($info_handler->delete($content)) {
+			$content = $infoHandler->get($id);
+			if ($infoHandler->delete($content)) {
 				$key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
 				clearInfoCache($key);
 				redirect_header('admin_seiten.php?cat=' . $cat, 1, _INFO_DBUPDATED);
@@ -146,7 +146,7 @@ switch ($op) {
 		break;
 	case 'delhp':
     if ($id > 0) {
-			$content = $info_handler->get($id);
+			$content = $infoHandler->get($id);
       xoops_cp_header();
 			echo $indexAdmin->addNavigation('admin_seiten.php');
 			$msg =  sprintf(_AM_INFO_SITEDEL_HP,$content->getVar('title'));
@@ -157,7 +157,7 @@ switch ($op) {
 		break;
 	case 'info_delhp':
     if ($id > 0) {
-			if ($info_handler->del_startpage($id)) {
+			if ($infoHandler->del_startpage($id)) {
 				$key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
 				clearInfoCache($key);	
 				redirect_header('admin_seiten.php?cat=' . $cat, 1, _INFO_DBUPDATED);
@@ -168,7 +168,7 @@ switch ($op) {
 		}
 		break;
 	case 'edit':
-		$content = $info_handler->get($id);    
+		$content = $infoHandler->get($id);    
 		if (isset($_POST['post'])) {
 			$content->setVar('edited_time',time());
 			if (is_object($xoopsUser)) {
@@ -201,7 +201,7 @@ switch ($op) {
               echo $indexAdmin->renderButton();
               $ret = 0;
               $errors = $uploader->getErrors();
-              include_once '../include/form.php';
+              include_once __DIR__ . '/../include/form.php';
               xoops_cp_footer();
               exit();
             }  
@@ -214,7 +214,7 @@ switch ($op) {
                 echo $indexAdmin->renderButton();
                 $ret = 0;
                 $errors = $uploader->getErrors();
-                include_once '../include/form.php';
+                include_once __DIR__ . '/../include/form.php';
                 xoops_cp_footer();
                 exit();
               }
@@ -227,7 +227,7 @@ switch ($op) {
               echo $indexAdmin->renderButton();
               $ret = 0;
               $errors = $uploader->getErrors();
-              include_once '../include/form.php';
+              include_once __DIR__ . '/../include/form.php';
               xoops_cp_footer();
               exit();
             }
@@ -235,7 +235,7 @@ switch ($op) {
       }
       $content = setPost($content,$_POST);
 
-      if ($info_handler->insert($content)) {
+      if ($infoHandler->insert($content)) {
         $key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
         clearInfoCache($key);				
         redirect_header('admin_seiten.php?cat=' . $cat, 1, _INFO_DBUPDATED);
@@ -249,7 +249,7 @@ switch ($op) {
       $indexAdmin->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat='.$cat, $icon = 'index');
       echo $indexAdmin->renderButton();
       $ret = 0;
-      include_once '../include/form.php';
+      include_once __DIR__ . '/../include/form.php';
       xoops_cp_footer();
     }
     break;
@@ -304,12 +304,12 @@ switch ($op) {
 	default:
 	case 'show':
 		xoops_cp_header(); 
-		$content = $info_handler->get($id);
+		$content = $infoHandler->get($id);
 		echo $indexAdmin->addNavigation('admin_seiten.php?op=show');	
 		$indexAdmin->addItemButton(_INFO_ADDCONTENT, 'admin_seiten.php?op=edit&amp;cat='.$cat, $icon = 'add');
 		echo $indexAdmin->renderButton();
 		$sseite = _AM_HP_SEITE . ' ';
-		$startpage = $info_handler->read_startpage();
+		$startpage = $infoHandler->read_startpage();
 		if (is_array($startpage)) {
 			$sseite .= "<a href=\"admin_seiten.php?op=delhp&amp;cat=" . $cat . '&amp;id='
                        . $startpage['0'] . "\">" . $startpage['1'] . '</a>';
@@ -363,7 +363,7 @@ switch ($op) {
 			echo "<tr class='odd'>";
 			echo '<td>';
 			if (in_array($tcontent['link'],array(0,1,4,5))) {
-				$check = ($tcontent['frontpage'] == 1) ? "checked='checked'" : '';
+				$check = ($tcontent['frontpage'] == 1) ? "checked" : '';
 				echo "<input type='radio' name='fp[]' value='".$tcontent['info_id']."' ".$check . ' />';
 			} else {
 				echo '&nbsp;';

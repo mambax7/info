@@ -92,8 +92,8 @@ $modversion['search']['func'] = $infoname . '_search';
 
 $modversion['hasMain'] 				= 1;
 
-$infomod_handler =& xoops_getHandler('module');
-$infomodul = $infomod_handler->getByDirname($infoname);
+$infomodHandler = xoops_getHandler('module');
+$infomodul = $infomodHandler->getByDirname($infoname);
 include_once __DIR__ . '/include/constants.php';
 include_once __DIR__ . '/include/function.php';
 
@@ -104,14 +104,14 @@ if ($info_isactiv == true) {
   include_once __DIR__ . '/class/infotree.php';
   $id = $cat = $pid = $i = 0;
 
-  $config_handler =& xoops_getHandler('config');
-  $InfoModulConfig = $config_handler->getConfigsByCat(0, $infomodul->getVar('mid'));
+  $configHandler = xoops_getHandler('config');
+  $InfoModulConfig = $configHandler->getConfigsByCat(0, $infomodul->getVar('mid'));
   $seo = (!empty($InfoModulConfig[$infoname.'_seourl']) && $InfoModulConfig[$infoname.'_seourl']>0) ? (int)$InfoModulConfig[$infoname . '_seourl'] : 0;
   $info_tree = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id',
                             'parent_id');
 	$groups =  is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-	$infoperm_handler = xoops_getHandler('groupperm');
-	$show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
+	$infopermHandler = xoops_getHandler('groupperm');
+	$show_info_perm = $infopermHandler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
 	$mod_isAdmin = (is_object($GLOBALS['xoopsUser']) && $GLOBALS['xoopsUser']->isAdmin()) ? true : false;
 
 	if ( ($mod_isAdmin || in_array(_CON_INFO_CANCREATE,$show_info_perm)) && $InfoModulConfig[$infoname.'_createlink'] == 1 ) {
@@ -171,7 +171,7 @@ if ($info_isactiv == true) {
 	}
 	unset($cP);
 }
-unset($infomod_handler);
+unset($infomodHandler);
 
 
 // Templates

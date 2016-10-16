@@ -31,8 +31,8 @@ require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
 
-global $module_handler, $xoopsModule;
-$moduleInfo = $module_handler->get($xoopsModule->getVar('mid'));
+global $moduleHandler, $xoopsModule;
+$moduleInfo = $moduleHandler->get($xoopsModule->getVar('mid'));
 $module_name = $xoopsModule->getVar('dirname');
 include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/include/function.php';
 
@@ -57,9 +57,9 @@ include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/info.php';
 include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/category.php';
 
 
-$info_handler 		  = new InfoInfoHandler($xoopsDB,$module_name);
-$infowait_handler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
-$cat_handler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
+$infoHandler 		  = new InfoInfoHandler($xoopsDB,$module_name);
+$infowaitHandler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
+$catHandler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
 $info_tree 			    = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $myts = MyTextSanitizer::getInstance();

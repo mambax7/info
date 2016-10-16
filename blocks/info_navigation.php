@@ -67,9 +67,9 @@ if (!function_exists('info_navblock_edit')) {
 if (!function_exists('info_block_nav')) {
 	function info_block_nav($options) {
 		global $xoopsDB, $xoopsModule, $xoopsTpl, $xoopsUser,$xoopsConfig;
-		global $xoopsRequestUri,$module_handler,$config_handler;
+		global $xoopsRequestUri,$moduleHandler,$configHandler;
 		global $id,$pid,$cat;		
-		if (!is_object($module_handler)) $module_handler =& xoops_getHandler('module');
+		if (!is_object($moduleHandler)) $moduleHandler = xoops_getHandler('module');
 		require_once XOOPS_ROOT_PATH . '/modules/'
                      . $options[0] . '/class/infotree.php';
 		//Variablen erstellen
@@ -77,8 +77,8 @@ if (!function_exists('info_block_nav')) {
 		if (empty($options)) return $block;
 		$groups =  $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 		$myts = MyTextSanitizer::getInstance();
-		$InfoModule = $module_handler->getByDirname($options[0]);
-		$InfoModuleConfig = $config_handler->getConfigsByCat(0, $InfoModule->getVar('mid'));
+		$InfoModule = $moduleHandler->getByDirname($options[0]);
+		$InfoModuleConfig = $configHandler->getConfigsByCat(0, $InfoModule->getVar('mid'));
 		$seo = (!empty($InfoModuleConfig[$options[0].'_seourl']) && $InfoModuleConfig[$options[0].'_seourl']>0) ? (int)$InfoModuleConfig[$options[0] . '_seourl'] : 0;
 		$info_tree = new InfoTree($xoopsDB->prefix($options[0]), 'info_id',
                                   'parent_id');
@@ -89,8 +89,8 @@ if (!function_exists('info_block_nav')) {
 			XoopsCache::write($key,$arr);
 		}	
          
-    $infoperm_handler = xoops_getHandler('groupperm');
-    $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $groups, $options[0]);
+    $infopermHandler = xoops_getHandler('groupperm');
+    $show_info_perm = $infopermHandler->getItemIds('InfoPerm', $groups, $options[0]);
     $mod_isAdmin 	= ( $xoopsUser && $xoopsUser->isAdmin() ) ? true : false;
     if ( in_array(_CON_INFO_CANCREATE,$show_info_perm) || $mod_isAdmin ) {
       $link['title'] = _MI_INFO_CREATESITE; 

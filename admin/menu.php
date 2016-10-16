@@ -28,15 +28,15 @@
 //  @version $Id: menu.php 68 2012-12-26 18:22:18Z alfred $
 
 $module_name 	= basename( dirname(__DIR__)) ;
-$module_handler = xoops_getHandler('module');
+$moduleHandler = xoops_getHandler('module');
 $xoopsModule 	= XoopsModule::getByDirname($module_name);
-$moduleInfo 	= $module_handler->get($xoopsModule->getVar('mid'));
+$moduleInfo 	= $moduleHandler->get($xoopsModule->getVar('mid'));
 $pathIcon32 	= $moduleInfo->getInfo('icons32');
 
 include_once dirname(__DIR__) . '/include/constants.php';
 include_once dirname(__DIR__) . '/class/info.php';
-$infowait_handler = new InfoInfoHandler($GLOBALS['xoopsDB'], $module_name . '_bak');
-$wait_site 	= $infowait_handler->getCount();
+$infowaitHandler = new InfoInfoHandler($GLOBALS['xoopsDB'], $module_name . '_bak');
+$wait_site 	= $infowaitHandler->getCount();
 
 $adminmenu = array();
 $i=0;
