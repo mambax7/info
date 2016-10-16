@@ -98,7 +98,7 @@ if (!class_exists('InfoInfoHandler')) {
         /**
          * @return array|bool
          */
-        public function read_startpage()
+        public function readStartpage()
         {
             $frontpage = false;
             $sql       = 'SELECT info_id,title FROM ' . $this->table . ' WHERE frontpage=1';
@@ -114,7 +114,7 @@ if (!class_exists('InfoInfoHandler')) {
          * @param int $id
          * @return bool
          */
-        public function del_startpage($id = 0)
+        public function deleteStartpage($id = 0)
         {
             if ($id > 0) {
                 $sql = 'UPDATE ' . $this->table . ' SET frontpage=0 WHERE info_id=' . $id;
@@ -132,7 +132,7 @@ if (!class_exists('InfoInfoHandler')) {
          * @param bool        $force
          * @return bool
          */
-        public function insert($object, $force = true)
+        public function insert(XoopsObject $object, $force = true)
         {
             if (parent::insert($object, $force)) {
                 if ($object->getVar('tags', 'n') != '') {

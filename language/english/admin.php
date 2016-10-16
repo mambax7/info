@@ -44,19 +44,19 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_ERROR_NOINSERTDB', 'Could not update Content!');
     define('_INFO_SETDELETE', 'Are you sure you want to delete?');
     define('_INFO_SETDELETE_FRAGE',
-           'Are you sure you want to delete this Category with all its pages:<br><b>%s</b> ?');
-    define('_INFO_SETDELETE_LIST', 'This Category has <b>%s</b> Pages(s).');
+           'Are you sure you want to delete this Category with all its pages:<br><strong>%s</strong> ?');
+    define('_INFO_SETDELETE_LIST', 'This Category has <strong>%s</strong> Pages(s).');
     define('_INFO_DELFLUSH', 'Delete canceled.');
     define('_INFO_ERROR_NODEFAULT', 'Default-Category can\'t be deleted');
-    define('_INFO_INFODELETE_FRAGE', 'Delete this Page:<br><b>%s</b><br> ?');
-    define('_INFO_ADMIN_URLINTERN', 'Internal Link cannot start with <b>http://</b> !');
+    define('_INFO_INFODELETE_FRAGE', 'Delete this Page:<br><strong>%s</strong><br> ?');
+    define('_INFO_ADMIN_URLINTERN', 'Internal Link cannot start with <strong>http://</strong> !');
     define('_INFO_LAST_EDITED', 'Last Edit');
-    define('_INFO_LAST_EDITEDTEXT', 'by <b>%s</b> on <b>%s</b>');
+    define('_INFO_LAST_EDITEDTEXT', 'by <strong>%s</strong> on <strong>%s</strong>');
 
     //Added in 1.04
     define('_INFO_FRONTPAGE', 'Frontpage');
     define('_INFO_CLICK', 'Clickable');
-    define('_INFO_SELF', 'open in new Window');
+    define('_INFO_SELF', 'Open in new Window');
 
     //Added in 1.05
     define('_AM_HP_SEITE', 'Module Homepage:');
@@ -64,11 +64,11 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_AM_GROUP', 'Group');
     define('_INFO_URL_IFRAME', 'Page with iFrame');
     define('_INFO_URL_INTERN',
-           'URL of the Page<br>do not enter <b>' . XOOPS_URL . '</b> !<br>For ' . XOOPS_URL . ' add <b>/</b> only');
+           'URL of the Page<br>do not enter <strong>' . XOOPS_URL . '</strong> !<br>For ' . XOOPS_URL . ' add <strong>/</strong> only');
     define('_INFO_URL_EXTERN', 'External URL<br>Has to start with http:// or https:// !');
-    define('_INFO_URL_DATEI', 'Path of File<br>Must start with <b>XOOPS_ROOT_PATH</b>!');
+    define('_INFO_URL_DATEI', 'Path of File<br>Must start with <strong>XOOPS_ROOT_PATH</strong>!');
     define('_INFO_URL_FRAME', 'URL of the Page<br>Has to start with http:// or https:// !');
-    define('_INFO_URL_FRAME_HEIGHT', 'Heigth from the iFrame<br>in Pixel !');
+    define('_INFO_URL_FRAME_HEIGHT', 'Heigth of the iFrame<br>in Pixel !');
     define('_INFO_URL_FRAME_BORDER', 'Border of the iFrame<br>in Pixel (0 -> no Border)!');
     define('_INFO_ADMIN_ERRURL', 'URL has to begin with http:// or https:// !');
 
@@ -110,15 +110,15 @@ if (!defined('_INFO_ADMINTITLE')) {
 
     // Added in V 2.5
     define('_AM_INFO_MODULEADMIN_MISSING', 'ModuleAdmin is missing! You can not run.');
-    define('_AM_INFO_TOCKEN_MISSING', 'Security tocken halt expired or incorrect. Action can not be executed.');
+    define('_AM_INFO_TOCKEN_MISSING', 'Security token has expired or is incorrect. Action can not be executed.');
     define('_AM_INFO_SITEUPDATE', 'Update Settings');
     define('_AM_INFO_INAKTIVE', '[disabled]');
     define('_AM_INFO_NEWADDSITE', 'new Site');
-    define('_AM_INFO_INFOBOX_CAT', 'You have created <b>%s</b> categories.');
-    define('_AM_INFO_SITEDEL_HP', 'Should the current Home <br><b>%s</b><br> be disabled?');
-    define('_AM_INFO_INFOBOX_SITE', 'There are <b>%s</b> sites in these categories.');
-    define('_INFO_INFODELETE_AENDERUNG', 'If the change to the side <br><br>%s discarded really?');
-    define('_AM_INFO_INFOBOX_WAITSITE', 'It <b>%s </b> dirty pages waiting for processing.');
+    define('_AM_INFO_INFOBOX_CAT', 'You have created <strong>%s</strong> categories.');
+    define('_AM_INFO_SITEDEL_HP', 'Should the current Home <br><strong>%s</strong><br> be disabled?');
+    define('_AM_INFO_INFOBOX_SITE', 'There are <strong>%s</strong> sites in these categories.');
+    define('_INFO_INFODELETE_AENDERUNG', 'Are you sure to discard the changes in this site? <br><br>%s ');
+    define('_AM_INFO_INFOBOX_WAITSITE', 'There are <strong>%s </strong> pages waiting for processing.');
     define('_AM_INFO_CANALLOWHTML', 'use HTML');
 
     //Added in Version 2.7

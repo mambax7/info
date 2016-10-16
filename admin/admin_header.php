@@ -31,7 +31,8 @@ require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
 require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
 
-global $moduleHandler, $xoopsModule;
+global $xoopsModule;
+$moduleHandler = xoops_getHandler('module');
 $moduleInfo  = $moduleHandler->get($xoopsModule->getVar('mid'));
 $module_name = $xoopsModule->getVar('dirname');
 include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/include/function.php';

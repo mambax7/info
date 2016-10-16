@@ -13,9 +13,9 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_CONF1_DESC', 'YES for Editor selection in the Form, NO for the default Editor');
     define('_MI_INFO_CONF2', "Show Link 'Create Page'");
     define('_MI_INFO_CONF2_DESC', 'If you have create permission for hand, a link in the main menu to be displayed.');
-    define('_MI_INFO_CONF3', 'generate Printer friendly pages');
+    define('_MI_INFO_CONF3', 'Generate Printer friendly pages');
     define('_MI_INFO_CONF3_DESC',
-           'These settings created on the sides Iconlink wherein then a printer friendly page called.');
+           'This setting will create an Iconlink on the page, which will then generate a printer friendly page.');
     define('_MI_INFO_CONF4', 'View last edit');
     define('_MI_INFO_CONF4_DESC', '');
     define('_MI_INFO_CONF5', 'Display the blocks prevent writing');
@@ -34,7 +34,7 @@ if (!defined('_MIC_INFO_NAME')) {
 
     //Added in 2.0
     define('_INFO_TOOLTIP', 'Tooltip');
-    define('_MI_INFO_CONF6', 'Show Navigation');
+    define('_MI_INFO_CONF6', 'Show Navigation as:');
     define('_MI_INFO_CONF6_DESC', '');
     define('_MI_INFO_CONF7', 'Show the page links in the Profile');
     define('_MI_INFO_CONF7_DESC', 'YES to display page links in the Profile');
@@ -43,7 +43,7 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_PAGESIMG', 'as Image');
     define('_MI_INFO_SENDEMAIL', 'Send per E-Mail');
     define('_MI_INFO_ARTICLE', 'Interesting article on %s');
-    define('_MI_INNFO_ARTFOUND', "Here is an interesting article that I\'ve found on %s ");
+    define('_MI_INNFO_ARTFOUND', "Here is an interesting article that I've found on %s ");
     define('_MI_INFO_GUEST', 'Guest writer');
     define('_INFO_FREIGABEART', 'Release Status');
     define('_INFO_FREIGABEART_YES', 'Publish');
@@ -52,7 +52,7 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_ADMENU6', 'Offline postings');
     define('_MI_INFO_GESPERRT', '[Offline]');
     define('_AM_INFO_NOFRAMEOREDITOR',
-           "<div style='font-style:bold;color:red;'>Framework und/oder XoopsEditorPack nicht installiert!</div>");
+           "<span style='font-weight: bold; color: red; '>Framework und/oder XoopsEditorPack nicht installiert!</span>");
     define('_INFO_NEW', 'NEW');
     define('_INFO_UPDATE', 'UPDATE');
     define('_MI_INFO_CONF8', 'SEO-Optimization');
@@ -67,18 +67,18 @@ if (!defined('_MIC_INFO_NAME')) {
 
     //Added in 2.6
     define('_MI_INFO_VIEWSITE', 'Show all pages in this category');
-    define('_MI_INFO_CONF_COLS', 'Number of columns of the Editor (min. 10)');
-    define('_MI_INFO_CONF_COLS_DESC', 'Is the column (height) of the Editor (no HTML editor)');
-    define('_MI_INFO_CONF_ROWS', 'are the rows of editor of (at least 10)');
-    define('_MI_INFO_CONF_ROWS_DESC', 'Returns the rows (width) of the Editor (no HTML editor)');
-    define('_MI_INFO_CONF_WIDTH', 'Wide HTML editor in percentage (10-100)');
-    define('_MI_INFO_CONF_WIDTH_DESC', 'legt die prozentuale Breite des Editors fest (nur für HTML-Editoren)');
-    define('_MI_INFO_CONF_HEIGHT', 'Height HTML editor in pixels (at least 100)');
-    define('_MI_INFO_CONF_HEIGHT_DESC', 'The height of the input field of the editor in pixels.');
+    define('_MI_INFO_CONF_COLS', 'Number of columns of the non-HTML Editor (min. 10)');
+    define('_MI_INFO_CONF_COLS_DESC', 'Number of column (width) of the Editor (only for non-HTML editor)');
+    define('_MI_INFO_CONF_ROWS', 'Number of rows in the non-HTML Editor of (at least 10)');
+    define('_MI_INFO_CONF_ROWS_DESC', 'Returns the number of rows (height) of the Editor (only for non-HTML editor)');
+    define('_MI_INFO_CONF_WIDTH', 'Width of the HTML Editor in percentage (10-100)');
+    define('_MI_INFO_CONF_WIDTH_DESC', 'Sets the width of the Editor in percent (only for HTML-Editors)');
+    define('_MI_INFO_CONF_HEIGHT', 'Height  of the HTML Editor in pixels (at least 100)');
+    define('_MI_INFO_CONF_HEIGHT_DESC', 'The height of the input field of the HTML Editor in pixels.');
 
     define('_MI_INFO_ADMENU_HELP', 'Help');
-    define('_MI_INFO_NONE', 'Hide no blocks');
-    define('_MI_INFO_RECHTS', 'disabled right blocks');
-    define('_MI_INFO_LINKS', 'disabled left');
-    define('_MI_INFO_BEIDE', 'disabled right and left blocks');
+    define('_MI_INFO_NONE', 'Show all blocks');
+    define('_MI_INFO_RECHTS', 'Disable right blocks');
+    define('_MI_INFO_LINKS', 'Disable left');
+    define('_MI_INFO_BEIDE', 'Disabled right and left blocks');
 }

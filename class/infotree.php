@@ -23,7 +23,7 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-//  @package infotree.php
+//  @package InfoTree.php
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: infotree.php 79 2013-09-13 18:04:49Z alfred $
 
@@ -41,7 +41,7 @@ if (!class_exists('InfoTree')) {
      * @subpackage XoopsTree
      * @access     public
      */
-    class infotree
+    class InfoTree
     {
         public $table; //table with parent-child structure
         public $id; //name of unique id for records in table $table
@@ -53,7 +53,7 @@ if (!class_exists('InfoTree')) {
         //constructor of class XoopsTree
         //sets the names of table, unique id, and parend id
         /**
-         * infotree constructor.
+         * InfoTree constructor.
          * @param $table_name
          * @param $id_name
          * @param $pid_name

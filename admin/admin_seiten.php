@@ -186,7 +186,7 @@ switch ($op) {
         break;
     case 'info_delhp':
         if ($id > 0) {
-            if ($infoHandler->del_startpage($id)) {
+            if ($infoHandler->deleteStartpage($id)) {
                 $key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
                 clearInfoCache($key);
                 redirect_header('admin_seiten.php?cat=' . $cat, 1, _INFO_DBUPDATED);
@@ -351,7 +351,7 @@ switch ($op) {
         $indexAdmin->addItemButton(_INFO_ADDCONTENT, 'admin_seiten.php?op=edit&amp;cat=' . $cat, $icon = 'add');
         echo $indexAdmin->renderButton();
         $sseite    = _AM_HP_SEITE . ' ';
-        $startpage = $infoHandler->read_startpage();
+        $startpage = $infoHandler->readStartpage();
         if (is_array($startpage)) {
             $sseite .= "<a href=\"admin_seiten.php?op=delhp&amp;cat="
                        . $cat
