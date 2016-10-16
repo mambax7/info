@@ -12,7 +12,7 @@
 
 //if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
-$infoname = basename( dirname ( dirname ( __FILE__ ) ) ) ;
+$infoname = basename( dirname (__DIR__) ) ;
 
 /**
  * Get item fields:

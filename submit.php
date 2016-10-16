@@ -28,7 +28,7 @@
 //  @version $Id: submit.php 91 2014-04-19 20:09:50Z alfred $
 
 include '../../mainfile.php';
-$module_name = basename( dirname( __FILE__ )) ;
+$module_name = basename(__DIR__) ;
 
 include_once 'include/function.php';
 include_once 'include/constants.php';

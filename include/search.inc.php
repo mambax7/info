@@ -29,8 +29,8 @@
       
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) die('XOOPS_ROOT_PATH not defined!');
 
-include_once dirname(dirname(__FILE__)) . '/include/function.php';
-$module_name = basename( dirname(dirname( __FILE__ ))) ; 
+include_once dirname(__DIR__) . '/include/function.php';
+$module_name = basename( dirname(__DIR__)) ;
     
 eval('
 function '.$module_name.'_search($queryarray, $andor, $limit, $offset, $userid) {

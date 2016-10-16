@@ -29,13 +29,13 @@
 
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) die();
 
-include_once dirname(dirname(__FILE__)) . '/include/function.php';
+include_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
 
 if (!function_exists('info_navblock_edit')) {
   function info_navblock_edit($options) {
     global $xoopsDB;
-	  $module_name = basename( dirname(dirname( __FILE__ ))) ;
+	  $module_name = basename( dirname(__DIR__)) ;
 	  $sql= 'SELECT cat_id,title FROM '
             . $xoopsDB->prefix($module_name . '_cat') . ' ORDER BY title';
 	  $result=$xoopsDB->query($sql);

@@ -31,7 +31,7 @@ if( ! defined( 'XOOPS_ROOT_PATH' ) )
  die('XOOPS_ROOT_PATH not defined!');
 
 // read the Name of the Folder
-$infoname = basename( dirname( __FILE__ )) ;
+$infoname = basename(__DIR__) ;
 
 $modversion['name']		  		  	= _MI_INFO_NAME;
 $modversion['version']			  	= 2.7;
@@ -94,14 +94,14 @@ $modversion['hasMain'] 				= 1;
 
 $infomod_handler =& xoops_getHandler('module');
 $infomodul = $infomod_handler->getByDirname($infoname);
-include_once dirname(__FILE__) . '/include/constants.php';
-include_once dirname(__FILE__) . '/include/function.php';
+include_once __DIR__ . '/include/constants.php';
+include_once __DIR__ . '/include/function.php';
 
 $info_isactiv = xoops_isActiveModule($infoname);
 
 if ($info_isactiv == true) {
 	//Modul ist aktiv
-  include_once dirname(__FILE__) . '/class/infotree.php';
+  include_once __DIR__ . '/class/infotree.php';
   $id = $cat = $pid = $i = 0;
 
   $config_handler =& xoops_getHandler('config');

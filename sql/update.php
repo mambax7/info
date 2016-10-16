@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: update.php 79 2013-09-13 18:04:49Z alfred $
  
-include dirname(dirname(__FILE__)) . '/include/function.php';
+include dirname(__DIR__) . '/include/function.php';
 
 //Install
 eval ('function xoops_module_pre_install_'.$module_name.'(&$module) {
