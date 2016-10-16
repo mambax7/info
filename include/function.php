@@ -300,7 +300,7 @@ if (!function_exists('makeSeoUrl')) {
                        . urlencode($mod['title'])
                        . '.html';
         } else {
-            if (substr($mod['cat'], 0, 1) == 'p') {
+            if (0 === strpos($mod['cat'], 'p')) {
                 $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/index.php?pid=' . $mod['id'];
             } else {
                 $content = XOOPS_URL
@@ -325,11 +325,11 @@ if (!function_exists('readSeoUrl')) {
         if ($seo == 2) {
             if ($_SERVER['QUERY_STRING'] != '') {
                 $query = explode('-', $_SERVER['QUERY_STRING'], 2);
-                if (substr($query[0], 0, 1) == 'p') {
+                if (0 === strpos($query[0], 'p')) {
                     $query       = substr($query[0], 1);
                     $query       = explode(':', $query);
                     $para['pid'] = (int)$query[1];
-                } elseif (substr($query[0], 0, 8) == 'content=') {
+                } elseif (0 === strpos($query[0], 'content=')) {
                     $id = explode(':', $get['content']);
                     if (count($id) == 2) {
                         $para['id']  = (int)$id[1];
