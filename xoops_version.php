@@ -98,7 +98,7 @@ include_once __DIR__ . '/include/function.php';
 
 $info_isactiv = xoops_isActiveModule($infoname);
 
-if ($info_isactiv == true) {
+if ($info_isactiv === true) {
     //Modul ist aktiv
     include_once __DIR__ . '/class/infotree.php';
     $id = $cat = $pid = $i = 0;

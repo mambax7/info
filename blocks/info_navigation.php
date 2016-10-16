@@ -128,7 +128,7 @@ if (!function_exists('info_block_nav')) {
             if ($tc['st'] != 1 || $tc['visible'] == 0) {
                 $visible = false;
             }
-            if ($visible == true) {
+            if ($visible === true) {
                 $sub = array();
                 if ($id > 0) {
                     $key = $InfoModule->getVar('dirname') . '_' . 'firstblock_' . $id;
