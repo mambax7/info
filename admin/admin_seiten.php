@@ -417,7 +417,7 @@ switch ($op) {
             echo "<tr class='odd'>";
             echo '<td>';
             if (in_array($tcontent['link'], array(0, 1, 4, 5))) {
-                $check = ($tcontent['frontpage'] == 1) ? "checked" : '';
+                $check = ($tcontent['frontpage'] == 1) ? 'checked' : '';
                 echo "<input type='radio' name='fp[]' value='" . $tcontent['info_id'] . "' " . $check . ' />';
             } else {
                 echo '&nbsp;';
