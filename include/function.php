@@ -59,6 +59,10 @@ if (!function_exists('Info_Load_CSS')) {
 }
 
 if (!function_exists('InfoTableExists')) {
+    /**
+     * @param $tablename
+     * @return bool
+     */
     function InfoTableExists($tablename)
     {
         global $xoopsDB;
@@ -70,6 +74,9 @@ if (!function_exists('InfoTableExists')) {
 }
 
 if (!function_exists('Info_checkModuleAdmin')) {
+    /**
+     * @return bool
+     */
     function Info_checkModuleAdmin()
     {
         if (file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))) {
@@ -85,6 +92,10 @@ if (!function_exists('Info_checkModuleAdmin')) {
 }
 
 if (!function_exists('Info_checkXoopsVersion')) {
+    /**
+     * @param null $version
+     * @return bool
+     */
     function Info_checkXoopsVersion($version = null)
     {
         $ret = false;
@@ -113,6 +124,11 @@ if (!function_exists('Info_checkXoopsVersion')) {
 }
 
 if (!function_exists('InfoColumnExists')) {
+    /**
+     * @param $tablename
+     * @param $spalte
+     * @return bool
+     */
     function InfoColumnExists($tablename, $spalte)
     {
         global $xoopsDB;
@@ -127,6 +143,11 @@ if (!function_exists('InfoColumnExists')) {
 }
 
 if (!function_exists('setPost')) {
+    /**
+     * @param $content
+     * @param $sets
+     * @return bool
+     */
     function setPost($content, $sets)
     {
         if (!is_object($content)) {
@@ -189,6 +210,14 @@ if (!function_exists('setPost')) {
 }
 
 if (!function_exists('info_cleanVars')) {
+    /**
+     * @param        $global
+     * @param        $key
+     * @param string $default
+     * @param string $type
+     * @param bool   $notset
+     * @return bool|false|int|mixed|string
+     */
     function info_cleanVars(
         &$global,
         $key,
@@ -230,6 +259,12 @@ if (!function_exists('info_cleanVars')) {
 }
 
 if (!function_exists('clearInfoCache')) {
+    /**
+     * @param string $name
+     * @param null   $dirname
+     * @param string $root_path
+     * @return bool
+     */
     function clearInfoCache(
         $name = '',
         $dirname = null,
@@ -259,6 +294,10 @@ if (!function_exists('clearInfoCache')) {
 }
 
 if (!function_exists('makeSeoUrl')) {
+    /**
+     * @param null $mod
+     * @return string
+     */
     function makeSeoUrl($mod = null)
     {
         $search       = array('ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'ß', ' ');
@@ -318,6 +357,11 @@ if (!function_exists('makeSeoUrl')) {
 }
 
 if (!function_exists('readSeoUrl')) {
+    /**
+     * @param     $get
+     * @param int $seo
+     * @return array
+     */
     function readSeoUrl($get, $seo = 0)
     {
         $para = array('id' => 0, 'cid' => 0, 'pid' => 0);

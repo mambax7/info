@@ -32,6 +32,10 @@ if (!defined('XOOPS_ROOT_PATH')) {
 }
 
 if (!function_exists('info_freiblock_show')) {
+    /**
+     * @param $options
+     * @return array
+     */
     function info_freiblock_show($options)
     {
         global $xoopsDB, $xoopsUser;
@@ -120,6 +124,10 @@ if (!function_exists('info_freiblock_show')) {
 }
 
 if (!function_exists('info_freiblock_edit')) {
+    /**
+     * @param $options
+     * @return string
+     */
     function info_freiblock_edit($options)
     {
         global $xoopsDB;

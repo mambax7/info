@@ -35,6 +35,10 @@ include_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
 
 if (!function_exists('info_navblock_edit')) {
+    /**
+     * @param $options
+     * @return string
+     */
     function info_navblock_edit($options)
     {
         global $xoopsDB;
@@ -73,6 +77,10 @@ if (!function_exists('info_navblock_edit')) {
 }
 
 if (!function_exists('info_block_nav')) {
+    /**
+     * @param $options
+     * @return array
+     */
     function info_block_nav($options)
     {
         global $xoopsDB, $xoopsModule, $xoopsTpl, $xoopsUser, $xoopsConfig;

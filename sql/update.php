@@ -56,6 +56,10 @@ eval('function xoops_module_update_' . $module_name . '($module) {
 	return true;
 }');
 
+/**
+ * @param $module
+ * @return bool
+ */
 function update_infotable($module)
 {
     global $xoopsDB;
@@ -96,6 +100,10 @@ function update_infotable($module)
     return $err;
 }
 
+/**
+ * @param $module
+ * @return bool
+ */
 function check_infotemplates($module)
 {
     $err = true;
@@ -178,6 +186,10 @@ function check_infotemplates($module)
     return $err;
 }
 
+/**
+ * @param $module
+ * @return bool
+ */
 function check_infotable($module)
 {
     global $xoopsDB;

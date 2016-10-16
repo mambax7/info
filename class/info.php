@@ -28,8 +28,14 @@
 //  @version $Id: info.php 73 2013-03-19 20:14:02Z alfred $
 
 if (!class_exists('InfoInfo')) {
+    /**
+     * Class InfoInfo
+     */
     class InfoInfo extends XoopsObject
     {
+        /**
+         * InfoInfo constructor.
+         */
         public function __construct()
         {
             $this->initVar('info_id', XOBJ_DTYPE_INT, null, false);
@@ -74,13 +80,24 @@ if (!class_exists('InfoInfo')) {
 }
 
 if (!class_exists('InfoInfoHandler')) {
+    /**
+     * Class InfoInfoHandler
+     */
     class InfoInfoHandler extends XoopsPersistableObjectHandler
     {
+        /**
+         * InfoInfoHandler constructor.
+         * @param null|XoopsDatabase $db
+         * @param string             $mname
+         */
         public function __construct($db, $mname)
         {
             parent::__construct($db, $mname, 'InfoInfo', 'info_id', 'parent_id');
         }
 
+        /**
+         * @return array|bool
+         */
         public function read_startpage()
         {
             $frontpage = false;
@@ -93,6 +110,10 @@ if (!class_exists('InfoInfoHandler')) {
             return $frontpage;
         }
 
+        /**
+         * @param int $id
+         * @return bool
+         */
         public function del_startpage($id = 0)
         {
             if ($id > 0) {
@@ -106,6 +127,11 @@ if (!class_exists('InfoInfoHandler')) {
             return false;
         }
 
+        /**
+         * @param XoopsObject $object
+         * @param bool        $force
+         * @return bool
+         */
         public function insert($object, $force = true)
         {
             if (parent::insert($object, $force)) {
@@ -124,6 +150,10 @@ if (!class_exists('InfoInfoHandler')) {
             return false;
         }
 
+        /**
+         * @param int $id
+         * @return bool
+         */
         public function readbakid($id = 0)
         {
             if ((int)$id <= 0) {

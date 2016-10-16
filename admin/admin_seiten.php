@@ -568,6 +568,13 @@ switch ($op) {
         break;
 }
 
+/**
+ * @param int $cat
+ * @param int $groupid
+ * @param int $cat
+ * @param int $aktuell
+ * @return array
+ */
 function show_list($cat = 0, $groupid = 0, $cat = 0, $aktuell = 0)
 {
     global $info_tree;

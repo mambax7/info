@@ -52,6 +52,12 @@ if (!class_exists('InfoTree')) {
 
         //constructor of class XoopsTree
         //sets the names of table, unique id, and parend id
+        /**
+         * infotree constructor.
+         * @param $table_name
+         * @param $id_name
+         * @param $pid_name
+         */
         public function __construct($table_name, $id_name, $pid_name)
         {
             $this->db    = XoopsDatabaseFactory::getDatabaseConnection();
@@ -61,6 +67,11 @@ if (!class_exists('InfoTree')) {
         }
 
         // returns an array of first child objects for a given id($sel_id)
+        /**
+         * @param        $sel_id
+         * @param string $order
+         * @return array
+         */
         public function getFirstChild($sel_id, $order = '')
         {
             $sel_id = (int)$sel_id;
@@ -81,6 +92,10 @@ if (!class_exists('InfoTree')) {
             return $arr;
         }
 
+        /**
+         * @param $sel_id
+         * @return int
+         */
         public function getFirstId($sel_id)
         {
             $sel_id = (int)$sel_id;
@@ -105,6 +120,10 @@ if (!class_exists('InfoTree')) {
         }
 
         // returns an array of all FIRST child ids of a given id($sel_id)
+        /**
+         * @param $sel_id
+         * @return array
+         */
         public function getFirstChildId($sel_id)
         {
             $sel_id  = (int)$sel_id;
@@ -130,6 +149,12 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL child ids for a given id($sel_id)
+        /**
+         * @param        $sel_id
+         * @param string $order
+         * @param array  $idarray
+         * @return array
+         */
         public function getAllChildId($sel_id, $order = '', $idarray = array())
         {
             $sel_id = (int)$sel_id;
@@ -151,6 +176,12 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL parent ids for a given id($sel_id)
+        /**
+         * @param        $sel_id
+         * @param string $order
+         * @param array  $idarray
+         * @return array
+         */
         public function getAllParentId($sel_id, $order = '', $idarray = array())
         {
             $sel_id = (int)$sel_id;
@@ -170,6 +201,12 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL parent title for a given id($sel_id)
+        /**
+         * @param        $sel_id
+         * @param string $order
+         * @param array  $idarray
+         * @return array
+         */
         public function getAllParentTitle(
             $sel_id,
             $order = '',
@@ -201,6 +238,12 @@ if (!class_exists('InfoTree')) {
 
         //generates path from the root id to a given id($sel_id)
         // the path is delimetered with "/"
+        /**
+         * @param        $sel_id
+         * @param        $title
+         * @param string $path
+         * @return string
+         */
         public function getPathFromId($sel_id, $title, $path = '')
         {
             $sel_id = (int)$sel_id;
@@ -231,6 +274,15 @@ if (!class_exists('InfoTree')) {
         //makes a nicely ordered selection box
         //$preset_id is used to specify a preselected item
         //set $none to 1 to add a option with value 0
+        /**
+         * @param        $title
+         * @param string $order
+         * @param int    $preset_id
+         * @param int    $none
+         * @param string $sel_name
+         * @param string $onchange
+         * @param null   $extra
+         */
         public function makeMySelBox(
             $title,
             $order = '',
@@ -287,6 +339,14 @@ if (!class_exists('InfoTree')) {
             echo "</select>\n";
         }
 
+        /**
+         * @param        $title
+         * @param string $order
+         * @param int    $preset_id
+         * @param int    $none
+         * @param null   $extra
+         * @return array
+         */
         public function makeMySelArray(
             $title,
             $order = '',
@@ -328,6 +388,13 @@ if (!class_exists('InfoTree')) {
         }
 
         //generates nicely formatted linked path from the root id to a given id
+        /**
+         * @param        $sel_id
+         * @param        $title
+         * @param        $funcURL
+         * @param string $path
+         * @return string
+         */
         public function getNicePathFromId($sel_id, $title, $funcURL, $path = '')
         {
             $path   = !empty($path) ? '&nbsp;:&nbsp;' . $path : $path;
@@ -359,6 +426,11 @@ if (!class_exists('InfoTree')) {
 
         //generates id path from the root id to a given id
         // the path is delimetered with "/"
+        /**
+         * @param        $sel_id
+         * @param string $path
+         * @return string
+         */
         public function getIdPathFromId($sel_id, $path = '')
         {
             $sel_id = (int)$sel_id;
@@ -457,6 +529,11 @@ if (!class_exists('InfoTree')) {
             return $parray;
         }
 
+        /**
+         * @param array $visiblegroups
+         * @param array $usergroups
+         * @return bool
+         */
         public function checkperm(
             $visiblegroups = array(),
             $usergroups = array()

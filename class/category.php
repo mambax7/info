@@ -28,8 +28,14 @@
 //  @version $Id: category.php 73 2013-03-19 20:14:02Z alfred $
 
 if (!class_exists('InfoCategory')) {
+    /**
+     * Class InfoCategory
+     */
     class InfoCategory extends XoopsObject
     {
+        /**
+         * InfoCategory constructor.
+         */
         public function __construct()
         {
             $this->initVar('cat_id', XOBJ_DTYPE_INT, null, false);
@@ -40,8 +46,16 @@ if (!class_exists('InfoCategory')) {
 }
 
 if (!class_exists('InfoCategoryHandler')) {
+    /**
+     * Class InfoCategoryHandler
+     */
     class InfoCategoryHandler extends XoopsPersistableObjectHandler
     {
+        /**
+         * InfoCategoryHandler constructor.
+         * @param null|XoopsDatabase $db
+         * @param string             $mname
+         */
         public function __construct($db, $mname)
         {
             parent::__construct($db, $mname . '_cat', 'InfoCategory', 'cat_id', 'title');

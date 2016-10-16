@@ -113,6 +113,9 @@ switch ($op) {
         break;
 }
 
+/**
+ * @param int $cat
+ */
 function makecat($cat = 0)
 {
     global $catHandler, $xoopsModule;
