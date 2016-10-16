@@ -27,15 +27,13 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: search.inc.php 74 2013-03-29 20:25:05Z alfred $
 
-if (! defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS_ROOT_PATH not defined!');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 include_once dirname(__DIR__) . '/include/function.php';
-$module_name = basename(dirname(__DIR__)) ;
-    
+$module_name = basename(dirname(__DIR__));
+
 eval('
-function '.$module_name.'_search($queryarray, $andor, $limit, $offset, $userid) {
+function ' . $module_name . '_search($queryarray, $andor, $limit, $offset, $userid) {
     global $xoopsDB, $xoopsConfig,$xoopsUser, $xoopsModuleConfig;
 	$module_name = basename( dirname(dirname( __FILE__ ))) ; 
     $smoduleHandler = xoops_gethandler("module");
@@ -47,7 +45,7 @@ function '.$module_name.'_search($queryarray, $andor, $limit, $offset, $userid) 
 	}
     $sgroups = ($xoopsUser) ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
 	xoops_loadLanguage("main", $module_name );	
-	$sql = "SELECT info_id,title,text,visible_group,edited_time,cat FROM ".$xoopsDB->prefix("'.$module_name.'")." WHERE link!=3";
+	$sql = "SELECT info_id,title,text,visible_group,edited_time,cat FROM ".$xoopsDB->prefix("' . $module_name . '")." WHERE link!=3";
 	if ( $userid != 0 ) {
 		$sql .= " AND edited_user=$userid ";
     }

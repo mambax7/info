@@ -27,9 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: xoops_version.php 91 2014-04-19 20:09:50Z alfred $
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS_ROOT_PATH not defined!');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 // read the Name of the Folder
 $infoname = basename(__DIR__);
@@ -56,13 +54,13 @@ $modversion['min_sxxoops']  = '1.0.0';
 $modversion['sx-modul']     = 10;
 
 //about
-$modversion['release_date']        = '2015/02/28';
+$modversion['release_date']        = '2016/10/15';
 $modversion['module_website_url']  = 'www.simple-xoops.de/';
 $modversion['module_website_name'] = 'SIMPLE-XOOPS';
-$modversion['module_status']       = 'BETA 1';
-$modversion['min_php']             = '5.3';
-$modversion['min_xoops']           = '2.5.5';
-$modversion['min_admin']           = '1.1';
+$modversion['module_status']       = 'BETA 2';
+$modversion['min_php']             = '5.5';
+$modversion['min_xoops']           = '2.5.8';
+$modversion['min_admin']           = '1.2';
 $modversion['min_db']              = array('mysql' => '5.0', 'mysqli' => '5.0');
 $modversion['system_menu']         = 1;
 

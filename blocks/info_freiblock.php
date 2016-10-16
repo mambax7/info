@@ -27,9 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: info_freiblock.php 73 2013-03-19 20:14:02Z alfred $
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS_ROOT_PATH not defined!');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 if (!function_exists('info_freiblock_show')) {
     /**

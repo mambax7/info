@@ -27,9 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id $
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS_ROOT_PATH not defined!');
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 $module_name = basename(dirname(__DIR__));
 
