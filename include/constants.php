@@ -27,7 +27,9 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: constants.php 72 2013-02-04 18:48:06Z alfred $
 
-if (defined('_CON_INFO_PERMNAME')) return;
+if (defined('_CON_INFO_PERMNAME')) {
+    return;
+}
 
 define('_CON_INFO_PERMNAME', 'InfoPerm');
 

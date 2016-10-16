@@ -28,11 +28,11 @@
 //  @version $Id: index.php 69 2013-01-06 18:35:44Z alfred $
 
 include_once __DIR__ . '/admin_header.php';
-xoops_cp_header();        
+xoops_cp_header();
 
-$anz_cat 	  = $catHandler->getCount();
-$anz_site 	= $infoHandler->getCount();
-$wait_site 	= $infowaitHandler->getCount();
+$anz_cat      = $catHandler->getCount();
+$anz_site    = $infoHandler->getCount();
+$wait_site    = $infowaitHandler->getCount();
 
 $indexAdmin->addInfoBox(_INFO_ADMINTITLE) ;
 
@@ -48,4 +48,3 @@ echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();
 
 xoops_cp_footer();
-

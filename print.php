@@ -32,11 +32,11 @@ include __DIR__ . '/../../mainfile.php';
 error_reporting(0);
 $xoopsLogger->activated = false;
 
-xoops_loadLanguage( 'modinfo', $xoopsModule->dirname() );
+xoops_loadLanguage('modinfo', $xoopsModule->dirname());
 $id = isset($_GET['content']) ? (int)$_GET['content'] : 0;
 $infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
-if ( empty($id) ) {
-	redirect_header('index.php');
+if (empty($id)) {
+    redirect_header('index.php');
 }
 
 global $xoopsConfig, $xoopsModule, $xoopsDB,$xoopsConfigMetaFooter;
@@ -58,78 +58,64 @@ echo '</head>';
 
 $result = $xoopsDB->query('SELECT info_id, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM '
                           . $xoopsDB->prefix($xoopsModule->dirname()) . " WHERE info_id=$id");
-list($info_id,$title,$text,$visible,$nohtml,$nosmiley,$nobreaks,$nocomments,$link,$address) = $xoopsDB->fetchRow($result);
+list($info_id, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $link, $address) = $xoopsDB->fetchRow($result);
 echo '<body bgcolor="#FFFFFF" text="#000000" topmargin="10" style="font:12px arial, helvetica, san serif;" onLoad="window.print()">';
 echo '	<table border="0" width="640" cellpadding="10" cellspacing="1" style="border: 1px solid #000000;" align="center">';
 echo '		<tr>';
-if (file_exists(XOOPS_ROOT_PATH.'/themes/'.$xoopsConfig['theme_set'].'/logo.gif')) 
-{
+if (file_exists(XOOPS_ROOT_PATH.'/themes/'.$xoopsConfig['theme_set'].'/logo.gif')) {
     echo '<td align="left"><img src="'.XOOPS_URL.'/themes/'.$xoopsConfig['theme_set'].'/logo.gif" border="0" alt="'.$xoopsConfig['sitename'].'" title="'.$xoopsConfig['sitename'].'" /></td>';
-} 
-elseif (file_exists(XOOPS_ROOT_PATH.'/themes/'.$xoopsConfig['theme_set'].'/images/logo.gif')) 
-{
+} elseif (file_exists(XOOPS_ROOT_PATH.'/themes/'.$xoopsConfig['theme_set'].'/images/logo.gif')) {
     echo '<td align="left"><img src="'.XOOPS_URL.'/themes/'.$xoopsConfig['theme_set'].'/images/logo.gif" border="0" alt="'.$xoopsConfig['sitename'].'" title="'.$xoopsConfig['sitename'].'" /></td>';
-} 
-else 
-{
+} else {
     echo '<td align="left"><img src="' . XOOPS_URL . '/modules/' . $xoopsModule->getInfo('dirname') . '/' . trim($xoopsModule->getInfo('image')) . '" alt="" /></td>';
 }
 echo '<td><strong>'.$title.'</strong></td>';
 echo '</tr>';
 echo '<tr valign="top">';
 echo '<td style="padding-top:0px;">';
-$myts = MyTextSanitizer::getInstance();	
+$myts = MyTextSanitizer::getInstance();
 $text = str_replace('{X_XOOPSURL}', XOOPS_URL.'/', $text);
 $text = str_replace('{X_SITEURL}', XOOPS_URL.'/', $text);
-if (is_object($xoopsUser))
-{
+if (is_object($xoopsUser)) {
     $text = str_replace('{X_XOOPSUSER}', $xoopsUser->getVar('uname'), $text);
     $text = str_replace('{X_XOOPSUSERID}', $xoopsUser->getVar('uid'), $text);
-} 
-else 
-{
-    $text = str_replace('{X_XOOPSUSER}',_GUESTS, $text);
+} else {
+    $text = str_replace('{X_XOOPSUSER}', _GUESTS, $text);
     $text = str_replace('{X_XOOPSUSERID}', '0', $text);
 }
-if ($link==4) 
-{
-	if (substr($address == '/', 0, 1) || substr($address == "\\", 0, 1)) $address =substr($address, 1);
-	$file = XOOPS_ROOT_PATH . '/' . $address;
-	if (file_exists($file)) 
-    {
-		ob_start();
-	    include $file;
-	    $text = ob_get_contents();
+if ($link==4) {
+    if (substr($address == '/', 0, 1) || substr($address == "\\", 0, 1)) {
+        $address =substr($address, 1);
+    }
+    $file = XOOPS_ROOT_PATH . '/' . $address;
+    if (file_exists($file)) {
+        ob_start();
+        include $file;
+        $text = ob_get_contents();
         ob_end_clean();
-	}
-} 
-elseif ( trim($text) != '' ) 
-{
-	$text = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>','[pagebreak]',$text);
-    $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>','[pagebreak]',$text);
-    $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>','[pagebreak]',$text);
-	$infotext = explode('[pagebreak]', $text);
-	$info_pages = count($infotext);
-	if ($info_pages > 0) 
-    {
-		$text = $infotext[$infopage];
-	} 
-} 
-else 
-{
+    }
+} elseif (trim($text) != '') {
+    $text = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>', '[pagebreak]', $text);
+    $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>', '[pagebreak]', $text);
+    $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>', '[pagebreak]', $text);
+    $infotext = explode('[pagebreak]', $text);
+    $info_pages = count($infotext);
+    if ($info_pages > 0) {
+        $text = $infotext[$infopage];
+    }
+} else {
     $text= '';
 }
-$html = ($nohtml == 1) ? 0 : 1;        
+$html = ($nohtml == 1) ? 0 : 1;
 $nobreaks = ($html == 1) ? 0 : 1;
-$smiley = ($nosmiley == 1) ? 0 : 1;        
-$text = $myts->displayTarea($text,$html,$smiley,1,1,$nobreaks);
-echo $text;   
+$smiley = ($nosmiley == 1) ? 0 : 1;
+$text = $myts->displayTarea($text, $html, $smiley, 1, 1, $nobreaks);
+echo $text;
 echo '</td>';
 echo '</tr>';
 echo '</table>';
 echo '	<table border="0" width="640" cellpadding="10" cellspacing="1" align="center"><tr><td>';
-printf(_INFO_THISCOMESFROM,$xoopsConfig['sitename']);
+printf(_INFO_THISCOMESFROM, $xoopsConfig['sitename']);
 echo '<br /><a href="'.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/index.php?content='.$id.'&page='.$infopage.'">'.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/index.php?content='.$id.'&page='.$infopage.'</a>';
 echo '</td></tr></table></body>';
 echo '</html>';
-

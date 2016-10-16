@@ -29,8 +29,7 @@
 
 defined('XOOPS_ROOT_PATH') or die('Restricted access');
 
-if ( !class_exists ( 'InfoTree' ) ) 
-{
+if (!class_exists('InfoTree')) {
 
 /**
  * Abstract base class for forms
@@ -42,23 +41,23 @@ if ( !class_exists ( 'InfoTree' ) )
  * @subpackage XoopsTree
  * @access public
  */
-class InfoTree
+class infotree
 {
-    var $table; //table with parent-child structure
-    var $id; //name of unique id for records in table $table
-    var $pid; // name of parent id used in table $table
-    var $order; //specifies the order of query results
-    var $title; // name of a field in table $table which will be used when  selection box and paths are generated
-    var $db;
+    public $table; //table with parent-child structure
+    public $id; //name of unique id for records in table $table
+    public $pid; // name of parent id used in table $table
+    public $order; //specifies the order of query results
+    public $title; // name of a field in table $table which will be used when  selection box and paths are generated
+    public $db;
 
     //constructor of class XoopsTree
     //sets the names of table, unique id, and parend id
     public function __construct($table_name, $id_name, $pid_name)
     {
-        $this->db 		= XoopsDatabaseFactory::getDatabaseConnection();
-        $this->table 	= $table_name;
-        $this->id 		= $id_name;
-        $this->pid 		= $pid_name;
+        $this->db        = XoopsDatabaseFactory::getDatabaseConnection();
+        $this->table    = $table_name;
+        $this->id        = $id_name;
+        $this->pid        = $pid_name;
     }
 
     // returns an array of first child objects for a given id($sel_id)
@@ -92,15 +91,15 @@ class InfoTree
                                    . $this->id . '='
                                    . $sel_id . '');
         $count = $this->db->getRowsNum($result);
-        list ($r_id) = $this->db->fetchRow($result);
+        list($r_id) = $this->db->fetchRow($result);
         if ($count == 0 || $r_id ==0) {
-            return $sel_id;			
+            return $sel_id;
         }
-        $r_id = $this->getFirstId($r_id);		
+        $r_id = $this->getFirstId($r_id);
         return $r_id;
     }
 
-	 // returns an array of all FIRST child ids of a given id($sel_id)
+     // returns an array of all FIRST child ids of a given id($sel_id)
     public function getFirstChildId($sel_id)
     {
         $sel_id = (int)$sel_id;
@@ -113,8 +112,8 @@ class InfoTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($id) = $this->db->fetchRow($result)) {
-            array_push($idarray, $id);			
+        while (list($id) = $this->db->fetchRow($result)) {
+            array_push($idarray, $id);
         }
         return $idarray;
     }
@@ -134,7 +133,7 @@ class InfoTree
         if ($count == 0) {
             return $idarray;
         }
-        while (list ($r_id) = $this->db->fetchRow($result)) {
+        while (list($r_id) = $this->db->fetchRow($result)) {
             array_push($idarray, $r_id);
             $idarray = $this->getAllChildId($r_id, $order, $idarray);
         }
@@ -152,7 +151,7 @@ class InfoTree
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
-        list ($r_id) = $this->db->fetchRow($result);
+        list($r_id) = $this->db->fetchRow($result);
         if ($r_id == 0) {
             return $idarray;
         }
@@ -161,7 +160,7 @@ class InfoTree
         return $idarray;
     }
 
-	//returns an array of ALL parent title for a given id($sel_id)
+    //returns an array of ALL parent title for a given id($sel_id)
     public function getAllParentTitle($sel_id, $order = '', $idarray = array())
     {
         $sel_id = (int)$sel_id;
@@ -173,7 +172,7 @@ class InfoTree
             $sql .= " ORDER BY $order";
         }
         $result = $this->db->query($sql);
-        list ($r_id,$r_title,$r_storyid) = $this->db->fetchRow($result);
+        list($r_id, $r_title, $r_storyid) = $this->db->fetchRow($result);
         if ($r_id == 0) {
             return $idarray;
         }
@@ -194,7 +193,7 @@ class InfoTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = & MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = '/' . $name . $path . '';
@@ -230,7 +229,7 @@ class InfoTree
         if ($none) {
             echo "<option value='0'>----</option>\n";
         }
-        while (list ($cat_id, $name) = $this->db->fetchRow($result)) {
+        while (list($cat_id, $name) = $this->db->fetchRow($result)) {
             $sel = '';
             if ($cat_id == $preset_id) {
                 $sel = " selected='selected'";
@@ -238,7 +237,7 @@ class InfoTree
             echo "<option value='$cat_id'$sel>$name</option>\n";
             $sel = '';
             $arr = $this->getChildTreeArray($cat_id, $order, array(), '', $extra);
-            foreach($arr as $option) {
+            foreach ($arr as $option) {
                 $option['prefix'] = str_replace('.', '--', $option['prefix']);
                 $catpath = $option['prefix'] . '&nbsp;'
                            . $myts->htmlspecialchars($option[$title]);
@@ -252,7 +251,7 @@ class InfoTree
         echo "</select>\n";
     }
 
-	public function makeMySelArray($title, $order = '', $preset_id = 0, $none = 0, $extra = null)
+    public function makeMySelArray($title, $order = '', $preset_id = 0, $none = 0, $extra = null)
     {
         $ret = array();
         $myts = MyTextSanitizer::getInstance();
@@ -267,10 +266,10 @@ class InfoTree
         if ($none) {
             $ret[0] = '----';
         }
-        while (list ($cat_id, $name) = $this->db->fetchRow($result)) {
+        while (list($cat_id, $name) = $this->db->fetchRow($result)) {
             $arr = $this->getChildTreeArray($cat_id, $order, array(), '', $extra);
             $ret[$cat_id] = $name;
-            foreach($arr as $option) {
+            foreach ($arr as $option) {
                 $option['prefix'] = str_replace('.', '--', $option['prefix']);
                 $catpath = $option['prefix'] . '&nbsp;'
                            . $myts->htmlspecialchars($option['title']);
@@ -293,7 +292,7 @@ class InfoTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid, $name) = $this->db->fetchRow($result);
+        list($parentid, $name) = $this->db->fetchRow($result);
         $myts = & MyTextSanitizer::getInstance();
         $name = $myts->htmlspecialchars($name);
         $path = "<a href='" . $funcURL . '&amp;' . $this->id . '='
@@ -317,7 +316,7 @@ class InfoTree
         if ($this->db->getRowsNum($result) == 0) {
             return $path;
         }
-        list ($parentid) = $this->db->fetchRow($result);
+        list($parentid) = $this->db->fetchRow($result);
         $path = '/' . $sel_id . $path . '';
         if ($parentid == 0) {
             return $path;
@@ -382,31 +381,31 @@ class InfoTree
             return $parray;
         }
         while ($row = $this->db->fetchArray($result)) {
-			if ($sel_id != 0) {
-				$row['prefix'] = $r_prefix . '&nbsp;';
-			}
-			array_push($parray, $row);
-			if ($sel_id == 0) {
-				$row['prefix'] = $r_prefix . '&nbsp;';
-			}
-			$parray = $this->getChildTreeArray($row[$this->id], $order, $parray, $row['prefix'], $extra);
+            if ($sel_id != 0) {
+                $row['prefix'] = $r_prefix . '&nbsp;';
+            }
+            array_push($parray, $row);
+            if ($sel_id == 0) {
+                $row['prefix'] = $r_prefix . '&nbsp;';
+            }
+            $parray = $this->getChildTreeArray($row[$this->id], $order, $parray, $row['prefix'], $extra);
         }
         return $parray;
     }
 
-	public function checkperm($visiblegroups = array(), $usergroups = array()) {
-		if (count($usergroups) > 0 && count($visiblegroups) > 0) {
-			$vsgroup	= explode (',', $visiblegroups);
-			$vscount	= count($vsgroup)-1;		
-			while ($vscount > -1) {
-				if (in_array($vsgroup[$vscount], $usergroups)) return true;
-				$vscount--;
-			}
-		}
-		return false;
-	}
-
+    public function checkperm($visiblegroups = array(), $usergroups = array())
+    {
+        if (count($usergroups) > 0 && count($visiblegroups) > 0) {
+            $vsgroup    = explode(',', $visiblegroups);
+            $vscount    = count($vsgroup)-1;
+            while ($vscount > -1) {
+                if (in_array($vsgroup[$vscount], $usergroups)) {
+                    return true;
+                }
+                $vscount--;
+            }
+        }
+        return false;
+    }
 }
-
 }
-

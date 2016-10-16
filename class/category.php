@@ -27,31 +27,24 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: category.php 73 2013-03-19 20:14:02Z alfred $
 
-if ( !class_exists ( 'InfoCategory' ) ) 
-{
-
-	class InfoCategory extends XoopsObject {
-
-		public function __construct()
-		{
-			$this->initVar('cat_id'	, XOBJ_DTYPE_INT, NULL, false);
-			$this->initVar('visible', XOBJ_DTYPE_INT, 1, false);
-			$this->initVar('title'	, XOBJ_DTYPE_TXTBOX, NULL, true, 255, true);
-		}
-	}
-
+if (!class_exists('InfoCategory')) {
+    class InfoCategory extends XoopsObject
+    {
+        public function __construct()
+        {
+            $this->initVar('cat_id', XOBJ_DTYPE_INT, null, false);
+            $this->initVar('visible', XOBJ_DTYPE_INT, 1, false);
+            $this->initVar('title', XOBJ_DTYPE_TXTBOX, null, true, 255, true);
+        }
+    }
 }
 
-if ( !class_exists ( 'InfoCategoryHandler' ) ) 
-{
-
-	class InfoCategoryHandler extends XoopsPersistableObjectHandler
-	{
-
-		public function __construct($db, $mname) 
-		{
-			parent::__construct($db, $mname . '_cat', 'InfoCategory', 'cat_id', 'title');
-		}
-    }    
-
+if (!class_exists('InfoCategoryHandler')) {
+    class InfoCategoryHandler extends XoopsPersistableObjectHandler
+    {
+        public function __construct($db, $mname)
+        {
+            parent::__construct($db, $mname . '_cat', 'InfoCategory', 'cat_id', 'title');
+        }
+    }
 }
