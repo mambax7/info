@@ -569,13 +569,13 @@ switch ($op) {
 }
 
 /**
- * @param int $cat
+ * @param int $cat0
  * @param int $groupid
  * @param int $cat
  * @param int $aktuell
  * @return array
  */
-function show_list($cat = 0, $groupid = 0, $cat = 0, $aktuell = 0)
+function show_list($cat0 = 0, $groupid = 0, $cat = 0, $aktuell = 0)
 {
     global $info_tree;
     $infolist = $info_tree->getAllChild(0, 'blockid', array(), ' AND cat=' . $cat . ' AND info_id<>' . $aktuell);
