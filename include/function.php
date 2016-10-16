@@ -290,5 +290,3 @@ if (!function_exists('readSeoUrl')) {
     return $para;
 	}
 }
-
-?>
