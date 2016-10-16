@@ -45,7 +45,7 @@ if (!function_exists('info_freiblock_show'))
                                   . $options[1]);
         $row = $xoopsDB->fetchArray($result);
         $text = trim($row['text']);
-        if (intval($row['info_id']) != 0)  {
+        if ((int)$row['info_id'] != 0)  {
             $xoopsOption['template_main'] = $options[0].'_startblock.html';
             if ($row['link'] == 6) {
                 ob_start();
@@ -54,10 +54,10 @@ if (!function_exists('info_freiblock_show'))
                 ob_end_clean();
                 $row['nohtml'] = 0; 
             } 
-            $html = (intval($row['nohtml']) == 1) ? 0 : 1; 
-            $smiley = (intval($row['nosmiley']) == 1) ? 0 : 1;
+            $html = ((int)$row['nohtml'] == 1) ? 0 : 1;
+            $smiley = ((int)$row['nosmiley'] == 1) ? 0 : 1;
             $breaks = ($html == 1) ? 0 : 1;
-            if (intval($row['link']) == 4) {
+            if ((int)$row['link'] == 4) {
                 if (substr($row['address'], '/', 0, 1) || substr($row['address'], "\\", 0, 1)) $row['address'] =substr($address, 1);
                     $file = XOOPS_ROOT_PATH . '/' . $row['address'];
                     if (file_exists($file)) {
@@ -67,7 +67,7 @@ if (!function_exists('info_freiblock_show'))
                         ob_end_clean();
                         $text=$file;
                     }
-            } elseif (intval($row['link']) == 5) {
+            } elseif ((int)$row['link'] == 5) {
                 $iframe=unserialize($row['frame']);
                 if (!isset($iframe['width']) || $iframe['width']<1 || $iframe['width']>100) $iframe['width']=100;
                 $text.= "<iframe width='".$iframe['width']."%' height='".$iframe['height']."px' align='".$iframe['align']."' name='".$row['title']."' scrolling='auto' frameborder='".$iframe['border']."' src='".$row['address']."'></iframe>";

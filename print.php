@@ -33,8 +33,8 @@ error_reporting(0);
 $xoopsLogger->activated = false;
 
 xoops_loadLanguage( 'modinfo', $xoopsModule->dirname() );
-$id = isset($_GET['content']) ? intval($_GET['content']) : 0;
-$infopage = isset($_GET['page']) ? intval($_GET['page']) : 0;
+$id = isset($_GET['content']) ? (int)$_GET['content'] : 0;
+$infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 if ( empty($id) ) {
 	redirect_header('index.php');
 }

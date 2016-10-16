@@ -79,7 +79,7 @@ if (!function_exists('info_block_nav')) {
 		$myts = MyTextSanitizer::getInstance();
 		$InfoModule = $module_handler->getByDirname($options[0]);
 		$InfoModuleConfig = $config_handler->getConfigsByCat(0, $InfoModule->getVar('mid'));
-		$seo = (!empty($InfoModuleConfig[$options[0].'_seourl']) && $InfoModuleConfig[$options[0].'_seourl']>0) ? intval($InfoModuleConfig[$options[0].'_seourl']) : 0;
+		$seo = (!empty($InfoModuleConfig[$options[0].'_seourl']) && $InfoModuleConfig[$options[0].'_seourl']>0) ? (int)$InfoModuleConfig[$options[0] . '_seourl'] : 0;
 		$info_tree = new InfoTree($xoopsDB->prefix($options[0]), 'info_id',
                                   'parent_id');
 		
@@ -139,12 +139,12 @@ if (!function_exists('info_block_nav')) {
 				$ctURL = makeSeoUrl($mode);
 				if ($tc['link'] == 1) { //int.Link
 					if (substr($tc['address'],-1) == '/' || substr($tc['address'], -1) == "\\") $tc['address'] .= 'index.php';
-					$link['target'] = (intval($tc['self']) == 1) ? '_blank' : '_self';
+					$link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
 				} elseif ($tc['link'] == 2) { // ext.Link
 					$ok = (substr($tc['address'],0,4) == 'http'
                            || substr($tc['address'], 0, 3) == 'ftp') ? 1:0;
 					if ($ok==1) $contentURL = $tc['address'];
-					$link['target'] = (intval($tc['self']) == 1) ? '_blank' : '_self';
+					$link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
 				} elseif ($tc['link'] == 3) {
 					$mode=array(
                         'seo' =>$seo, 'id' => $tc['info_id'], 'title' => $tc['title'], 'dir' => $options[0],
@@ -169,7 +169,7 @@ if (!function_exists('info_block_nav')) {
 					if ( $tc['parent_id'] == $id || $tc['parent_id'] == 0 ) {
 						$link['aktiv'] = 1;					
 					}
-					if ( in_array(intval($tc['info_id']),$sub) ) $link['aktiv'] = 1;	
+					if ( in_array((int)$tc['info_id'], $sub) ) $link['aktiv'] = 1;
 				}
 				$block['links'][] = $link;
 				unset($link);

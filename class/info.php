@@ -123,7 +123,7 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
     
     public function readbakid($id=0)
 		{
-      if ( intval($id) <= 0 ) return false;
+      if ((int)$id <= 0 ) return false;
       $ret = false;
       $sql = 'SELECT old_id FROM ' . $this->table . ' WHERE old_id=' . $id;
 			$res = $this->db->fetchArray($this->db->query($sql));

@@ -39,7 +39,7 @@ include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/category.php';
 xoops_loadLanguage( 'admin', $module_name);
 xoops_loadLanguage( 'modinfo', $module_name);
 
-$seo = (!empty($xoopsModuleConfig[$module_name.'_seourl']) && $xoopsModuleConfig[$module_name.'_seourl']>0) ? intval($xoopsModuleConfig[$module_name.'_seourl']) : 0;
+$seo = (!empty($xoopsModuleConfig[$module_name.'_seourl']) && $xoopsModuleConfig[$module_name.'_seourl']>0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;
 $myts = MyTextSanitizer::getInstance();
 
 $info_handler 		  = new InfoInfoHandler($xoopsDB,$module_name);
@@ -96,7 +96,9 @@ if ($op == 'edit') {
       if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name']) && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
         include_once XOOPS_ROOT_PATH . '/class/uploader.php';
         $allowed_mimetypes = include_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
-        $maxfilesize = (intval(ini_get('post_max_size')) < 1 ) ? 204800 : intval(ini_get('post_max_size')) * 1024 * 1024;
+        $maxfilesize = ((int)ini_get('post_max_size')
+                        < 1 ) ? 204800 : (int)ini_get('post_max_size')
+                                         * 1024 * 1024;
         // $maxfilewidth = 120;
         // $maxfileheight = 120;
         $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
@@ -110,7 +112,7 @@ if ($op == 'edit') {
           if (count($uploader->errors) > 0 ) {
         
             include_once XOOPS_ROOT_PATH.'/header.php';
-            $sbl = intval($xoopsModuleConfig[$xoopsModule->getVar('dirname').'_showrblock']);
+            $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
             if ($sbl == 0) {
             // no blocks
             } elseif ($sbl == 1) {
@@ -131,7 +133,7 @@ if ($op == 'edit') {
           if (!$uploader->upload()) {
             if (count($uploader->errors) > 0 ) {
               include_once XOOPS_ROOT_PATH.'/header.php';
-              $sbl = intval($xoopsModuleConfig[$xoopsModule->getVar('dirname').'_showrblock']);
+              $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
               if ($sbl == 0) {
               // no blocks
               } elseif ($sbl == 1) {
@@ -153,7 +155,7 @@ if ($op == 'edit') {
         } else {
           if (count($uploader->errors) > 0 ) {
               include_once XOOPS_ROOT_PATH.'/header.php';
-              $sbl = intval($xoopsModuleConfig[$xoopsModule->getVar('dirname').'_showrblock']);
+              $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
               if ($sbl == 0) {
               // no blocks
               } elseif ($sbl == 1) {
@@ -186,7 +188,7 @@ if ($op == 'edit') {
 			$res = $infowait_handler->insert($content);      
 		}
 
-		if (intval($_POST['ret']) == 1) {
+		if ((int)$_POST['ret'] == 1) {
 			$mode=array(
                 'seo' =>$seo, 'id' =>0, 'title' =>'', 'dir' =>$module_name,
                 'cat' =>0);
@@ -212,7 +214,8 @@ if ($op == 'edit') {
     if (!$infowait_handler->readbakid($id)) {     
       $ret = 0;
       include_once XOOPS_ROOT_PATH.'/header.php';
-      if (intval($xoopsModuleConfig[$xoopsModule->getVar('dirname').'_showrblock']) == 1) {
+      if ((int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock']
+          == 1) {
         $GLOBALS['xoopsTpl']->assign( 'xoops_showrblock', 0 );
       }		
       include_once 'include/form.php';
@@ -230,7 +233,7 @@ if ($op == 'edit') {
           'seo' =>$seo, 'id' =>$content->getVar('info_id'), 'title' =>$content->getVar('title'), 'dir' =>$module_name,
           'cat' =>$content->getVar('cat'));
       redirect_header(makeSeoUrl($mode), 3, _NOPERM);
-    } elseif ( !empty($_POST['delok']) && intval($_POST['delok']) == 1) {
+    } elseif (!empty($_POST['delok']) && (int)$_POST['delok'] == 1) {
       if ( $GLOBALS['xoopsSecurity']->check() ) {        
         if ($info_handler->delete($content)) {
           $key = $xoopsModule->getVar('dirname') . '_' . '*';
@@ -254,7 +257,7 @@ if ($op == 'edit') {
     }
 } else {
   include_once XOOPS_ROOT_PATH.'/header.php';
-  $sbl = intval($xoopsModuleConfig[$xoopsModule->getVar('dirname').'_showrblock']);
+  $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
   if ($sbl == 0) {
     // no blocks
   } elseif ($sbl == 1) {

@@ -32,7 +32,7 @@ include_once 'admin_header.php';
 $op  	= isset($_REQUEST['op']) ? $_REQUEST['op'] 			: 'list';
 if (!in_array( $op, array('list','blockcat','blockcat_insert') )) $op = 'list'; 
 //$id  	= ( isset($_REQUEST['id']) )  	? intval($_REQUEST['id']) 	: 0;
-$cat 	= isset($_REQUEST['cat']) ? intval($_REQUEST['cat']) 	: 0;
+$cat 	= isset($_REQUEST['cat']) ? (int)$_REQUEST['cat'] : 0;
 
 switch ($op) {
     case 'list':

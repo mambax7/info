@@ -178,7 +178,7 @@ if ($content->getVar('link') == 1 || $content->getVar('link') == 2) {
 } else {
 	$form->addElement(new XoopsFormHidden('self', $content->getVar('self')));
 }
-if (intval($content->getVar('link')) == 3) {
+if ((int)$content->getVar('link') == 3) {
 	$menu_clickbox = new XoopsFormCheckBox(_INFO_CLICK, 'click',$content->getVar('click'));
   $menu_clickbox->addOption(1, _YES);
   $form->addElement($menu_clickbox);
@@ -190,7 +190,7 @@ $visible_checkbox = new XoopsFormCheckBox(_INFO_VISIBLE, 'visible',$content->get
 $visible_checkbox->addOption(1, _YES);
 $form->addElement($visible_checkbox);
 
-if (intval($content->getVar('link')) == 3) {
+if ((int)$content->getVar('link') == 3) {
   $form->addElement(new XoopsFormHidden('submenu', $content->getVar('submenu'))); 
 } else {
   $menu_checkbox = new XoopsFormCheckBox(_INFO_SUBMENU, 'submenu',$content->getVar('submenu'));
@@ -210,7 +210,7 @@ if ( (in_array(_CON_INFO_ALLCANUPDATE_GROUPS,$show_info_perm) && $id == 0) || (i
 $form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_LEFTBLOCK, 'bl_left',$content->getVar('bl_left'), $yes=_YES, $no=_NO));
 $form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_RIGHTBLOCK, 'bl_right',$content->getVar('bl_right'), $yes=_YES, $no=_NO));
 
-if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
+if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     $editor = info_cleanVars($_REQUEST, 'editor', '', 'string');
     if ($editor == '') {
         $editor = xoops_getModuleOption('general_editor', 'system' );
@@ -225,14 +225,14 @@ if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
       $nohtml = 0;
     }
     
-    $rows = intval( $xoopsModuleConfig[$xoopsModule->getVar('dirname').'_rows'] );
+    $rows = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_rows'];
     if ( $rows < 10 ) $rows = 10;
-    $cols = intval( $xoopsModuleConfig[$xoopsModule->getVar('dirname').'_cols'] );
+    $cols = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_cols'];
     if ( $cols < 10 ) $cols = 10;
-    $width = intval( $xoopsModuleConfig[$xoopsModule->getVar('dirname').'_width'] );
+    $width = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_width'];
     if ( $width < 10 || $width > 100) $width = 100;
     $width .= '%';
-    $height = intval( $xoopsModuleConfig[$xoopsModule->getVar('dirname').'_height'] );
+    $height = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_height'];
     if ( $height < 100 ) $height = 100;
     $height .= 'px';
   
@@ -267,13 +267,16 @@ if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
     if ($content->getVar('link') == 0 ) {
       //Upload
       if (in_array(_CON_INFO_ALLCANUPLOAD,$show_info_perm) || $mod_isAdmin) {
-        $maxfilesize = (intval(ini_get('post_max_size')) < 1 ) ? 204800 : intval(ini_get('post_max_size')) * 1024 * 1024;
+        $maxfilesize = ((int)ini_get('post_max_size')
+                        < 1 ) ? 204800 : (int)ini_get('post_max_size')
+                                         * 1024 * 1024;
         $form->addElement(new XoopsFormFile(sprintf(_AM_INFO_UPLOAD, $maxfilesize / 1024 / 1024), 'upload_file_name', $maxfilesize) );
       }
     }
 }
 
-if (intval($content->getVar('link')) == 0 || intval($content->getVar('link')) == 4 || intval($content->getVar('link')) == 6) {
+if ((int)$content->getVar('link') == 0 || (int)$content->getVar('link') == 4 || (int)$content->getVar('link')
+                                                                                == 6) {
 	$option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');     
 	if (in_array(_CON_INFO_ALLCANUPDATE_HTML,$show_info_perm) || $mod_isAdmin) {
     $html_checkbox = new XoopsFormCheckBox('', 'nohtml', $content->getVar('nohtml')); 
@@ -294,7 +297,7 @@ if (intval($content->getVar('link')) == 0 || intval($content->getVar('link')) ==
     $form->addElement(new XoopsFormHidden('nocomments', 1));
   }
   $form->addElement($option_tray);
-} elseif (intval($content->getVar('link')) == 5) {
+} elseif ((int)$content->getVar('link') == 5) {
   $form->addElement(new XoopsFormHidden('message', $content->getVar('text','n')));
 	$form->addElement(new XoopsFormHidden('nohtml', $content->getVar('nohtml'))); 
 	$form->addElement(new XoopsFormHidden('nosmiley', $content->getVar('nosmiley'))); 

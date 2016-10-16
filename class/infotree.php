@@ -64,7 +64,7 @@ class InfoTree
     // returns an array of first child objects for a given id($sel_id)
     public function getFirstChild($sel_id, $order = '')
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $arr = array();
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '='
                . $sel_id . '';
@@ -85,7 +85,7 @@ class InfoTree
 
     public function getFirstId($sel_id)
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $r_id = 0;
         $result = $this->db->query('SELECT ' . $this->pid . ' FROM '
                                    . $this->table . ' WHERE '
@@ -103,7 +103,7 @@ class InfoTree
 	 // returns an array of all FIRST child ids of a given id($sel_id)
     public function getFirstChildId($sel_id)
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $idarray = array();
         $result = $this->db->query('SELECT ' . $this->id . ' FROM '
                                    . $this->table . ' WHERE '
@@ -122,7 +122,7 @@ class InfoTree
     //returns an array of ALL child ids for a given id($sel_id)
     public function getAllChildId($sel_id, $order = '', $idarray = array())
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE '
                . $this->pid . '='
                . $sel_id . '';
@@ -144,7 +144,7 @@ class InfoTree
     //returns an array of ALL parent ids for a given id($sel_id)
     public function getAllParentId($sel_id, $order = '', $idarray = array())
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE '
                . $this->id . '='
                . $sel_id . '';
@@ -164,7 +164,7 @@ class InfoTree
 	//returns an array of ALL parent title for a given id($sel_id)
     public function getAllParentTitle($sel_id, $order = '', $idarray = array())
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT ' . $this->pid . ', title, info_id FROM '
                . $this->table . ' WHERE '
                . $this->id . '='
@@ -186,7 +186,7 @@ class InfoTree
     // the path is delimetered with "/"
     public function getPathFromId($sel_id, $title, $path = '')
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $result = $this->db->query('SELECT ' . $this->pid . ', '
                                    . $title . ' FROM '
                                    . $this->table . ' WHERE '
@@ -285,7 +285,7 @@ class InfoTree
     public function getNicePathFromId($sel_id, $title, $funcURL, $path = '')
     {
         $path = ! empty($path) ? '&nbsp;:&nbsp;' . $path : $path;
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT ' . $this->pid . ', ' . $title . ' FROM '
                . $this->table . ' WHERE '
                . $this->id . "=$sel_id";
@@ -310,7 +310,7 @@ class InfoTree
     // the path is delimetered with "/"
     public function getIdPathFromId($sel_id, $path = '')
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $result = $this->db->query('SELECT ' . $this->pid . ' FROM '
                                    . $this->table . ' WHERE '
                                    . $this->id . "=$sel_id");
@@ -336,7 +336,7 @@ class InfoTree
      */
     public function getAllChild($sel_id = 0, $order = '', $parray = array(), $extra=null)
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '='
                . $sel_id . ''
                . $extra;
@@ -365,7 +365,7 @@ class InfoTree
      */
     public function getChildTreeArray($sel_id = 0, $order = '', $parray = array(), $r_prefix = '', $extra = null)
     {
-        $sel_id = intval($sel_id);
+        $sel_id = (int)$sel_id;
         $sql = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '='
                . $sel_id . ''
                . $extra;

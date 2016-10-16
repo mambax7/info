@@ -28,7 +28,7 @@
 //  @version $Id: comment_new.php 73 2013-03-19 20:14:02Z alfred $
 
 include '../../mainfile.php';
-$com_itemid = isset($_GET['com_itemid']) ? intval($_GET['com_itemid']) : 0;
+$com_itemid = isset($_GET['com_itemid']) ? (int)$_GET['com_itemid'] : 0;
 if (!$xoopsUser && empty($xoopsModuleConfig['com_anonpost'])) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();

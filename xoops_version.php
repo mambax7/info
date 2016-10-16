@@ -106,7 +106,7 @@ if ($info_isactiv == true) {
 
   $config_handler =& xoops_getHandler('config');
   $InfoModulConfig = $config_handler->getConfigsByCat(0, $infomodul->getVar('mid'));
-  $seo = (!empty($InfoModulConfig[$infoname.'_seourl']) && $InfoModulConfig[$infoname.'_seourl']>0) ? intval($InfoModulConfig[$infoname.'_seourl']) : 0;
+  $seo = (!empty($InfoModulConfig[$infoname.'_seourl']) && $InfoModulConfig[$infoname.'_seourl']>0) ? (int)$InfoModulConfig[$infoname . '_seourl'] : 0;
   $info_tree = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id',
                             'parent_id');
 	$groups =  is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
@@ -124,9 +124,9 @@ if ($info_isactiv == true) {
 	$sub = array();
 	xoops_load('XoopsCache');
   $para = readSeoUrl($_GET, $seo);
-  $id 	= intval($para['id']);
-  $cat 	= intval($para['cid']);
-  $pid 	= intval($para['pid']);
+  $id 	= (int)$para['id'];
+  $cat 	= (int)$para['cid'];
+  $pid 	= (int)$para['pid'];
 	$key = $key = $infoname . '_' . 'home';
 	if ( !$cP = XoopsCache::read($key) ) {
 		$cP = $info_tree->getChildTreeArray($pid, 'blockid', array(), $InfoModulConfig[$infoname.'_trenner'] , '');
@@ -156,7 +156,7 @@ if ($info_isactiv == true) {
 		$data = array();
     if ($visible == 1) {
 			if ($tcontent['parent_id'] != 0 && $tcontent['parent_id'] != $id) {
-				if ( !in_array(intval($tcontent['info_id']),$sub) ) continue;
+				if ( !in_array((int)$tcontent['info_id'], $sub) ) continue;
 			}
 
 			$prefix = (!empty($tcontent['prefix'])) ? $tcontent['prefix'] : '';

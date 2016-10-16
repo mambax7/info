@@ -88,15 +88,15 @@ if (!function_exists('Info_checkXoopsVersion')) {
       $o_version = $o_version[1];
       $o_version = explode('.', $o_version, 3);
       $s_version = explode('.', $version, 3);
-      if (intval(@$o_version[0]) > intval(@$s_version[0])) {
+      if ((int)(@$o_version[0]) > (int)(@$s_version[0])) {
         $ret = true;
-      } elseif (intval(@$o_version[0]) == intval(@$s_version[0])) {
-        if (intval(@$o_version[1]) > intval(@$s_version[1])) {
+      } elseif ((int)(@$o_version[0]) == (int)(@$s_version[0])) {
+        if ((int)(@$o_version[1]) > (int)(@$s_version[1])) {
           $ret = true;
-        } elseif (intval(@$o_version[1]) == intval(@$s_version[1])) {
-          if (intval(@$o_version[2]) > intval(@$s_version[2])) {
+        } elseif ((int)(@$o_version[1]) == (int)(@$s_version[1])) {
+          if ((int)(@$o_version[2]) > (int)(@$s_version[2])) {
             $ret = true;
-          } elseif (intval(@$o_version[2]) == intval(@$s_version[2])) {
+          } elseif ((int)(@$o_version[2]) == (int)(@$s_version[2])) {
             $ret = true;
           }         
         }
@@ -121,35 +121,36 @@ if (!function_exists('setPost')) {
 	function setPost($content,$sets) {
 		if (!is_object($content)) return false;
 		if (isset($sets)) {
-			$content->setVar('cat', intval(@$sets['cat']));
-			$GLOBALS['cat'] = intval(@$sets['cat']);
+			$content->setVar('cat', (int)(@$sets['cat']));
+			$GLOBALS['cat'] = (int)(@$sets['cat']);
 			if (isset($sets['title']))  $content->setVar('title', $sets['title']);
 			if (isset($sets['ttip']))   $content->setVar('tooltip', $sets['ttip']);
-			$content->setVar('title_sicht', intval(@$sets['title_sicht']));
-      $content->setVar('footer_sicht', intval(@$sets['footer_sicht']));
-			$content->setVar('parent_id', intval(@$sets['parent_id']));
-			if (isset($sets['blockid'])) $content->setVar('blockid', intval($sets['blockid']));
-			$content->setVar('link', intval(@$sets['link']));
+			$content->setVar('title_sicht', (int)(@$sets['title_sicht']));
+      $content->setVar('footer_sicht', (int)(@$sets['footer_sicht']));
+			$content->setVar('parent_id', (int)(@$sets['parent_id']));
+			if (isset($sets['blockid'])) $content->setVar('blockid',
+                                                          (int)$sets['blockid']);
+			$content->setVar('link', (int)(@$sets['link']));
 			if (isset($sets['address'])) $content->setVar('address', $sets['address']);
-			$height = intval(@$sets['height']);
-			$border = intval(@$sets['border']);
-			$width =  intval(@$sets['width']);
+			$height = (int)(@$sets['height']);
+			$border = (int)(@$sets['border']);
+			$width = (int)(@$sets['width']);
       $align =  trim(@$sets['align']);	
 			$fr = array('height'=>$height, 'border'=>$border, 'width'=>$width, 'align'=>$align);
 			$content->setVar('frame', serialize($fr));
-			$content->setVar('self', intval(@$sets['self']));
-			$content->setVar('click', intval(@$sets['click']));
-			$content->setVar('visible', intval(@$sets['visible']));
-			$content->setVar('submenu', intval(@$sets['submenu']));
+			$content->setVar('self', (int)(@$sets['self']));
+			$content->setVar('click', (int)(@$sets['click']));
+			$content->setVar('visible', (int)(@$sets['visible']));
+			$content->setVar('submenu', (int)(@$sets['submenu']));
 			if (isset($sets['visible_group'])) $content->setVar('visible_group', implode(',', $sets['visible_group']));
-			$content->setVar('bl_left', intval(@$sets['bl_left']));
-			$content->setVar('bl_right', intval(@$sets['bl_right']));
+			$content->setVar('bl_left', (int)(@$sets['bl_left']));
+			$content->setVar('bl_right', (int)(@$sets['bl_right']));
 			if (isset($sets['message'])) $content->setVar('text', trim($sets['message']));
-			$content->setVar('nohtml', intval(@$sets['nohtml']));
-			$content->setVar('nosmiley', intval(@$sets['nosmiley']));
-			$content->setVar('nocomments', intval(@$sets['nocomments']));
-			$content->setVar('owner', intval(@$sets['owner']));
-			$content->setVar('st', intval(@$sets['st']));
+			$content->setVar('nohtml', (int)(@$sets['nohtml']));
+			$content->setVar('nosmiley', (int)(@$sets['nosmiley']));
+			$content->setVar('nocomments', (int)(@$sets['nocomments']));
+			$content->setVar('owner', (int)(@$sets['owner']));
+			$content->setVar('st', (int)(@$sets['st']));
 			if (isset($sets['tags'])) $content->setVar('tags', $sets['tags']);
 		}
 		return $content;
@@ -256,20 +257,20 @@ if (!function_exists('readSeoUrl')) {
         if (substr($query[0],0,1) == 'p') {
           $query  = substr($query[0],1);
           $query = explode(':', $query);
-            $para['pid'] = intval($query[1]);
+            $para['pid'] = (int)$query[1];
         } elseif (substr($query[0],0,8) == 'content=') {
           $id = explode(':', $get['content']);
           if (count($id) == 2) {
-              $para['id']  = intval($id[1]);
-              $para['cid'] = intval($id[0]);
+              $para['id']  = (int)$id[1];
+              $para['cid'] = (int)$id[0];
           } else {
-              $para['id'] = intval($id[0]);
+              $para['id'] = (int)$id[0];
           }
         } else {
           $id = explode(':', $query[0]);
           if (count($id)==2) {
-              $para['id']  = intval($id[1]);
-              $para['cid'] = intval($id[0]);
+              $para['id']  = (int)$id[1];
+              $para['cid'] = (int)$id[0];
           }
         }
       } 
@@ -277,13 +278,13 @@ if (!function_exists('readSeoUrl')) {
       if (!empty($get['content'])) {
         $id = explode(':', $get['content']);
         if (count($id) == 2) {
-            $para['id']  = intval($id[1]);
-            $para['cid'] = intval($id[0]);
+            $para['id']  = (int)$id[1];
+            $para['cid'] = (int)$id[0];
         } else {
-            $para['id'] = intval($id[0]);
+            $para['id'] = (int)$id[0];
         }
       } elseif (!empty($get['pid'])) {
-          $para['pid'] = intval($get['pid']);
+          $para['pid'] = (int)$get['pid'];
       } 
     }
     return $para;

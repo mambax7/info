@@ -37,15 +37,15 @@ xoops_loadLanguage('main', 		$module_name);
 xoops_load('XoopsCache');
 $myts = MyTextSanitizer::getInstance();
 
-$seo = (!empty($xoopsModuleConfig[$module_name.'_seourl']) && $xoopsModuleConfig[$module_name.'_seourl']>0) ? intval($xoopsModuleConfig[$module_name.'_seourl']) : 0;
+$seo = (!empty($xoopsModuleConfig[$module_name.'_seourl']) && $xoopsModuleConfig[$module_name.'_seourl']>0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;
 $para = readSeoUrl($_GET, $seo);
 
-$id     = intval($para['id']);
-$cat    = intval($para['cid']);
-$pid    = intval($para['pid']); 
+$id     = (int)$para['id'];
+$cat    = (int)$para['cid'];
+$pid    = (int)$para['pid'];
 
 $sgroups = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
-$infopage = isset($_GET['page']) ? intval($_GET['page']) : 0;
+$infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
 $xoopsOption['template_main'] = $module_name.'_index.html';
 include_once $GLOBALS['xoops']->path( '/header.php' );
@@ -142,7 +142,7 @@ if ($visible == 0) {
 
 $xoopsTpl->assign( 'xoops_showrblock', $bl_right );
 $xoopsTpl->assign( 'xoops_showlblock', $bl_left );
-$xoopsTpl->assign('footersicht',intval($footer_sicht));
+$xoopsTpl->assign('footersicht', (int)$footer_sicht);
 $xoTheme->addMeta('meta', 'pagemodule', 'http://www.simple-xoops.de');
 $infothisgroups = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 $infoperm_handler = xoops_getHandler('groupperm');
@@ -152,10 +152,10 @@ if (in_array(_CON_INFO_CANUPDATEALL,$show_info_perm)) {
   $canedit = true;
 } elseif (in_array(_CON_INFO_CANUPDATE,$show_info_perm)) {
   if ($xoopsUser) {
-    if (intval($ownerid) == $xoopsUser->getVar('uid')) {
+    if ((int)$ownerid == $xoopsUser->getVar('uid')) {
       $canedit = true;
 		}
-  } elseif (intval($ownerid) == 0) {
+  } elseif ((int)$ownerid == 0) {
 		$canedit = true;
   }
 }

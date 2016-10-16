@@ -181,7 +181,9 @@ switch ($op) {
       if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name']) && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
           include_once XOOPS_ROOT_PATH . '/class/uploader.php';
           $allowed_mimetypes = include_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
-          $maxfilesize = (intval(ini_get('post_max_size')) < 1 ) ? 204800 : intval(ini_get('post_max_size')) * 1024 * 1024;
+          $maxfilesize = ((int)ini_get('post_max_size')
+                          < 1 ) ? 204800 : (int)ini_get('post_max_size')
+                                           * 1024 * 1024;
           // $maxfilewidth = 120;
           // $maxfileheight = 120;
           $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
@@ -258,12 +260,12 @@ switch ($op) {
 			$blockid 	  = $_POST['blockid'];
 			$visible 	  = $_POST['visible'];
 			$title   	  = $_POST['title'];
-			$hp 		    = isset($_POST['hp'][0]) ? intval($_POST['hp']) : 0;
-			$fp 		    = isset($_POST['fp'][0]) ? intval($_POST['fp'][0]) : 0;
+			$hp 		    = isset($_POST['hp'][0]) ? (int)$_POST['hp'] : 0;
+			$fp 		    = isset($_POST['fp'][0]) ? (int)$_POST['fp'][0] : 0;
 			$nocomments = $_POST['nocomments'];
 			$submenu    = $_POST['submenu'];
 			foreach ($id as $storyid) {
-        if (intval($storyid) > 0) {
+        if ((int)$storyid > 0) {
           $fpp = ($storyid==$fp) ? 1:0;
 					if ($fpp==1) {
             $sql= 'UPDATE '
@@ -277,14 +279,14 @@ switch ($op) {
 					if (!isset($parent_id[$storyid])) $parent_id[$storyid] = 0;
           $sql= 'UPDATE '
                 . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' SET ';
-          $sql.= 'parent_id=' . intval($parent_id[$storyid]) . ',';
-					$sql.= 'blockid=' . intval($blockid[$storyid]) . ',';
-					$sql.= 'visible=' . intval($visible[$storyid]) . ',';
+          $sql.= 'parent_id=' . (int)$parent_id[$storyid] . ',';
+					$sql.= 'blockid=' . (int)$blockid[$storyid] . ',';
+					$sql.= 'visible=' . (int)$visible[$storyid] . ',';
 					$sql.= 'cat=' . $cat . ',';
-					$sql.= 'nocomments=' . intval($nocomments[$storyid]) . ',';
-					$sql.= 'submenu=' . intval($submenu[$storyid]) . ',';
+					$sql.= 'nocomments=' . (int)$nocomments[$storyid] . ',';
+					$sql.= 'submenu=' . (int)$submenu[$storyid] . ',';
 					$sql.= 'frontpage=' . $fpp . '';
-					$sql.=" WHERE info_id='".intval($storyid)."'";
+					$sql.= " WHERE info_id='" . (int)$storyid . "'";
 					if ( !$result = $xoopsDB->queryF($sql) )	{
 						echo _INFO_ERRORINSERT . '<br />[ ' . $sql . ' ]<hr>';
 					}          
