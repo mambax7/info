@@ -1,0 +1,68 @@
+Modul DH_INFO 
+-------------------------
+
+1. Installation:
+  - Kopieren Sie die Dateien in den modules - Ordner
+  - zum Klonen des Modules ändern Sie den Verzeichnisnamen vor der Modulinstallation !  
+  - Gehen Sie zur Moduladministration und installieren Sie das Modul
+  Das Modul ist nun betriebsbereit
+
+2. Konfiguration der Blöcke
+2.1 Freier Block
+  Mit diesem Block ist es möglich einen beliebigen Text aus einer beliebig zuvor erstellten Seite in einem Block 
+  darzustellen, dabei kann der Block beliebig oft geklont werden.
+2.3.Navigationsblock
+  Dieser Block beinhaltet eine seperate Navigationsleiste für das Modul und kann für jede Navigationskategorie
+  separat erstellt werden .
+
+3. Konfiguration des Modules
+   a) Editorauswahl zulassen => auf der jeweilige Seite kann der Editor ausgewählt werden, ansonsten der voreingestellte
+   b) Druckerfreundliche Seiten generieren => aktivieren/deaktivieren Sie diese Funktion um ein Ausdruck der Seite
+      druckertauglich zu machen. Ist dieser Menüpunkt aktiv, erscheint unter jeder Seite ein Druckersymbol, das beim 
+      Anklicken eine Druckertaugliche Seite erzeugt.
+   c) Anzeige letzte Änderungen => unter der Seite wird das Datum und die Uhrzeit der letzten Änderung angezeigt
+   d) Kommentareinstellungen wie bei allen Modulen
+	
+
+4. Seiten bearbeiten
+  a) Navigationskategorie => Auswahl in welchem Navigationsblock
+  b) Gruppe => Ansicht, welche Gruppe was sieht
+  c) Linkname => Text der in der Navigation erscheint
+  d) Position => die Position dieser Seite als Hauptpunkt oder Unterpunkt entsprechend
+  e) Reihenfolge => Sortierung innerhalb der Gruppe
+  f) Art der Seite => normale Seite = der Text wird angezeigt
+                      Link unter ... = ein Link unter der eigenen Domain wird angesprungen
+                      externer Link = eine beliebige Seite wird aufgerufen
+                      Kategorietitel = eine Kategorie wird angezeigt (in der Navigation nicht anklickbar nur Anzeige)
+                      Datei einbinden = es kann eine beliebige Datei in das Theme von XOOPS eingebunden werden
+                      PHP-Code-Seite = es kann beliebiger PHP-Code eingefügt werden.
+     der Rest wird entsprechend angepasst und ist nicht immer Sichtbar
+  g) Datei/URL => (nur bei Links) der entsprechende Link 
+      (Beispiel : interner Link: modules/info -> geht zum Info-Modul | externer Link : http://www.simple-xoops.de -> geht zur Website)
+  h) Anklickbar (nur bei Kategorietitel) => der Kategorietitel kann angeklickt werden, es erfolgt automatisch die Anwahl des ersten Untermenüpunktes unter dieser Kategorie
+  i) im neuen Fenster (nur bei internen/externen Links) => angeklickt öffnet sich das Fenster in einem neuen, ansonstem im selben Fenster
+  j) Sichtbar => die Seite / den Link aktiv schalten
+  k) Hauptenü? Seite/Link im Hauptmenü anzeigen (nur die Defaultkategorie)
+  l) sichtbar für Gruppen => die Gruppenberechtigung für die Anzeige 
+  m) Text der eigentliche Text der Seite (bei Links sind hier Hinweise, die nicht angezeigt werden)
+  n) Optionen => entsprechend wählen
+  Um mehrseitige Seiten zu erstellen fügen Sie zum Seitenwechsel [pagebreak] (incl. der eckigen Klammer!) ein.
+
+5. Neue Seite hinzufügen
+   oberhalb rechts der Liste ist ein Button 'Seite hinzufügen' mit dem neue Seite erstellt werden
+
+6. Seiten bearbeiten/löschen
+   Analog wie Punkt 4, wählen sie in der Listenansicht entsprechend aus
+
+7. Die Eingabe von Tags ist erst möglich wenn das Modul Tags installiert und aktiv ist!
+   Eine Einstellung seitens des Info-Modules ist nicht notwendig.
+
+Viel Spass mit dem Modul.
+Ich würde mich über eine kleine Spende freuen. Gehen Sie dazu im Modul auf den Menüpunkt Über 
+und klicken auf den Paypal-Button.
+
+Fragen, Bugs und Wünsche bitte im Forum bei
+http://www.simple-xoops.de posten
+
+Alfred 
+  
