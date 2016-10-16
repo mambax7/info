@@ -28,18 +28,21 @@
 //  @version $Id: info_freiblock.php 73 2013-03-19 20:14:02Z alfred $
 
 
-if( ! defined( 'XOOPS_ROOT_PATH' ) )  die("XOOPS_ROOT_PATH not defined!");
+if( ! defined( 'XOOPS_ROOT_PATH' ) )  die('XOOPS_ROOT_PATH not defined!');
 
-if (!function_exists("info_freiblock_show")) 
+if (!function_exists('info_freiblock_show'))
 {
   
     function info_freiblock_show($options) 
     {
         global $xoopsDB,$xoopsUser;  
         $myts = MyTextSanitizer::getInstance();
-        include_once XOOPS_ROOT_PATH."/modules/".$options[0]."/include/constants.php";
+        include_once XOOPS_ROOT_PATH . '/modules/'
+                     . $options[0] . '/include/constants.php';
         $block = array();	
-        $result = $xoopsDB->query("SELECT * FROM ".$xoopsDB->prefix($options[0])." WHERE info_id=".$options[1]);
+        $result = $xoopsDB->query('SELECT * FROM '
+                                  . $xoopsDB->prefix($options[0]) . ' WHERE info_id='
+                                  . $options[1]);
         $row = $xoopsDB->fetchArray($result);
         $text = trim($row['text']);
         if (intval($row['info_id']) != 0)  {
@@ -55,8 +58,8 @@ if (!function_exists("info_freiblock_show"))
             $smiley = (intval($row['nosmiley']) == 1) ? 0 : 1;
             $breaks = ($html == 1) ? 0 : 1;
             if (intval($row['link']) == 4) {
-                if (substr($row['address'],"/",0,1) || substr($row['address'],"\\",0,1)) $row['address']=substr($address,1);
-                    $file = XOOPS_ROOT_PATH."/".$row['address'];
+                if (substr($row['address'], '/', 0, 1) || substr($row['address'], "\\", 0, 1)) $row['address'] =substr($address, 1);
+                    $file = XOOPS_ROOT_PATH . '/' . $row['address'];
                     if (file_exists($file)) {
                         ob_start();
                             include($file);
@@ -82,7 +85,7 @@ if (!function_exists("info_freiblock_show"))
             }
             if ( trim($text) != '' ) {
                 $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>','[pagebreak]',$text);
-                $infotext = explode("[pagebreak]", $text);
+                $infotext = explode('[pagebreak]', $text);
                 $info_pages = count($infotext);
                 if ($info_pages > 1) $text = $infotext[0];
             }
@@ -95,21 +98,22 @@ if (!function_exists("info_freiblock_show"))
    }
 }
 
-if (!function_exists("info_freiblock_edit")) {
+if (!function_exists('info_freiblock_edit')) {
 	function info_freiblock_edit($options) {
 		global $xoopsDB;
 		$module_name = $options[0];
-		$result=$xoopsDB->queryF("SELECT info_id,title FROM ".$xoopsDB->prefix($module_name)." WHERE link !=1 && link !=2 && link !=3 && link !=4");
+		$result=$xoopsDB->queryF('SELECT info_id,title FROM '
+                                 . $xoopsDB->prefix($module_name) . ' WHERE link !=1 && link !=2 && link !=3 && link !=4');
 		if ($result) {
-			$form = "" . _INFO_BL_OPTION . "&nbsp;&nbsp;";
+			$form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
 			$form .= "<input type='hidden' name='options[0]' value='".$module_name."'>";
 			$form .= "<select name='options[1]' size='1'>";
 			while ($row=$xoopsDB->fetcharray($result)) {
 				$form .= "<option value='".$row['info_id']."'";
-				if ($options[1] == $row['info_id']) $form .= " selected";
-				$form .="> " . $row['title'] . " </option>";
+				if ($options[1] == $row['info_id']) $form .= ' selected';
+				$form .= '> ' . $row['title'] . ' </option>';
 			}
-			$form .= "</select>";
+			$form .= '</select>';
 			return $form;
 		}
 	}

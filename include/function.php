@@ -27,21 +27,22 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id $
 
-if( ! defined( 'XOOPS_ROOT_PATH' ) )  die("XOOPS_ROOT_PATH not defined!");
+if( ! defined( 'XOOPS_ROOT_PATH' ) )  die('XOOPS_ROOT_PATH not defined!');
 
 $module_name = basename(dirname(dirname(__FILE__))) ;
 
-if (!function_exists("Info_Load_CSS")) {
+if (!function_exists('Info_Load_CSS')) {
   function Info_Load_CSS() { 
     global $xoopsConfig, $xoTheme;
     $module_name = basename(dirname(dirname(__FILE__))) ;
     if( ! defined( strtoupper($module_name) . '_CSS_LOADED' ) ) {
             
-      $theme_path 	= "/" . $xoopsConfig['theme_set'] . "/modules/" . $module_name;
-      $default_path 	= "/modules/" . $module_name . "/templates";
+      $theme_path 	= '/' . $xoopsConfig['theme_set'] . '/modules/'
+                       . $module_name;
+      $default_path 	= '/modules/' . $module_name . '/templates';
 
       //Themepfad
-      $rel_path = "";
+      $rel_path = '';
       if (file_exists( $GLOBALS['xoops']->path( $theme_path . '/style.css'))) {
         $rel_path = XOOPS_URL . $theme_path . '/style.css';
       //default
@@ -56,7 +57,7 @@ if (!function_exists("Info_Load_CSS")) {
   }
 }
 
-if (!function_exists("InfoTableExists")) {
+if (!function_exists('InfoTableExists')) {
     function InfoTableExists($tablename) {
       global $xoopsDB;
       $result=$xoopsDB->queryF("SHOW TABLES LIKE '$tablename'");
@@ -65,7 +66,7 @@ if (!function_exists("InfoTableExists")) {
     }
 }
 
-if (!function_exists("Info_checkModuleAdmin")) {
+if (!function_exists('Info_checkModuleAdmin')) {
   function Info_checkModuleAdmin()
   {
     if ( file_exists($GLOBALS['xoops']->path('/Frameworks/moduleclasses/moduleadmin/moduleadmin.php'))){
@@ -78,15 +79,15 @@ if (!function_exists("Info_checkModuleAdmin")) {
   }
 }
 
-if (!function_exists("Info_checkXoopsVersion")) {
+if (!function_exists('Info_checkXoopsVersion')) {
   function Info_checkXoopsVersion($version = null)
   {
     $ret = false;
-    if ($version != "") {
-      $o_version = explode(" ", XOOPS_VERSION, 2);
+    if ($version != '') {
+      $o_version = explode(' ', XOOPS_VERSION, 2);
       $o_version = $o_version[1];
-      $o_version = explode(".",$o_version, 3);
-      $s_version = explode(".",$version, 3);
+      $o_version = explode('.', $o_version, 3);
+      $s_version = explode('.', $version, 3);
       if (intval(@$o_version[0]) > intval(@$s_version[0])) {
         $ret = true;
       } elseif (intval(@$o_version[0]) == intval(@$s_version[0])) {
@@ -105,56 +106,57 @@ if (!function_exists("Info_checkXoopsVersion")) {
   }
 }
 
-if (!function_exists("InfoColumnExists")) {
+if (!function_exists('InfoColumnExists')) {
     function InfoColumnExists($tablename,$spalte) {
       global $xoopsDB;
-      if ($tablename=="" || $spalte=="") return true; // Fehler!!
-      $result=$xoopsDB->queryF("SHOW COLUMNS FROM ". $tablename ." LIKE '".$spalte."'");
+      if ($tablename == '' || $spalte == '') return true; // Fehler!!
+      $result=$xoopsDB->queryF('SHOW COLUMNS FROM '
+                               . $tablename . " LIKE '" . $spalte . "'");
 		  $ret = ($xoopsDB->getRowsNum($result) > 0) ? true : false;
       return $ret;
     }
 }
 
-if (!function_exists("setPost")) {
+if (!function_exists('setPost')) {
 	function setPost($content,$sets) {
 		if (!is_object($content)) return false;
 		if (isset($sets)) {
-			$content->setVar("cat",intval(@$sets['cat']));
+			$content->setVar('cat', intval(@$sets['cat']));
 			$GLOBALS['cat'] = intval(@$sets['cat']);
-			if (isset($sets['title']))  $content->setVar("title",$sets['title']);
-			if (isset($sets['ttip']))   $content->setVar("tooltip",$sets['ttip']);
-			$content->setVar("title_sicht",intval(@$sets['title_sicht']));
-      $content->setVar("footer_sicht",intval(@$sets['footer_sicht']));
-			$content->setVar("parent_id",intval(@$sets['parent_id']));
-			if (isset($sets['blockid'])) $content->setVar("blockid",intval($sets['blockid']));
-			$content->setVar("link",intval(@$sets['link']));
-			if (isset($sets['address'])) $content->setVar("address",$sets['address']);
+			if (isset($sets['title']))  $content->setVar('title', $sets['title']);
+			if (isset($sets['ttip']))   $content->setVar('tooltip', $sets['ttip']);
+			$content->setVar('title_sicht', intval(@$sets['title_sicht']));
+      $content->setVar('footer_sicht', intval(@$sets['footer_sicht']));
+			$content->setVar('parent_id', intval(@$sets['parent_id']));
+			if (isset($sets['blockid'])) $content->setVar('blockid', intval($sets['blockid']));
+			$content->setVar('link', intval(@$sets['link']));
+			if (isset($sets['address'])) $content->setVar('address', $sets['address']);
 			$height = intval(@$sets['height']);
 			$border = intval(@$sets['border']);
 			$width =  intval(@$sets['width']);
       $align =  trim(@$sets['align']);	
 			$fr = array('height'=>$height, 'border'=>$border, 'width'=>$width, 'align'=>$align);
-			$content->setVar("frame",serialize($fr));
-			$content->setVar("self",intval(@$sets['self']));
-			$content->setVar("click",intval(@$sets['click']));
-			$content->setVar("visible",intval(@$sets['visible']));
-			$content->setVar("submenu",intval(@$sets['submenu']));
-			if (isset($sets['visible_group'])) $content->setVar("visible_group",implode(',',$sets['visible_group']));
-			$content->setVar("bl_left",intval(@$sets['bl_left']));
-			$content->setVar("bl_right",intval(@$sets['bl_right']));
-			if (isset($sets['message'])) $content->setVar("text",trim($sets['message']));
-			$content->setVar("nohtml",intval(@$sets['nohtml']));
-			$content->setVar("nosmiley",intval(@$sets['nosmiley']));
-			$content->setVar("nocomments",intval(@$sets['nocomments']));
-			$content->setVar("owner",intval(@$sets['owner']));
-			$content->setVar("st",intval(@$sets['st']));
-			if (isset($sets['tags'])) $content->setVar("tags",$sets['tags']);
+			$content->setVar('frame', serialize($fr));
+			$content->setVar('self', intval(@$sets['self']));
+			$content->setVar('click', intval(@$sets['click']));
+			$content->setVar('visible', intval(@$sets['visible']));
+			$content->setVar('submenu', intval(@$sets['submenu']));
+			if (isset($sets['visible_group'])) $content->setVar('visible_group', implode(',', $sets['visible_group']));
+			$content->setVar('bl_left', intval(@$sets['bl_left']));
+			$content->setVar('bl_right', intval(@$sets['bl_right']));
+			if (isset($sets['message'])) $content->setVar('text', trim($sets['message']));
+			$content->setVar('nohtml', intval(@$sets['nohtml']));
+			$content->setVar('nosmiley', intval(@$sets['nosmiley']));
+			$content->setVar('nocomments', intval(@$sets['nocomments']));
+			$content->setVar('owner', intval(@$sets['owner']));
+			$content->setVar('st', intval(@$sets['st']));
+			if (isset($sets['tags'])) $content->setVar('tags', $sets['tags']);
 		}
 		return $content;
 	}
 }
 
-if (!function_exists("info_cleanVars")) {
+if (!function_exists('info_cleanVars')) {
 function info_cleanVars( &$global, $key, $default = '', $type = 'int', $notset=false ) {
     switch ( $type ) {
       case 'string':
@@ -186,8 +188,8 @@ function info_cleanVars( &$global, $key, $default = '', $type = 'int', $notset=f
 }
 }
 
-if (!function_exists("clearInfoCache")) {
-	function clearInfoCache($name = "", $dirname = null, $root_path = XOOPS_CACHE_PATH)
+if (!function_exists('clearInfoCache')) {
+	function clearInfoCache($name = '', $dirname = null, $root_path = XOOPS_CACHE_PATH)
 	{
 		if (empty($dirname)) {
 			$pattern = ($dirname) ? "{$dirname}_{$name}.*\.php" : "[^_]+_{$name}.*\.php";
@@ -209,69 +211,79 @@ if (!function_exists("clearInfoCache")) {
 	}
 }
 
-if (!function_exists("makeSeoUrl")) {
+if (!function_exists('makeSeoUrl')) {
 	function makeSeoUrl($mod = null)
 	{
-		$search = array ("ä","Ä","ö","Ö","ü","Ü","ß"," ");
-    $replace = array("ae","Ae","oe","Oe","ue","Ue","ss","_");
-    $mod["title"] = str_replace ($search, $replace, utf8_decode($mod["title"]));
+		$search = array ('ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'ß', ' ');
+    $replace = array('ae', 'Ae', 'oe', 'Oe', 'ue', 'Ue', 'ss', '_');
+        $mod['title'] = str_replace ($search, $replace, utf8_decode($mod['title']));
 	
-    if ($mod["seo"] == 1)
-      $content = XOOPS_URL . "/modules/" . $mod["dir"] . "/" . $mod["cat"] . ":" . $mod["id"] . "-" . urlencode($mod["title"]) . ".html";
-    elseif ($mod["seo"] == 2)
-      $content = XOOPS_URL . "/modules/" . $mod["dir"] . "/" . "?" . $mod["cat"] . ":" . $mod["id"] . "-" . urlencode($mod["title"]) . ".html";
-    elseif ($mod["seo"] == 3)
-      $content = XOOPS_URL . "/" . $mod["dir"] . "-" . $mod["cat"] . ":" . $mod["id"] . "-" . urlencode($mod["title"]) . ".html";
+    if ($mod['seo'] == 1)
+      $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/' . $mod['cat'] . ':'
+                 . $mod['id'] . '-'
+                 . urlencode($mod['title']) . '.html';
+    elseif ($mod['seo'] == 2)
+      $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/' . '?'
+                 . $mod['cat'] . ':'
+                 . $mod['id'] . '-'
+                 . urlencode($mod['title']) . '.html';
+    elseif ($mod['seo'] == 3)
+      $content = XOOPS_URL . '/' . $mod['dir'] . '-' . $mod['cat'] . ':'
+                 . $mod['id'] . '-'
+                 . urlencode($mod['title']) . '.html';
     else {
-      if (substr($mod["cat"],0,1) == "p") {
-        $content = XOOPS_URL . "/modules/" . $mod["dir"] . "/index.php?pid=" . $mod["id"];
+      if (substr($mod['cat'], 0, 1) == 'p') {
+        $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/index.php?pid='
+                   . $mod['id'];
       } else {
-        $content = XOOPS_URL . "/modules/" . $mod["dir"]. "/index.php?content=" . $mod["cat"] . ":" . $mod["id"];
+        $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/index.php?content='
+                   . $mod['cat'] . ':'
+                   . $mod['id'];
       }
     }
     return $content;
 	}
 }
 
-if (!function_exists("readSeoUrl")) {
+if (!function_exists('readSeoUrl')) {
 	function readSeoUrl($get, $seo = 0)
 	{
-		$para=array("id"=>0,"cid"=>0,"pid"=>0);
+		$para=array('id' =>0, 'cid' =>0, 'pid' =>0);
     
     if ($seo == 2) {
-      if ($_SERVER["QUERY_STRING"] != "") {
-        $query = explode("-", $_SERVER["QUERY_STRING"], 2);
-        if (substr($query[0],0,1) == "p") {
+      if ($_SERVER['QUERY_STRING'] != '') {
+        $query = explode('-', $_SERVER['QUERY_STRING'], 2);
+        if (substr($query[0],0,1) == 'p') {
           $query  = substr($query[0],1);
-          $query = explode(":",$query);
-          $para["pid"] = intval($query[1]);		   
-        } elseif (substr($query[0],0,8)=="content=") {
-          $id = explode(":",$get["content"]);
+          $query = explode(':', $query);
+            $para['pid'] = intval($query[1]);
+        } elseif (substr($query[0],0,8) == 'content=') {
+          $id = explode(':', $get['content']);
           if (count($id) == 2) {
-            $para["id"] = intval($id[1]);
-            $para["cid"] = intval($id[0]);
+              $para['id']  = intval($id[1]);
+              $para['cid'] = intval($id[0]);
           } else {
-            $para["id"] = intval($id[0]);
+              $para['id'] = intval($id[0]);
           }
         } else {
-          $id = explode(":",$query[0]);
+          $id = explode(':', $query[0]);
           if (count($id)==2) {
-            $para["id"] = intval($id[1]);
-            $para["cid"] = intval($id[0]);
+              $para['id']  = intval($id[1]);
+              $para['cid'] = intval($id[0]);
           }
         }
       } 
     } else {
-      if (!empty($get["content"])) {
-        $id = explode(":", $get["content"]);
+      if (!empty($get['content'])) {
+        $id = explode(':', $get['content']);
         if (count($id) == 2) {
-          $para["id"] = intval($id[1]);
-          $para["cid"] = intval($id[0]);
+            $para['id']  = intval($id[1]);
+            $para['cid'] = intval($id[0]);
         } else {
-          $para["id"] = intval($id[0]);
+            $para['id'] = intval($id[0]);
         }
-      } elseif (!empty($get["pid"])) {
-        $para["pid"] = intval($get["pid"]);
+      } elseif (!empty($get['pid'])) {
+          $para['pid'] = intval($get['pid']);
       } 
     }
     return $para;

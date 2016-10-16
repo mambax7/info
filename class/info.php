@@ -85,7 +85,8 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
 		public function read_startpage()
 		{
 			$frontpage = false;
-			$sql = "SELECT info_id,title FROM " . $this->table . " WHERE frontpage=1";
+			$sql = 'SELECT info_id,title FROM '
+                   . $this->table . ' WHERE frontpage=1';
 			$res = $this->db->fetchArray($this->db->query($sql));
 			if ($res) {
 				$frontpage = array($res['info_id'],$res['title']);
@@ -96,7 +97,9 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
 		public function del_startpage($id=0)
 		{
 			if ($id > 0 ) {
-				$sql = "UPDATE " . $this->table . " SET frontpage=0 WHERE info_id=" . $id;
+				$sql = 'UPDATE '
+                       . $this->table . ' SET frontpage=0 WHERE info_id='
+                       . $id;
 				$res = $this->db->query($sql);
 				if ($res) return true;
 			}
@@ -107,7 +110,7 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
 		{
 			if ( parent::insert($object, $force) ) {
 				if ( $object->getVar('tags', 'n') != '' ) {
-					include_once XOOPS_ROOT_PATH."/modules/tag/include/functions.php";
+					include_once XOOPS_ROOT_PATH . '/modules/tag/include/functions.php';
 					if ( $tag_handler = tag_getTagHandler() ) {
 						$module_name = basename(dirname(dirname(__FILE__))) ;
 						$tag_handler->updateByItem($object->getVar('tags', 'n'), $object->getVar('info_id'), $module_name);
@@ -122,7 +125,7 @@ if ( !class_exists ( 'InfoInfoHandler' ) )
 		{
       if ( intval($id) <= 0 ) return false;
       $ret = false;
-      $sql = "SELECT old_id FROM " . $this->table . " WHERE old_id=" . $id;
+      $sql = 'SELECT old_id FROM ' . $this->table . ' WHERE old_id=' . $id;
 			$res = $this->db->fetchArray($this->db->query($sql));
 			if ($res) {
 				if ( $res['old_id'] > 0 && $res['old_id'] == $id) $ret = true;

@@ -50,7 +50,7 @@ if ( !class_exists ( 'InfoCategoryHandler' ) )
 
 		public function __construct($db, $mname) 
 		{
-			parent::__construct($db, $mname."_cat", 'InfoCategory', 'cat_id', 'title');
+			parent::__construct($db, $mname . '_cat', 'InfoCategory', 'cat_id', 'title');
 		}
     }    
 

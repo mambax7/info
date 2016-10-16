@@ -36,7 +36,7 @@ xoops_loadLanguage( 'modinfo', $xoopsModule->dirname() );
 $id = isset($_GET['content']) ? intval($_GET['content']) : 0;
 $infopage = isset($_GET['page']) ? intval($_GET['page']) : 0;
 if ( empty($id) ) {
-	redirect_header("index.php");
+	redirect_header('index.php');
 }
 
 global $xoopsConfig, $xoopsModule, $xoopsDB,$xoopsConfigMetaFooter;
@@ -56,7 +56,8 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'._LANGCODE.'" lang="
 echo '</head>';
    
 
-$result = $xoopsDB->query("SELECT info_id, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM ".$xoopsDB->prefix($xoopsModule->dirname())." WHERE info_id=$id");
+$result = $xoopsDB->query('SELECT info_id, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM '
+                          . $xoopsDB->prefix($xoopsModule->dirname()) . " WHERE info_id=$id");
 list($info_id,$title,$text,$visible,$nohtml,$nosmiley,$nobreaks,$nocomments,$link,$address) = $xoopsDB->fetchRow($result);
 echo '<body bgcolor="#FFFFFF" text="#000000" topmargin="10" style="font:12px arial, helvetica, san serif;" onLoad="window.print()">';
 echo '	<table border="0" width="640" cellpadding="10" cellspacing="1" style="border: 1px solid #000000;" align="center">';
@@ -92,8 +93,8 @@ else
 }
 if ($link==4) 
 {
-	if (substr($address=="/",0,1) || substr($address=="\\",0,1)) $address=substr($address,1);
-	$file = XOOPS_ROOT_PATH."/".$address;
+	if (substr($address == '/', 0, 1) || substr($address == "\\", 0, 1)) $address =substr($address, 1);
+	$file = XOOPS_ROOT_PATH . '/' . $address;
 	if (file_exists($file)) 
     {
 		ob_start();
@@ -107,7 +108,7 @@ elseif ( trim($text) != '' )
 	$text = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>','[pagebreak]',$text);
     $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>','[pagebreak]',$text);
     $text = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>','[pagebreak]',$text);
-	$infotext = explode("[pagebreak]", $text);
+	$infotext = explode('[pagebreak]', $text);
 	$info_pages = count($infotext);
 	if ($info_pages > 0) 
     {
@@ -116,7 +117,7 @@ elseif ( trim($text) != '' )
 } 
 else 
 {
-    $text="";
+    $text= '';
 }
 $html = ($nohtml == 1) ? 0 : 1;        
 $nobreaks = ($html == 1) ? 0 : 1;

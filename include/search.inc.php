@@ -27,9 +27,9 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: search.inc.php 74 2013-03-29 20:25:05Z alfred $
       
-if( ! defined( 'XOOPS_ROOT_PATH' ) ) die("XOOPS_ROOT_PATH not defined!");
+if( ! defined( 'XOOPS_ROOT_PATH' ) ) die('XOOPS_ROOT_PATH not defined!');
 
-include_once dirname(dirname(__FILE__))."/include/function.php";
+include_once dirname(dirname(__FILE__)) . '/include/function.php';
 $module_name = basename( dirname(dirname( __FILE__ ))) ; 
     
 eval('

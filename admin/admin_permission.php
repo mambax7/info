@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: admin_permission.php 74 2013-03-29 20:25:05Z alfred $
 
-include "admin_header.php";
+include 'admin_header.php';
 
 include_once XOOPS_ROOT_PATH.'/class/xoopsform/grouppermform.php';
 xoops_cp_header();

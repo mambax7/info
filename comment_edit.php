@@ -29,7 +29,7 @@
 
 include '../../mainfile.php';
 if (!$xoopsUser) {
-    redirect_header(XOOPS_URL."/", 3, _NOPERM);
+    redirect_header(XOOPS_URL . '/', 3, _NOPERM);
     exit();
 }
 include XOOPS_ROOT_PATH.'/include/comment_edit.php';

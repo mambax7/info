@@ -29,47 +29,49 @@
 
 if( ! defined( 'XOOPS_ROOT_PATH' ) ) die();
 
-include_once dirname(dirname(__FILE__))."/include/function.php";
+include_once dirname(dirname(__FILE__)) . '/include/function.php';
 Info_Load_CSS();
 
-if (!function_exists("info_navblock_edit")) {
+if (!function_exists('info_navblock_edit')) {
   function info_navblock_edit($options) {
     global $xoopsDB;
 	  $module_name = basename( dirname(dirname( __FILE__ ))) ;
-	  $sql="SELECT cat_id,title FROM ".$xoopsDB->prefix($module_name.'_cat')." ORDER BY title";
+	  $sql= 'SELECT cat_id,title FROM '
+            . $xoopsDB->prefix($module_name . '_cat') . ' ORDER BY title';
 	  $result=$xoopsDB->query($sql);
 	  if ($result && $xoopsDB->getRowsNum($result)>0) {
-	    $form = "" . _INFO_BL_OPTION . "&nbsp;&nbsp;";
+	    $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
 		  $form .= "<input type='hidden' name='options[0]' value='".$module_name."'>";
 		  $form .= "<select name='options[1]' size='1'>";
 		  while ($row=$xoopsDB->fetcharray($result)) {
         $form .= "<option value='".$row['cat_id']."'";
-			  if ($options[1] == $row['cat_id']) $form .= " selected";
-			  $form .="> " . $row['title'] . " </option>";
+			  if ($options[1] == $row['cat_id']) $form .= ' selected';
+			  $form .= '> ' . $row['title'] . ' </option>';
 		  }
-		  $form .= "</select>";
-		  $form .= "<br />" . _INFO_BL_OPTION1 . "&nbsp;&nbsp;";
+		  $form .= '</select>';
+		  $form .= '<br />' . _INFO_BL_OPTION1 . '&nbsp;&nbsp;';
 		  $form .= "<select name='options[2]' size='1'>";
 		  $form .= "<option value='dynamisch'";
-		  if (isset($options[2]) && $options[2] == 'dynamisch') $form .= " selected";
-		  $form .="> " . _INFO_BL_OPTION2 . " </option>";
+		  if (isset($options[2]) && $options[2] == 'dynamisch') $form .= ' selected';
+		  $form .= '> ' . _INFO_BL_OPTION2 . ' </option>';
 		  $form .= "<option value='fest'";
-		  if (isset($options[2]) && $options[2] == 'fest') $form .= " selected";
-		  $form .="> " . _INFO_BL_OPTION3 . " </option>";
-		  $form .= "</select>";
+		  if (isset($options[2]) && $options[2] == 'fest') $form .= ' selected';
+		  $form .= '> ' . _INFO_BL_OPTION3 . ' </option>';
+		  $form .= '</select>';
       return $form;
 	  }
   }
 }
 
 
-if (!function_exists("info_block_nav")) {
+if (!function_exists('info_block_nav')) {
 	function info_block_nav($options) {
 		global $xoopsDB, $xoopsModule, $xoopsTpl, $xoopsUser,$xoopsConfig;
 		global $xoopsRequestUri,$module_handler,$config_handler;
 		global $id,$pid,$cat;		
 		if (!is_object($module_handler)) $module_handler =& xoops_getHandler('module');
-		require_once XOOPS_ROOT_PATH."/modules/".$options[0]."/class/infotree.php";
+		require_once XOOPS_ROOT_PATH . '/modules/'
+                     . $options[0] . '/class/infotree.php';
 		//Variablen erstellen
 		$block = array();
 		if (empty($options)) return $block;
@@ -78,11 +80,12 @@ if (!function_exists("info_block_nav")) {
 		$InfoModule = $module_handler->getByDirname($options[0]);
 		$InfoModuleConfig = $config_handler->getConfigsByCat(0, $InfoModule->getVar('mid'));
 		$seo = (!empty($InfoModuleConfig[$options[0].'_seourl']) && $InfoModuleConfig[$options[0].'_seourl']>0) ? intval($InfoModuleConfig[$options[0].'_seourl']) : 0;
-		$info_tree = new InfoTree($xoopsDB->prefix($options[0]), "info_id", "parent_id");
+		$info_tree = new InfoTree($xoopsDB->prefix($options[0]), 'info_id',
+                                  'parent_id');
 		
-		$key = $InfoModule->getVar('dirname') . "_" . "block_".$options[1];
+		$key = $InfoModule->getVar('dirname') . '_' . 'block_' . $options[1];
 		if ( !$arr = XoopsCache::read($key) ) {
-			$arr = $info_tree->getChildTreeArray(0, "blockid", array(), $InfoModuleConfig[$options[0].'_trenner'], ' AND cat='.$options[1]);
+			$arr = $info_tree->getChildTreeArray(0, 'blockid', array(), $InfoModuleConfig[$options[0] . '_trenner'], ' AND cat=' . $options[1]);
 			XoopsCache::write($key,$arr);
 		}	
          
@@ -93,7 +96,9 @@ if (!function_exists("info_block_nav")) {
       $link['title'] = _MI_INFO_CREATESITE; 
       $link['parent'] = 1;
       $link['aktiv'] = 1;
-      $link['address'] = XOOPS_URL . "/modules/" . $options[0] . "/submit.php?cat=" . $options[1];
+      $link['address'] = XOOPS_URL . '/modules/'
+                         . $options[0] . '/submit.php?cat='
+                         . $options[1];
       $block['links'][] = $link;
       unset($link);
     }
@@ -105,13 +110,16 @@ if (!function_exists("info_block_nav")) {
         
 				$sub = array();
 				if ($id > 0) {	
-					$key = $InfoModule->getVar('dirname') . "_" . "firstblock_".$id;
+					$key = $InfoModule->getVar('dirname') . '_' . 'firstblock_'
+                           . $id;
 					if ( !$first = XoopsCache::read($key) ) {
 						$first = $info_tree->getFirstId($id);
 						XoopsCache::write($key,$first);
 					}		
 					if ($first > 0) {
-						$key = $InfoModule->getVar('dirname') . "_" . "subblock_".$first;
+						$key = $InfoModule->getVar('dirname') . '_'
+                               . 'subblock_'
+                               . $first;
 						if ( !$sub = XoopsCache::read($key) ) {
 							$sub = $info_tree->getAllChildId($first);	
 							XoopsCache::write($key,$sub);
@@ -120,29 +128,34 @@ if (!function_exists("info_block_nav")) {
 				} 
         
 				$xuid = ($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
-				$tc['address'] = str_replace("{xuid}",$xuid,$tc['address']);  //automatisch generierte uid
+				$tc['address'] = str_replace('{xuid}', $xuid, $tc['address']);  //automatisch generierte uid
 				$link['id'] = $tc['info_id'];
 				$prefix = (!empty($tc['prefix'])) ? $tc['prefix'] : '';
 				$link['title'] = $prefix . $tc['title']; 
 				$link['parent'] = $tc['parent_id'];
-				$mode=array("seo"=>$seo,"id"=>$tc['info_id'],"title"=>$tc['title'],"dir"=>$options[0],"cat"=>$tc['cat']);
+				$mode=array(
+                    'seo' =>$seo, 'id' => $tc['info_id'], 'title' => $tc['title'], 'dir' => $options[0],
+                    'cat' => $tc['cat']);
 				$ctURL = makeSeoUrl($mode);
 				if ($tc['link'] == 1) { //int.Link
-					if (substr($tc['address'],-1) =="/" || substr($tc['address'],-1) =="\\") $tc['address'] .= "index.php";
-					$link['target'] = (intval($tc['self']) == 1) ? "_blank" : "_self";
+					if (substr($tc['address'],-1) == '/' || substr($tc['address'], -1) == "\\") $tc['address'] .= 'index.php';
+					$link['target'] = (intval($tc['self']) == 1) ? '_blank' : '_self';
 				} elseif ($tc['link'] == 2) { // ext.Link
-					$ok = (substr($tc['address'],0,4)=="http" || substr($tc['address'],0,3)=="ftp") ? 1:0;
+					$ok = (substr($tc['address'],0,4) == 'http'
+                           || substr($tc['address'], 0, 3) == 'ftp') ? 1:0;
 					if ($ok==1) $contentURL = $tc['address'];
-					$link['target'] = (intval($tc['self']) == 1) ? "_blank" : "_self";
+					$link['target'] = (intval($tc['self']) == 1) ? '_blank' : '_self';
 				} elseif ($tc['link'] == 3) {
-					$mode=array("seo"=>$seo,"id"=>$tc['info_id'],"title"=>$tc['title'],"dir"=>$options[0],"cat"=>'p'.$tc['cat']);
+					$mode=array(
+                        'seo' =>$seo, 'id' => $tc['info_id'], 'title' => $tc['title'], 'dir' => $options[0],
+                        'cat' => 'p' . $tc['cat']);
           //eval ('$ctURL = seo_plugin_'.$options[0].'_make($mode);');
 					$link['kategorie'] = '1';
 					$link['click'] = $tc['click'];
 				} 
 		
 				$link['address'] = trim($ctURL);
-				if ($tc['tooltip'] != "") {
+				if ($tc['tooltip'] != '') {
 					$tooltext = strip_tags ($tc['tooltip']);
 					$link['tooltip'] = $tooltext;
 				} else {

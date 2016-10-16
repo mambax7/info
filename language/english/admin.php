@@ -1,27 +1,28 @@
 <?php
-if (!defined("_INFO_ADMINTITLE")) {
-define("_INFO_ADMINTITLE","Content");
+if (!defined('_INFO_ADMINTITLE')) {
+define('_INFO_ADMINTITLE', 'Content');
 
-define("_INFO_SUBMENU","Main Menu?");
+define('_INFO_SUBMENU', 'Main Menu?');
 
-define("_INFO_ADDCONTENT","Add page");
-define("_INFO_EDITCONTENT","Save");
+define('_INFO_ADDCONTENT', 'Add page');
+define('_INFO_EDITCONTENT', 'Save');
 
-define("_INFO_HOMEPAGE","Categories");
-define("_INFO_POSITION","Position");
-define("_INFO_LINKNAME","Link Name");
-define("_INFO_EXTURL","File or URL <br /><small>External URL has to begin with http:// !</small>");
-define("_INFO_STORYID","ID");
-define("_INFO_VISIBLE","Navi-Block?");
-define("_INFO_CONTENT","Text");
-define("_INFO_URL","Select File");
-define("_INFO_UPLOAD","Upload");
-define("_INFO_VISIBLE_GROUP","Select Group visibility");
+define('_INFO_HOMEPAGE', 'Categories');
+define('_INFO_POSITION', 'Position');
+define('_INFO_LINKNAME', 'Link Name');
+define('_INFO_EXTURL',
+       'File or URL <br /><small>External URL has to begin with http:// !</small>');
+define('_INFO_STORYID', 'ID');
+define('_INFO_VISIBLE', 'Navi-Block?');
+define('_INFO_CONTENT', 'Text');
+define('_INFO_URL', 'Select File');
+define('_INFO_UPLOAD', 'Upload');
+define('_INFO_VISIBLE_GROUP', 'Select Group visibility');
 
-define("_INFO_LINKID","Weight");
-define("_INFO_ACTION","Action");
-define("_INFO_EDIT","Edit");
-define("_INFO_DELETE","Delete");
+define('_INFO_LINKID', 'Weight');
+define('_INFO_ACTION', 'Action');
+define('_INFO_EDIT', 'Edit');
+define('_INFO_DELETE', 'Delete');
 
 define('_INFO_DISABLECOM','Disable comments');
 define('_INFO_DBUPDATED','Database Updated Successfully!');
@@ -70,9 +71,9 @@ define('_INFO_URL_FRAME_HEIGHT','Heigth from the iFrame<br />in Pixel !');
 define('_INFO_URL_FRAME_BORDER','Border of the iFrame<br />in Pixel (0 -> no Border)!');
 define('_INFO_ADMIN_ERRURL','URL has to begin with http:// or https:// !');
 
-define("_MIC_INFO_GOMOD","Go to module");
-define("_MIC_INFO_ADMENU0","Module Defaults");
-define("_MIC_INFO_ADMENU1","Create/Edit content page");
+define('_MIC_INFO_GOMOD', 'Go to module');
+define('_MIC_INFO_ADMENU0', 'Module Defaults');
+define('_MIC_INFO_ADMENU1', 'Create/Edit content page');
 
 //Added in 1.06
 define('_INFO_TITLESICHT','Show title');
@@ -82,19 +83,19 @@ define('_INFO_URL_FRAME_ALIGN','Align iFrame');
 
 
 //Added in 2.0
-define("_AM_INFO_PERMISSIONS","Set Permission");
-define("_AM_INFO_CANCREATE","Add new page");
-define("_AM_INFO_CANUPDATEALL","Edit all info pages");
-define("_AM_INFO_CANUPDATE","Update page");
-define("_AM_INFO_CANACCESS","Publish page");
-define("_AM_INFO_CANDELETE","Delete page");
+define('_AM_INFO_PERMISSIONS', 'Set Permission');
+define('_AM_INFO_CANCREATE', 'Add new page');
+define('_AM_INFO_CANUPDATEALL', 'Edit all info pages');
+define('_AM_INFO_CANUPDATE', 'Update page');
+define('_AM_INFO_CANACCESS', 'Publish page');
+define('_AM_INFO_CANDELETE', 'Delete page');
 
-define("_AM_INFO_CANFREEALL","Publish all pages");
+define('_AM_INFO_CANFREEALL', 'Publish all pages');
 
-define("_AM_INFO_CANUPDATE_CAT","Select Category");
-define("_AM_INFO_CANUPDATE_POSITION","Select menu position");
-define("_AM_INFO_CANUPDATE_GROUPS","Update Groups");
-define("_AM_INFO_CANUPDATE_SITEART","Set Page options ");
+define('_AM_INFO_CANUPDATE_CAT', 'Select Category');
+define('_AM_INFO_CANUPDATE_POSITION', 'Select menu position');
+define('_AM_INFO_CANUPDATE_GROUPS', 'Update Groups');
+define('_AM_INFO_CANUPDATE_SITEART', 'Set Page options ');
 define('_INFO_ADMIN_ERRDATEI','Selected file doesn\'t exist');
 define('_INFO_OWNER','Author');
 define('_AM_INFO_CANUPDATE_SITEFULL','Publish now');
@@ -118,9 +119,11 @@ define('_AM_INFO_SITEDEL_HP','Should the current Home <br /><b>%s</b><br /> be d
 define('_AM_INFO_INFOBOX_SITE','There are <b>%s</b> sites in these categories.');
 define('_INFO_INFODELETE_AENDERUNG','If the change to the side <br /><br />%s discarded really?');
 define('_AM_INFO_INFOBOX_WAITSITE','It <b>%s </b> dirty pages waiting for processing.');
-define("_AM_INFO_CANALLOWHTML","use HTML");
+define('_AM_INFO_CANALLOWHTML', 'use HTML');
 
 //Added in Version 2.7
-define("_AM_INFO_CANALLOWUPLOAD","Can upload files");
-define("_AM_INFO_UPLOAD","upload file to " . XOOPS_URL . "/modules/" . basename( dirname( dirname( dirname( __FILE__ ) ) ) ) . "/files<br />max. Filesize: %s MB");
+define('_AM_INFO_CANALLOWUPLOAD', 'Can upload files');
+define('_AM_INFO_UPLOAD', 'upload file to '
+                          . XOOPS_URL . '/modules/'
+                          . basename(dirname(dirname(dirname(__FILE__ ) ) ) ) . '/files<br />max. Filesize: %s MB');
 }

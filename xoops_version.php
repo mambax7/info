@@ -28,7 +28,7 @@
 //  @version $Id: xoops_version.php 91 2014-04-19 20:09:50Z alfred $
 
 if( ! defined( 'XOOPS_ROOT_PATH' ) )
- die("XOOPS_ROOT_PATH not defined!");
+ die('XOOPS_ROOT_PATH not defined!');
 
 // read the Name of the Folder
 $infoname = basename( dirname( __FILE__ )) ;
@@ -37,31 +37,31 @@ $modversion['name']		  		  	= _MI_INFO_NAME;
 $modversion['version']			  	= 2.7;
 $modversion['author']     			= 'Dirk Herrmann';
 $modversion['description']			= _MI_INFO_DESC;
-$modversion['credits']				  = "The SIMPLE-XOOPS Project";
+$modversion['credits']				  = 'The SIMPLE-XOOPS Project';
 $modversion['help']             = 'page=help';
 $modversion['license']     			= 'GNU GPL 2.0';
-$modversion['license_url'] 			= "www.gnu.org/licenses/gpl-2.0.html/";
+$modversion['license_url'] 			= 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['official']				  = 0;
-$modversion['image']		  		  = "images/logo.gif";
+$modversion['image']		  		  = 'images/logo.gif';
 $modversion['dirname']				  = $infoname;
 
-$modversion['author_realname'] 	= "Dirk Herrmann";
-$modversion['author_email'] 		= "dhsoft@users.sourceforge.net";
-$modversion['status_version'] 	= "2.7";
+$modversion['author_realname'] 	= 'Dirk Herrmann';
+$modversion['author_email'] 		= 'dhsoft@users.sourceforge.net';
+$modversion['status_version'] 	= '2.7';
 
 // Simple-Xoops
 $modversion['simple-xoops']= true; 
-$modversion['min_sxxoops'] = "1.0.0";
+$modversion['min_sxxoops'] = '1.0.0';
 $modversion['sx-modul']	   = 10;
 
 //about
 $modversion['release_date']     	  = '2015/02/28';
-$modversion["module_website_url"] 	= "www.simple-xoops.de/";
-$modversion["module_website_name"] 	= "SIMPLE-XOOPS";
-$modversion["module_status"] 		    = "BETA 1";
-$modversion['min_php']				      = "5.3";
-$modversion['min_xoops']			      = "2.5.5";
-$modversion['min_admin']			      = "1.1";
+$modversion['module_website_url'] 	= 'www.simple-xoops.de/';
+$modversion['module_website_name'] 	= 'SIMPLE-XOOPS';
+$modversion['module_status'] 		    = 'BETA 1';
+$modversion['min_php']				      = '5.3';
+$modversion['min_xoops']			      = '2.5.5';
+$modversion['min_admin']			      = '1.1';
 $modversion['min_db']				        = array('mysql'=>'5.0', 'mysqli'=>'5.0');
 $modversion['system_menu'] 			    = 1;
 
@@ -69,45 +69,46 @@ $modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
 $modversion['icons16'] 				= 'Frameworks/moduleclasses/icons/16';
 $modversion['icons32'] 				= 'Frameworks/moduleclasses/icons/32';
 
-$modversion['onInstall']			= "sql/update.php";
-$modversion['onUpdate']				= "sql/update.php";
+$modversion['onInstall']			= 'sql/update.php';
+$modversion['onUpdate']				= 'sql/update.php';
 
 // Tables created by sql file (without prefix!)
 $modversion['tables'][0]			= $infoname;
-$modversion['tables'][1]			= $infoname."_cat";
-$modversion['tables'][2]			= $infoname."_bak";
+$modversion['tables'][1]			= $infoname . '_cat';
+$modversion['tables'][2]			= $infoname . '_bak';
 
 // Admin things
 $modversion['hasAdmin']				= 1;
-$modversion['adminindex']			= "admin/index.php";
-$modversion['adminmenu']			= "admin/menu.php";
+$modversion['adminindex']			= 'admin/index.php';
+$modversion['adminmenu']			= 'admin/menu.php';
 
 // Smarty
 $modversion['use_smarty']			= 1;
 
 // Search
 $modversion['hasSearch'] 			= 1;
-$modversion['search']['file'] = "include/search.inc.php";
-$modversion['search']['func'] = $infoname."_search";
+$modversion['search']['file'] = 'include/search.inc.php';
+$modversion['search']['func'] = $infoname . '_search';
 
 $modversion['hasMain'] 				= 1;
 
 $infomod_handler =& xoops_getHandler('module');
 $infomodul = $infomod_handler->getByDirname($infoname);
-include_once dirname(__FILE__)."/include/constants.php";
-include_once dirname(__FILE__)."/include/function.php";
+include_once dirname(__FILE__) . '/include/constants.php';
+include_once dirname(__FILE__) . '/include/function.php';
 
 $info_isactiv = xoops_isActiveModule($infoname);
 
 if ($info_isactiv == true) {
 	//Modul ist aktiv
-  include_once dirname(__FILE__)."/class/infotree.php";
+  include_once dirname(__FILE__) . '/class/infotree.php';
   $id = $cat = $pid = $i = 0;
 
   $config_handler =& xoops_getHandler('config');
   $InfoModulConfig = $config_handler->getConfigsByCat(0, $infomodul->getVar('mid'));
   $seo = (!empty($InfoModulConfig[$infoname.'_seourl']) && $InfoModulConfig[$infoname.'_seourl']>0) ? intval($InfoModulConfig[$infoname.'_seourl']) : 0;
-  $info_tree = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), "info_id", "parent_id");
+  $info_tree = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id',
+                            'parent_id');
 	$groups =  (is_object($GLOBALS['xoopsUser'])) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 	$infoperm_handler = xoops_getHandler('groupperm');
 	$show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
@@ -126,14 +127,15 @@ if ($info_isactiv == true) {
   $id 	= intval($para['id']);
   $cat 	= intval($para['cid']);
   $pid 	= intval($para['pid']);
-	$key = $key = $infoname . "_" . "home";
+	$key = $key = $infoname . '_' . 'home';
 	if ( !$cP = XoopsCache::read($key) ) {
 		$cP = $info_tree->getChildTreeArray($pid, 'blockid', array(), $InfoModulConfig[$infoname.'_trenner'] , '');
 		XoopsCache::write($key,$cP);
   }
 	if ($id > 0 ) {
 		$first = $info_tree->getFirstId($id);
-		$key = $GLOBALS['xoopsModule']->getVar('dirname') . "_" . "home-".$first;
+		$key = $GLOBALS['xoopsModule']->getVar('dirname') . '_' . 'home-'
+               . $first;
 		if ( !$sub = XoopsCache::read($key) ) {
 			$sub = $info_tree->getAllChildId($first);
 			XoopsCache::write($key,$sub);
@@ -142,7 +144,7 @@ if ($info_isactiv == true) {
 
   foreach ($cP as $l => $tcontent) {
     $visible	= 0;
-    $vsgroup	= explode (",", $tcontent['visible_group']);
+    $vsgroup	= explode (',', $tcontent['visible_group']);
     $vscount	= count($vsgroup)-1;
     while ($vscount > -1) {
       if (in_array($vsgroup[$vscount], $groups)) $visible = 1;
@@ -159,8 +161,10 @@ if ($info_isactiv == true) {
 
 			$prefix = (!empty($tcontent['prefix'])) ? $tcontent['prefix'] : '';
       $modversion['sub'][$i]['name'] = $prefix . $tcontent['title'];
-      $mode=array("seo"=>$seo,"id"=>$tcontent['info_id'],"title"=>$tcontent['title'],"dir"=>$infoname,"cat"=>$tcontent['cat']);
-      $ctURL = str_replace(XOOPS_URL . "/modules/".$infoname."/","",makeSeoUrl($mode)); //FIX for MainMenu
+      $mode=array(
+          'seo' =>$seo, 'id' => $tcontent['info_id'], 'title' => $tcontent['title'], 'dir' =>$infoname,
+          'cat' => $tcontent['cat']);
+      $ctURL = str_replace(XOOPS_URL . '/modules/' . $infoname . '/', '', makeSeoUrl($mode)); //FIX for MainMenu
       $modversion['sub'][$i]['url'] = $ctURL;
 			$i++;
     }
@@ -176,22 +180,22 @@ $modversion['templates'][1]['description']  = _MI_INFO_TEMPL1;
 
 
 // Blocks
-$modversion['blocks'][1]['file'] 			  = "info_navigation.php";
+$modversion['blocks'][1]['file'] 			  = 'info_navigation.php';
 $modversion['blocks'][1]['name'] 			  = _MI_INFO_BLOCK1;
 $modversion['blocks'][1]['description'] = _MI_INFO_BLOCK1_DESC;
-$modversion['blocks'][1]['show_func'] 	= "info_block_nav";
-$modversion['blocks'][1]['edit_func'] 	= "info_navblock_edit";
-$modversion['blocks'][1]['options'] 		= $infoname."|1|dynamisch";
+$modversion['blocks'][1]['show_func'] 	= 'info_block_nav';
+$modversion['blocks'][1]['edit_func'] 	= 'info_navblock_edit';
+$modversion['blocks'][1]['options'] 		= $infoname . '|1|dynamisch';
 $modversion['blocks'][1]['template'] 		= $infoname.'_nav_block.html';
 $modversion['blocks'][1]['can_clone']		= true;
 
 
-$modversion['blocks'][2]['file'] 			  = "info_freiblock.php";
+$modversion['blocks'][2]['file'] 			  = 'info_freiblock.php';
 $modversion['blocks'][2]['name'] 			  = _MI_INFO_BLOCK2;
 $modversion['blocks'][2]['description'] = _MI_INFO_BLOCK2_DESC;
-$modversion['blocks'][2]['show_func'] 	= "info_freiblock_show";
-$modversion['blocks'][2]['edit_func'] 	= "info_freiblock_edit";
-$modversion['blocks'][2]['options'] 		= $infoname."|0";
+$modversion['blocks'][2]['show_func'] 	= 'info_freiblock_show';
+$modversion['blocks'][2]['edit_func'] 	= 'info_freiblock_edit';
+$modversion['blocks'][2]['options'] 		= $infoname . '|0';
 $modversion['blocks'][2]['template'] 		= $infoname.'_freiblock.html';
 $modversion['blocks'][2]['can_clone']		= true;
 

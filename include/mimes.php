@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id $
 
-if( ! defined( 'XOOPS_ROOT_PATH' ) )  die("XOOPS_ROOT_PATH not defined!");
+if( ! defined( 'XOOPS_ROOT_PATH' ) )  die('XOOPS_ROOT_PATH not defined!');
 
 return array(	'doc' => 'application/msword' ,
 							'dot' => 'application/msword' ,

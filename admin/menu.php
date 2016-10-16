@@ -33,36 +33,36 @@ $xoopsModule 	= XoopsModule::getByDirname($module_name);
 $moduleInfo 	= $module_handler->get($xoopsModule->getVar('mid'));
 $pathIcon32 	= $moduleInfo->getInfo('icons32');
 
-include_once dirname(dirname(__FILE__))."/include/constants.php";
-include_once dirname(dirname(__FILE__))."/class/info.php";
-$infowait_handler = new InfoInfoHandler($GLOBALS["xoopsDB"],$module_name . "_bak");
+include_once dirname(dirname(__FILE__)) . '/include/constants.php';
+include_once dirname(dirname(__FILE__)) . '/class/info.php';
+$infowait_handler = new InfoInfoHandler($GLOBALS['xoopsDB'], $module_name . '_bak');
 $wait_site 	= $infowait_handler->getCount();
 
 $adminmenu = array();
 $i=0;
 $adminmenu[$i]['title'] = _MI_INFO_INDEX;
-$adminmenu[$i]['link']  = "admin/index.php";
+$adminmenu[$i]['link']  = 'admin/index.php';
 $adminmenu[$i++]['icon'] 	= '../../'.$pathIcon32.'/home.png' ;
 
 
 $adminmenu[$i]['title'] = _MI_INFO_ADMENU2;
-$adminmenu[$i]['link']  = "admin/admin_categorie.php";
+$adminmenu[$i]['link']  = 'admin/admin_categorie.php';
 $adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/category.png';
 
 $adminmenu[$i]['title'] = _MI_INFO_ADMENU3;
-$adminmenu[$i]['link']  = "admin/admin_seiten.php";
+$adminmenu[$i]['link']  = 'admin/admin_seiten.php';
 $adminmenu[$i++]['icon'] 	= '../../'.$pathIcon32.'/view_detailed.png';
 
-$adminmenu[$i]['title'] = "(". $wait_site .") " . _MI_INFO_ADMENU5;
-$adminmenu[$i]['link']  = "admin/admin_seiten.php?op=approved";
+$adminmenu[$i]['title'] = '(' . $wait_site . ') ' . _MI_INFO_ADMENU5;
+$adminmenu[$i]['link']  = 'admin/admin_seiten.php?op=approved';
 $adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/manage.png';
 
 $adminmenu[$i]['title'] = _MI_INFO_ADMENU4;
-$adminmenu[$i]['link']  = "admin/admin_permission.php";
+$adminmenu[$i]['link']  = 'admin/admin_permission.php';
 $adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/permissions.png';
 
 $adminmenu[$i]['title'] = _MI_INFO_ADMENU_ABOUT;
-$adminmenu[$i]['link'] = "admin/about.php";
+$adminmenu[$i]['link'] = 'admin/about.php';
 $adminmenu[$i++]['icon'] = '../../'.$pathIcon32.'/about.png';
 
 unset($i);

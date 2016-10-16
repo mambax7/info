@@ -33,18 +33,18 @@ require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
 
 global $module_handler, $xoopsModule;
 $moduleInfo = $module_handler->get($xoopsModule->getVar('mid'));
-$module_name = $xoopsModule->getVar("dirname");
+$module_name = $xoopsModule->getVar('dirname');
 include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/include/function.php';
 
 
-if ( Info_checkXoopsVersion("2.6.0") ) {
+if ( Info_checkXoopsVersion('2.6.0') ) {
   // XOOPS ab 2.6.0
   $xoops = Xoops::getInstance();
   XoopsLoad::load('system', 'system');
   $indexAdmin = new XoopsModuleAdmin();
 } else {
   if ( !Info_checkModuleAdmin() ) {
-    redirect_header("../../../admin.php", 5, _AM_INFO_MODULEADMIN_MISSING, false); 
+    redirect_header('../../../admin.php', 5, _AM_INFO_MODULEADMIN_MISSING, false);
   }
   $pathIcon16 = XOOPS_URL .'/'. $moduleInfo->getInfo('icons16');
   $pathIcon32 = XOOPS_URL .'/'. $moduleInfo->getInfo('icons32');
@@ -58,7 +58,7 @@ include_once XOOPS_ROOT_PATH.'/modules/'.$module_name.'/class/category.php';
 
 
 $info_handler 		  = new InfoInfoHandler($xoopsDB,$module_name);
-$infowait_handler 	= new InfoInfoHandler($xoopsDB,$module_name . "_bak");
+$infowait_handler 	= new InfoInfoHandler($xoopsDB, $module_name . '_bak');
 $cat_handler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
 $info_tree 			    = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
