@@ -119,5 +119,3 @@ function makecat($cat=0) {
 	$form->addElement($submit);
 	$form->display();
 }
-
-?>

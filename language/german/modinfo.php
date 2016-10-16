@@ -80,4 +80,3 @@ define("_MI_INFO_RECHTS","Rechts ausblenden");
 define("_MI_INFO_LINKS","Links ausblenden");
 define("_MI_INFO_BEIDE","Rechts und Links ausblenden");
 }
-?>

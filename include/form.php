@@ -250,7 +250,7 @@ if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
     $content->setVar('nohtml',$nohtml);
     $edi = new XoopsFormEditor(_DESCRIPTION, $editor, $editor_configs, $nohtml);
     $form->addElement($edi,true);
-    if (!is_object($module_handler)) $module_handler =& xoops_gethandler('module');
+    if (!is_object($module_handler)) $module_handler =& xoops_getHandler('module');
     $tagmodule = $module_handler->getByDirname('tag');
     if ( is_object($tagmodule) && $tagmodule->isactive() ) {
       include_once XOOPS_ROOT_PATH . "/modules/tag/include/formtag.php";
@@ -345,4 +345,3 @@ $cancelbutton->setExtra("onclick=top.window.location='".XOOPS_URL."/modules/".$x
 $submit->addElement($cancelbutton);
 $form->addElement($submit,false);
 $form->display();
-?>

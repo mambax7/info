@@ -45,4 +45,4 @@ echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();
 
 xoops_cp_footer();
-?>
+

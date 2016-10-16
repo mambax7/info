@@ -131,4 +131,4 @@ printf(_INFO_THISCOMESFROM,$xoopsConfig['sitename']);
 echo '<br /><a href="'.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/index.php?content='.$id.'&page='.$infopage.'">'.XOOPS_URL.'/modules/'.$xoopsModule->dirname().'/index.php?content='.$id.'&page='.$infopage.'</a>';
 echo '</td></tr></table></body>';
 echo '</html>';
-?>
+

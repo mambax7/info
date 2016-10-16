@@ -17,4 +17,3 @@ if (!defined('_INFO_FILENOTFOUND')) {
   define("_MA_INFO_WAITTOFREE","Sie haben bereits eine Änderung gemacht.<br />Warten Sie bis diese freigegeben ist.");
   define("_MA_INFO_WAITTOEDIT","Ihre Änderung wurde übertragen.<br />Diese wird jetzt überprüft und dann freigegeben.");  
 }
-?>

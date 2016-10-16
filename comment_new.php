@@ -44,4 +44,3 @@ if ($com_itemid > 0 ) {
     redirect_header(XOOPS_URL."/", 3, _NOPERM);
     exit();
 }
-?>

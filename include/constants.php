@@ -51,5 +51,3 @@ define("_CON_INFO_CANUPDATE_GROUPS"			  , 52);
 define("_CON_INFO_CANUPDATE_SITEART"		  , 53);
 define("_CON_INFO_CANUPDATE_SITEFULL"		  , 54);
 define("_CON_INFO_CANUPDATE_DELETE"	      , 55);
-
-?>

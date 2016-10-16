@@ -67,4 +67,3 @@ return array(	'doc' => 'application/msword' ,
 							'wmv' => 'video/x-ms-wmv' ,
 							'webm' => 'video/webm' ,
 							'3gp' => 'video/quicktime' );
-?>

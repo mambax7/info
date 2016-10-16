@@ -15,4 +15,3 @@ if (!defined('_INFO_FILENOTFOUND')) {
 	define('_INFO_MA_NOEDITRIGHT','Sorry, you have no permission to perform this action!');
 	define("_MA_INFO_NOEXTENSION","File format not supported");
 }
-?>

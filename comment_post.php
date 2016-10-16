@@ -33,4 +33,3 @@ if (!$xoopsUser && empty($xoopsModuleConfig['com_anonpost'])) {
     exit();
 }
 include XOOPS_ROOT_PATH.'/include/comment_post.php';
-?>

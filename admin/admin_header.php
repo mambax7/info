@@ -63,4 +63,3 @@ $cat_handler 		    = new InfoCategoryHandler($xoopsDB,$module_name);
 $info_tree 			    = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $myts = MyTextSanitizer::getInstance();
-?>

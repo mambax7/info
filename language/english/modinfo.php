@@ -80,4 +80,4 @@ define("_MI_INFO_RECHTS","disabled right blocks");
 define("_MI_INFO_LINKS","disabled left");
 define("_MI_INFO_BEIDE","disabled right and left blocks");
 }
-?>
+

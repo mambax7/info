@@ -55,5 +55,3 @@ if ( !class_exists ( 'InfoCategoryHandler' ) )
     }    
 
 }
-
-?>

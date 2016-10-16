@@ -239,4 +239,3 @@ function check_infotable($module) {
     }     
     return true; 
 }
-?>

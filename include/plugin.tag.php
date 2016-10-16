@@ -107,4 +107,3 @@ eval (' function '. $infoname . '_tag_synchronization($mid)
   	}
 }
 ');
-?>

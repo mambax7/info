@@ -114,4 +114,3 @@ if (!function_exists("info_freiblock_edit")) {
 		}
 	}
 }
-?>

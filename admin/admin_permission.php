@@ -56,4 +56,3 @@ $form->addItem(_CON_INFO_CANUPDATE_DELETE, _AM_INFO_CANDELETE, _CON_INFO_CANUPDA
 echo $form->render();
 unset ($form);
 xoops_cp_footer();
-?>

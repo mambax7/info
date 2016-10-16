@@ -56,7 +56,7 @@ $mod_isAdmin 	= ( $xoopsUser && $xoopsUser->isAdmin() ) ? true : false;
 
 //Permission
 $infothisgroups = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_gethandler('groupperm');
+$infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
 $content = $info_handler->get($id);
@@ -257,4 +257,3 @@ if ($op=="edit") {
   include_once "include/form.php";  
   include_once XOOPS_ROOT_PATH.'/footer.php';  
 }
-?>

@@ -38,7 +38,7 @@ $groupid 		  = info_cleanVars( $_REQUEST, 'groupid', 0, 'int');
 $mod_isAdmin 	= ($xoopsUser && $xoopsUser->isAdmin()) ? true : false;
 
 $infothisgroups   = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_gethandler('groupperm');
+$infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm   = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
 xoops_load('XoopsCache');
@@ -321,7 +321,7 @@ switch ($op) {
         $option_tray->addElement($block_select);
         $group_select = new XoopsFormSelectGroup(_INFO_AM_GROUP, 'groupid', true, $groupid, 1, false);
         $group_select->addOptionArray(array(0=>_ALL));
-        $group_select->setextra('onchange="document.forms.'.$xoopsModule->getVar('dirname')."_form_groupcat".'.submit()"');
+        $group_select->setExtra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . "_form_groupcat" . '.submit()"');
         $option_tray->addElement($group_select);
         $submit = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
         $option_tray->addElement($submit);
@@ -435,5 +435,3 @@ function show_list($cat=0, $groupid=0, $cat=0, $aktuell=0)
 	}
 	return $info;
 }
-
-?>

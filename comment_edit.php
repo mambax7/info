@@ -33,4 +33,3 @@ if (!$xoopsUser) {
     exit();
 }
 include XOOPS_ROOT_PATH.'/include/comment_edit.php';
-?>

@@ -68,7 +68,7 @@ if (!function_exists("info_block_nav")) {
 		global $xoopsDB, $xoopsModule, $xoopsTpl, $xoopsUser,$xoopsConfig;
 		global $xoopsRequestUri,$module_handler,$config_handler;
 		global $id,$pid,$cat;		
-		if (!is_object($module_handler)) $module_handler =& xoops_gethandler('module');
+		if (!is_object($module_handler)) $module_handler =& xoops_getHandler('module');
 		require_once XOOPS_ROOT_PATH."/modules/".$options[0]."/class/infotree.php";
 		//Variablen erstellen
 		$block = array();
@@ -86,7 +86,7 @@ if (!function_exists("info_block_nav")) {
 			XoopsCache::write($key,$arr);
 		}	
          
-    $infoperm_handler = xoops_gethandler('groupperm');
+    $infoperm_handler = xoops_getHandler('groupperm');
     $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $groups, $options[0]);
     $mod_isAdmin 	= ( $xoopsUser && $xoopsUser->isAdmin() ) ? true : false;
     if ( in_array(_CON_INFO_CANCREATE,$show_info_perm) || $mod_isAdmin ) {
@@ -166,4 +166,3 @@ if (!function_exists("info_block_nav")) {
 		return $block;
     }    
 }
-?>

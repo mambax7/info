@@ -124,4 +124,3 @@ define("_AM_INFO_CANALLOWHTML","use HTML");
 define("_AM_INFO_CANALLOWUPLOAD","Can upload files");
 define("_AM_INFO_UPLOAD","upload file to " . XOOPS_URL . "/modules/" . basename( dirname( dirname( dirname( __FILE__ ) ) ) ) . "/files<br />max. Filesize: %s MB");
 }
-?>

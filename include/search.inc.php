@@ -89,4 +89,3 @@ function '.$module_name.'_search($queryarray, $andor, $limit, $offset, $userid) 
     return $ret;
 }
 ');
-?>

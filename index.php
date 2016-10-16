@@ -139,7 +139,7 @@ $xoopsTpl->assign( 'xoops_showlblock', $bl_left );
 $xoopsTpl->assign('footersicht',intval($footer_sicht));
 $xoTheme->addMeta('meta', 'pagemodule', 'http://www.simple-xoops.de');
 $infothisgroups = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-$infoperm_handler = xoops_gethandler('groupperm');
+$infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 $canedit = false;
 if (in_array(_CON_INFO_CANUPDATEALL,$show_info_perm)) {
@@ -309,4 +309,3 @@ $xoopsTpl->assign('info_cat',$cat);
 $xoopsTpl->assign('xoops_pagetitle',$xoopsModule->getVar('name')." - ".strip_tags($title)); 
  
 include_once $GLOBALS['xoops']->path( '/footer.php' );
-?>
