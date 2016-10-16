@@ -329,10 +329,10 @@ class InfoTree
     /**
      * Enter description here...
      *
-     * @param unknown_type $sel_id
-     * @param unknown_type $order
-     * @param unknown_type $parray
-     * @return unknown
+     * @param int $sel_id
+     * @param string $order
+     * @param array $parray
+     * @return array
      */
     public function getAllChild($sel_id = 0, $order = '', $parray = array(), $extra=null)
     {
@@ -357,11 +357,11 @@ class InfoTree
     /**
      * Enter description here...
      *
-     * @param unknown_type $sel_id
-     * @param unknown_type $order
-     * @param unknown_type $parray
-     * @param unknown_type $r_prefix
-     * @return unknown
+     * @param int $sel_id
+     * @param string $order
+     * @param array $parray
+     * @param string $r_prefix
+     * @return array
      */
     public function getChildTreeArray($sel_id = 0, $order = '', $parray = array(), $r_prefix = '', $extra = null)
     {
