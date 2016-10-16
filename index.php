@@ -261,7 +261,7 @@ if ($address != '' && $link == 1) {
                        . '%" height="'
                        . $iframe['height']
                        . '">Plugin Not installed!</object>';
-        } elseif (0 === strpos($extension, 'php') || $extension == 'phtml') {
+        } elseif (0 === strpos($extension, 'php') || $extension === 'phtml') {
             $includeContent = XOOPS_URL . '/' . $address;
             $iframe         = unserialize($iframe);
             if (!isset($iframe['width'])

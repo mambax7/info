@@ -91,7 +91,7 @@ if ($approve == 0) {
     redirect_header(makeSeoUrl($mode), 3, _INFO_MA_NOEDITRIGHT);
 }
 
-if ($op == 'edit') {
+if ($op === 'edit') {
     if (isset($_POST['post'])) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             //redirect_header("index.php",3,implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -261,7 +261,7 @@ if ($op == 'edit') {
             redirect_header(makeSeoUrl($mode), 3, _MA_INFO_WAITTOFREE);
         }
     }
-} elseif ($op == 'delete') {
+} elseif ($op === 'delete') {
     if (!in_array(_CON_INFO_CANUPDATE_DELETE, $show_info_perm)) {
         $mode = array(
             'seo'   => $seo,

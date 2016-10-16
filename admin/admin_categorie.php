@@ -80,7 +80,7 @@ switch ($op) {
                 xoops_confirm($hiddens, 'admin_categorie.php', $msg);
             }
             xoops_cp_footer();
-        } elseif ($_REQUEST['post'] == 'itsdelete') {
+        } elseif ($_REQUEST['post'] === 'itsdelete') {
             if ($GLOBALS['xoopsSecurity']->check()) {
                 if ($catHandler->delete($cate)) {
                     redirect_header('admin_categorie.php', 2, _INFO_DBUPDATED);

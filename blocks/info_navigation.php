@@ -60,12 +60,12 @@ if (!function_exists('info_navblock_edit')) {
             $form .= '<br>' . _INFO_BL_OPTION1 . '&nbsp;&nbsp;';
             $form .= "<select name='options[2]' size='1'>";
             $form .= "<option value='dynamisch'";
-            if (isset($options[2]) && $options[2] == 'dynamisch') {
+            if (isset($options[2]) && $options[2] === 'dynamisch') {
                 $form .= ' selected';
             }
             $form .= '> ' . _INFO_BL_OPTION2 . ' </option>';
             $form .= "<option value='fest'";
-            if (isset($options[2]) && $options[2] == 'fest') {
+            if (isset($options[2]) && $options[2] === 'fest') {
                 $form .= ' selected';
             }
             $form .= '> ' . _INFO_BL_OPTION3 . ' </option>';
@@ -160,8 +160,8 @@ if (!function_exists('info_block_nav')) {
                 );
                 $ctURL          = makeSeoUrl($mode);
                 if ($tc['link'] == 1) { //int.Link
-                    if (substr($tc['address'], -1) == '/'
-                        || substr($tc['address'], -1) == "\\"
+                    if (substr($tc['address'], -1) === '/'
+                        || substr($tc['address'], -1) === "\\"
                     ) {
                         $tc['address'] .= 'index.php';
                     }
@@ -194,7 +194,7 @@ if (!function_exists('info_block_nav')) {
                     $link['tooltip'] = $link['title'];
                 }
 
-                if ($options[2] == 'fest') {
+                if ($options[2] === 'fest') {
                     $link['aktiv'] = 1;
                 } else {
                     $link['aktiv'] = 0;

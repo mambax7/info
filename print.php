@@ -106,7 +106,7 @@ if (is_object($xoopsUser)) {
     $text = str_replace('{X_XOOPSUSERID}', '0', $text);
 }
 if ($link == 4) {
-    if (substr($address == '/', 0, 1) || substr($address == "\\", 0, 1)) {
+    if (substr($address === '/', 0, 1) || substr($address === "\\", 0, 1)) {
         $address = substr($address, 1);
     }
     $file = XOOPS_ROOT_PATH . '/' . $address;
