@@ -11,15 +11,15 @@ BUGFIX: englische Sprachdateien (muki)
 Version 2.6
 --------------
 NEU:    Dateien includieren (verschiedene Dateiformate wie html, php, pdf etc.)
-NEU:    Prüfung auf vorhandene nicht freigegeben Änderungen beim User
+NEU:    PrÃ¼fung auf vorhandene nicht freigegeben Ã„nderungen beim User
 NEU:    nicht zugelassene Elemente beim Seitenerstellen werden ausgeblendet
-NEU:    Editor Höhe und Breite einstellbar
+NEU:    Editor HÃ¶he und Breite einstellbar
 NEU:    Einbindung von Dateien erweitert (derzeit 38 versch. Endungen)
-NEU:    Recht zum Loeschen von Content hinzugefügt
+NEU:    Recht zum Loeschen von Content hinzugefÃ¼gt
 NEU:    Datenbankstruktur aufgeraeumt
 BUGFIX: fix FatalError in function.php unter PHP 5.4.x
 BUGFIX: Fehler im Frontend beim Bearbeiten von nicht erlaubten Elementen 
-BUGFIX: Fehler im Adminbereich bei der Seitenübersicht
+BUGFIX: Fehler im Adminbereich bei der SeitenÃ¼bersicht
 BUGFIX: Vorauswahl HTML-Editor bei erlaubt ja/nein korrigiert
 BUGFIX: Loeschen im Frontendbereich gefixt
 BUGFIX: SEO-URL optimiert und angepasst
@@ -30,10 +30,10 @@ Neu:	  Adminbereich im neuen XOOPS-Stil
 Neu:    Klassen angelegt bzw. bereinigt
 Neu:    HTML ein-/ausschaltbar per Gruppe
 Neu:	  Cache implementiert (mySQl-Abfragen stark reduziert)
-Neu:    Trennzeichenauswahl für Unterverzeichnisse einstellbar
-Neu:    Tags zu Seiten hinzufügen (benötigt das Modul Tag von XOOPS)
-Bugfix: Dateien angepasst und aufgeräumt
-Bugfix: Anzeige von bel. vielen Unterverzeichnissen im Hauptmenü
+Neu:    Trennzeichenauswahl fÃ¼r Unterverzeichnisse einstellbar
+Neu:    Tags zu Seiten hinzufÃ¼gen (benÃ¶tigt das Modul Tag von XOOPS)
+Bugfix: Dateien angepasst und aufgerÃ¤umt
+Bugfix: Anzeige von bel. vielen Unterverzeichnissen im HauptmenÃ¼
 Bugfix: Fehler im Adminbereich nach dem Clonen
 Bugfix: mehrfach deklarierte Konstanten
 Bugfix: doppelt deklarierte Klassen nach dem Klonen
@@ -42,7 +42,7 @@ Version 2.4
 --------------
 BUGFIX: Lokale Dateien einbinden, nur noch PDF (alfred) - erledigt.
 BUGFIX: Unable to install Version 15 (alfred) - erledigt.
-BUGFIX: Editor in den Einstellungen auswählen (alfred) - erledigt.
+BUGFIX: Editor in den Einstellungen auswÃ¤hlen (alfred) - erledigt.
 BUGFIX: MySQL-ERROR: Unknown column 'title_sicht' in 'field list' (alfred) - erledigt.
 BUGFIX: Tooltip in der Moduladministration (alfred) - erledigt.
 BUGFIX: HMTL Code wird angezeigt statt richtiger Inhalt (alfred) - erledigt.
@@ -53,7 +53,7 @@ Version 2.3.1
 BUGFIX: english language (mamba)
 BUGFIX: Tooltip editierbar machen
 BUGFIX: html-editor wurde nicht erkannt
-BUGFIX: Auswahlmöglich HTML Ja/Nein
+BUGFIX: AuswahlmÃ¶glich HTML Ja/Nein
 BUGFIX: Administrationstheme
 BUGFIX: Blockadministration
 BUGFIX: Check Tables by Updates
@@ -64,14 +64,14 @@ Bugfix: Kommentare bei IFRAME ein-/ausschaltbar
 
 Version 2.3.0
 -------------
-Bugfix: PHP5-Kompatibilität
-Bugfix: mehrseitige Seiten kein Blättern möglich
+Bugfix: PHP5-KompatibilitÃ¤t
+Bugfix: mehrseitige Seiten kein BlÃ¤ttern mÃ¶glich
 Bugfix: Tabellen aus Templates entfernt
 Bugfix: css auf xoopseigene css-Datei umgestellt 
 Bugfix: print.php Image und Links
-Bugfix: zusätzliche br-Tags entfernt
+Bugfix: zusÃ¤tzliche br-Tags entfernt
 Bugfix: Blockadministration
-Neu:    PHP-Code in Seite ausführen
+Neu:    PHP-Code in Seite ausfÃ¼hren
 Neu:    Adminlink in Freiblock
 
 
@@ -81,21 +81,21 @@ Bugfix: Installation unter XOOPS 2.3
 Bugfix: weisse Seite bei Suche
 Bugfix: ID falsch bei installiertem Protector-Modul
 Bugfix: Text wurde bei XOOPS 2.3 nicht gespeichert
-Bugfix: fehlende .htaccess-Vorlage hinzugefügt
-Bugfix: Blockadministration bei XOOPS 2.3 geändert
+Bugfix: fehlende .htaccess-Vorlage hinzugefÃ¼gt
+Bugfix: Blockadministration bei XOOPS 2.3 geÃ¤ndert
  
 
 Version 2.2.0
 ------------
-Bugfix: Tabellen prüfen bei Update des Modules
+Bugfix: Tabellen prÃ¼fen bei Update des Modules
 Bugfix: include mainfile in fckeditor... korrigiert
 Bugfix: Editoreneinbindung korrigiert
-Bugfix: Freiblock angezeigt, obwohl keiner ausgewählt
+Bugfix: Freiblock angezeigt, obwohl keiner ausgewÃ¤hlt
 
 
 Version 2.1.3
 ------------
-BugFix: externer Link im neuen Fenster -> 2mal geöffnet
+BugFix: externer Link im neuen Fenster -> 2mal geÃ¶ffnet
 BugFix: submit.php Aufruf korrigiert
 BugFix: bei mehreren Seiten, Seitenwechsel fehlerhaft
 BugFix: doppelte Abfrage der Links im Naviblock
@@ -109,7 +109,7 @@ Neu: SEO-optimierte Linkausgabe
 Neu: Admin hat immer alle Rechte
 BugFix: print.php kein Text ausgeliefert
 BugFix: FCKeditor weisse Seite
-BugFix: Zeilenumbrüche beim einbinden von Dateien 
+BugFix: ZeilenumbrÃ¼che beim einbinden von Dateien 
 BugFix: Redirekt zur ersten Seite
 BugFix: [Tracker:10] Blockkategorien in der Blockverwaltung nicht sichtbar
 
@@ -119,7 +119,7 @@ Bugfix: in der Profilansicht wurden die Links gelistet (im Adminbereich ein-/aus
 Bugfix: Datenbankabfragen, obwohl das Modul nicht aktiv ist
 Bugfix: aktive Seite wurde nicht korrekt erkannt
 Bugfix: Bei der Suche wurde das Icon nicht eingebunden
-Neu: Eingabe von Tooltips möglich (Beschreibung beim Überfahren von Links)
+Neu: Eingabe von Tooltips mÃ¶glich (Beschreibung beim Ãœberfahren von Links)
 Neu: Rechtevergabe auf Gruppenbasis
 Neu: Einbindung einer eigenen .css Datei je Theme
 Neu: Sicherheitscodeabfrage bei anonymen Usereinsendungen 
@@ -127,21 +127,21 @@ Neu: Sicherheitscodeabfrage bei anonymen Usereinsendungen
 
 Version 1.06 
 Bugfix: es konnte keine mehrzeilige Navigation erstellt werden
-Bugfix: beim Editieren konnten keine Unterkategorien gewählt werden
-Bugfix: eingebundene Dateien werden jetzt auch beim Druck berücksichtigt
-Bugfix: Titel der Seite wird jetzt mit im Seitentitel geführt
-Bugfix: Menüansicht unter XOOPS 2.2.x fehlerhaft
+Bugfix: beim Editieren konnten keine Unterkategorien gewÃ¤hlt werden
+Bugfix: eingebundene Dateien werden jetzt auch beim Druck berÃ¼cksichtigt
+Bugfix: Titel der Seite wird jetzt mit im Seitentitel gefÃ¼hrt
+Bugfix: MenÃ¼ansicht unter XOOPS 2.2.x fehlerhaft
 Bugfix: Fehler in der Administration unter SIMPLE-XOOPS (keine Tabellen)
-Neu: Seitenüberschrift an- und abschaltbar
-Neu: Breite und Ausrichtung können beim IFRAME angegeben werden
+Neu: SeitenÃ¼berschrift an- und abschaltbar
+Neu: Breite und Ausrichtung kÃ¶nnen beim IFRAME angegeben werden
 Neu: Fuszeile (Drucker-/Bearbeitungssysmbole) kann ausgeblendet werden
 
 
 Version 1.05
 ------------
 Bugfix: Modul konnte nicht starten wenn DIRECTORY_SEPARATOR="\" war
-Bugfix: Startseite kann jetzt in beliebiger Kategorie sein und kann auch gelöscht werden
-Bugfix: im Naviblock wurden Links immer im selben Fenster geöffnet
+Bugfix: Startseite kann jetzt in beliebiger Kategorie sein und kann auch gelÃ¶scht werden
+Bugfix: im Naviblock wurden Links immer im selben Fenster geÃ¶ffnet
 Bugfix: Check auf Eingabe der URL bei externer URL
 Bugfix: Suche wurde nicht korrekt abgearbeitet
 Neu: Ansicht kann auf Berechtigungsebene dargestellt werden (welche Gruppe sieht was)
@@ -152,8 +152,8 @@ Neu: Einbinden von externen Seiten mittels IFRAME
 Version 1.04
 ------------
 Bugfix: Modul konnte nicht als Startseite deklariert werden
-Neu: externe und interne Links können per Auswahl im neuen oder selben Fenster geöffnet werden
-Neu: Katogorietitel können anklickbar gemacht werden
-Neu: Blöcke jetzt auch unter 2.0.x klonbar (macht verschieden Navi-Blöcke möglich)
-Neu: unbegrenzt viele Navigations- und Freiblöcke
-Neu: bei geklonten Modulen jetzt eigene Templates möglich
+Neu: externe und interne Links kÃ¶nnen per Auswahl im neuen oder selben Fenster geÃ¶ffnet werden
+Neu: Katogorietitel kÃ¶nnen anklickbar gemacht werden
+Neu: BlÃ¶cke jetzt auch unter 2.0.x klonbar (macht verschieden Navi-BlÃ¶cke mÃ¶glich)
+Neu: unbegrenzt viele Navigations- und FreiblÃ¶cke
+Neu: bei geklonten Modulen jetzt eigene Templates mÃ¶glich
