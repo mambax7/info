@@ -71,7 +71,7 @@ switch ($op) {
     case 'approved':
         xoops_cp_header();
         echo $indexAdmin->addNavigation('admin_seiten.php');
-        $infowait = $infowaitHandler->getAll(null, array(
+        $infowait =& $infowaitHandler->getAll(null, array(
             'info_id',
             'title',
             'edited_time',
@@ -428,7 +428,7 @@ switch ($op) {
                                      'parent_id[' . $tcontent['info_id'] . ']', '',
                                      ' AND cat=' . $cat . ' AND info_id<>' . $tcontent['info_id']);
             echo '</td><td>';
-            $title = $myts->displayTarea($tcontent['title'], 0, 0, 0);
+            $title =& $myts->displayTarea($tcontent['title'], 0, 0, 0);
             echo "<input type='hidden' name='title[" . $tcontent['info_id'] . "]' value='" . $title . "' />";
             if ($tcontent['st'] == 2 || $tcontent['st'] == 0) {
                 echo '<font color="red">' . _MI_INFO_GESPERRT . '</font>&nbsp;';

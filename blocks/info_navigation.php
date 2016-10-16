@@ -98,7 +98,7 @@ if (!function_exists('info_block_nav')) {
         $groups           = $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
         $myts             = MyTextSanitizer::getInstance();
         $InfoModule       = $moduleHandler->getByDirname($options[0]);
-        $InfoModuleConfig = $configHandler->getConfigsByCat(0, $InfoModule->getVar('mid'));
+        $InfoModuleConfig =& $configHandler->getConfigsByCat(0, $InfoModule->getVar('mid'));
         $seo              = (!empty($InfoModuleConfig[$options[0] . '_seourl'])
                              && $InfoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$InfoModuleConfig[$options[0]
                                                                                                          . '_seourl'] : 0;
