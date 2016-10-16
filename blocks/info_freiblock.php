@@ -62,7 +62,7 @@ if (!function_exists('info_freiblock_show'))
                     $file = XOOPS_ROOT_PATH . '/' . $row['address'];
                     if (file_exists($file)) {
                         ob_start();
-                            include($file);
+                            include $file;
                             $file = ob_get_contents();
                         ob_end_clean();
                         $text=$file;

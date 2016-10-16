@@ -266,7 +266,7 @@ if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
     }
     if ($content->getVar('link') == 0 ) {
       //Upload
-      if ( (in_array(_CON_INFO_ALLCANUPLOAD,$show_info_perm) ) || $mod_isAdmin) { 
+      if (in_array(_CON_INFO_ALLCANUPLOAD,$show_info_perm) || $mod_isAdmin) {
         $maxfilesize = (intval(ini_get('post_max_size')) < 1 ) ? 204800 : intval(ini_get('post_max_size')) * 1024 * 1024;
         $form->addElement(new XoopsFormFile(sprintf(_AM_INFO_UPLOAD, $maxfilesize / 1024 / 1024), 'upload_file_name', $maxfilesize) );
       }
@@ -275,7 +275,7 @@ if ($content->getVar('link') == 0 || intval($content->getVar('link')) == 6) {
 
 if (intval($content->getVar('link')) == 0 || intval($content->getVar('link')) == 4 || intval($content->getVar('link')) == 6) {
 	$option_tray = new XoopsFormElementTray(_OPTIONS,'<br />');     
-	if ( (in_array(_CON_INFO_ALLCANUPDATE_HTML,$show_info_perm) ) || $mod_isAdmin) {   
+	if (in_array(_CON_INFO_ALLCANUPDATE_HTML,$show_info_perm) || $mod_isAdmin) {
     $html_checkbox = new XoopsFormCheckBox('', 'nohtml', $content->getVar('nohtml')); 
 		$html_checkbox->addOption(1, _DISABLEHTML);
     $option_tray->addElement($html_checkbox);
@@ -327,7 +327,7 @@ $oUser = XoopsUserUtility::getUnameFromId($ouser, 0, false);
 $form->addElement(new XoopsFormHidden('owner', $content->getVar('owner'))); 
 $form->addElement(new XoopsFormLabel(_INFO_OWNER, $oUser));	
 $last_editor = $eUser;
-$euser = (is_object($xoopsUser)) ? $xoopsUser->uid() : 0;
+$euser = is_object($xoopsUser) ? $xoopsUser->uid() : 0;
 if ($id == 0) {
 	$form->addElement(new XoopsFormLabel(_INFO_LAST_EDITED,_AM_INFO_NEWADDSITE));
 } else {

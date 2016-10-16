@@ -28,7 +28,7 @@
 //  @version $Id: about.php 55 2012-11-25 08:42:09Z alfred $
 
 include '../../../include/cp_header.php';
-include('admin_header.php');
+include 'admin_header.php';
 xoops_cp_header();
 
 $module_info = $module_handler->get($xoopsModule->getVar('mid'));

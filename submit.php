@@ -55,7 +55,7 @@ $groupid 		  = info_cleanVars($_REQUEST,'groupid',0,'int');
 $mod_isAdmin 	= ( $xoopsUser && $xoopsUser->isAdmin() ) ? true : false;
 
 //Permission
-$infothisgroups = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+$infothisgroups = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 $infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 

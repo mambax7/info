@@ -44,7 +44,7 @@ $id     = intval($para['id']);
 $cat    = intval($para['cid']);
 $pid    = intval($para['pid']); 
 
-$sgroups = ($xoopsUser) ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
+$sgroups = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
 $infopage = isset($_GET['page']) ? intval($_GET['page']) : 0;
 
 $xoopsOption['template_main'] = $module_name.'_index.html';
@@ -144,7 +144,7 @@ $xoopsTpl->assign( 'xoops_showrblock', $bl_right );
 $xoopsTpl->assign( 'xoops_showlblock', $bl_left );
 $xoopsTpl->assign('footersicht',intval($footer_sicht));
 $xoTheme->addMeta('meta', 'pagemodule', 'http://www.simple-xoops.de');
-$infothisgroups = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+$infothisgroups = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 $infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 $canedit = false;
@@ -204,7 +204,7 @@ if ($address != '' && $link == 1) {
     $includeContent = XOOPS_ROOT_PATH . '/' . $address;
     if (file_exists($includeContent)) {
       $extension = pathinfo($includeContent, PATHINFO_EXTENSION);
-      $allowed = include_once('include/mimes.php');
+      $allowed = include_once 'include/mimes.php';
       if (isset($allowed[$extension])) {
         $includeContent = '../../' . $address;
         $iframe=unserialize($iframe);

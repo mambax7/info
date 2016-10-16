@@ -98,7 +98,7 @@ if ($link==4)
 	if (file_exists($file)) 
     {
 		ob_start();
-	    include($file);
+	    include $file;
 	    $text = ob_get_contents();
         ob_end_clean();
 	}

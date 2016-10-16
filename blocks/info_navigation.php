@@ -75,7 +75,7 @@ if (!function_exists('info_block_nav')) {
 		//Variablen erstellen
 		$block = array();
 		if (empty($options)) return $block;
-		$groups =  ($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS); 		
+		$groups =  $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 		$myts = MyTextSanitizer::getInstance();
 		$InfoModule = $module_handler->getByDirname($options[0]);
 		$InfoModuleConfig = $config_handler->getConfigsByCat(0, $InfoModule->getVar('mid'));
@@ -127,7 +127,7 @@ if (!function_exists('info_block_nav')) {
 					}
 				} 
         
-				$xuid = ($xoopsUser) ? $xoopsUser->getVar('uid') : 0;
+				$xuid = $xoopsUser ? $xoopsUser->getVar('uid') : 0;
 				$tc['address'] = str_replace('{xuid}', $xuid, $tc['address']);  //automatisch generierte uid
 				$link['id'] = $tc['info_id'];
 				$prefix = (!empty($tc['prefix'])) ? $tc['prefix'] : '';

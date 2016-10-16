@@ -160,24 +160,24 @@ if (!function_exists('info_cleanVars')) {
 function info_cleanVars( &$global, $key, $default = '', $type = 'int', $notset=false ) {
     switch ( $type ) {
       case 'string':
-        $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_MAGIC_QUOTES ) : $default;
+        $ret = isset( $global[$key] ) ? filter_var($global[$key], FILTER_SANITIZE_MAGIC_QUOTES ) : $default;
         if ($notset) {
           if ( trim($ret) == '') $ret = $default;
         }
       break;
 
 		case 'date':
-			$ret = ( isset( $global[$key] ) ) ? strtotime($global[$key]) : $default;
+			$ret = isset( $global[$key] ) ? strtotime($global[$key]) : $default;
 			break;
 
 		case 'email':
-			$ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_EMAIL ) : $default;
+			$ret = isset( $global[$key] ) ? filter_var($global[$key], FILTER_SANITIZE_EMAIL ) : $default;
 			$ret = checkEmail($ret);
 			break;
 
 		case 'int': 
 		default:
-            $ret = ( isset( $global[$key] ) ) ? filter_var( $global[$key], FILTER_SANITIZE_NUMBER_INT ) : $default;
+            $ret = isset( $global[$key] ) ? filter_var($global[$key], FILTER_SANITIZE_NUMBER_INT ) : $default;
             break;
 
     }
@@ -192,7 +192,7 @@ if (!function_exists('clearInfoCache')) {
 	function clearInfoCache($name = '', $dirname = null, $root_path = XOOPS_CACHE_PATH)
 	{
 		if (empty($dirname)) {
-			$pattern = ($dirname) ? "{$dirname}_{$name}.*\.php" : "[^_]+_{$name}.*\.php";
+			$pattern = $dirname ? "{$dirname}_{$name}.*\.php" : "[^_]+_{$name}.*\.php";
 			if ($handle = opendir($root_path)) {
 				while (false !== ($file = readdir($handle))) {
 					if (is_file($root_path . '/' . $file) && preg_match("/{$pattern}$/", $file)) {

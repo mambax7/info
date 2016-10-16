@@ -37,7 +37,7 @@ $cat 			    = info_cleanVars( $_REQUEST, 'cat', 1, 'int');
 $groupid 		  = info_cleanVars( $_REQUEST, 'groupid', 0, 'int');
 $mod_isAdmin 	= ($xoopsUser && $xoopsUser->isAdmin()) ? true : false;
 
-$infothisgroups   = (is_object($xoopsUser)) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+$infothisgroups   = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
 $infoperm_handler = xoops_getHandler('groupperm');
 $show_info_perm   = $infoperm_handler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
@@ -258,8 +258,8 @@ switch ($op) {
 			$blockid 	  = $_POST['blockid'];
 			$visible 	  = $_POST['visible'];
 			$title   	  = $_POST['title'];
-			$hp 		    = (isset($_POST['hp'][0])) ? intval($_POST['hp']) : 0;
-			$fp 		    = (isset($_POST['fp'][0])) ? intval($_POST['fp'][0]) : 0;
+			$hp 		    = isset($_POST['hp'][0]) ? intval($_POST['hp']) : 0;
+			$fp 		    = isset($_POST['fp'][0]) ? intval($_POST['fp'][0]) : 0;
 			$nocomments = $_POST['nocomments'];
 			$submenu    = $_POST['submenu'];
 			foreach ($id as $storyid) {
