@@ -61,7 +61,7 @@ $modversion['module_status']       = 'BETA 2';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.8';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.0', 'mysqli' => '5.0');
+$modversion['min_db']              = array('mysql' => '5.5');
 $modversion['system_menu']         = 1;
 
 $modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
@@ -104,11 +104,11 @@ if ($info_isactiv === true) {
     $id = $cat = $pid = $i = 0;
 
     $configHandler   = xoops_getHandler('config');
-    $InfoModulConfig = $configHandler->getConfigsByCat(0, $infomodul->getVar('mid'));
-    $seo             = (!empty($InfoModulConfig[$infoname . '_seourl'])
-                        && $InfoModulConfig[$infoname . '_seourl'] > 0) ? (int)$InfoModulConfig[$infoname
+    $infoModulConfig = $configHandler->getConfigsByCat(0, $infomodul->getVar('mid'));
+    $seo             = (!empty($infoModulConfig[$infoname . '_seourl'])
+                        && $infoModulConfig[$infoname . '_seourl'] > 0) ? (int)$infoModulConfig[$infoname
                                                                                                 . '_seourl'] : 0;
-    $info_tree       = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
+    $infoTree       = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
     $groups          = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
     $infopermHandler = xoops_getHandler('groupperm');
     $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
@@ -116,7 +116,7 @@ if ($info_isactiv === true) {
                         && $GLOBALS['xoopsUser']->isAdmin()) ? true : false;
 
     if (($mod_isAdmin || in_array(_CON_INFO_CANCREATE, $show_info_perm))
-        && $InfoModulConfig[$infoname . '_createlink'] == 1
+        && $infoModulConfig[$infoname . '_createlink'] == 1
     ) {
         $modversion['sub'][$i]['name'] = _MI_INFO_CREATESITE;
         $modversion['sub'][$i]['url']  = 'submit.php';
@@ -132,14 +132,14 @@ if ($info_isactiv === true) {
     $pid  = (int)$para['pid'];
     $key  = $key = $infoname . '_' . 'home';
     if (!$cP = XoopsCache::read($key)) {
-        $cP = $info_tree->getChildTreeArray($pid, 'blockid', array(), $InfoModulConfig[$infoname . '_trenner'], '');
+        $cP = $infoTree->getChildTreeArray($pid, 'blockid', array(), $infoModulConfig[$infoname . '_trenner'], '');
         XoopsCache::write($key, $cP);
     }
     if ($id > 0) {
-        $first = $info_tree->getFirstId($id);
+        $first = $infoTree->getFirstId($id);
         $key   = $GLOBALS['xoopsModule']->getVar('dirname') . '_' . 'home-' . $first;
         if (!$sub = XoopsCache::read($key)) {
-            $sub = $info_tree->getAllChildId($first);
+            $sub = $infoTree->getAllChildId($first);
             XoopsCache::write($key, $sub);
         }
     }

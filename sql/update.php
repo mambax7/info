@@ -230,7 +230,7 @@ function check_infotable(XoopsModule $module)
         'bl_left'       => "int(2) NOT NULL default '1'",
         'bl_right'      => "int(2) NOT NULL default '1'",
         'title'         => "varchar(255) NOT NULL default ''",
-        'text'          => "text NOT NULL ",
+        'text'          => 'text NOT NULL ',
         'tags'          => "varchar(255) NOT NULL default ''"
     );
 

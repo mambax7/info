@@ -41,7 +41,6 @@ return array(
     'swf'   => 'application/x-shockwave-flash',
     'xhtml' => 'application/xhtml+xml',
     'xht'   => 'application/xhtml+xml',
-    'xhtml' => 'application/xml',
     'bmp'   => 'image/bmp',
     'gif'   => 'image/gif',
     'jpeg'  => 'image/jpeg',

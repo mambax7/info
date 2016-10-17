@@ -46,7 +46,7 @@ $myts = MyTextSanitizer::getInstance();
 $infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
 $infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
 $catHandler      = new InfoCategoryHandler($xoopsDB, $module_name);
-$info_tree       = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
+$infoTree       = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $op = info_cleanVars($_REQUEST, 'op', '', 'string');
 if (!in_array($op, array('edit', 'delete'))) {

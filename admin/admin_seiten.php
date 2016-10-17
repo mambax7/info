@@ -424,7 +424,7 @@ switch ($op) {
             }
 
             echo '</td><td>';
-            $info_tree->makeMySelBox('title', 'blockid', $tcontent['parent_id'], 1,
+            $infoTree->makeMySelBox('title', 'blockid', $tcontent['parent_id'], 1,
                                      'parent_id[' . $tcontent['info_id'] . ']', '',
                                      ' AND cat=' . $cat . ' AND info_id<>' . $tcontent['info_id']);
             echo '</td><td>';
@@ -577,8 +577,8 @@ switch ($op) {
  */
 function show_list($cat0 = 0, $groupid = 0, $cat = 0, $aktuell = 0)
 {
-    global $info_tree;
-    $infolist = $info_tree->getAllChild(0, 'blockid', array(), ' AND cat=' . $cat . ' AND info_id<>' . $aktuell);
+    global $infoTree;
+    $infolist = $infoTree->getAllChild(0, 'blockid', array(), ' AND cat=' . $cat . ' AND info_id<>' . $aktuell);
 
     $info = array();
     foreach ($infolist as $s => $t) {

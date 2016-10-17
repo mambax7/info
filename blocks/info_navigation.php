@@ -27,9 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: info_navigation.php 89 2014-04-12 19:28:07Z alfred $
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die();
-}
+defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 include_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
@@ -89,6 +87,10 @@ if (!function_exists('info_block_nav')) {
         if (!is_object($moduleHandler)) {
             $moduleHandler = xoops_getHandler('module');
         }
+        if (!is_object($configHandler)) {
+            $configHandler  = xoops_getHandler('config');
+        }
+        include_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/class/infotree.php';
         //Variablen erstellen
         $block = array();
@@ -96,21 +98,21 @@ if (!function_exists('info_block_nav')) {
             return $block;
         }
         $groups           = $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-        $myts             = MyTextSanitizer::getInstance();
-        $InfoModule       = $moduleHandler->getByDirname($options[0]);
-        $InfoModuleConfig =& $configHandler->getConfigsByCat(0, $InfoModule->getVar('mid'));
-        $seo              = (!empty($InfoModuleConfig[$options[0] . '_seourl'])
-                             && $InfoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$InfoModuleConfig[$options[0]
+//        $myts             = MyTextSanitizer::getInstance();
+        $infoModule       = $moduleHandler->getByDirname($options[0]);
+        $infoModuleConfig =& $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
+        $seo              = (!empty($infoModuleConfig[$options[0] . '_seourl'])
+                             && $infoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$infoModuleConfig[$options[0]
                                                                                                          . '_seourl'] : 0;
-        $info_tree        = new InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
+        $infoTree        = new InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
 
-        $key = $InfoModule->getVar('dirname') . '_' . 'block_' . $options[1];
+        $key = $infoModule->getVar('dirname') . '_' . 'block_' . $options[1];
         if (!$arr = XoopsCache::read($key)) {
-            $arr = $info_tree->getChildTreeArray(0, 'blockid', array(), $InfoModuleConfig[$options[0] . '_trenner'],
+            $arr = $infoTree->getChildTreeArray(0, 'blockid', array(), $infoModuleConfig[$options[0] . '_trenner'],
                                                  ' AND cat=' . $options[1]);
             XoopsCache::write($key, $arr);
         }
-
+        xoops_loadLanguage('modinfo', basename(dirname(__DIR__)));
         $infopermHandler = xoops_getHandler('groupperm');
         $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $groups, $options[0]);
         $mod_isAdmin     = ($xoopsUser && $xoopsUser->isAdmin()) ? true : false;
@@ -124,22 +126,22 @@ if (!function_exists('info_block_nav')) {
         }
         foreach ($arr as $i => $tc) {
             $link    = array();
-            $visible = $info_tree->checkperm($tc['visible_group'], $groups);
+            $visible = $infoTree->checkperm($tc['visible_group'], $groups);
             if ($tc['st'] != 1 || $tc['visible'] == 0) {
                 $visible = false;
             }
             if ($visible === true) {
                 $sub = array();
                 if ($id > 0) {
-                    $key = $InfoModule->getVar('dirname') . '_' . 'firstblock_' . $id;
+                    $key = $infoModule->getVar('dirname') . '_' . 'firstblock_' . $id;
                     if (!$first = XoopsCache::read($key)) {
-                        $first = $info_tree->getFirstId($id);
+                        $first = $infoTree->getFirstId($id);
                         XoopsCache::write($key, $first);
                     }
                     if ($first > 0) {
-                        $key = $InfoModule->getVar('dirname') . '_' . 'subblock_' . $first;
+                        $key = $infoModule->getVar('dirname') . '_' . 'subblock_' . $first;
                         if (!$sub = XoopsCache::read($key)) {
-                            $sub = $info_tree->getAllChildId($first);
+                            $sub = $infoTree->getAllChildId($first);
                             XoopsCache::write($key, $sub);
                         }
                     }

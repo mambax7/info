@@ -83,10 +83,10 @@ if (in_array($content->getVar('link'), array(0, 1, 2, 4, 5))) {
 }
 
 if ($id > 0) {
-    $menu = $info_tree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1,
+    $menu = $infoTree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1,
                                        ' AND cat=' . $cat . ' AND info_id<>' . $id);
 } else {
-    $menu = $info_tree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1, ' AND cat=' . $cat);
+    $menu = $infoTree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1, ' AND cat=' . $cat);
 }
 
 if ((in_array(_CON_INFO_ALLCANUPDATE_POSITION, $show_info_perm) && $id == 0)
@@ -290,6 +290,7 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     $content->setVar('nohtml', $nohtml);
     $edi = new XoopsFormEditor(_DESCRIPTION, $editor, $editor_configs, $nohtml);
     $form->addElement($edi, true);
+    global $moduleHandler;
     if (!is_object($moduleHandler)) {
         $moduleHandler = xoops_getHandler('module');
     }

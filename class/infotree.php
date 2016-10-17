@@ -27,7 +27,7 @@
 //  @author Dirk Herrmann <alfred@simple-xoops.de>
 //  @version $Id: infotree.php 79 2013-09-13 18:04:49Z alfred $
 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 if (!class_exists('InfoTree')) {
 
