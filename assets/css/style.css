@@ -1,0 +1,78 @@
+/**
+ * DH-INFO style.css
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright:: The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @license::    {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @package::   dh-info
+ * @since::     2.5.6
+ * @author:     Alfred <http://www.simple-xoops.de>
+ * @author:     jcweb <>
+ * @version::   $Id $
+**/
+
+.infotitle {
+  background: #e6e6e6;
+  padding-left: 3px;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  border-left: 1px solid #c0c0c0;
+  line-height: 25px; 
+}
+
+.infocontent {
+  padding: 5px;
+}
+
+.infonavigation {
+
+}
+
+.infofooter {
+  padding: 3px;
+}
+
+#infomenu { 
+    background: transparent; 
+    font-family: Verdana, Arial, Helvetica, sans-serif; 
+    font-size: 12px; 
+}     
+
+#infomenu a.infocurrent { 
+    background:#027DC0; 
+    padding: 0 0 0 10px; 
+    margin: 5px 0 5px 0; 
+    line-height: 15px; 
+    color: #fff; 
+    display: block; 
+} 
+
+#infomenu a.infoMain { 
+    padding-top: 3px;    
+    background:transparent; 
+    display: block;
+} 
+
+#infomenu a.infoMain:hover { 
+    background:transparent; 
+    color: #027DC0; 
+    display: block; 
+} 
+
+#infomenu a.infoSub { 
+    background:transparent; 
+    color: #000; 
+    display: block; 
+} 
+
+#infomenu a.infoSub:hover { 
+    background:transparent; 
+    color: #027DC0; 
+    display: block; 
+}

@@ -38,7 +38,8 @@ if (!function_exists('Info_Load_CSS')) {
         $module_name = basename(dirname(__DIR__));
         if (!defined(strtoupper($module_name) . '_CSS_LOADED')) {
             $theme_path   = '/' . $xoopsConfig['theme_set'] . '/modules/' . $module_name;
-            $default_path = '/modules/' . $module_name . '/templates';
+//            $default_path = '/modules/' . $module_name . '/templates';
+            $default_path = '/modules/' . $module_name . '/assets/css';
 
             //Themepfad
             $rel_path = '';

@@ -77,7 +77,7 @@ function ' . $module_name . '_search($queryarray, $andor, $limit, $offset, $user
         $vscount--;
       }
       if ($visible == 1) {
-        $ret[$i]["image"] = "images/content.gif";
+        $ret[$i]["image"] = "assets/images/content.gif";
 		$mode=array("seo"=>$seo,"id"=>$myrow[\'info_id\'],"title"=>$myrow[\'title\'],"dir"=>$module_name,"cat"=>$myrow[\'cat\']);
 		$ret[$i]["link"] = makeSeoUrl($mode);
         $ret[$i]["title"] = $myrow["title"];

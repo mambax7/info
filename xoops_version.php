@@ -41,7 +41,7 @@ $modversion['help']        = 'page=help';
 $modversion['license']     = 'GNU GPL 2.0';
 $modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html/';
 $modversion['official']    = 0;
-$modversion['image']       = 'images/logo.gif';
+$modversion['image']       = 'assets/images/logo.gif';
 $modversion['dirname']     = $infoname;
 
 $modversion['author_realname'] = 'Dirk Herrmann';
@@ -187,7 +187,7 @@ if ($info_isactiv === true) {
 unset($infomodHandler);
 
 // Templates
-$modversion['templates'][1]['file']        = $infoname . '_index.html';
+$modversion['templates'][1]['file']        = $infoname . '_index.tpl';
 $modversion['templates'][1]['description'] = _MI_INFO_TEMPL1;
 
 // Blocks
@@ -197,7 +197,7 @@ $modversion['blocks'][1]['description'] = _MI_INFO_BLOCK1_DESC;
 $modversion['blocks'][1]['show_func']   = 'info_block_nav';
 $modversion['blocks'][1]['edit_func']   = 'info_navblock_edit';
 $modversion['blocks'][1]['options']     = $infoname . '|1|dynamisch';
-$modversion['blocks'][1]['template']    = $infoname . '_nav_block.html';
+$modversion['blocks'][1]['template']    = $infoname . '_nav_block.tpl';
 $modversion['blocks'][1]['can_clone']   = true;
 
 $modversion['blocks'][2]['file']        = 'info_freiblock.php';
@@ -206,7 +206,7 @@ $modversion['blocks'][2]['description'] = _MI_INFO_BLOCK2_DESC;
 $modversion['blocks'][2]['show_func']   = 'info_freiblock_show';
 $modversion['blocks'][2]['edit_func']   = 'info_freiblock_edit';
 $modversion['blocks'][2]['options']     = $infoname . '|0';
-$modversion['blocks'][2]['template']    = $infoname . '_freiblock.html';
+$modversion['blocks'][2]['template']    = $infoname . '_freiblock.tpl';
 $modversion['blocks'][2]['can_clone']   = true;
 
 $modversion['config'][1]['name']        = $infoname . '_editors';

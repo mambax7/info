@@ -112,23 +112,23 @@ function check_infotemplates(XoopsModule $module)
                      . $module->getInfo('dirname')
                      . '/templates/'
                      . $module->getInfo('dirname')
-                     . '_index.html')
+                     . '_index.tpl')
     ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/info_index.html',
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/info_index.tpl',
                XOOPS_ROOT_PATH
                . '/modules/'
                . $module->getInfo('dirname')
                . '/templates/'
                . $module->getInfo('dirname')
-               . '_index.html');
+               . '_index.tpl');
         if (!file_exists(XOOPS_ROOT_PATH
                          . '/modules/'
                          . $module->getInfo('dirname')
                          . '/templates/'
                          . $module->getInfo('dirname')
-                         . '_index.html')
+                         . '_index.tpl')
         ) {
-            $module->setErrors('Template ' . $module->getInfo('dirname') . '_index.html not exists!');
+            $module->setErrors('Template ' . $module->getInfo('dirname') . '_index.tpl not exists!');
             $err = false;
         }
     }
@@ -137,23 +137,23 @@ function check_infotemplates(XoopsModule $module)
                      . $module->getInfo('dirname')
                      . '/templates/blocks/'
                      . $module->getInfo('dirname')
-                     . '_freiblock.html')
+                     . '_freiblock.tpl')
     ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_freiblock.html',
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_freiblock.tpl',
                XOOPS_ROOT_PATH
                . '/modules/'
                . $module->getInfo('dirname')
                . '/templates/blocks/'
                . $module->getInfo('dirname')
-               . '_freiblock.html');
+               . '_freiblock.tpl');
         if (!file_exists(XOOPS_ROOT_PATH
                          . '/modules/'
                          . $module->getInfo('dirname')
                          . '/templates/blocks/'
                          . $module->getInfo('dirname')
-                         . '_freiblock.html')
+                         . '_freiblock.tpl')
         ) {
-            $module->setErrors('Template ' . $module->getInfo('dirname') . '_freiblock.html not exists!');
+            $module->setErrors('Template ' . $module->getInfo('dirname') . '_freiblock.tpl not exists!');
             $err = false;
         }
     }
@@ -162,23 +162,23 @@ function check_infotemplates(XoopsModule $module)
                      . $module->getInfo('dirname')
                      . '/templates/blocks/'
                      . $module->getInfo('dirname')
-                     . '_nav_block.html')
+                     . '_nav_block.tpl')
     ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_nav_block.html',
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_nav_block.tpl',
                XOOPS_ROOT_PATH
                . '/modules/'
                . $module->getInfo('dirname')
                . '/templates/blocks/'
                . $module->getInfo('dirname')
-               . '_nav_block.html');
+               . '_nav_block.tpl');
         if (!file_exists(XOOPS_ROOT_PATH
                          . '/modules/'
                          . $module->getInfo('dirname')
                          . '/templates/blocks/'
                          . $module->getInfo('dirname')
-                         . '_nav_block.html')
+                         . '_nav_block.tpl')
         ) {
-            $module->setErrors('Template ' . $module->getInfo('dirname') . '_nav_block.html not exists!');
+            $module->setErrors('Template ' . $module->getInfo('dirname') . '_nav_block.tpl not exists!');
             $err = false;
         }
     }

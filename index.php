@@ -48,7 +48,7 @@ $pid = (int)$para['pid'];
 $sgroups  = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
 $infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
-$GLOBALS['xoopsOption']['template_main'] = $module_name . '_index.html';
+$GLOBALS['xoopsOption']['template_main'] = $module_name . '_index.tpl';
 include_once $GLOBALS['xoops']->path('/header.php');
 
 if ($id != 0) {
