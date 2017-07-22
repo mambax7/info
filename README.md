@@ -1,6 +1,8 @@
 ![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
 ## DH-Info module for [XOOPS CMS 2.5.8+](https://xoops.org)
-[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE) 
+[![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
+[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
+ 
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/mambax7/info.svg?style=flat)](https://scrutinizer-ci.com/g/mambax7/info/?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/5b259d0cd7d847559d07d95d70f63e24)](https://www.codacy.com/app/mambax7/info)
 [![Code Climate](https://img.shields.io/codeclimate/github/mambax7/info.svg?style=flat)](https://codeclimate.com/github/mambax7/info)

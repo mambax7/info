@@ -1,31 +1,22 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package form.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: form.php 91 2014-04-19 20:09:50Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 if (isset($_POST) && count($_POST) > 0) {
     setPost($content, $_POST);
@@ -52,8 +43,7 @@ $form->addElement(new XoopsFormHidden('frontpage', $content->getVar('frontpage')
 
 if ((in_array(_CON_INFO_ALLCANUPDATE_CAT, $show_info_perm) && $id == 0)
     || (in_array(_CON_INFO_CANUPDATE_CAT, $show_info_perm) && $id > 0)
-    || $mod_isAdmin
-) {
+    || $mod_isAdmin) {
     $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $content->getVar('cat'));
     $catlist      = $catHandler->getObjects(null, true, false);
     $cate         = array();
@@ -83,16 +73,14 @@ if (in_array($content->getVar('link'), array(0, 1, 2, 4, 5))) {
 }
 
 if ($id > 0) {
-    $menu = $infoTree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1,
-                                       ' AND cat=' . $cat . ' AND info_id<>' . $id);
+    $menu = $infoTree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1, ' AND cat=' . $cat . ' AND info_id<>' . $id);
 } else {
     $menu = $infoTree->makeMySelArray('title', 'blockid', $content->getVar('parent_id'), 1, ' AND cat=' . $cat);
 }
 
 if ((in_array(_CON_INFO_ALLCANUPDATE_POSITION, $show_info_perm) && $id == 0)
     || (in_array(_CON_INFO_CANUPDATE_POSITION, $show_info_perm) && $id > 0)
-    || $mod_isAdmin
-) {
+    || $mod_isAdmin) {
     $categoria_select = new XoopsFormSelect(_INFO_POSITION, 'parent_id', $content->getVar('parent_id'));
     $categoria_select->addOptionArray($menu);
     unset($menu);
@@ -105,8 +93,7 @@ $form->addElement(new XoopsFormText(_INFO_LINKID, 'blockid', 5, 5, $content->get
 
 if ((in_array(_CON_INFO_ALLCANUPDATE_SITEART, $show_info_perm) && $id == 0)
     || (in_array(_CON_INFO_CANUPDATE_SITEART, $show_info_perm) && $id > 0)
-    || $mod_isAdmin
-) {
+    || $mod_isAdmin) {
     $url_art = new XoopsFormSelect(_INFO_URLART, 'link', $content->getVar('link'));
     $url_art->addOption(0, _INFO_URL_NORMAL);
     $url_art->addOption(6, _INFO_URL_PHP);
@@ -124,8 +111,7 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_SITEART, $show_info_perm) && $id == 0)
 if (in_array($content->getVar('link'), array(1, 2, 4, 5))) {
     switch ($content->getVar('link')) {
         case 2:
-            $form->addElement(new XoopsFormText(_INFO_URL_EXTERN, 'address', 80, 255, $content->getVar('address')),
-                              true);
+            $form->addElement(new XoopsFormText(_INFO_URL_EXTERN, 'address', 80, 255, $content->getVar('address')), true);
             $iframe = unserialize($content->getVar('frame'));
             $form->addElement(new XoopsFormHidden('height', $iframe['height']));
             $form->addElement(new XoopsFormHidden('border', $iframe['border']));
@@ -133,8 +119,7 @@ if (in_array($content->getVar('link'), array(1, 2, 4, 5))) {
             $form->addElement(new XoopsFormHidden('align', $iframe['align']));
             break;
         case 1:
-            $form->addElement(new XoopsFormText(_INFO_URL_INTERN, 'address', 80, 255, $content->getVar('address')),
-                              true);
+            $form->addElement(new XoopsFormText(_INFO_URL_INTERN, 'address', 80, 255, $content->getVar('address')), true);
             $iframe = unserialize($content->getVar('frame'));
             $form->addElement(new XoopsFormHidden('height', $iframe['height']));
             $form->addElement(new XoopsFormHidden('border', $iframe['border']));
@@ -142,8 +127,7 @@ if (in_array($content->getVar('link'), array(1, 2, 4, 5))) {
             $form->addElement(new XoopsFormHidden('align', $iframe['align']));
             break;
         case 4:
-            $form->addElement(new XoopsFormText(_INFO_URL_DATEI, 'address', 80, 255, $content->getVar('address')),
-                              true);
+            $form->addElement(new XoopsFormText(_INFO_URL_DATEI, 'address', 80, 255, $content->getVar('address')), true);
             $iframe = unserialize($content->getVar('frame'));
             $form->addElement(new XoopsFormText(_INFO_URL_FRAME_HEIGHT, 'height', 5, 5, $iframe['height']), true);
             $form->addElement(new XoopsFormText(_INFO_URL_FRAME_WIDTH, 'width', 5, 5, $iframe['width']), false);
@@ -152,8 +136,7 @@ if (in_array($content->getVar('link'), array(1, 2, 4, 5))) {
             break;
         case 5:
             $iframe = unserialize($content->getVar('frame'));
-            $form->addElement(new XoopsFormText(_INFO_URL_FRAME, 'address', 80, 255, $content->getVar('address')),
-                              true);
+            $form->addElement(new XoopsFormText(_INFO_URL_FRAME, 'address', 80, 255, $content->getVar('address')), true);
             $form->addElement(new XoopsFormText(_INFO_URL_FRAME_HEIGHT, 'height', 5, 5, $iframe['height']), true);
             $form->addElement(new XoopsFormText(_INFO_URL_FRAME_BORDER, 'border', 5, 5, $iframe['border']), true);
             $form->addElement(new XoopsFormText(_INFO_URL_FRAME_WIDTH, 'width', 5, 5, $iframe['width']), false);
@@ -210,8 +193,7 @@ if ((int)$content->getVar('link') == 3) {
 $sgroup = explode(',', $content->getVar('visible_group'));
 if ((in_array(_CON_INFO_ALLCANUPDATE_GROUPS, $show_info_perm) && $id == 0)
     || (in_array(_CON_INFO_CANUPDATE_GROUPS, $show_info_perm) && $id > 0)
-    || $mod_isAdmin
-) {
+    || $mod_isAdmin) {
     $groups = new XoopsFormSelectGroup(_INFO_VISIBLE_GROUP, 'visible_group', true, $sgroup, 5, true);
     $form->addElement($groups, true);
 } else {
@@ -220,10 +202,8 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_GROUPS, $show_info_perm) && $id == 0)
     }
 }
 
-$form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_LEFTBLOCK, 'bl_left', $content->getVar('bl_left'), $yes = _YES,
-                                       $no = _NO));
-$form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_RIGHTBLOCK, 'bl_right', $content->getVar('bl_right'), $yes = _YES,
-                                       $no = _NO));
+$form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_LEFTBLOCK, 'bl_left', $content->getVar('bl_left'), $yes = _YES, $no = _NO));
+$form->addElement(new XoopsFormRadioYN(_INFO_VISIBLE_RIGHTBLOCK, 'bl_right', $content->getVar('bl_right'), $yes = _YES, $no = _NO));
 
 if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     $editor = info_cleanVars($_REQUEST, 'editor', '', 'string');
@@ -235,8 +215,7 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     }
 
     if (!in_array(_CON_INFO_ALLCANUPDATE_HTML, $show_info_perm)
-        && !$mod_isAdmin
-    ) {
+        && !$mod_isAdmin) {
         $editor = 'dhtmltextarea';
         $nohtml = 1;
     } else {
@@ -256,7 +235,7 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     if ($width < 10 || $width > 100) {
         $width = 100;
     }
-    $width .= '%';
+    $width  .= '%';
     $height = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_height'];
     if ($height < 100) {
         $height = 100;
@@ -273,11 +252,9 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     );
 
     if ($xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_editors'] == 1
-        && !empty($xoopsUser)
-    ) {
+        && !empty($xoopsUser)) {
         if (in_array(_CON_INFO_ALLCANUPDATE_HTML, $show_info_perm)
-            || $mod_isAdmin
-        ) {
+            || $mod_isAdmin) {
             $select_editor = new XoopsFormSelectEditor($form, 'editor', $editor, $nohtml);
             $form->addElement($select_editor);
             $editor = $select_editor->value;
@@ -296,27 +273,24 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     }
     $tagmodule = $moduleHandler->getByDirname('tag');
     if (is_object($tagmodule) && $tagmodule->isactive()) {
-        include_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
+        require_once XOOPS_ROOT_PATH . '/modules/tag/include/formtag.php';
         $form->addElement(new XoopsFormTag('tags', 100, 255, $content->getVar('tags', 'n')));
     }
     if ($content->getVar('link') == 0) {
         //Upload
         if (in_array(_CON_INFO_ALLCANUPLOAD, $show_info_perm) || $mod_isAdmin) {
             $maxfilesize = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size') * 1024 * 1024;
-            $form->addElement(new XoopsFormFile(sprintf(_AM_INFO_UPLOAD, $maxfilesize / 1024 / 1024),
-                                                'upload_file_name', $maxfilesize));
+            $form->addElement(new XoopsFormFile(sprintf(_AM_INFO_UPLOAD, $maxfilesize / 1024 / 1024), 'upload_file_name', $maxfilesize));
         }
     }
 }
 
 if ((int)$content->getVar('link') == 0
     || (int)$content->getVar('link') == 4
-    || (int)$content->getVar('link') == 6
-) {
+    || (int)$content->getVar('link') == 6) {
     $option_tray = new XoopsFormElementTray(_OPTIONS, '<br>');
     if (in_array(_CON_INFO_ALLCANUPDATE_HTML, $show_info_perm)
-        || $mod_isAdmin
-    ) {
+        || $mod_isAdmin) {
         $html_checkbox = new XoopsFormCheckBox('', 'nohtml', $content->getVar('nohtml'));
         $html_checkbox->addOption(1, _DISABLEHTML);
         $option_tray->addElement($html_checkbox);
@@ -375,18 +349,15 @@ $euser       = is_object($xoopsUser) ? $xoopsUser->uid() : 0;
 if ($id == 0) {
     $form->addElement(new XoopsFormLabel(_INFO_LAST_EDITED, _AM_INFO_NEWADDSITE));
 } else {
-    $last_time = ($content->getVar('edited_time') > 0) ? date(_DATESTRING,
-                                                              $content->getVar('edited_time')) : date(_DATESTRING);
-    $last_time = ($content->getVar('edited_time')
-                  > 0) ? formatTimestamp($content->getVar('edited_time')) : formatTimestamp(time());
+    $last_time = ($content->getVar('edited_time') > 0) ? date(_DATESTRING, $content->getVar('edited_time')) : date(_DATESTRING);
+    $last_time = ($content->getVar('edited_time') > 0) ? formatTimestamp($content->getVar('edited_time')) : formatTimestamp(time());
     $form->addElement(new XoopsFormLabel(_INFO_LAST_EDITED, sprintf(_INFO_LAST_EDITEDTEXT, $last_editor, $last_time)));
 }
 $form->addElement(new XoopsFormHidden('owner', $ouser));
 
 if ((in_array(_CON_INFO_ALLCANUPDATE_SITEFULL, $show_info_perm) && $id == 0)
     || (in_array(_CON_INFO_CANUPDATE_SITEFULL, $show_info_perm) && $id > 0)
-    || $mod_isAdmin
-) {
+    || $mod_isAdmin) {
     $statusform = new XoopsFormRadio(_INFO_FREIGABEART, 'st', $content->getVar('st'));
     $statusform->addOption(1, _INFO_FREIGABEART_YES);
     $statusform->addOption(2, _INFO_FREIGABEART_NO);
@@ -398,11 +369,7 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_SITEFULL, $show_info_perm) && $id == 0)
 $submit = new XoopsFormElementTray('', '');
 $submit->addElement(new XoopsFormButton('', 'post', $tueber, 'submit'));
 $cancelbutton = new XoopsFormButton('', 'button', _CANCEL, 'button');
-$cancelbutton->setExtra("onclick=top.window.location='"
-                        . XOOPS_URL
-                        . '/modules/'
-                        . $xoopsModule->dirname()
-                        . "/admin/admin_seiten.php?cat=$cat'");
+$cancelbutton->setExtra("onclick=top.window.location='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . "/admin/admin_seiten.php?cat=$cat'");
 $submit->addElement($cancelbutton);
 $form->addElement($submit, false);
 $form->display();

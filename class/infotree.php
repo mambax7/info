@@ -1,31 +1,22 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package InfoTree.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: infotree.php 79 2013-09-13 18:04:49Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
@@ -67,6 +58,7 @@ if (!class_exists('InfoTree')) {
         }
 
         // returns an array of first child objects for a given id($sel_id)
+
         /**
          * @param        $sel_id
          * @param string $order
@@ -100,15 +92,7 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id = (int)$sel_id;
             $r_id   = 0;
-            $result = $this->db->query('SELECT '
-                                       . $this->pid
-                                       . ' FROM '
-                                       . $this->table
-                                       . ' WHERE '
-                                       . $this->id
-                                       . '='
-                                       . $sel_id
-                                       . '');
+            $result = $this->db->query('SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '');
             $count  = $this->db->getRowsNum($result);
             list($r_id) = $this->db->fetchRow($result);
             if ($count == 0 || $r_id == 0) {
@@ -120,6 +104,7 @@ if (!class_exists('InfoTree')) {
         }
 
         // returns an array of all FIRST child ids of a given id($sel_id)
+
         /**
          * @param $sel_id
          * @return array
@@ -128,15 +113,7 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id  = (int)$sel_id;
             $idarray = array();
-            $result  = $this->db->query('SELECT '
-                                        . $this->id
-                                        . ' FROM '
-                                        . $this->table
-                                        . ' WHERE '
-                                        . $this->pid
-                                        . '='
-                                        . $sel_id
-                                        . '');
+            $result  = $this->db->query('SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '');
             $count   = $this->db->getRowsNum($result);
             if ($count == 0) {
                 return $idarray;
@@ -149,6 +126,7 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL child ids for a given id($sel_id)
+
         /**
          * @param        $sel_id
          * @param string $order
@@ -176,6 +154,7 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL parent ids for a given id($sel_id)
+
         /**
          * @param        $sel_id
          * @param string $order
@@ -201,6 +180,7 @@ if (!class_exists('InfoTree')) {
         }
 
         //returns an array of ALL parent title for a given id($sel_id)
+
         /**
          * @param        $sel_id
          * @param string $order
@@ -213,15 +193,7 @@ if (!class_exists('InfoTree')) {
             $idarray = array()
         ) {
             $sel_id = (int)$sel_id;
-            $sql    = 'SELECT '
-                      . $this->pid
-                      . ', title, info_id FROM '
-                      . $this->table
-                      . ' WHERE '
-                      . $this->id
-                      . '='
-                      . $sel_id
-                      . '';
+            $sql    = 'SELECT ' . $this->pid . ', title, info_id FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
             if ($order != '') {
                 $sql .= " ORDER BY $order";
             }
@@ -247,20 +219,12 @@ if (!class_exists('InfoTree')) {
         public function getPathFromId($sel_id, $title, $path = '')
         {
             $sel_id = (int)$sel_id;
-            $result = $this->db->query('SELECT '
-                                       . $this->pid
-                                       . ', '
-                                       . $title
-                                       . ' FROM '
-                                       . $this->table
-                                       . ' WHERE '
-                                       . $this->id
-                                       . "=$sel_id");
+            $result = $this->db->query('SELECT ' . $this->pid . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id");
             if ($this->db->getRowsNum($result) == 0) {
                 return $path;
             }
             list($parentid, $name) = $this->db->fetchRow($result);
-            $myts =  MyTextSanitizer::getInstance();
+            $myts = MyTextSanitizer::getInstance();
             $name = $myts->htmlspecialchars($name);
             $path = '/' . $name . $path . '';
             if ($parentid == 0) {
@@ -301,16 +265,7 @@ if (!class_exists('InfoTree')) {
                 echo " onchange='" . $onchange . "'";
             }
             echo ">\n";
-            $sql = 'SELECT '
-                   . $this->id
-                   . ', '
-                   . $title
-                   . ' FROM '
-                   . $this->table
-                   . ' WHERE '
-                   . $this->pid
-                   . '=0 '
-                   . $extra;
+            $sql = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0 ' . $extra;
             if ($order != '') {
                 $sql .= " ORDER BY $order";
             }
@@ -356,16 +311,7 @@ if (!class_exists('InfoTree')) {
         ) {
             $ret  = array();
             $myts = MyTextSanitizer::getInstance();
-            $sql  = 'SELECT '
-                    . $this->id
-                    . ', '
-                    . $title
-                    . ' FROM '
-                    . $this->table
-                    . ' WHERE '
-                    . $this->pid
-                    . '=0 '
-                    . $extra;
+            $sql  = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0 ' . $extra;
             if ($order != '') {
                 $sql .= " ORDER BY $order";
             }
@@ -388,6 +334,7 @@ if (!class_exists('InfoTree')) {
         }
 
         //generates nicely formatted linked path from the root id to a given id
+
         /**
          * @param        $sel_id
          * @param        $title
@@ -399,21 +346,13 @@ if (!class_exists('InfoTree')) {
         {
             $path   = !empty($path) ? '&nbsp;:&nbsp;' . $path : $path;
             $sel_id = (int)$sel_id;
-            $sql    = 'SELECT '
-                      . $this->pid
-                      . ', '
-                      . $title
-                      . ' FROM '
-                      . $this->table
-                      . ' WHERE '
-                      . $this->id
-                      . "=$sel_id";
+            $sql    = 'SELECT ' . $this->pid . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id";
             $result = $this->db->query($sql);
             if ($this->db->getRowsNum($result) == 0) {
                 return $path;
             }
             list($parentid, $name) = $this->db->fetchRow($result);
-            $myts =  MyTextSanitizer::getInstance();
+            $myts = MyTextSanitizer::getInstance();
             $name = $myts->htmlspecialchars($name);
             $path = "<a href='" . $funcURL . '&amp;' . $this->id . '=' . $sel_id . "'>" . $name . '</a>' . $path . '';
             if ($parentid == 0) {
@@ -434,13 +373,7 @@ if (!class_exists('InfoTree')) {
         public function getIdPathFromId($sel_id, $path = '')
         {
             $sel_id = (int)$sel_id;
-            $result = $this->db->query('SELECT '
-                                       . $this->pid
-                                       . ' FROM '
-                                       . $this->table
-                                       . ' WHERE '
-                                       . $this->id
-                                       . "=$sel_id");
+            $result = $this->db->query('SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id");
             if ($this->db->getRowsNum($result) == 0) {
                 return $path;
             }

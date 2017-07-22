@@ -1,48 +1,41 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package xoops_version.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: xoops_version.php 91 2014-04-19 20:09:50Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
 // read the Name of the Folder
 $infoname = basename(__DIR__);
 
-$modversion['name']        = _MI_INFO_NAME;
-$modversion['version']     = 2.7;
-$modversion['author']      = 'Dirk Herrmann';
-$modversion['description'] = _MI_INFO_DESC;
-$modversion['credits']     = 'The SIMPLE-XOOPS Project';
-$modversion['help']        = 'page=help';
-$modversion['license']     = 'GNU GPL 2.0';
-$modversion['license_url'] = 'www.gnu.org/licenses/gpl-2.0.html/';
-$modversion['official']    = 0;
-$modversion['image']       = 'assets/images/logo.gif';
-$modversion['dirname']     = $infoname;
+$modversion['version']       = 2.7;
+$modversion['module_status'] = 'BETA 3';
+$modversion['release_date']  = '2017/07/20';
+$modversion['name']          = _MI_INFO_NAME;
+$modversion['description']   = _MI_INFO_DESC;
+$modversion['author']        = 'Dirk Herrmann';
+$modversion['credits']       = 'The SIMPLE-XOOPS Project';
+$modversion['help']          = 'page=help';
+$modversion['license']       = 'GNU GPL 2.0';
+$modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html/';
+$modversion['official']      = 0;
+$modversion['image']         = 'assets/images/logo.gif';
+$modversion['dirname']       = $infoname;
 
 $modversion['author_realname'] = 'Dirk Herrmann';
 $modversion['author_email']    = 'dhsoft@users.sourceforge.net';
@@ -54,19 +47,19 @@ $modversion['min_sxxoops']  = '1.0.0';
 $modversion['sx-modul']     = 10;
 
 //about
-$modversion['release_date']        = '2016/10/15';
 $modversion['module_website_url']  = 'www.simple-xoops.de/';
 $modversion['module_website_name'] = 'SIMPLE-XOOPS';
-$modversion['module_status']       = 'BETA 2';
 $modversion['min_php']             = '5.5';
-$modversion['min_xoops']           = '2.5.8';
+$modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
 $modversion['min_db']              = array('mysql' => '5.5');
 $modversion['system_menu']         = 1;
 
-$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
-$modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
-$modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
+//$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
+//$modversion['icons16']        = 'Frameworks/moduleclasses/icons/16';
+//$modversion['icons32']        = 'Frameworks/moduleclasses/icons/32';
+$modversion['modicons16'] = 'assets/images/icons/16';
+$modversion['modicons32'] = 'assets/images/icons/32';
 
 $modversion['onInstall'] = 'sql/update.php';
 $modversion['onUpdate']  = 'sql/update.php';
@@ -93,22 +86,21 @@ $modversion['hasMain'] = 1;
 
 $infomodHandler = xoops_getHandler('module');
 $infomodul      = $infomodHandler->getByDirname($infoname);
-include_once __DIR__ . '/include/constants.php';
-include_once __DIR__ . '/include/function.php';
+require_once __DIR__ . '/include/constants.php';
+require_once __DIR__ . '/include/function.php';
 
 $info_isactiv = xoops_isActiveModule($infoname);
 
 if ($info_isactiv === true) {
     //Modul ist aktiv
-    include_once __DIR__ . '/class/infotree.php';
+    require_once __DIR__ . '/class/infotree.php';
     $id = $cat = $pid = $i = 0;
 
     $configHandler   = xoops_getHandler('config');
     $infoModulConfig = $configHandler->getConfigsByCat(0, $infomodul->getVar('mid'));
     $seo             = (!empty($infoModulConfig[$infoname . '_seourl'])
-                        && $infoModulConfig[$infoname . '_seourl'] > 0) ? (int)$infoModulConfig[$infoname
-                                                                                                . '_seourl'] : 0;
-    $infoTree       = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
+                        && $infoModulConfig[$infoname . '_seourl'] > 0) ? (int)$infoModulConfig[$infoname . '_seourl'] : 0;
+    $infoTree        = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
     $groups          = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
     $infopermHandler = xoops_getHandler('groupperm');
     $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
@@ -116,8 +108,7 @@ if ($info_isactiv === true) {
                         && $GLOBALS['xoopsUser']->isAdmin()) ? true : false;
 
     if (($mod_isAdmin || in_array(_CON_INFO_CANCREATE, $show_info_perm))
-        && $infoModulConfig[$infoname . '_createlink'] == 1
-    ) {
+        && $infoModulConfig[$infoname . '_createlink'] == 1) {
         $modversion['sub'][$i]['name'] = _MI_INFO_CREATESITE;
         $modversion['sub'][$i]['url']  = 'submit.php';
         $i++;
@@ -176,8 +167,7 @@ if ($info_isactiv === true) {
                 'dir'   => $infoname,
                 'cat'   => $tcontent['cat']
             );
-            $ctURL                         = str_replace(XOOPS_URL . '/modules/' . $infoname . '/', '',
-                                                         makeSeoUrl($mode)); //FIX for MainMenu
+            $ctURL                         = str_replace(XOOPS_URL . '/modules/' . $infoname . '/', '', makeSeoUrl($mode)); //FIX for MainMenu
             $modversion['sub'][$i]['url']  = $ctURL;
             $i++;
         }

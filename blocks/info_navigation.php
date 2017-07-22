@@ -1,35 +1,26 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package info_navigation.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: info_navigation.php 89 2014-04-12 19:28:07Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
-include_once dirname(__DIR__) . '/include/function.php';
+require_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
 
 if (!function_exists('info_navblock_edit')) {
@@ -88,28 +79,26 @@ if (!function_exists('info_block_nav')) {
             $moduleHandler = xoops_getHandler('module');
         }
         if (!is_object($configHandler)) {
-            $configHandler  = xoops_getHandler('config');
+            $configHandler = xoops_getHandler('config');
         }
-        include_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
+        require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/class/infotree.php';
         //Variablen erstellen
         $block = array();
         if (empty($options)) {
             return $block;
         }
-        $groups           = $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
-//        $myts             = MyTextSanitizer::getInstance();
+        $groups = $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+        //        $myts             = MyTextSanitizer::getInstance();
         $infoModule       = $moduleHandler->getByDirname($options[0]);
-        $infoModuleConfig =& $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
+        $infoModuleConfig = $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
         $seo              = (!empty($infoModuleConfig[$options[0] . '_seourl'])
-                             && $infoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$infoModuleConfig[$options[0]
-                                                                                                         . '_seourl'] : 0;
-        $infoTree        = new InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
+                             && $infoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$infoModuleConfig[$options[0] . '_seourl'] : 0;
+        $infoTree         = new InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
 
         $key = $infoModule->getVar('dirname') . '_' . 'block_' . $options[1];
         if (!$arr = XoopsCache::read($key)) {
-            $arr = $infoTree->getChildTreeArray(0, 'blockid', array(), $infoModuleConfig[$options[0] . '_trenner'],
-                                                 ' AND cat=' . $options[1]);
+            $arr = $infoTree->getChildTreeArray(0, 'blockid', array(), $infoModuleConfig[$options[0] . '_trenner'], ' AND cat=' . $options[1]);
             XoopsCache::write($key, $arr);
         }
         xoops_loadLanguage('modinfo', basename(dirname(__DIR__)));
@@ -163,8 +152,7 @@ if (!function_exists('info_block_nav')) {
                 $ctURL          = makeSeoUrl($mode);
                 if ($tc['link'] == 1) { //int.Link
                     if (substr($tc['address'], -1) === '/'
-                        || substr($tc['address'], -1) === "\\"
-                    ) {
+                        || substr($tc['address'], -1) === "\\") {
                         $tc['address'] .= 'index.php';
                     }
                     $link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
@@ -211,7 +199,8 @@ if (!function_exists('info_block_nav')) {
                 unset($link);
             }
         }
-//        print_r($block);
+
+        //        print_r($block);
 
         return $block;
     }

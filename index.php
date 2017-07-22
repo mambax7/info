@@ -1,35 +1,26 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package index.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 require_once __DIR__ . '/../../mainfile.php';
-include_once __DIR__ . '/include/constants.php';
-include_once __DIR__ . '/include/function.php';
+require_once __DIR__ . '/include/constants.php';
+require_once __DIR__ . '/include/function.php';
 
 xoops_loadLanguage('modinfo', $module_name);
 xoops_loadLanguage('main', $module_name);
@@ -49,7 +40,7 @@ $sgroups  = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYM
 $infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
 $GLOBALS['xoopsOption']['template_main'] = $module_name . '_index.tpl';
-include_once $GLOBALS['xoops']->path('/header.php');
+require_once $GLOBALS['xoops']->path('/header.php');
 
 if ($id != 0) {
     $sql    = 'SELECT info_id, parent_id, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address,visible_group,edited_time,cat,self,frame,title_sicht,footer_sicht,bl_left,bl_right,st,owner,submenu FROM '
@@ -72,9 +63,7 @@ if ($id != 0) {
         exit();
     }
 } else {
-    $sql = 'SELECT info_id,parent_id,cat,visible_group,title FROM '
-           . $xoopsDB->prefix($xoopsModule->getVar('dirname'))
-           . ' WHERE ';
+    $sql = 'SELECT info_id,parent_id,cat,visible_group,title FROM ' . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' WHERE ';
     if ($pid > 0) {
         $sql .= 'parent_id=' . $pid . ' AND st=1 ORDER BY blockid ASC';
     } else {
@@ -98,9 +87,7 @@ if ($id != 0) {
         // Alternative Start-Seite suchen
         // ist erste Seite auf die der User Zugriff hat, geordnet nach info_id
         if ($pid < 1) {
-            $sql    = 'SELECT info_id,parent_id,cat,visible_group,title FROM '
-                      . $xoopsDB->prefix($xoopsModule->getVar('dirname'))
-                      . ' WHERE st=1 AND ( submenu =1 || visible =1 ) ORDER BY cat,blockid ASC';
+            $sql    = 'SELECT info_id,parent_id,cat,visible_group,title FROM ' . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' WHERE st=1 AND ( submenu =1 || visible =1 ) ORDER BY cat,blockid ASC';
             $result = $xoopsDB->query($sql);
             if ($result && $xoopsDB->getRowsNum($result) > 0) {
                 while ($row = $xoopsDB->fetchArray($result)) {
@@ -209,8 +196,7 @@ if ($address != '' && $link == 1) {
     exit();
 } elseif ($address != '' && $link == 2) {
     if (0 === stripos($address, 'http')
-        || 0 === stripos($address, 'ftp')
-    ) {
+        || 0 === stripos($address, 'ftp')) {
         if ($self == 1) {
             if ($title_sicht == 1) {
                 $xoopsTpl->assign('title', $title);
@@ -222,8 +208,7 @@ if ($address != '' && $link == 1) {
             $content .= sprintf(_MIC_INFO_EXTERNLINK, $address);
             $content .= '</center><br><br>';
             $xoopsTpl->assign('content', $content);
-            $xoopsTpl->assign('xoops_module_header',
-                              '<meta http-equiv="Refresh" content="10; url=\'' . XOOPS_URL . '\'" />');
+            $xoopsTpl->assign('xoops_module_header', '<meta http-equiv="Refresh" content="10; url=\'' . XOOPS_URL . '\'">');
         } else {
             header('Location: ' . $address);
             exit();
@@ -242,46 +227,26 @@ if ($address != '' && $link == 1) {
     $includeContent = XOOPS_ROOT_PATH . '/' . $address;
     if (file_exists($includeContent)) {
         $extension = pathinfo($includeContent, PATHINFO_EXTENSION);
-        $allowed   = include_once __DIR__ . '/include/mimes.php';
+        $allowed   = require_once __DIR__ . '/include/mimes.php';
         if (isset($allowed[$extension])) {
             $includeContent = '../../' . $address;
             $iframe         = unserialize($iframe);
             if (!isset($iframe['width'])
                 || $iframe['width'] < 1
-                || $iframe['width'] > 100
-            ) {
+                || $iframe['width'] > 100) {
                 $iframe['width'] = 100;
             }
-            $content = '<object data="'
-                       . $includeContent
-                       . '" type="'
-                       . $allowed[$extension]
-                       . '" width="'
-                       . $iframe['width']
-                       . '%" height="'
-                       . $iframe['height']
-                       . '">Plugin Not installed!</object>';
+            $content = '<object data="' . $includeContent . '" type="' . $allowed[$extension] . '" width="' . $iframe['width'] . '%" height="' . $iframe['height'] . '">Plugin Not installed!</object>';
         } elseif (0 === strpos($extension, 'php') || $extension === 'phtml') {
             $includeContent = XOOPS_URL . '/' . $address;
             $iframe         = unserialize($iframe);
             if (!isset($iframe['width'])
                 || $iframe['width'] < 1
-                || $iframe['width'] > 100
-            ) {
+                || $iframe['width'] > 100) {
                 $iframe['width'] = 100;
             }
             $content = "<div align='center'>";
-            $content .= "<iframe width='"
-                        . $iframe['width']
-                        . "%' height='"
-                        . $iframe['height']
-                        . "' name='"
-                        . $title
-                        . "' scrolling='auto' frameborder='"
-                        . $iframe['border']
-                        . "' src='"
-                        . $includeContent
-                        . "'></iframe>";
+            $content .= "<iframe width='" . $iframe['width'] . "%' height='" . $iframe['height'] . "' name='" . $title . "' scrolling='auto' frameborder='" . $iframe['border'] . "' src='" . $includeContent . "'></iframe>";
             $content .= '</div>';
         } else {
             $content = _MA_INFO_NOEXTENSION;
@@ -309,22 +274,11 @@ if ($address != '' && $link == 1) {
     }
     $iframe = unserialize($iframe);
     if (!isset($iframe['width']) || $iframe['width'] < 1
-        || $iframe['width'] > 100
-    ) {
+        || $iframe['width'] > 100) {
         $iframe['width'] = 100;
     }
     $content = "<div align='" . $iframe['align'] . "'>";
-    $content .= "<iframe width='"
-                . $iframe['width']
-                . "%' height='"
-                . $iframe['height']
-                . "' name='"
-                . $title
-                . "' scrolling='auto' frameborder='"
-                . $iframe['border']
-                . "' src='"
-                . $address
-                . "'></iframe>";
+    $content .= "<iframe width='" . $iframe['width'] . "%' height='" . $iframe['height'] . "' name='" . $title . "' scrolling='auto' frameborder='" . $iframe['border'] . "' src='" . $address . "'></iframe>";
     $content .= '</div>';
     $xoopsTpl->assign('content', $content);
     $xoopsTpl->assign('nocomments', $nocomments);
@@ -361,17 +315,14 @@ if ($address != '' && $link == 1) {
         $xoopsTpl->assign('title', $title);
     }
     if (trim($text) != '') {
-        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>',
-                                  '[pagebreak]', $text);
-        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>',
-                                  '[pagebreak]', $text);
-        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>',
-                                  '[pagebreak]', $text);
+        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>', '[pagebreak]', $text);
+        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>', '[pagebreak]', $text);
+        $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>', '[pagebreak]', $text);
         $text       = $myts->displayTarea($text, $html, $smiley, 1, 1, $br);
         $infotext   = explode('[pagebreak]', $text);
         $info_pages = count($infotext);
         if ($info_pages > 1) {
-            include_once XOOPS_ROOT_PATH . '/class/pagenav.php';
+            require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
             $pagenav = new XoopsPageNav($info_pages, 1, $infopage, 'page', 'content=' . $cat . ':' . $id);
             if ($xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_shownavi'] == 2) {
                 $xoopsTpl->assign('pagenav', $pagenav->renderSelect());
@@ -406,15 +357,10 @@ $mode      = array(
     'dir'   => $xoopsModule->dirname(),
     'cat'   => $cat
 );
-$mail_link = 'mailto:?subject='
-             . sprintf(_MI_INFO_ARTICLE, $xoopsConfig['sitename'])
-             . '&amp;body='
-             . sprintf(_MI_INNFO_ARTFOUND, $xoopsConfig['sitename'])
-             . ':  '
-             . makeSeoUrl($mode);
+$mail_link = 'mailto:?subject=' . sprintf(_MI_INFO_ARTICLE, $xoopsConfig['sitename']) . '&amp;body=' . sprintf(_MI_INNFO_ARTFOUND, $xoopsConfig['sitename']) . ':  ' . makeSeoUrl($mode);
 $xoopsTpl->assign('email_link', $mail_link);
 $xoopsTpl->assign('info_totop', _INFO_TOTOP);
 $xoopsTpl->assign('info_cat', $cat);
 $xoopsTpl->assign('xoops_pagetitle', $xoopsModule->getVar('name') . ' - ' . strip_tags($title));
 
-include_once $GLOBALS['xoops']->path('/footer.php');
+require_once $GLOBALS['xoops']->path('/footer.php');

@@ -1,64 +1,52 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package admin_header.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: admin_header.php 76 2013-09-06 17:00:56Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-require_once XOOPS_ROOT_PATH . '/include/cp_functions.php';
-require_once XOOPS_ROOT_PATH . '/include/cp_header.php';
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
-global $xoopsModule;
-$moduleHandler = xoops_getHandler('module');
-$moduleInfo  = $moduleHandler->get($xoopsModule->getVar('mid'));
-$module_name = $xoopsModule->getVar('dirname');
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/include/function.php';
+require_once __DIR__ . '/../../../include/cp_header.php';
 
-if (Info_checkXoopsVersion('2.6.0')) {
-    // XOOPS ab 2.6.0
-    $xoops = Xoops::getInstance();
-    XoopsLoad::load('system', 'system');
-    $indexAdmin = new XoopsModuleAdmin();
+//global $xoopsModule;
+//$moduleHandler = xoops_getHandler('module');
+//$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
+//$module_name   = $xoopsModule->getVar('dirname');
+require_once __DIR__ . '/../include/function.php';
+
+$moduleDirName = basename(dirname(__DIR__));
+
+if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
 } else {
-    if (!Info_checkModuleAdmin()) {
-        redirect_header('../../../admin.php', 5, _AM_INFO_MODULEADMIN_MISSING, false);
-    }
-    $pathIcon16 = XOOPS_URL . '/' . $moduleInfo->getInfo('icons16');
-    $pathIcon32 = XOOPS_URL . '/' . $moduleInfo->getInfo('icons32');
-    $indexAdmin = new ModuleAdmin();
+    $moduleHelper = Xmf\Module\Helper::getHelper('system');
 }
+$adminObject = \Xmf\Module\Admin::getInstance();
 
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/infotree.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/info.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/category.php';
+$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
+$pathIcon32    = \Xmf\Module\Admin::iconUrl('', 32);
+$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
-$infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
-$infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
-$catHandler      = new InfoCategoryHandler($xoopsDB, $module_name);
-$infoTree       = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once __DIR__ . '/../class/infotree.php';
+require_once __DIR__ . '/../class/info.php';
+require_once __DIR__ . '/../class/category.php';
+
+//Handlers
+$infoHandler     = new InfoInfoHandler($xoopsDB, $moduleDirName);
+$infowaitHandler = new InfoInfoHandler($xoopsDB, $moduleDirName . '_bak');
+$catHandler      = new InfoCategoryHandler($xoopsDB, $moduleDirName);
+$infoTree        = new InfoTree($xoopsDB->prefix($moduleDirName), 'info_id', 'parent_id');
 
 $myts = MyTextSanitizer::getInstance();

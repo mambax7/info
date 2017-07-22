@@ -1,31 +1,22 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package info_freiblock.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: info_freiblock.php 73 2013-03-19 20:14:02Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
@@ -38,7 +29,7 @@ if (!function_exists('info_freiblock_show')) {
     {
         global $xoopsDB, $xoopsUser;
         $myts = MyTextSanitizer::getInstance();
-        include_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
+        require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
         $block  = array();
         $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix($options[0]) . ' WHERE info_id=' . $options[1]);
         $row    = $xoopsDB->fetchArray($result);
@@ -57,8 +48,7 @@ if (!function_exists('info_freiblock_show')) {
             $breaks = ($html == 1) ? 0 : 1;
             if ((int)$row['link'] == 4) {
                 if (substr($row['address'], '/', 0, 1)
-                    || substr($row['address'], "\\", 0, 1)
-                ) {
+                    || substr($row['address'], "\\", 0, 1)) {
                     $row['address'] = substr($address, 1);
                 }
                 $file = XOOPS_ROOT_PATH . '/' . $row['address'];
@@ -73,23 +63,10 @@ if (!function_exists('info_freiblock_show')) {
                 $iframe = unserialize($row['frame']);
                 if (!isset($iframe['width'])
                     || $iframe['width'] < 1
-                    || $iframe['width'] > 100
-                ) {
+                    || $iframe['width'] > 100) {
                     $iframe['width'] = 100;
                 }
-                $text .= "<iframe width='"
-                         . $iframe['width']
-                         . "%' height='"
-                         . $iframe['height']
-                         . "px' align='"
-                         . $iframe['align']
-                         . "' name='"
-                         . $row['title']
-                         . "' scrolling='auto' frameborder='"
-                         . $iframe['border']
-                         . "' src='"
-                         . $row['address']
-                         . "'></iframe>";
+                $text   .= "<iframe width='" . $iframe['width'] . "%' height='" . $iframe['height'] . "px' align='" . $iframe['align'] . "' name='" . $row['title'] . "' scrolling='auto' frameborder='" . $iframe['border'] . "' src='" . $row['address'] . "'></iframe>";
                 $html   = 1;
                 $breaks = 0;
             }
@@ -103,8 +80,7 @@ if (!function_exists('info_freiblock_show')) {
                 $text = str_replace('{X_XOOPSUSERID}', '0', $text);
             }
             if (trim($text) != '') {
-                $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>',
-                                          '[pagebreak]', $text);
+                $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>', '[pagebreak]', $text);
                 $infotext   = explode('[pagebreak]', $text);
                 $info_pages = count($infotext);
                 if ($info_pages > 1) {
@@ -130,9 +106,7 @@ if (!function_exists('info_freiblock_edit')) {
     {
         global $xoopsDB;
         $module_name = $options[0];
-        $result      = $xoopsDB->queryF('SELECT info_id,title FROM '
-                                        . $xoopsDB->prefix($module_name)
-                                        . ' WHERE link !=1 && link !=2 && link !=3 && link !=4');
+        $result      = $xoopsDB->queryF('SELECT info_id,title FROM ' . $xoopsDB->prefix($module_name) . ' WHERE link !=1 && link !=2 && link !=3 && link !=4');
         if ($result) {
             $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
             $form .= "<input type='hidden' name='options[0]' value='" . $module_name . "'>";

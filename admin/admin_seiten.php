@@ -1,34 +1,25 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package admin_seiten.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: admin_seiten.php 91 2014-04-19 20:09:50Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-include_once __DIR__ . '/admin_header.php';
-include_once __DIR__ . '/../include/function.php';
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
+
+require_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/../include/function.php';
 
 global $xoopsUser, $indexAdmin;
 $op          = info_cleanVars($_REQUEST, 'op', 'show', 'string');
@@ -48,7 +39,7 @@ switch ($op) {
         if ($id > 0) {
             $content = $infowaitHandler->get($id);
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_seiten.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             $msg     = sprintf(_INFO_INFODELETE_AENDERUNG, $content->getVar('title'));
             $hiddens = array('op' => 'appdelok', 'cat' => $cat, 'id' => $id);
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
@@ -70,49 +61,21 @@ switch ($op) {
         break;
     case 'approved':
         xoops_cp_header();
-        echo $indexAdmin->addNavigation('admin_seiten.php');
+        $adminObject->displayNavigation(basename(__FILE__));
         $infowait =& $infowaitHandler->getAll(null, array(
             'info_id',
             'title',
             'edited_time',
             'edited_user'
         ), false, false);
-        $form     = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL
-                                                                                           . '/modules/'
-                                                                                           . $xoopsModule->getVar('dirname')
-                                                                                           . '/admin/admin_seiten.php?op=approved');
+        $form     = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=approved');
         $form->setExtra('enctype="multipart/form-data"');
         xoops_load('XoopsUserUtility');
         foreach ($infowait as $t => $tc) {
-            $dellink  = "<a href='admin_seiten.php?op=appdel&cat="
-                        . $cat
-                        . '&id='
-                        . $tc['info_id']
-                        . "'><img src='"
-                        . $pathIcon16
-                        . "/delete.png' title='"
-                        . _DELETE
-                        . "' alt='"
-                        . _DELETE
-                        . "'></a>";
-            $editlink = "<a href='admin_seiten.php?op=appedit&cat="
-                        . $cat
-                        . '&id='
-                        . $tc['info_id']
-                        . "'><img src='"
-                        . $pathIcon16
-                        . "/edit.png' title='"
-                        . _EDIT
-                        . "' alt='"
-                        . _EDIT
-                        . "'></a>";
+            $dellink  = "<a href='admin_seiten.php?op=appdel&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/delete.png' title='" . _DELETE . "' alt='" . _DELETE . "'></a>";
+            $editlink = "<a href='admin_seiten.php?op=appedit&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/edit.png' title='" . _EDIT . "' alt='" . _EDIT . "'></a>";
             $edittime = formatTimestamp($tc['edited_time'], 'l');
-            $form->addElement(new XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'],
-                                                 _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT,
-                                                                                    XoopsUserUtility::getUnameFromId($tc['edited_user'],
-                                                                                                                     0,
-                                                                                                                     false),
-                                                                                    $edittime)));
+            $form->addElement(new XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'], _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT, XoopsUserUtility::getUnameFromId($tc['edited_user'], 0, false), $edittime)));
         }
         $form->display();
         xoops_cp_footer();
@@ -143,9 +106,9 @@ switch ($op) {
             exit();
         } else {
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_seiten.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             $op = 'appedit';
-            include_once __DIR__ . '/../include/form.php';
+            require_once __DIR__ . '/../include/form.php';
             xoops_cp_footer();
         }
         break;
@@ -153,7 +116,7 @@ switch ($op) {
         if ($id > 0) {
             $content = $infoHandler->get($id);
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_seiten.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             $msg     = _INFO_SETDELETE . '<br><br>' . sprintf(_INFO_INFODELETE_FRAGE, $content->getVar('title'));
             $hiddens = array('op' => 'info_delete', 'cat' => $cat, 'id' => $id);
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
@@ -177,7 +140,7 @@ switch ($op) {
         if ($id > 0) {
             $content = $infoHandler->get($id);
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_seiten.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             $msg     = sprintf(_AM_INFO_SITEDEL_HP, $content->getVar('title'));
             $hiddens = array('op' => 'info_delhp', 'cat' => $cat, 'id' => $id);
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
@@ -208,18 +171,14 @@ switch ($op) {
 
             // Upload
             if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name'])
-                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != ''
-            ) {
-                include_once XOOPS_ROOT_PATH . '/class/uploader.php';
-                $allowed_mimetypes = include_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
-                $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size')
-                                                                                    * 1024
-                                                                                    * 1024;
+                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
+                require_once XOOPS_ROOT_PATH . '/class/uploader.php';
+                $allowed_mimetypes = require_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
+                $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size') * 1024 * 1024;
                 // $maxfilewidth = 120;
                 // $maxfileheight = 120;
                 $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
-                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes,
-                                                     $maxfilesize/*, $maxfilewidth, $maxfileheight */);
+                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
 
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                     if ($uploader->mediaSize < 1) {
@@ -231,12 +190,12 @@ switch ($op) {
 
                     if (count($uploader->errors) > 0) {
                         xoops_cp_header();
-                        echo $indexAdmin->addNavigation('admin_seiten.php');
-                        $indexAdmin->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
-                        echo $indexAdmin->renderButton();
+                        $adminObject->displayNavigation(basename(__FILE__));
+                        $adminObject->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
+                        $adminObject->displayButton('left');
                         $ret    = 0;
                         $errors = $uploader->getErrors();
-                        include_once __DIR__ . '/../include/form.php';
+                        require_once __DIR__ . '/../include/form.php';
                         xoops_cp_footer();
                         exit();
                     }
@@ -244,13 +203,12 @@ switch ($op) {
                     if (!$uploader->upload()) {
                         if (count($uploader->errors) > 0) {
                             xoops_cp_header();
-                            echo $indexAdmin->addNavigation('admin_seiten.php');
-                            $indexAdmin->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat,
-                                                       $icon = 'index');
-                            echo $indexAdmin->renderButton();
+                            $adminObject->displayNavigation(basename(__FILE__));
+                            $adminObject->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
+                            $adminObject->displayButton('left');
                             $ret    = 0;
                             $errors = $uploader->getErrors();
-                            include_once __DIR__ . '/../include/form.php';
+                            require_once __DIR__ . '/../include/form.php';
                             xoops_cp_footer();
                             exit();
                         }
@@ -258,12 +216,12 @@ switch ($op) {
                 } else {
                     if (count($uploader->errors) > 0) {
                         xoops_cp_header();
-                        echo $indexAdmin->addNavigation('admin_seiten.php');
-                        $indexAdmin->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
-                        echo $indexAdmin->renderButton();
+                        $adminObject->displayNavigation(basename(__FILE__));
+                        $adminObject->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
+                        $adminObject->displayButton('left');
                         $ret    = 0;
                         $errors = $uploader->getErrors();
-                        include_once __DIR__ . '/../include/form.php';
+                        require_once __DIR__ . '/../include/form.php';
                         xoops_cp_footer();
                         exit();
                     }
@@ -281,11 +239,11 @@ switch ($op) {
             exit();
         } else {
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_seiten.php');
-            $indexAdmin->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
-            echo $indexAdmin->renderButton();
+            $adminObject->displayNavigation(basename(__FILE__));
+            $adminObject->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
+            $adminObject->displayButton('left');
             $ret = 0;
-            include_once __DIR__ . '/../include/form.php';
+            require_once __DIR__ . '/../include/form.php';
             xoops_cp_footer();
         }
         break;
@@ -304,9 +262,7 @@ switch ($op) {
                 if ((int)$storyid > 0) {
                     $fpp = ($storyid == $fp) ? 1 : 0;
                     if ($fpp == 1) {
-                        $sql    = 'UPDATE '
-                                  . $xoopsDB->prefix($xoopsModule->getVar('dirname'))
-                                  . ' SET frontpage=0 WHERE frontpage>0';
+                        $sql    = 'UPDATE ' . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' SET frontpage=0 WHERE frontpage>0';
                         $result = $xoopsDB->query($sql);
                         $key    = $xoopsModule->getVar('dirname') . '_' . 'startpage';
                         $data   = array(
@@ -347,32 +303,21 @@ switch ($op) {
     case 'show':
         xoops_cp_header();
         $content = $infoHandler->get($id);
-        echo $indexAdmin->addNavigation('admin_seiten.php?op=show');
-        $indexAdmin->addItemButton(_INFO_ADDCONTENT, 'admin_seiten.php?op=edit&amp;cat=' . $cat, $icon = 'add');
-        echo $indexAdmin->renderButton();
+        $adminObject->displayNavigation('admin_seiten.php?op=show');
+        $adminObject->addItemButton(_INFO_ADDCONTENT, 'admin_seiten.php?op=edit&amp;cat=' . $cat, $icon = 'add');
+        $adminObject->displayButton('left');
         $sseite    = _AM_HP_SEITE . ' ';
         $startpage = $infoHandler->readStartpage();
         if (is_array($startpage)) {
-            $sseite .= "<a href=\"admin_seiten.php?op=delhp&amp;cat="
-                       . $cat
-                       . '&amp;id='
-                       . $startpage['0']
-                       . "\">"
-                       . $startpage['1']
-                       . '</a>';
+            $sseite .= "<a href=\"admin_seiten.php?op=delhp&amp;cat=" . $cat . '&amp;id=' . $startpage['0'] . "\">" . $startpage['1'] . '</a>';
         } else {
             $sseite .= _AM_HP_SEITE_NODEF;
         }
         echo $sseite;
-        $form = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_groupcat', XOOPS_URL
-                                                                                           . '/modules/'
-                                                                                           . $xoopsModule->getVar('dirname')
-                                                                                           . '/admin/admin_seiten.php?op=show');
+        $form = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_groupcat', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=show');
         $form->setExtra('enctype="multipart/form-data"');
         $option_tray = new XoopsFormElementTray('', '');
-        $sql         = 'SELECT cat_id,title FROM '
-                       . $xoopsDB->prefix($xoopsModule->getVar('dirname') . '_cat')
-                       . ' ORDER BY title ASC';
+        $sql         = 'SELECT cat_id,title FROM ' . $xoopsDB->prefix($xoopsModule->getVar('dirname') . '_cat') . ' ORDER BY title ASC';
         $result      = $xoopsDB->query($sql);
         $blist       = array();
         if ($result) {
@@ -382,23 +327,18 @@ switch ($op) {
         }
         $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $cat);
         $block_select->addOptionArray($blist);
-        $block_select->setextra('onchange="document.forms.'
-                                . $xoopsModule->getVar('dirname')
-                                . '_form_groupcat'
-                                . '.submit()"');
+        $block_select->setextra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($block_select);
         $group_select = new XoopsFormSelectGroup(_INFO_AM_GROUP, 'groupid', true, $groupid, 1, false);
         $group_select->addOptionArray(array(0 => _ALL));
-        $group_select->setExtra('onchange="document.forms.'
-                                . $xoopsModule->getVar('dirname')
-                                . '_form_groupcat'
-                                . '.submit()"');
+        $group_select->setExtra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($group_select);
         $submit = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
         $option_tray->addElement($submit);
         $form->addElement($option_tray);
         $form->display();
         echo "<form action='admin_seiten.php' method='post'>";
+        echo $GLOBALS['xoopsSecurity']->getTokenHTML();
         echo "<input type='hidden' name='op' value='update'>";
 
         echo "<table border='1' cellpadding='0' cellspacing='1' width='100%' class='outer'>";
@@ -418,18 +358,16 @@ switch ($op) {
             echo '<td>';
             if (in_array($tcontent['link'], array(0, 1, 4, 5))) {
                 $check = ($tcontent['frontpage'] == 1) ? 'checked' : '';
-                echo "<input type='radio' name='fp[]' value='" . $tcontent['info_id'] . "' " . $check . ' />';
+                echo "<input type='radio' name='fp[]' value='" . $tcontent['info_id'] . "' " . $check . '>';
             } else {
                 echo '&nbsp;';
             }
 
             echo '</td><td>';
-            $infoTree->makeMySelBox('title', 'blockid', $tcontent['parent_id'], 1,
-                                     'parent_id[' . $tcontent['info_id'] . ']', '',
-                                     ' AND cat=' . $cat . ' AND info_id<>' . $tcontent['info_id']);
+            $infoTree->makeMySelBox('title', 'blockid', $tcontent['parent_id'], 1, 'parent_id[' . $tcontent['info_id'] . ']', '', ' AND cat=' . $cat . ' AND info_id<>' . $tcontent['info_id']);
             echo '</td><td>';
             $title =& $myts->displayTarea($tcontent['title'], 0, 0, 0);
-            echo "<input type='hidden' name='title[" . $tcontent['info_id'] . "]' value='" . $title . "' />";
+            echo "<input type='hidden' name='title[" . $tcontent['info_id'] . "]' value='" . $title . "'>";
             if ($tcontent['st'] == 2 || $tcontent['st'] == 0) {
                 echo '<font color="red">' . _MI_INFO_GESPERRT . '</font>&nbsp;';
             }
@@ -439,26 +377,10 @@ switch ($op) {
             if ($tcontent['link'] == 3) { //kategorie
                 echo '<b>' . $title . '</b>';
             } else {
-                echo "<a href='"
-                     . XOOPS_URL
-                     . '/modules/'
-                     . $xoopsModule->dirname()
-                     . '/index.php?content='
-                     . $tcontent['info_id']
-                     . "'>"
-                     . $title
-                     . '</a>';
+                echo "<a href='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . '/index.php?content=' . $tcontent['info_id'] . "'>" . $title . '</a>';
             }
             echo '</td><td>';
-            echo "<input type='hidden' name='id["
-                 . $tcontent['info_id']
-                 . "]' value='"
-                 . $tcontent['info_id']
-                 . "' /><input type='text' name='blockid["
-                 . $tcontent['info_id']
-                 . "]' size='5' maxlength='5' value='"
-                 . $tcontent['blockid']
-                 . "'/>";
+            echo "<input type='hidden' name='id[" . $tcontent['info_id'] . "]' value='" . $tcontent['info_id'] . "'><input type='text' name='blockid[" . $tcontent['info_id'] . "]' size='5' maxlength='5' value='" . $tcontent['blockid'] . "'/>";
             echo '</td>';
             $check1 = "selected='selected'";
             $check2 = '';
@@ -480,87 +402,32 @@ switch ($op) {
                 $check6 = '';
                 $check7 = "selected='selected'";
             }
-            echo "<td width=\"1%\" nowrap><select name='visible["
-                 . $tcontent['info_id']
-                 . "]'><option value='0' "
-                 . $check1
-                 . ' />'
-                 . _NO
-                 . "</option><option value='1' "
-                 . $check2
-                 . ' />'
-                 . _YES
-                 . '</option></select></td>';
+            echo "<td width=\"1%\" nowrap><select name='visible[" . $tcontent['info_id'] . "]'><option value='0' " . $check1 . '>' . _NO . "</option><option value='1' " . $check2 . '>' . _YES . '</option></select></td>';
             echo "<td width=\"1%\" nowrap>&nbsp;";
             if ($tcontent['link'] != 3) {
-                echo "<select name='submenu["
-                     . $tcontent['info_id']
-                     . "]'><option value='0' "
-                     . $check5
-                     . ' />'
-                     . _NO
-                     . "</option><option value='1' "
-                     . $check7
-                     . ' />'
-                     . _YES
-                     . '</option></select>';
+                echo "<select name='submenu[" . $tcontent['info_id'] . "]'><option value='0' " . $check5 . '>' . _NO . "</option><option value='1' " . $check7 . '>' . _YES . '</option></select>';
             } else {
-                echo "<input type=\"hidden\" name=\"submenu["
-                     . $tcontent['info_id']
-                     . "]\" value=\""
-                     . $tcontent['submenu']
-                     . "\">";
+                echo "<input type=\"hidden\" name=\"submenu[" . $tcontent['info_id'] . "]\" value=\"" . $tcontent['submenu'] . "\">";
             }
             echo '</td>';
             echo "<td width=\"1%\" nowrap>&nbsp;";
             if ($tcontent['link'] == 0
                 || $tcontent['link'] == 4
-                || $tcontent['link'] == 5
-            ) {
-                echo "<select name='nocomments["
-                     . $tcontent['info_id']
-                     . "]'><option value='1' "
-                     . $check4
-                     . ' />'
-                     . _NO
-                     . "</option><option value='0' "
-                     . $check5
-                     . ' />'
-                     . _YES
-                     . '</option></select>';
+                || $tcontent['link'] == 5) {
+                echo "<select name='nocomments[" . $tcontent['info_id'] . "]'><option value='1' " . $check4 . '>' . _NO . "</option><option value='0' " . $check5 . '>' . _YES . '</option></select>';
             } else {
-                echo "<input type='hidden' name='nocomments["
-                     . $tcontent['info_id']
-                     . "]' value='"
-                     . $tcontent['nocomments']
-                     . "'>";
+                echo "<input type='hidden' name='nocomments[" . $tcontent['info_id'] . "]' value='" . $tcontent['nocomments'] . "'>";
             }
             echo '</td>';
-            echo "<td width=\"1%\" nowrap><a href='admin_seiten.php?op=edit&cat=$cat&id="
-                 . $tcontent['info_id']
-                 . "'><img src='"
-                 . $pathIcon16
-                 . "/edit.png' title='"
-                 . _EDIT
-                 . "' alt='"
-                 . _EDIT
-                 . "'></a>";
-            echo " | <a href='admin_seiten.php?op=delete&cat=$cat&id="
-                 . $tcontent['info_id']
-                 . "'><img src='"
-                 . $pathIcon16
-                 . "/delete.png' title='"
-                 . _DELETE
-                 . "' alt='"
-                 . _DELETE
-                 . "'></a></td></tr>";
+            echo "<td width=\"1%\" nowrap><a href='admin_seiten.php?op=edit&cat=$cat&id=" . $tcontent['info_id'] . "'><img src='" . $pathIcon16 . "/edit.png' title='" . _EDIT . "' alt='" . _EDIT . "'></a>";
+            echo " | <a href='admin_seiten.php?op=delete&cat=$cat&id=" . $tcontent['info_id'] . "'><img src='" . $pathIcon16 . "/delete.png' title='" . _DELETE . "' alt='" . _DELETE . "'></a></td></tr>";
             unset($tcontent);
             echo '</tr>';
         }
         echo '</table>';
-        echo "	<input type='hidden' name='op' value='update' />
-				<input type='hidden' name='cat' value='" . $cat . "' />
-				<input type='submit' name='start' value=" . _SUBMIT . ' />
+        echo "	<input type='hidden' name='op' value='update'>
+				<input type='hidden' name='cat' value='" . $cat . "'>
+				<input type='submit' name='start' value=" . _SUBMIT . '>
 			 ';
 
         echo '</form>';

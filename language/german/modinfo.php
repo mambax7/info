@@ -12,11 +12,9 @@ if (!defined('_MI_INFO_NAME')) {
     define('_MI_INFO_CONF1', 'Editorauswahl zulassen');
     define('_MI_INFO_CONF1_DESC', 'Ja für Editorauswahl im Formular / Nein für den Defaulteditor des Systems');
     define('_MI_INFO_CONF2', "Link 'Seite anlegen' anzeigen");
-    define('_MI_INFO_CONF2_DESC',
-           'Wenn man die Berechtigung für Seite anlegen hat kann ein Link im Hauptmenü mit angezeigt werden.');
+    define('_MI_INFO_CONF2_DESC', 'Wenn man die Berechtigung für Seite anlegen hat kann ein Link im Hauptmenü mit angezeigt werden.');
     define('_MI_INFO_CONF3', 'Druckerfreundliche Seiten generieren');
-    define('_MI_INFO_CONF3_DESC',
-           'Diese Einstellungen erstellt auf den Seiten ein Iconlink, bei dem dann eine druckerfreundliche Seite aufgerufen wird.');
+    define('_MI_INFO_CONF3_DESC', 'Diese Einstellungen erstellt auf den Seiten ein Iconlink, bei dem dann eine druckerfreundliche Seite aufgerufen wird.');
     define('_MI_INFO_CONF4', 'Anzeige letzter Änderung');
     define('_MI_INFO_CONF4_DESC', '');
     define('_MI_INFO_CONF5', 'Anzeige der Blöcke unterbinden beim Schreiben');
@@ -56,8 +54,7 @@ if (!defined('_MI_INFO_NAME')) {
     define('_INFO_NEW', 'NEU');
     define('_INFO_UPDATE', 'UPDATE');
     define('_MI_INFO_CONF8', 'SEO-Optimierung');
-    define('_MI_INFO_CONF8_DESC',
-           'Umschreibung der Urls in Suchmaschinenfreundliche. Rewriting setzt mod_rewrite vorraus!');
+    define('_MI_INFO_CONF8_DESC', 'Umschreibung der Urls in Suchmaschinenfreundliche. Rewriting setzt mod_rewrite vorraus!');
     define('_MI_INFO_CONF9', 'Trennzeichen für Untermenüs');
     define('_MI_INFO_CONF9_DESC', 'gibt das führende Trennzeichen für Untermenüs am Anfang an.');
 

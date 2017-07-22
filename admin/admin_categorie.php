@@ -1,33 +1,24 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package admin_categorie.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: admin_categorie.php 74 2013-03-29 20:25:05Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
 
-include_once __DIR__ . '/admin_header.php';
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
+
+require_once __DIR__ . '/admin_header.php';
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : 'list';
 if (!in_array($op, array('list', 'blockcat', 'blockcat_insert'))) {
@@ -40,16 +31,14 @@ switch ($op) {
     case 'list':
     default:
         xoops_cp_header();
-        echo $indexAdmin->addNavigation('admin_categorie.php');
+        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
         $catlist = $catHandler->getObjects(null, true, false);
         $cate    = array();
         foreach ($catlist as $cats => $catr) {
             $cate[$catr['cat_id']] = $catr['title'];
         }
-        $form = new XoopsThemeForm(_INFO_LISTBLOCKCAT, $xoopsModule->getVar('dirname') . '_form_list', XOOPS_URL
-                                                                                                       . '/modules/'
-                                                                                                       . $xoopsModule->getVar('dirname')
-                                                                                                       . '/admin/admin_categorie.php');
+        $form = new XoopsThemeForm(_INFO_LISTBLOCKCAT, $xoopsModule->getVar('dirname') . '_form_list', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_categorie.php');
         $form->setExtra('enctype="multipart/form-data"');
         $form->addElement(new XoopsFormHidden('op', 'blockcat'));
         $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', 0);
@@ -67,7 +56,7 @@ switch ($op) {
         $cate = $catHandler->get($cat);
         if ($_REQUEST['post'] == _DELETE) {
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_categorie.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             if ($cat == 1) {
                 redirect_header('admin_categorie.php', 3, _INFO_ERROR_NODEFAULT);
             } else {
@@ -92,7 +81,7 @@ switch ($op) {
             }
         } else {
             xoops_cp_header();
-            echo $indexAdmin->addNavigation('admin_categorie.php');
+            $adminObject->displayNavigation(basename(__FILE__));
             makecat($cat);
             xoops_cp_footer();
         }
@@ -122,11 +111,7 @@ function makecat($cat = 0)
 
     $cate   = $catHandler->get($cat);
     $tueber = ($cat == 0) ? _INFO_ADDBLOCKCAT : _INFO_EDITBLOCKCAT;
-    $form   = new XoopsThemeForm($tueber, $xoopsModule->getVar('dirname') . '_form_edit', XOOPS_URL
-                                                                                          . '/modules/'
-                                                                                          . $xoopsModule->getVar('dirname')
-                                                                                          . '/admin/admin_categorie.php',
-                                 'post', true);
+    $form   = new XoopsThemeForm($tueber, $xoopsModule->getVar('dirname') . '_form_edit', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_categorie.php', 'post', true);
     $form->setExtra('enctype="multipart/form-data"');
     $form->addElement(new XoopsFormHidden('cat', $cate->getVar('cat_id')));
     $form->addElement(new XoopsFormHidden('op', 'blockcat_insert'));

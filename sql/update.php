@@ -1,31 +1,22 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package update.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: update.php 79 2013-09-13 18:04:49Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 include dirname(__DIR__) . '/include/function.php';
 
@@ -74,24 +65,12 @@ function update_infotable(XoopsModule $module)
     );
 
     foreach ($tables_cat as $old => $new) {
-        $sql    = 'ALTER TABLE '
-                  . $xoopsDB->prefix($module->getInfo('dirname'))
-                  . '_cat CHANGE '
-                  . $old
-                  . ' '
-                  . $new
-                  . ';';
+        $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_cat CHANGE ' . $old . ' ' . $new . ';';
         $result = $xoopsDB->queryF($sql);
     }
 
     foreach ($tables_tab as $old => $new) {
-        $sql    = 'ALTER TABLE '
-                  . $xoopsDB->prefix($module->getInfo('dirname'))
-                  . '_bak CHANGE '
-                  . $old
-                  . ' '
-                  . $new
-                  . ';';
+        $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_bak CHANGE ' . $old . ' ' . $new . ';';
         $result = $xoopsDB->queryF($sql);
         $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . ' CHANGE ' . $old . ' ' . $new . ';';
         $result = $xoopsDB->queryF($sql);
@@ -107,77 +86,23 @@ function update_infotable(XoopsModule $module)
 function check_infotemplates(XoopsModule $module)
 {
     $err = true;
-    if (!file_exists(XOOPS_ROOT_PATH
-                     . '/modules/'
-                     . $module->getInfo('dirname')
-                     . '/templates/'
-                     . $module->getInfo('dirname')
-                     . '_index.tpl')
-    ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/info_index.tpl',
-               XOOPS_ROOT_PATH
-               . '/modules/'
-               . $module->getInfo('dirname')
-               . '/templates/'
-               . $module->getInfo('dirname')
-               . '_index.tpl');
-        if (!file_exists(XOOPS_ROOT_PATH
-                         . '/modules/'
-                         . $module->getInfo('dirname')
-                         . '/templates/'
-                         . $module->getInfo('dirname')
-                         . '_index.tpl')
-        ) {
+    if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/' . $module->getInfo('dirname') . '_index.tpl')) {
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/info_index.tpl', XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/' . $module->getInfo('dirname') . '_index.tpl');
+        if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/' . $module->getInfo('dirname') . '_index.tpl')) {
             $module->setErrors('Template ' . $module->getInfo('dirname') . '_index.tpl not exists!');
             $err = false;
         }
     }
-    if (!file_exists(XOOPS_ROOT_PATH
-                     . '/modules/'
-                     . $module->getInfo('dirname')
-                     . '/templates/blocks/'
-                     . $module->getInfo('dirname')
-                     . '_freiblock.tpl')
-    ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_freiblock.tpl',
-               XOOPS_ROOT_PATH
-               . '/modules/'
-               . $module->getInfo('dirname')
-               . '/templates/blocks/'
-               . $module->getInfo('dirname')
-               . '_freiblock.tpl');
-        if (!file_exists(XOOPS_ROOT_PATH
-                         . '/modules/'
-                         . $module->getInfo('dirname')
-                         . '/templates/blocks/'
-                         . $module->getInfo('dirname')
-                         . '_freiblock.tpl')
-        ) {
+    if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_freiblock.tpl')) {
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_freiblock.tpl', XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_freiblock.tpl');
+        if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_freiblock.tpl')) {
             $module->setErrors('Template ' . $module->getInfo('dirname') . '_freiblock.tpl not exists!');
             $err = false;
         }
     }
-    if (!file_exists(XOOPS_ROOT_PATH
-                     . '/modules/'
-                     . $module->getInfo('dirname')
-                     . '/templates/blocks/'
-                     . $module->getInfo('dirname')
-                     . '_nav_block.tpl')
-    ) {
-        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_nav_block.tpl',
-               XOOPS_ROOT_PATH
-               . '/modules/'
-               . $module->getInfo('dirname')
-               . '/templates/blocks/'
-               . $module->getInfo('dirname')
-               . '_nav_block.tpl');
-        if (!file_exists(XOOPS_ROOT_PATH
-                         . '/modules/'
-                         . $module->getInfo('dirname')
-                         . '/templates/blocks/'
-                         . $module->getInfo('dirname')
-                         . '_nav_block.tpl')
-        ) {
+    if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_nav_block.tpl')) {
+        rename(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/info_nav_block.tpl', XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_nav_block.tpl');
+        if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/blocks/' . $module->getInfo('dirname') . '_nav_block.tpl')) {
             $module->setErrors('Template ' . $module->getInfo('dirname') . '_nav_block.tpl not exists!');
             $err = false;
         }
@@ -239,7 +164,7 @@ function check_infotable(XoopsModule $module)
         foreach ($tables_cat as $s => $w) {
             $sql .= ' ' . $s . ' ' . $w . ',';
         }
-        $sql .= ' PRIMARY KEY  (cat_id)
+        $sql    .= ' PRIMARY KEY  (cat_id)
                 ) ;';
         $result = $xoopsDB->queryF($sql);
         if (!$result) {
@@ -247,32 +172,16 @@ function check_infotable(XoopsModule $module)
 
             return false;
         } else {
-            $sql    = 'INSERT INTO '
-                      . $xoopsDB->prefix($module->getInfo('dirname'))
-                      . "_cat (cat_id,title) VALUES (1,'Default')";
+            $sql    = 'INSERT INTO ' . $xoopsDB->prefix($module->getInfo('dirname')) . "_cat (cat_id,title) VALUES (1,'Default')";
             $result = $xoopsDB->queryF($sql);
         }
     } else {
         foreach ($tables_cat as $s => $w) {
             if (!InfoColumnExists($xoopsDB->prefix($module->getInfo('dirname')) . '_cat', $s)) {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . '_cat ADD '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_cat ADD ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             } else {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . '_cat CHANGE '
-                          . $s
-                          . ' '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_cat CHANGE ' . $s . ' ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             }
         }
@@ -283,7 +192,7 @@ function check_infotable(XoopsModule $module)
         foreach ($tables_tab as $s => $w) {
             $sql .= ' ' . $s . ' ' . $w . ",\n";
         }
-        $sql .= "  PRIMARY KEY  (info_id),\n
+        $sql    .= "  PRIMARY KEY  (info_id),\n
              KEY title (title(40))\n
            ) ;";
         $result = $xoopsDB->queryF($sql);
@@ -297,24 +206,10 @@ function check_infotable(XoopsModule $module)
     } else {
         foreach ($tables_tab as $s => $w) {
             if (!InfoColumnExists($xoopsDB->prefix($module->getInfo('dirname')), $s)) {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . ' ADD '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . ' ADD ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             } else {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . ' CHANGE '
-                          . $s
-                          . ' '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . ' CHANGE ' . $s . ' ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             }
         }
@@ -324,7 +219,7 @@ function check_infotable(XoopsModule $module)
         foreach ($tables_tab as $c => $w) {
             $sql .= ' ' . $c . ' ' . $w . ',';
         }
-        $sql .= '  PRIMARY KEY  (info_id),
+        $sql    .= '  PRIMARY KEY  (info_id),
              KEY title (title(40))
            ) ;';
         $result = $xoopsDB->queryF($sql);
@@ -340,24 +235,10 @@ function check_infotable(XoopsModule $module)
     } else {
         foreach ($tables_tab as $s => $w) {
             if (!InfoColumnExists($xoopsDB->prefix($module->getInfo('dirname')) . '_bak', $s)) {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . '_bak ADD '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_bak ADD ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             } else {
-                $sql    = 'ALTER TABLE '
-                          . $xoopsDB->prefix($module->getInfo('dirname'))
-                          . '_bak CHANGE '
-                          . $s
-                          . ' '
-                          . $s
-                          . ' '
-                          . $w
-                          . ';';
+                $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_bak CHANGE ' . $s . ' ' . $s . ' ' . $w . ';';
                 $result = $xoopsDB->queryF($sql);
             }
         }

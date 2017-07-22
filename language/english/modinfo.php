@@ -14,8 +14,7 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_CONF2', "Show Link 'Create Page'");
     define('_MI_INFO_CONF2_DESC', 'If you have create permission for hand, a link in the main menu to be displayed.');
     define('_MI_INFO_CONF3', 'Generate Printer friendly pages');
-    define('_MI_INFO_CONF3_DESC',
-           'This setting will create an Iconlink on the page, which will then generate a printer friendly page.');
+    define('_MI_INFO_CONF3_DESC', 'This setting will create an Iconlink on the page, which will then generate a printer friendly page.');
     define('_MI_INFO_CONF4', 'View last edit');
     define('_MI_INFO_CONF4_DESC', '');
     define('_MI_INFO_CONF5', 'Display the blocks prevent writing');
@@ -51,8 +50,7 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_ADMENU5', 'Waiting postings');
     define('_MI_INFO_ADMENU6', 'Offline postings');
     define('_MI_INFO_GESPERRT', '[Offline]');
-    define('_AM_INFO_NOFRAMEOREDITOR',
-           "<span style='font-weight: bold; color: red; '>Framework und/oder XoopsEditorPack nicht installiert!</span>");
+    define('_AM_INFO_NOFRAMEOREDITOR', "<span style='font-weight: bold; color: red; '>Framework und/oder XoopsEditorPack nicht installiert!</span>");
     define('_INFO_NEW', 'NEW');
     define('_INFO_UPDATE', 'UPDATE');
     define('_MI_INFO_CONF8', 'SEO-Optimization');

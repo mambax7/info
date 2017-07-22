@@ -1,44 +1,35 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package search.inc.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: search.inc.php 74 2013-03-29 20:25:05Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
-include_once dirname(__DIR__) . '/include/function.php';
+require_once dirname(__DIR__) . '/include/function.php';
 $module_name = basename(dirname(__DIR__));
 
 eval('
 function ' . $module_name . '_search($queryarray, $andor, $limit, $offset, $userid) {
     global $xoopsDB, $xoopsConfig,$xoopsUser, $xoopsModuleConfig;
 	$module_name = basename( dirname(dirname( __FILE__ ))) ; 
-    $smoduleHandler = xoops_gethandler("module");
+    $smoduleHandler = xoops_getHandler("module");
 	$smodule = $smoduleHandler->getByDirname($module_name);
-	$sconfigHandler = xoops_gethandler("config");
+	$sconfigHandler = xoops_getHandler("config");
     $sconfigs = $sconfigHandler->getConfigList($smodule->getVar("mid"));
 	if ($userid>0) {
 	  if (intval($sconfigs[$module_name."_linklist"]) == 0) return;

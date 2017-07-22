@@ -43,14 +43,14 @@ eval(' function ' . $infoname . '_tag_iteminfo(&$items)
 			$items_id[] = intval($item_id);
 		}
 	}
-	include_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
+	require_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
 	$itemHandler = new InfoInfoHandler( $xoopsDB, "' . $infoname . '");
 	$inids = implode(", ", $items_id);
 	$items_obj = $itemHandler->getObjects("", true);	
 	foreach(array_keys($items) as $cat_id){
 		foreach(array_keys($items[$cat_id]) as $item_id) {
 			if(isset($items_obj[$item_id])) {
-				$item_obj =& $items_obj[$item_id];
+				$item_obj = $items_obj[$item_id];
 				$icat = $item_obj->getVar("owner");
 				$items[$cat_id][$item_id] = array (
 					"title"		=> $item_obj->getVar("title"),
@@ -75,7 +75,7 @@ eval(' function ' . $infoname . '_tag_iteminfo(&$items)
  */
 eval(' function ' . $infoname . '_tag_synchronization($mid)
 {
-	include_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
+	require_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
 	$itemHandler = new InfoInfoHandler( $xoopsDB, "' . $infoname . '");
 	$linkHandler = xoops_getModuleHandler("link", "tag");
         

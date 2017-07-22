@@ -44,8 +44,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_ERROR_ISSETBLOCKTITLE', 'Kategorietitel ist schon vorhanden!');
     define('_INFO_ERROR_NOINSERTDB', 'Datensatz konnte nicht eingetragen werden!');
     define('_INFO_SETDELETE', 'Löschen bestätigen');
-    define('_INFO_SETDELETE_FRAGE',
-           'Soll die Kategorie<br><b>%s</b><br> mit allen dazugehörigen Seiten wirklich gelöscht werden ?');
+    define('_INFO_SETDELETE_FRAGE', 'Soll die Kategorie<br><b>%s</b><br> mit allen dazugehörigen Seiten wirklich gelöscht werden ?');
     define('_INFO_SETDELETE_LIST', 'In dieser Kategorie befinden sich <b>%s</b> dazugehörige Seiten.');
     define('_INFO_DELFLUSH', 'Löschen abgebrochen');
     define('_INFO_ERROR_NODEFAULT', 'Default-Kategorie kann nicht gelöscht werden');
@@ -64,11 +63,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_AM_HP_SEITE_NODEF', 'keine definiert');
     define('_INFO_AM_GROUP', 'Gruppe');
     define('_INFO_URL_IFRAME', 'Seite mit IFRAME einbinden');
-    define('_INFO_URL_INTERN', 'URL der Seite<br>Angabe ohne <b>'
-                               . XOOPS_URL
-                               . '</b> !<br>Für '
-                               . XOOPS_URL
-                               . ' tragen Sie nur <b>/</b> ein');
+    define('_INFO_URL_INTERN', 'URL der Seite<br>Angabe ohne <b>' . XOOPS_URL . '</b> !<br>Für ' . XOOPS_URL . ' tragen Sie nur <b>/</b> ein');
     define('_INFO_URL_EXTERN', 'URL der Seite<br>Angabe muss mit http:// oder https:// beginnen !');
     define('_INFO_URL_DATEI', 'Pfad der Datei<br>Angabe ausgehend von XOOPS_ROOT_PATH</b> !');
     define('_INFO_URL_FRAME', 'Url der Seite<br>Angabe muss mit http:// oder https:// beginnen !');
@@ -113,8 +108,7 @@ if (!defined('_INFO_ADMINTITLE')) {
 
     // Added in V 2.5
     define('_AM_INFO_MODULEADMIN_MISSING', 'ModuleAdmin fehlt! Kann nicht ausgeführt werden.');
-    define('_AM_INFO_TOCKEN_MISSING',
-           'Sicherheitstocken abgelaufen oder fehlerhaft. Aktion kann nicht ausgeführt werden.');
+    define('_AM_INFO_TOCKEN_MISSING', 'Sicherheitstocken abgelaufen oder fehlerhaft. Aktion kann nicht ausgeführt werden.');
     define('_AM_INFO_SITEUPDATE', 'Einstellungen updaten');
     define('_AM_INFO_INAKTIVE', '[deaktiviert]');
     define('_AM_INFO_NEWADDSITE', 'Neuanlage der Seite');
@@ -127,9 +121,5 @@ if (!defined('_INFO_ADMINTITLE')) {
 
     //Added in Version 2.7
     define('_AM_INFO_CANALLOWUPLOAD', 'Kann Dateien hochladen');
-    define('_AM_INFO_UPLOAD', 'Datei hochladen nach '
-                              . XOOPS_URL
-                              . '/modules/'
-                              . basename(dirname(dirname(__DIR__)))
-                              . '/files<br>max. Dateigröße: %s MB');
+    define('_AM_INFO_UPLOAD', 'Datei hochladen nach ' . XOOPS_URL . '/modules/' . basename(dirname(dirname(__DIR__))) . '/files<br>max. Dateigröße: %s MB');
 }

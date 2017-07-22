@@ -1,41 +1,32 @@
 <?php
-//  ------------------------------------------------------------------------ //
-//                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 xoops.org                           //
-//                       <http://www.xoops.org/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-//  @package submit.php
-//  @author Dirk Herrmann <alfred@simple-xoops.de>
-//  @version $Id: submit.php 91 2014-04-19 20:09:50Z alfred $
+/*
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+/**
+ * @copyright    {@link https://xoops.org/ XOOPS Project}
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU GPL 2 or later}
+ * @package      info module
+ * @since
+ * @author       XOOPS Development Team
+ * @author       Dirk Herrmann <alfred@simple-xoops.de>
+ */
 
 include __DIR__ . '/../../mainfile.php';
 $module_name = basename(__DIR__);
 
-include_once __DIR__ . '/include/function.php';
-include_once __DIR__ . '/include/constants.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/infotree.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/info.php';
-include_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/category.php';
+require_once __DIR__ . '/include/function.php';
+require_once __DIR__ . '/include/constants.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/infotree.php';
+require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/info.php';
+require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/category.php';
 xoops_loadLanguage('admin', $module_name);
 xoops_loadLanguage('modinfo', $module_name);
 
@@ -46,7 +37,7 @@ $myts = MyTextSanitizer::getInstance();
 $infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
 $infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
 $catHandler      = new InfoCategoryHandler($xoopsDB, $module_name);
-$infoTree       = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
+$infoTree        = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $op = info_cleanVars($_REQUEST, 'op', '', 'string');
 if (!in_array($op, array('edit', 'delete'))) {
@@ -73,8 +64,7 @@ if (in_array(_CON_INFO_CANUPDATEALL, $show_info_perm) || $mod_isAdmin) {
 } elseif (in_array(_CON_INFO_CANCREATE, $show_info_perm) && $id == 0) {
     $approve = 1;
 } elseif ($xoopsUser
-          && ($xoopsUser->uid() == $content->getVar('owner'))
-) { // eigene Seite
+          && ($xoopsUser->uid() == $content->getVar('owner'))) { // eigene Seite
     if (in_array(_CON_INFO_CANUPDATE, $show_info_perm)) {
         $approve = 1;
     }
@@ -107,18 +97,14 @@ if ($op === 'edit') {
 
         if (in_array(_CON_INFO_ALLCANUPLOAD, $show_info_perm) || $mod_isAdmin) {
             if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name'])
-                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != ''
-            ) {
-                include_once XOOPS_ROOT_PATH . '/class/uploader.php';
-                $allowed_mimetypes = include_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
-                $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size')
-                                                                                    * 1024
-                                                                                    * 1024;
+                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
+                require_once XOOPS_ROOT_PATH . '/class/uploader.php';
+                $allowed_mimetypes = require_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
+                $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size') * 1024 * 1024;
                 // $maxfilewidth = 120;
                 // $maxfileheight = 120;
                 $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
-                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes,
-                                                     $maxfilesize/*, $maxfilewidth, $maxfileheight */);
+                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
 
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                     if ($uploader->mediaSize < 1) {
@@ -129,7 +115,7 @@ if ($op === 'edit') {
                     }
 
                     if (count($uploader->errors) > 0) {
-                        include_once XOOPS_ROOT_PATH . '/header.php';
+                        require_once XOOPS_ROOT_PATH . '/header.php';
                         $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
                         if ($sbl == 0) {
                             // no blocks
@@ -144,13 +130,13 @@ if ($op === 'edit') {
                         $op     = 'edit';
                         $ret    = 1;
                         $errors = $uploader->getErrors();
-                        include_once __DIR__ . '/include/form.php';
-                        include_once XOOPS_ROOT_PATH . '/footer.php';
+                        require_once __DIR__ . '/include/form.php';
+                        require_once XOOPS_ROOT_PATH . '/footer.php';
                         exit();
                     }
                     if (!$uploader->upload()) {
                         if (count($uploader->errors) > 0) {
-                            include_once XOOPS_ROOT_PATH . '/header.php';
+                            require_once XOOPS_ROOT_PATH . '/header.php';
                             $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
                             if ($sbl == 0) {
                                 // no blocks
@@ -165,14 +151,14 @@ if ($op === 'edit') {
                             $op     = 'edit';
                             $ret    = 1;
                             $errors = $uploader->getErrors();
-                            include_once __DIR__ . '/include/form.php';
-                            include_once XOOPS_ROOT_PATH . '/footer.php';
+                            require_once __DIR__ . '/include/form.php';
+                            require_once XOOPS_ROOT_PATH . '/footer.php';
                             exit();
                         }
                     }
                 } else {
                     if (count($uploader->errors) > 0) {
-                        include_once XOOPS_ROOT_PATH . '/header.php';
+                        require_once XOOPS_ROOT_PATH . '/header.php';
                         $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
                         if ($sbl == 0) {
                             // no blocks
@@ -187,8 +173,8 @@ if ($op === 'edit') {
                         $op     = 'edit';
                         $ret    = 1;
                         $errors = $uploader->getErrors();
-                        include_once __DIR__ . '/include/form.php';
-                        include_once XOOPS_ROOT_PATH . '/footer.php';
+                        require_once __DIR__ . '/include/form.php';
+                        require_once XOOPS_ROOT_PATH . '/footer.php';
                         exit();
                     }
                 }
@@ -199,8 +185,7 @@ if ($op === 'edit') {
              && $id == 0)
             || (in_array(_CON_INFO_CANUPDATE_SITEFULL, $show_info_perm)
                 && $id > 0)
-            || $mod_isAdmin
-        ) {
+            || $mod_isAdmin) {
             $res     = $infoHandler->insert($content);
             $eintrag = true;
         } else {
@@ -244,12 +229,12 @@ if ($op === 'edit') {
     } else {
         if (!$infowaitHandler->readbakid($id)) {
             $ret = 0;
-            include_once XOOPS_ROOT_PATH . '/header.php';
+            require_once XOOPS_ROOT_PATH . '/header.php';
             if ((int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'] == 1) {
                 $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
             }
-            include_once __DIR__ . '/include/form.php';
-            include_once XOOPS_ROOT_PATH . '/footer.php';
+            require_once __DIR__ . '/include/form.php';
+            require_once XOOPS_ROOT_PATH . '/footer.php';
         } else {
             $mode = array(
                 'seo'   => $seo,
@@ -291,14 +276,14 @@ if ($op === 'edit') {
             redirect_header(makeSeoUrl($mode), 3, _AM_INFO_TOCKEN_MISSING);
         }
     } else {
-        include_once XOOPS_ROOT_PATH . '/header.php';
+        require_once XOOPS_ROOT_PATH . '/header.php';
         $msg     = sprintf(_INFO_INFODELETE_FRAGE, $content->getVar('title'));
         $hiddens = array('op' => 'delete', 'delok' => 1, 'id' => $id);
         xoops_confirm($hiddens, 'submit.php', $msg, _DELETE, true);
-        include_once XOOPS_ROOT_PATH . '/footer.php';
+        require_once XOOPS_ROOT_PATH . '/footer.php';
     }
 } else {
-    include_once XOOPS_ROOT_PATH . '/header.php';
+    require_once XOOPS_ROOT_PATH . '/header.php';
     $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
     if ($sbl == 0) {
         // no blocks
@@ -312,6 +297,6 @@ if ($op === 'edit') {
     }
     $op  = 'edit';
     $ret = 1;
-    include_once __DIR__ . '/include/form.php';
-    include_once XOOPS_ROOT_PATH . '/footer.php';
+    require_once __DIR__ . '/include/form.php';
+    require_once XOOPS_ROOT_PATH . '/footer.php';
 }

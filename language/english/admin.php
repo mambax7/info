@@ -43,8 +43,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_ERROR_ISSETBLOCKTITLE', 'Block title already exists!');
     define('_INFO_ERROR_NOINSERTDB', 'Could not update Content!');
     define('_INFO_SETDELETE', 'Are you sure you want to delete?');
-    define('_INFO_SETDELETE_FRAGE',
-           'Are you sure you want to delete this Category with all its pages:<br><strong>%s</strong> ?');
+    define('_INFO_SETDELETE_FRAGE', 'Are you sure you want to delete this Category with all its pages:<br><strong>%s</strong> ?');
     define('_INFO_SETDELETE_LIST', 'This Category has <strong>%s</strong> Pages(s).');
     define('_INFO_DELFLUSH', 'Delete canceled.');
     define('_INFO_ERROR_NODEFAULT', 'Default-Category can\'t be deleted');
@@ -63,8 +62,7 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_AM_HP_SEITE_NODEF', 'none selected');
     define('_INFO_AM_GROUP', 'Group');
     define('_INFO_URL_IFRAME', 'Page with iFrame');
-    define('_INFO_URL_INTERN',
-           'URL of the Page<br>do not enter <strong>' . XOOPS_URL . '</strong> !<br>For ' . XOOPS_URL . ' add <strong>/</strong> only');
+    define('_INFO_URL_INTERN', 'URL of the Page<br>do not enter <strong>' . XOOPS_URL . '</strong> !<br>For ' . XOOPS_URL . ' add <strong>/</strong> only');
     define('_INFO_URL_EXTERN', 'External URL<br>Has to start with http:// or https:// !');
     define('_INFO_URL_DATEI', 'Path of File<br>Must start with <strong>XOOPS_ROOT_PATH</strong>!');
     define('_INFO_URL_FRAME', 'URL of the Page<br>Has to start with http:// or https:// !');
@@ -123,9 +121,5 @@ if (!defined('_INFO_ADMINTITLE')) {
 
     //Added in Version 2.7
     define('_AM_INFO_CANALLOWUPLOAD', 'Can upload files');
-    define('_AM_INFO_UPLOAD', 'upload file to '
-                              . XOOPS_URL
-                              . '/modules/'
-                              . basename(dirname(dirname(__DIR__)))
-                              . '/files<br>max. Filesize: %s MB');
+    define('_AM_INFO_UPLOAD', 'upload file to ' . XOOPS_URL . '/modules/' . basename(dirname(dirname(__DIR__))) . '/files<br>max. Filesize: %s MB');
 }
