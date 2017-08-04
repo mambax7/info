@@ -204,9 +204,9 @@ if ($address != '' && $link == 1) {
             $content = '<script type="text/javascript">';
             $content .= 'window.open("' . $address . '");';
             $content .= '</script>';
-            $content .= '<br><br><center>';
+            $content .= '<br><br><div class="center;">';
             $content .= sprintf(_MIC_INFO_EXTERNLINK, $address);
-            $content .= '</center><br><br>';
+            $content .= '</div><br><br>';
             $xoopsTpl->assign('content', $content);
             $xoopsTpl->assign('xoops_module_header', '<meta http-equiv="Refresh" content="10; url=\'' . XOOPS_URL . '\'">');
         } else {

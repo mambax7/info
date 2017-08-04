@@ -27,12 +27,12 @@
                        alt="<{$print_title}>" title="<{$print_title}>"><img src="<{$modules_url}>/assets/images/print.png"
                                                                             alt="<{$print_title}>"
                                                                             title="<{$print_title}>" width="22"
-                                                                            height="22" border="0"/></a>
+                                                                            height="22" border="0"></a>
                     &nbsp;&nbsp;
                 <{/if}>
                 <a href="<{$email_link}>" target="_blank" alt="<{$email_title}>" title="<{$email_title}>"><img
                             src="<{$modules_url}>/assets/images/email.png" alt="<{$email_title}>" title="<{$email_title}>"
-                            width="22" height="22" border="0"/></a>
+                            width="22" height="22" border="0"></a>
                 &nbsp;&nbsp;
             </div>
             <{if $last_update}>
@@ -47,19 +47,19 @@
                 &nbsp;&nbsp;
                 <a href="<{$modules_url}>/submit.php?op=edit&amp;id=<{$id}>" alt="<{$info_edit}>"
                    title="<{$info_edit}>"><img src="<{$modules_url}>/assets/images/edit.png" title="<{$info_edit}>"
-                                               alt="<{$info_edit}>" width="16" height="16" border="0"/></a>
+                                               alt="<{$info_edit}>" width="16" height="16" border="0"></a>
             <{/if}>
             <{if $xoops_isadmin || $info_contdel}>
                 &nbsp;&nbsp;
                 <a href="<{$modules_url}>/submit.php?op=delete&amp;id=<{$id}>" alt="<{$info_delete}>"
                    title="<{$info_delete}>"><img src="<{$modules_url}>/assets/images/delete.png" title="<{$info_delete}>"
-                                                 alt="<{$info_delete}>" width="16" height="16" border="0"/></a>
+                                                 alt="<{$info_delete}>" width="16" height="16" border="0"></a>
             <{/if}>
             <{if $footersicht}>
                 &nbsp;&nbsp;
                 <a href="#top" title="<{$info_totop}>"><img src="<{$modules_url}>/assets/images/top.png"
                                                             title="<{$info_totop}>" alt="<{$info_totop}>" width="16"
-                                                            height="16" border="0"/></a>
+                                                            height="16" border="0"></a>
             <{/if}>
             &nbsp;&nbsp;
         </div>

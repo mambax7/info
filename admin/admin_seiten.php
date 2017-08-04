@@ -380,7 +380,7 @@ switch ($op) {
                 echo "<a href='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . '/index.php?content=' . $tcontent['info_id'] . "'>" . $title . '</a>';
             }
             echo '</td><td>';
-            echo "<input type='hidden' name='id[" . $tcontent['info_id'] . "]' value='" . $tcontent['info_id'] . "'><input type='text' name='blockid[" . $tcontent['info_id'] . "]' size='5' maxlength='5' value='" . $tcontent['blockid'] . "'/>";
+            echo "<input type='hidden' name='id[" . $tcontent['info_id'] . "]' value='" . $tcontent['info_id'] . "'><input type='text' name='blockid[" . $tcontent['info_id'] . "]' size='5' maxlength='5' value='" . $tcontent['blockid'] . "'>";
             echo '</td>';
             $check1 = "selected='selected'";
             $check2 = '';
