@@ -79,4 +79,18 @@ if (!defined('_MIC_INFO_NAME')) {
     define('_MI_INFO_RECHTS', 'Disable right blocks');
     define('_MI_INFO_LINKS', 'Disable left');
     define('_MI_INFO_BEIDE', 'Disabled right and left blocks');
+
+    //2.7
+    //Help
+    define('_MI_INFO_DIRNAME', basename(dirname(dirname(__DIR__))));
+    define('_MI_INFO_HELP_HEADER', __DIR__.'/help/helpheader.tpl');
+    define('_MI_INFO_BACK_2_ADMIN', 'Back to Administration of ');
+    define('_MI_INFO_OVERVIEW', 'Overview');
+
+    //define('_MI_INFO_HELP_DIR', __DIR__);
+
+    //help multi-page
+    define('_MI_INFO_DISCLAIMER', 'Disclaimer');
+    define('_MI_INFO_LICENSE', 'License');
+    define('_MI_INFO_SUPPORT', 'Support');
 }

@@ -122,4 +122,12 @@ if (!defined('_INFO_ADMINTITLE')) {
     //Added in Version 2.7
     define('_AM_INFO_CANALLOWUPLOAD', 'Can upload files');
     define('_AM_INFO_UPLOAD', 'upload file to ' . XOOPS_URL . '/modules/' . basename(dirname(dirname(__DIR__))) . '/files<br>max. Filesize: %s MB');
+
+    define('_AM_INFO_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
+    define('_AM_INFO_UPGRADEFAILED1', "Update failed - couldn't add new fields");
+    define('_AM_INFO_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
+    define('_AM_INFO_ERROR_COLUMN', 'Could not create column in database : %s');
+    define('_AM_INFO_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
+    define('_AM_INFO_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+    define('_AM_INFO_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');
 }

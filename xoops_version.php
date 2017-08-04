@@ -74,6 +74,13 @@ $modversion['hasAdmin']   = 1;
 $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/menu.php';
 
+// ------------------- Help files ------------------- //
+$modversion['helpsection'] = array(
+    ['name' => _MI_INFO_OVERVIEW, 'link' => 'page=help'],
+    ['name' => _MI_INFO_DISCLAIMER, 'link' => 'page=disclaimer'],
+    ['name' => _MI_INFO_LICENSE, 'link' => 'page=license'],
+    ['name' => _MI_INFO_SUPPORT, 'link' => 'page=support'],
+);
 // Smarty
 $modversion['use_smarty'] = 1;
 
