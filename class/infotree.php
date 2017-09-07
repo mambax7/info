@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access');
+defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 if (!class_exists('InfoTree')) {
 
@@ -67,7 +67,7 @@ if (!class_exists('InfoTree')) {
         public function getFirstChild($sel_id, $order = '')
         {
             $sel_id = (int)$sel_id;
-            $arr    = array();
+            $arr    = [];
             $sql    = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
             if ($order != '') {
                 $sql .= " ORDER BY $order";
@@ -112,7 +112,7 @@ if (!class_exists('InfoTree')) {
         public function getFirstChildId($sel_id)
         {
             $sel_id  = (int)$sel_id;
-            $idarray = array();
+            $idarray = [];
             $result  = $this->db->query('SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '');
             $count   = $this->db->getRowsNum($result);
             if ($count == 0) {
@@ -133,7 +133,7 @@ if (!class_exists('InfoTree')) {
          * @param array  $idarray
          * @return array
          */
-        public function getAllChildId($sel_id, $order = '', $idarray = array())
+        public function getAllChildId($sel_id, $order = '', $idarray = [])
         {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
@@ -161,7 +161,7 @@ if (!class_exists('InfoTree')) {
          * @param array  $idarray
          * @return array
          */
-        public function getAllParentId($sel_id, $order = '', $idarray = array())
+        public function getAllParentId($sel_id, $order = '', $idarray = [])
         {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
@@ -190,7 +190,7 @@ if (!class_exists('InfoTree')) {
         public function getAllParentTitle(
             $sel_id,
             $order = '',
-            $idarray = array()
+            $idarray = []
         ) {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->pid . ', title, info_id FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
@@ -280,7 +280,7 @@ if (!class_exists('InfoTree')) {
                 }
                 echo "<option value='$cat_id'$sel>$name</option>\n";
                 $sel = '';
-                $arr = $this->getChildTreeArray($cat_id, $order, array(), '', $extra);
+                $arr = $this->getChildTreeArray($cat_id, $order, [], '', $extra);
                 foreach ($arr as $option) {
                     $option['prefix'] = str_replace('.', '--', $option['prefix']);
                     $catpath          = $option['prefix'] . '&nbsp;' . $myts->htmlspecialchars($option[$title]);
@@ -309,7 +309,7 @@ if (!class_exists('InfoTree')) {
             $none = 0,
             $extra = null
         ) {
-            $ret  = array();
+            $ret  = [];
             $myts = MyTextSanitizer::getInstance();
             $sql  = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0 ' . $extra;
             if ($order != '') {
@@ -320,7 +320,7 @@ if (!class_exists('InfoTree')) {
                 $ret[0] = '----';
             }
             while (list($cat_id, $name) = $this->db->fetchRow($result)) {
-                $arr          = $this->getChildTreeArray($cat_id, $order, array(), '', $extra);
+                $arr          = $this->getChildTreeArray($cat_id, $order, [], '', $extra);
                 $ret[$cat_id] = $name;
                 foreach ($arr as $option) {
                     $option['prefix']        = str_replace('.', '--', $option['prefix']);
@@ -399,7 +399,7 @@ if (!class_exists('InfoTree')) {
         public function getAllChild(
             $sel_id = 0,
             $order = '',
-            $parray = array(),
+            $parray = [],
             $extra = null
         ) {
             $sel_id = (int)$sel_id;
@@ -433,7 +433,7 @@ if (!class_exists('InfoTree')) {
         public function getChildTreeArray(
             $sel_id = 0,
             $order = '',
-            $parray = array(),
+            $parray = [],
             $r_prefix = '',
             $extra = null
         ) {
@@ -468,8 +468,8 @@ if (!class_exists('InfoTree')) {
          * @return bool
          */
         public function checkperm(
-            $visiblegroups = array(),
-            $usergroups = array()
+            $visiblegroups = [],
+            $usergroups = []
         ) {
             if (count($usergroups) > 0 && count($visiblegroups) > 0) {
                 $vsgroup = explode(',', $visiblegroups);

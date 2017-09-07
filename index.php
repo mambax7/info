@@ -36,7 +36,7 @@ $id  = (int)$para['id'];
 $cat = (int)$para['cid'];
 $pid = (int)$para['pid'];
 
-$sgroups  = $xoopsUser ? $xoopsUser->getGroups() : array(0 => XOOPS_GROUP_ANONYMOUS);
+$sgroups  = $xoopsUser ? $xoopsUser->getGroups() : [0 => XOOPS_GROUP_ANONYMOUS];
 $infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
 
 $GLOBALS['xoopsOption']['template_main'] = $module_name . '_index.tpl';
@@ -51,13 +51,13 @@ if ($id != 0) {
     $result = $xoopsDB->query($sql);
     list($info_id, $parent, $title, $text, $visible, $nohtml, $nosmiley, $nobreaks, $nocomments, $link, $address, $vgroups, $etime, $cat, $self, $iframe, $title_sicht, $footer_sicht, $bl_left, $bl_right, $st, $ownerid, $submenu) = $xoopsDB->fetchRow($result);
     if ($link == 3) {
-        $mode = array(
+        $mode = [
             'seo'   => $seo,
             'id'    => $info_id,
             'title' => $title,
             'dir'   => $module_name,
             'cat'   => 'p' . $cat
-        );
+        ];
         header('HTTP/1.1 301 Moved Permanently');
         header('Location: ' . makeSeoUrl($mode));
         exit();
@@ -112,13 +112,13 @@ if ($id != 0) {
         if (!empty($row2) && count($row2) > 0) {
             $row = $row2;
         }
-        $mode = array(
+        $mode = [
             'seo'   => $seo,
             'id'    => $row['info_id'],
             'title' => $row['title'],
             'dir'   => $xoopsModule->dirname(),
             'cat'   => $row['cat']
-        );
+        ];
         header('Location: ' . makeSeoUrl($mode));
     } else {
         redirect_header(XOOPS_URL, 3, _INFO_FILENOTFOUND);
@@ -152,7 +152,7 @@ $xoopsTpl->assign('xoops_showrblock', $bl_right);
 $xoopsTpl->assign('xoops_showlblock', $bl_left);
 $xoopsTpl->assign('footersicht', (int)$footer_sicht);
 $xoTheme->addMeta('meta', 'pagemodule', 'http://www.simple-xoops.de');
-$infothisgroups  = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+$infothisgroups  = is_object($xoopsUser) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 $infopermHandler = xoops_getHandler('groupperm');
 $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 $canedit         = false;
@@ -215,7 +215,6 @@ if ($address != '' && $link == 1) {
         }
     } else {
         redirect_header(XOOPS_URL, 3, _NOPERM);
-        exit();
     }
 } elseif ($address != '' && $link == 4) {
     if ($title_sicht == 1) {
@@ -350,13 +349,13 @@ if ($address != '' && $link == 1) {
         include __DIR__ . '/comment_view.php';
     }
 }
-$mode      = array(
+$mode      = [
     'seo'   => $seo,
     'id'    => $id,
     'title' => $title,
     'dir'   => $xoopsModule->dirname(),
     'cat'   => $cat
-);
+];
 $mail_link = 'mailto:?subject=' . sprintf(_MI_INFO_ARTICLE, $xoopsConfig['sitename']) . '&amp;body=' . sprintf(_MI_INNFO_ARTFOUND, $xoopsConfig['sitename']) . ':  ' . makeSeoUrl($mode);
 $xoopsTpl->assign('email_link', $mail_link);
 $xoopsTpl->assign('info_totop', _INFO_TOTOP);

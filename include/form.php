@@ -46,7 +46,7 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_CAT, $show_info_perm) && $id == 0)
     || $mod_isAdmin) {
     $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $content->getVar('cat'));
     $catlist      = $catHandler->getObjects(null, true, false);
-    $cate         = array();
+    $cate         = [];
     foreach ($catlist as $cats => $catr) {
         $cate[$catr['cat_id']] = $catr['title'];
     }
@@ -60,7 +60,7 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_CAT, $show_info_perm) && $id == 0)
 $form->addElement(new XoopsFormText(_INFO_LINKNAME, 'title', 80, 255, $content->getVar('title')), true);
 $form->addElement(new XoopsFormText(_INFO_TOOLTIP, 'ttip', 80, 255, $content->getVar('tooltip')), false);
 
-if (in_array($content->getVar('link'), array(0, 1, 2, 4, 5))) {
+if (in_array($content->getVar('link'), [0, 1, 2, 4, 5])) {
     $title_sicht = new XoopsFormCheckBox(_INFO_TITLESICHT, 'title_sicht', $content->getVar('title_sicht'));
     $title_sicht->addOption(1, _YES);
     $form->addElement($title_sicht);
@@ -108,7 +108,7 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_SITEART, $show_info_perm) && $id == 0)
     $form->addElement(new XoopsFormHidden('link', $content->getVar('link')));
 }
 
-if (in_array($content->getVar('link'), array(1, 2, 4, 5))) {
+if (in_array($content->getVar('link'), [1, 2, 4, 5])) {
     switch ($content->getVar('link')) {
         case 2:
             $form->addElement(new XoopsFormText(_INFO_URL_EXTERN, 'address', 80, 255, $content->getVar('address')), true);
@@ -242,14 +242,14 @@ if ($content->getVar('link') == 0 || (int)$content->getVar('link') == 6) {
     }
     $height .= 'px';
 
-    $editor_configs = array(
+    $editor_configs = [
         'name'   => 'message',
         'value'  => $content->getVar('text', 'n'),
         'rows'   => $rows,
         'cols'   => $cols,
         'width'  => $width,
         'height' => $height
-    );
+    ];
 
     if ($xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_editors'] == 1
         && !empty($xoopsUser)) {

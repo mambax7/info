@@ -30,7 +30,7 @@ if (!function_exists('info_freiblock_show')) {
         global $xoopsDB, $xoopsUser;
         $myts = MyTextSanitizer::getInstance();
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
-        $block  = array();
+        $block  = [];
         $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix($options[0]) . ' WHERE info_id=' . $options[1]);
         $row    = $xoopsDB->fetchArray($result);
         $text   = trim($row['text']);

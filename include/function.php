@@ -166,12 +166,12 @@ if (!function_exists('setPost')) {
             $border = (int)(@$sets['border']);
             $width  = (int)(@$sets['width']);
             $align  = trim(@$sets['align']);
-            $fr     = array(
+            $fr     = [
                 'height' => $height,
                 'border' => $border,
                 'width'  => $width,
                 'align'  => $align
-            );
+            ];
             $content->setVar('frame', serialize($fr));
             $content->setVar('self', (int)(@$sets['self']));
             $content->setVar('click', (int)(@$sets['click']));
@@ -289,8 +289,8 @@ if (!function_exists('makeSeoUrl')) {
      */
     function makeSeoUrl($mod = null)
     {
-        $search       = array('ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'ß', ' ');
-        $replace      = array('ae', 'Ae', 'oe', 'Oe', 'ue', 'Ue', 'ss', '_');
+        $search       = ['ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'ß', ' '];
+        $replace      = ['ae', 'Ae', 'oe', 'Oe', 'ue', 'Ue', 'ss', '_'];
         $mod['title'] = str_replace($search, $replace, utf8_decode($mod['title']));
 
         if ($mod['seo'] == 1) {
@@ -319,7 +319,7 @@ if (!function_exists('readSeoUrl')) {
      */
     function readSeoUrl($get, $seo = 0)
     {
-        $para = array('id' => 0, 'cid' => 0, 'pid' => 0);
+        $para = ['id' => 0, 'cid' => 0, 'pid' => 0];
 
         if ($seo == 2) {
             if ($_SERVER['QUERY_STRING'] != '') {

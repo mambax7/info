@@ -52,7 +52,7 @@ $modversion['module_website_name'] = 'SIMPLE-XOOPS';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.5');
+$modversion['min_db']              = ['mysql' => '5.5'];
 $modversion['system_menu']         = 1;
 
 //$modversion['dirmoduleadmin'] = 'Frameworks/moduleclasses';
@@ -75,12 +75,12 @@ $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/menu.php';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_INFO_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_INFO_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_INFO_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_INFO_SUPPORT, 'link' => 'page=support'],
-);
+];
 // Smarty
 $modversion['use_smarty'] = 1;
 
@@ -108,7 +108,7 @@ if ($info_isactiv === true) {
     $seo             = (!empty($infoModulConfig[$infoname . '_seourl'])
                         && $infoModulConfig[$infoname . '_seourl'] > 0) ? (int)$infoModulConfig[$infoname . '_seourl'] : 0;
     $infoTree        = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
-    $groups          = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+    $groups          = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : [XOOPS_GROUP_ANONYMOUS];
     $infopermHandler = xoops_getHandler('groupperm');
     $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));
     $mod_isAdmin     = (is_object($GLOBALS['xoopsUser'])
@@ -121,8 +121,8 @@ if ($info_isactiv === true) {
         $i++;
     }
 
-    $cP  = array();
-    $sub = array();
+    $cP  = [];
+    $sub = [];
     xoops_load('XoopsCache');
     $para = readSeoUrl($_GET, $seo);
     $id   = (int)$para['id'];
@@ -130,7 +130,7 @@ if ($info_isactiv === true) {
     $pid  = (int)$para['pid'];
     $key  = $key = $infoname . '_' . 'home';
     if (!$cP = XoopsCache::read($key)) {
-        $cP = $infoTree->getChildTreeArray($pid, 'blockid', array(), $infoModulConfig[$infoname . '_trenner'], '');
+        $cP = $infoTree->getChildTreeArray($pid, 'blockid', [], $infoModulConfig[$infoname . '_trenner'], '');
         XoopsCache::write($key, $cP);
     }
     if ($id > 0) {
@@ -157,7 +157,7 @@ if ($info_isactiv === true) {
             $visible = false;
         }
 
-        $data = array();
+        $data = [];
         if ($visible == 1) {
             if ($tcontent['parent_id'] != 0 && $tcontent['parent_id'] != $id) {
                 if (!in_array((int)$tcontent['info_id'], $sub)) {
@@ -167,13 +167,13 @@ if ($info_isactiv === true) {
 
             $prefix                        = (!empty($tcontent['prefix'])) ? $tcontent['prefix'] : '';
             $modversion['sub'][$i]['name'] = $prefix . $tcontent['title'];
-            $mode                          = array(
+            $mode                          = [
                 'seo'   => $seo,
                 'id'    => $tcontent['info_id'],
                 'title' => $tcontent['title'],
                 'dir'   => $infoname,
                 'cat'   => $tcontent['cat']
-            );
+            ];
             $ctURL                         = str_replace(XOOPS_URL . '/modules/' . $infoname . '/', '', makeSeoUrl($mode)); //FIX for MainMenu
             $modversion['sub'][$i]['url']  = $ctURL;
             $i++;
@@ -232,12 +232,12 @@ $modversion['config'][4]['title']       = '_MI_INFO_CONF4';
 $modversion['config'][4]['description'] = '_MI_INFO_CONF4_DESC';
 $modversion['config'][4]['formtype']    = 'select';
 $modversion['config'][4]['valuetype']   = 'int';
-$modversion['config'][4]['options']     = array(
+$modversion['config'][4]['options']     = [
     '_MI_INFO_LASTD1' => 1,
     '_MI_INFO_LASTD2' => 2,
     '_MI_INFO_LASTD3' => 3,
     '_MI_INFO_LASTD4' => 4
-);
+];
 $modversion['config'][4]['default']     = _MI_INFO_LASTD1;
 
 $modversion['config'][5]['name']        = $infoname . '_showrblock';
@@ -246,23 +246,23 @@ $modversion['config'][5]['description'] = '_MI_INFO_CONF5_DESC';
 $modversion['config'][5]['formtype']    = 'select';
 $modversion['config'][5]['valuetype']   = 'int';
 $modversion['config'][5]['default']     = 1;
-$modversion['config'][5]['options']     = array(
+$modversion['config'][5]['options']     = [
     '_MI_INFO_NONE'   => 0,
     '_MI_INFO_RECHTS' => 1,
     '_MI_INFO_LINKS'  => 2,
     '_MI_INFO_BEIDE'  => 3
-);
+];
 
 $modversion['config'][6]['name']        = $infoname . '_shownavi';
 $modversion['config'][6]['title']       = '_MI_INFO_CONF6';
 $modversion['config'][6]['description'] = '_MI_INFO_CONF6_DESC';
 $modversion['config'][6]['formtype']    = 'select';
 $modversion['config'][6]['valuetype']   = 'int';
-$modversion['config'][6]['options']     = array(
+$modversion['config'][6]['options']     = [
     '_MI_INFO_PAGESNAV'   => 1,
     '_MI_INFO_PAGESELECT' => 2,
     '_MI_INFO_PAGESIMG'   => 3
-);
+];
 $modversion['config'][6]['default']     = 1;
 
 $modversion['config'][7]['name']        = $infoname . '_linklist';
@@ -278,11 +278,11 @@ $modversion['config'][8]['description'] = '_MI_INFO_CONF8_DESC';
 $modversion['config'][8]['formtype']    = 'select';
 $modversion['config'][8]['valuetype']   = 'int';
 $modversion['config'][8]['default']     = 0;
-$modversion['config'][8]['options']     = array(
+$modversion['config'][8]['options']     = [
     '_NONE'           => 0,
     'REWRITING MODUL' => 1,
     'WRAPPER'         => 2
-);
+];
 
 $modversion['config'][9]['name']        = $infoname . '_trenner';
 $modversion['config'][9]['title']       = '_MI_INFO_CONF9';
@@ -290,7 +290,7 @@ $modversion['config'][9]['description'] = '_MI_INFO_CONF9_DESC';
 $modversion['config'][9]['formtype']    = 'select';
 $modversion['config'][9]['valuetype']   = 'text';
 $modversion['config'][9]['default']     = '';
-$modversion['config'][9]['options']     = array(
+$modversion['config'][9]['options']     = [
     ''         => '',
     '-'        => '-',
     '&#8226;'  => '&#8226;',
@@ -299,7 +299,7 @@ $modversion['config'][9]['options']     = array(
     '&#10138;' => '&#10138;',
     '&#10140;' => '&#10140;',
     '&#10173;' => '&#10173;'
-);
+];
 
 $modversion['config'][10]['name']        = $infoname . '_cols';
 $modversion['config'][10]['title']       = '_MI_INFO_CONF_COLS';

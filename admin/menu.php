@@ -24,7 +24,7 @@ if (false !== ($moduleHelper = Xmf\Module\Helper::getHelper($moduleDirName))) {
 } else {
     $moduleHelper = Xmf\Module\Helper::getHelper('system');
 }
-$adminObject = \Xmf\Module\Admin::getInstance();
+
 
 $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
 //$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
@@ -36,7 +36,7 @@ require_once dirname(__DIR__) . '/class/info.php';
 $infowaitHandler = new InfoInfoHandler($GLOBALS['xoopsDB'], $moduleDirName . '_bak');
 $wait_site       = $infowaitHandler->getCount();
 
-$adminmenu               = array();
+$adminmenu               = [];
 $i                       = 0;
 $adminmenu[$i]['title']  = _MI_INFO_INDEX;
 $adminmenu[$i]['link']   = 'admin/index.php';

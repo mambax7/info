@@ -21,7 +21,7 @@
 require_once __DIR__ . '/admin_header.php';
 
 $op = isset($_REQUEST['op']) ? $_REQUEST['op'] : 'list';
-if (!in_array($op, array('list', 'blockcat', 'blockcat_insert'))) {
+if (!in_array($op, ['list', 'blockcat', 'blockcat_insert'])) {
     $op = 'list';
 }
 //$id  	= ( isset($_REQUEST['id']) )  	? intval($_REQUEST['id']) 	: 0;
@@ -34,7 +34,7 @@ switch ($op) {
         $adminObject = \Xmf\Module\Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         $catlist = $catHandler->getObjects(null, true, false);
-        $cate    = array();
+        $cate    = [];
         foreach ($catlist as $cats => $catr) {
             $cate[$catr['cat_id']] = $catr['title'];
         }
@@ -61,11 +61,11 @@ switch ($op) {
                 redirect_header('admin_categorie.php', 3, _INFO_ERROR_NODEFAULT);
             } else {
                 $msg     = _INFO_SETDELETE . '<br>' . sprintf(_INFO_SETDELETE_FRAGE, $cate->getVar('title'));
-                $hiddens = array(
+                $hiddens = [
                     'op'   => 'blockcat',
                     'cat'  => $cat,
                     'post' => 'itsdelete'
-                );
+                ];
                 xoops_confirm($hiddens, 'admin_categorie.php', $msg);
             }
             xoops_cp_footer();

@@ -84,11 +84,11 @@ if (!function_exists('info_block_nav')) {
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/class/infotree.php';
         //Variablen erstellen
-        $block = array();
+        $block = [];
         if (empty($options)) {
             return $block;
         }
-        $groups = $xoopsUser ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+        $groups = $xoopsUser ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
         //        $myts             = MyTextSanitizer::getInstance();
         $infoModule       = $moduleHandler->getByDirname($options[0]);
         $infoModuleConfig = $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
@@ -98,7 +98,7 @@ if (!function_exists('info_block_nav')) {
 
         $key = $infoModule->getVar('dirname') . '_' . 'block_' . $options[1];
         if (!$arr = XoopsCache::read($key)) {
-            $arr = $infoTree->getChildTreeArray(0, 'blockid', array(), $infoModuleConfig[$options[0] . '_trenner'], ' AND cat=' . $options[1]);
+            $arr = $infoTree->getChildTreeArray(0, 'blockid', [], $infoModuleConfig[$options[0] . '_trenner'], ' AND cat=' . $options[1]);
             XoopsCache::write($key, $arr);
         }
         xoops_loadLanguage('modinfo', basename(dirname(__DIR__)));
@@ -114,13 +114,13 @@ if (!function_exists('info_block_nav')) {
             unset($link);
         }
         foreach ($arr as $i => $tc) {
-            $link    = array();
+            $link    = [];
             $visible = $infoTree->checkperm($tc['visible_group'], $groups);
             if ($tc['st'] != 1 || $tc['visible'] == 0) {
                 $visible = false;
             }
             if ($visible === true) {
-                $sub = array();
+                $sub = [];
                 if ($id > 0) {
                     $key = $infoModule->getVar('dirname') . '_' . 'firstblock_' . $id;
                     if (!$first = XoopsCache::read($key)) {
@@ -142,13 +142,13 @@ if (!function_exists('info_block_nav')) {
                 $prefix         = (!empty($tc['prefix'])) ? $tc['prefix'] : '';
                 $link['title']  = $prefix . $tc['title'];
                 $link['parent'] = $tc['parent_id'];
-                $mode           = array(
+                $mode           = [
                     'seo'   => $seo,
                     'id'    => $tc['info_id'],
                     'title' => $tc['title'],
                     'dir'   => $options[0],
                     'cat'   => $tc['cat']
-                );
+                ];
                 $ctURL          = makeSeoUrl($mode);
                 if ($tc['link'] == 1) { //int.Link
                     if (substr($tc['address'], -1) === '/'
@@ -164,13 +164,13 @@ if (!function_exists('info_block_nav')) {
                     }
                     $link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
                 } elseif ($tc['link'] == 3) {
-                    $mode = array(
+                    $mode = [
                         'seo'   => $seo,
                         'id'    => $tc['info_id'],
                         'title' => $tc['title'],
                         'dir'   => $options[0],
                         'cat'   => 'p' . $tc['cat']
-                    );
+                    ];
                     //eval ('$ctURL = seo_plugin_'.$options[0].'_make($mode);');
                     $link['kategorie'] = '1';
                     $link['click']     = $tc['click'];

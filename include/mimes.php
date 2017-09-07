@@ -20,7 +20,7 @@
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
-return array(
+return [
     'doc'   => 'application/msword',
     'dot'   => 'application/msword',
     'pdf'   => 'application/pdf',
@@ -58,4 +58,4 @@ return array(
     'wmv'   => 'video/x-ms-wmv',
     'webm'  => 'video/webm',
     '3gp'   => 'video/quicktime'
-);
+];

@@ -35,12 +35,12 @@ if (!class_exists('InfoInfo')) {
             $this->initVar('owner', XOBJ_DTYPE_INT, -1, false);
             $this->initVar('st', XOBJ_DTYPE_INT, 2, false);
             $this->initVar('frontpage', XOBJ_DTYPE_INT, 0, false);
-            $fr = array(
+            $fr = [
                 'height' => '250',
                 'border' => '0',
                 'width'  => '100',
                 'align'  => 'center'
-            );
+            ];
             $this->initVar('frame', XOBJ_DTYPE_OTHER, serialize($fr), true);
             $this->initVar('click', XOBJ_DTYPE_INT, 0, false);
             $this->initVar('self', XOBJ_DTYPE_INT, 0, false);
@@ -95,7 +95,7 @@ if (!class_exists('InfoInfoHandler')) {
             $sql       = 'SELECT info_id,title FROM ' . $this->table . ' WHERE frontpage=1';
             $res       = $this->db->fetchArray($this->db->query($sql));
             if ($res) {
-                $frontpage = array($res['info_id'], $res['title']);
+                $frontpage = [$res['info_id'], $res['title']];
             }
 
             return $frontpage;

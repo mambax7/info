@@ -56,13 +56,13 @@ function update_infotable(XoopsModule $module)
     global $xoopsDB;
     $err = true;
 
-    $tables_cat = array('catid' => 'cat_id int(8) NOT NULL auto_increment');
+    $tables_cat = ['catid' => 'cat_id int(8) NOT NULL auto_increment'];
 
-    $tables_tab = array(
+    $tables_tab = [
         'storyid'  => 'info_id int(8) NOT NULL auto_increment',
         'bakid'    => "old_id int(8) NOT NULL default '0'",
         'homepage' => "cat int(8) NOT NULL default '0'"
-    );
+    ];
 
     foreach ($tables_cat as $old => $new) {
         $sql    = 'ALTER TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_cat CHANGE ' . $old . ' ' . $new . ';';
@@ -120,13 +120,13 @@ function check_infotable(XoopsModule $module)
     global $xoopsDB;
     $err = true;
 
-    $tables_cat = array(
+    $tables_cat = [
         'cat_id'  => 'int(8) NOT NULL auto_increment',//catid
         'visible' => "tinyint(1) NOT NULL default '0'",
         'title'   => "varchar(255) NOT NULL default ''"
-    );
+    ];
 
-    $tables_tab = array(
+    $tables_tab = [
         'info_id'       => 'int(8) NOT NULL auto_increment',//storyid
         'parent_id'     => "int(8) NOT NULL default '0'",
         'old_id'        => "int(8) NOT NULL default '0'",//bakid
@@ -157,7 +157,7 @@ function check_infotable(XoopsModule $module)
         'title'         => "varchar(255) NOT NULL default ''",
         'text'          => 'text NOT NULL ',
         'tags'          => "varchar(255) NOT NULL default ''"
-    );
+    ];
 
     if (!InfoTableExists($xoopsDB->prefix($module->getInfo('dirname')) . '_cat')) {
         $sql = 'CREATE TABLE ' . $xoopsDB->prefix($module->getInfo('dirname')) . '_cat (';

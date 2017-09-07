@@ -28,7 +28,7 @@ $cat         = info_cleanVars($_REQUEST, 'cat', 1, 'int');
 $groupid     = info_cleanVars($_REQUEST, 'groupid', 0, 'int');
 $mod_isAdmin = ($xoopsUser && $xoopsUser->isAdmin()) ? true : false;
 
-$infothisgroups  = is_object($xoopsUser) ? $xoopsUser->getGroups() : array(XOOPS_GROUP_ANONYMOUS);
+$infothisgroups  = is_object($xoopsUser) ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
 $infopermHandler = xoops_getHandler('groupperm');
 $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $infothisgroups, $xoopsModule->getVar('mid'));
 
@@ -41,7 +41,7 @@ switch ($op) {
             xoops_cp_header();
             $adminObject->displayNavigation(basename(__FILE__));
             $msg     = sprintf(_INFO_INFODELETE_AENDERUNG, $content->getVar('title'));
-            $hiddens = array('op' => 'appdelok', 'cat' => $cat, 'id' => $id);
+            $hiddens = ['op' => 'appdelok', 'cat' => $cat, 'id' => $id];
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
             xoops_cp_footer();
         }
@@ -62,12 +62,12 @@ switch ($op) {
     case 'approved':
         xoops_cp_header();
         $adminObject->displayNavigation(basename(__FILE__));
-        $infowait =& $infowaitHandler->getAll(null, array(
+        $infowait =& $infowaitHandler->getAll(null, [
             'info_id',
             'title',
             'edited_time',
             'edited_user'
-        ), false, false);
+        ], false, false);
         $form     = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=approved');
         $form->setExtra('enctype="multipart/form-data"');
         xoops_load('XoopsUserUtility');
@@ -118,7 +118,7 @@ switch ($op) {
             xoops_cp_header();
             $adminObject->displayNavigation(basename(__FILE__));
             $msg     = _INFO_SETDELETE . '<br><br>' . sprintf(_INFO_INFODELETE_FRAGE, $content->getVar('title'));
-            $hiddens = array('op' => 'info_delete', 'cat' => $cat, 'id' => $id);
+            $hiddens = ['op' => 'info_delete', 'cat' => $cat, 'id' => $id];
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
             xoops_cp_footer();
         }
@@ -142,7 +142,7 @@ switch ($op) {
             xoops_cp_header();
             $adminObject->displayNavigation(basename(__FILE__));
             $msg     = sprintf(_AM_INFO_SITEDEL_HP, $content->getVar('title'));
-            $hiddens = array('op' => 'info_delhp', 'cat' => $cat, 'id' => $id);
+            $hiddens = ['op' => 'info_delhp', 'cat' => $cat, 'id' => $id];
             xoops_confirm($hiddens, 'admin_seiten.php', $msg);
             xoops_cp_footer();
         }
@@ -250,7 +250,7 @@ switch ($op) {
     case 'update':
         if (isset($_POST['id'])) {
             $id         = $_POST['id'];
-            $parent_id  = isset($_POST['parent_id']) ? $_POST['parent_id'] : array();
+            $parent_id  = isset($_POST['parent_id']) ? $_POST['parent_id'] : [];
             $blockid    = $_POST['blockid'];
             $visible    = $_POST['visible'];
             $title      = $_POST['title'];
@@ -265,12 +265,12 @@ switch ($op) {
                         $sql    = 'UPDATE ' . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' SET frontpage=0 WHERE frontpage>0';
                         $result = $xoopsDB->query($sql);
                         $key    = $xoopsModule->getVar('dirname') . '_' . 'startpage';
-                        $data   = array(
+                        $data   = [
                             $storyid,
                             $cat,
                             $parent_id[$storyid],
                             $title[$storyid]
-                        );
+                        ];
                         XoopsCache::write($key, $data);
                     }
                     if (!isset($parent_id[$storyid])) {
@@ -293,10 +293,8 @@ switch ($op) {
             $key = $key = $xoopsModule->getVar('dirname') . '_' . '*';
             clearInfoCache($key);
             redirect_header("admin_seiten.php?op=show&amp;cat=$cat", 1, _INFO_DBUPDATED);
-            exit();
         } else {
             redirect_header("admin_seiten.php?cat=op=show&amp;$cat", 2, _TAKINGBACK);
-            exit();
         }
         break;
     default:
@@ -319,7 +317,7 @@ switch ($op) {
         $option_tray = new XoopsFormElementTray('', '');
         $sql         = 'SELECT cat_id,title FROM ' . $xoopsDB->prefix($xoopsModule->getVar('dirname') . '_cat') . ' ORDER BY title ASC';
         $result      = $xoopsDB->query($sql);
-        $blist       = array();
+        $blist       = [];
         if ($result) {
             while ($myrow = $xoopsDB->fetcharray($result)) {
                 $blist[$myrow['cat_id']] = $myrow['title'];
@@ -330,7 +328,7 @@ switch ($op) {
         $block_select->setextra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($block_select);
         $group_select = new XoopsFormSelectGroup(_INFO_AM_GROUP, 'groupid', true, $groupid, 1, false);
-        $group_select->addOptionArray(array(0 => _ALL));
+        $group_select->addOptionArray([0 => _ALL]);
         $group_select->setExtra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($group_select);
         $submit = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
@@ -356,7 +354,7 @@ switch ($op) {
         foreach ($info as $z => $tcontent) {
             echo "<tr class='odd'>";
             echo '<td>';
-            if (in_array($tcontent['link'], array(0, 1, 4, 5))) {
+            if (in_array($tcontent['link'], [0, 1, 4, 5])) {
                 $check = ($tcontent['frontpage'] == 1) ? 'checked' : '';
                 echo "<input type='radio' name='fp[]' value='" . $tcontent['info_id'] . "' " . $check . '>';
             } else {
@@ -445,9 +443,9 @@ switch ($op) {
 function show_list($cat0 = 0, $groupid = 0, $cat = 0, $aktuell = 0)
 {
     global $infoTree;
-    $infolist = $infoTree->getAllChild(0, 'blockid', array(), ' AND cat=' . $cat . ' AND info_id<>' . $aktuell);
+    $infolist = $infoTree->getAllChild(0, 'blockid', [], ' AND cat=' . $cat . ' AND info_id<>' . $aktuell);
 
-    $info = array();
+    $info = [];
     foreach ($infolist as $s => $t) {
         if ($t['cat'] != $cat) {
             continue;
