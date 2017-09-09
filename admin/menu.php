@@ -38,28 +38,28 @@ $wait_site       = $infowaitHandler->getCount();
 
 $adminmenu               = [];
 $i                       = 0;
-$adminmenu[$i]['title']  = _MI_INFO_INDEX;
-$adminmenu[$i]['link']   = 'admin/index.php';
+'title' =>  _MI_INFO_INDEX,
+'link' =>  'admin/index.php',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/home.png';
 
-$adminmenu[$i]['title']  = _MI_INFO_ADMENU2;
-$adminmenu[$i]['link']   = 'admin/admin_categorie.php';
+'title' =>  _MI_INFO_ADMENU2,
+'link' =>  'admin/admin_categorie.php',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/category.png';
 
-$adminmenu[$i]['title']  = _MI_INFO_ADMENU3;
-$adminmenu[$i]['link']   = 'admin/admin_seiten.php';
+'title' =>  _MI_INFO_ADMENU3,
+'link' =>  'admin/admin_seiten.php',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/view_detailed.png';
 
-$adminmenu[$i]['title']  = '(' . $wait_site . ') ' . _MI_INFO_ADMENU5;
-$adminmenu[$i]['link']   = 'admin/admin_seiten.php?op=approved';
+'title' =>  '(' . $wait_site . ') ' . _MI_INFO_ADMENU5,
+'link' => approved',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/manage.png';
 
-$adminmenu[$i]['title']  = _MI_INFO_ADMENU4;
-$adminmenu[$i]['link']   = 'admin/admin_permission.php';
+'title' =>  _MI_INFO_ADMENU4,
+'link' =>  'admin/admin_permission.php',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/permissions.png';
 
-$adminmenu[$i]['title']  = _MI_INFO_ADMENU_ABOUT;
-$adminmenu[$i]['link']   = 'admin/about.php';
+'title' =>  _MI_INFO_ADMENU_ABOUT,
+'link' =>  'admin/about.php',
 $adminmenu[$i++]['icon'] = $pathIcon32 . '/about.png';
 
 unset($i);
