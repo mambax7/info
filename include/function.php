@@ -40,7 +40,7 @@ if (!function_exists('Info_Load_CSS')) {
             } else {
                 $rel_path = XOOPS_URL . $default_path . '/style.css';
             }
-            if ($rel_path != '') {
+            if ('' != $rel_path) {
                 $xoTheme->addStylesheet($rel_path);
             }
             define(strtoupper($module_name) . '_CSS_LOADED', 1);
@@ -89,7 +89,7 @@ if (!function_exists('Info_checkXoopsVersion')) {
     function Info_checkXoopsVersion($version = null)
     {
         $ret = false;
-        if ($version != '') {
+        if ('' != $version) {
             $o_version = explode(' ', XOOPS_VERSION, 2);
             $o_version = $o_version[1];
             $o_version = explode('.', $o_version, 3);
@@ -122,7 +122,7 @@ if (!function_exists('InfoColumnExists')) {
     function InfoColumnExists($tablename, $spalte)
     {
         global $xoopsDB;
-        if ($tablename == '' || $spalte == '') {
+        if ('' == $tablename || '' == $spalte) {
             return true;
         } // Fehler!!
         $result = $xoopsDB->queryF('SHOW COLUMNS FROM ' . $tablename . " LIKE '" . $spalte . "'");
@@ -219,7 +219,7 @@ if (!function_exists('info_cleanVars')) {
             case 'string':
                 $ret = isset($global[$key]) ? filter_var($global[$key], FILTER_SANITIZE_MAGIC_QUOTES) : $default;
                 if ($notset) {
-                    if (trim($ret) == '') {
+                    if ('' == trim($ret)) {
                         $ret = $default;
                     }
                 }
@@ -240,7 +240,7 @@ if (!function_exists('info_cleanVars')) {
                 break;
 
         }
-        if ($ret === false) {
+        if (false === $ret) {
             return $default;
         }
 
@@ -293,11 +293,11 @@ if (!function_exists('makeSeoUrl')) {
         $replace      = ['ae', 'Ae', 'oe', 'Oe', 'ue', 'Ue', 'ss', '_'];
         $mod['title'] = str_replace($search, $replace, utf8_decode($mod['title']));
 
-        if ($mod['seo'] == 1) {
+        if (1 == $mod['seo']) {
             $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/' . $mod['cat'] . ':' . $mod['id'] . '-' . urlencode($mod['title']) . '.html';
-        } elseif ($mod['seo'] == 2) {
+        } elseif (2 == $mod['seo']) {
             $content = XOOPS_URL . '/modules/' . $mod['dir'] . '/' . '?' . $mod['cat'] . ':' . $mod['id'] . '-' . urlencode($mod['title']) . '.html';
-        } elseif ($mod['seo'] == 3) {
+        } elseif (3 == $mod['seo']) {
             $content = XOOPS_URL . '/' . $mod['dir'] . '-' . $mod['cat'] . ':' . $mod['id'] . '-' . urlencode($mod['title']) . '.html';
         } else {
             if (0 === strpos($mod['cat'], 'p')) {
@@ -321,8 +321,8 @@ if (!function_exists('readSeoUrl')) {
     {
         $para = ['id' => 0, 'cid' => 0, 'pid' => 0];
 
-        if ($seo == 2) {
-            if ($_SERVER['QUERY_STRING'] != '') {
+        if (2 == $seo) {
+            if ('' != $_SERVER['QUERY_STRING']) {
                 $query = explode('-', $_SERVER['QUERY_STRING'], 2);
                 if (0 === strpos($query[0], 'p')) {
                     $query       = substr($query[0], 1);
@@ -330,7 +330,7 @@ if (!function_exists('readSeoUrl')) {
                     $para['pid'] = (int)$query[1];
                 } elseif (0 === strpos($query[0], 'content=')) {
                     $id = explode(':', $get['content']);
-                    if (count($id) == 2) {
+                    if (2 == count($id)) {
                         $para['id']  = (int)$id[1];
                         $para['cid'] = (int)$id[0];
                     } else {
@@ -338,7 +338,7 @@ if (!function_exists('readSeoUrl')) {
                     }
                 } else {
                     $id = explode(':', $query[0]);
-                    if (count($id) == 2) {
+                    if (2 == count($id)) {
                         $para['id']  = (int)$id[1];
                         $para['cid'] = (int)$id[0];
                     }
@@ -347,7 +347,7 @@ if (!function_exists('readSeoUrl')) {
         } else {
             if (!empty($get['content'])) {
                 $id = explode(':', $get['content']);
-                if (count($id) == 2) {
+                if (2 == count($id)) {
                     $para['id']  = (int)$id[1];
                     $para['cid'] = (int)$id[0];
                 } else {

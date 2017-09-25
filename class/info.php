@@ -126,7 +126,7 @@ if (!class_exists('InfoInfoHandler')) {
         public function insert(XoopsObject $object, $force = true)
         {
             if (parent::insert($object, $force)) {
-                if ($object->getVar('tags', 'n') != '') {
+                if ('' != $object->getVar('tags', 'n')) {
                     require_once XOOPS_ROOT_PATH . '/modules/tag/include/functions.php';
                     if ($tagHandler = tag_getTagHandler()) {
                         $module_name = basename(dirname(__DIR__));

@@ -72,8 +72,8 @@ if (is_object($xoopsUser)) {
     $text = str_replace('{X_XOOPSUSER}', _GUESTS, $text);
     $text = str_replace('{X_XOOPSUSERID}', '0', $text);
 }
-if ($link == 4) {
-    if (substr($address === '/', 0, 1) || substr($address === "\\", 0, 1)) {
+if (4 == $link) {
+    if (substr('/' === $address, 0, 1) || substr("\\" === $address, 0, 1)) {
         $address = substr($address, 1);
     }
     $file = XOOPS_ROOT_PATH . '/' . $address;
@@ -83,7 +83,7 @@ if ($link == 4) {
         $text = ob_get_contents();
         ob_end_clean();
     }
-} elseif (trim($text) != '') {
+} elseif ('' != trim($text)) {
     $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;">&nbsp;</span></div>', '[pagebreak]', $text);
     $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>', '[pagebreak]', $text);
     $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"></span></div>', '[pagebreak]', $text);
@@ -95,9 +95,9 @@ if ($link == 4) {
 } else {
     $text = '';
 }
-$html     = ($nohtml == 1) ? 0 : 1;
-$nobreaks = ($html == 1) ? 0 : 1;
-$smiley   = ($nosmiley == 1) ? 0 : 1;
+$html     = (1 == $nohtml) ? 0 : 1;
+$nobreaks = (1 == $html) ? 0 : 1;
+$smiley   = (1 == $nosmiley) ? 0 : 1;
 $text     = $myts->displayTarea($text, $html, $smiley, 1, 1, $nobreaks);
 echo $text;
 echo '</td>';

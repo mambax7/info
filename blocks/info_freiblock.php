@@ -34,19 +34,19 @@ if (!function_exists('info_freiblock_show')) {
         $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix($options[0]) . ' WHERE info_id=' . $options[1]);
         $row    = $xoopsDB->fetchArray($result);
         $text   = trim($row['text']);
-        if ((int)$row['info_id'] != 0) {
+        if (0 != (int)$row['info_id']) {
             $GLOBALS['xoopsOption']['template_main'] = $options[0] . '_startblock.html';
-            if ($row['link'] == 6) {
+            if (6 == $row['link']) {
                 ob_start();
                 echo eval($text);
                 $text = ob_get_contents();
                 ob_end_clean();
                 $row['nohtml'] = 0;
             }
-            $html   = ((int)$row['nohtml'] == 1) ? 0 : 1;
-            $smiley = ((int)$row['nosmiley'] == 1) ? 0 : 1;
-            $breaks = ($html == 1) ? 0 : 1;
-            if ((int)$row['link'] == 4) {
+            $html   = (1 == (int)$row['nohtml']) ? 0 : 1;
+            $smiley = (1 == (int)$row['nosmiley']) ? 0 : 1;
+            $breaks = (1 == $html) ? 0 : 1;
+            if (4 == (int)$row['link']) {
                 if (substr($row['address'], '/', 0, 1)
                     || substr($row['address'], "\\", 0, 1)) {
                     $row['address'] = substr($address, 1);
@@ -59,7 +59,7 @@ if (!function_exists('info_freiblock_show')) {
                     ob_end_clean();
                     $text = $file;
                 }
-            } elseif ((int)$row['link'] == 5) {
+            } elseif (5 == (int)$row['link']) {
                 $iframe = unserialize($row['frame']);
                 if (!isset($iframe['width'])
                     || $iframe['width'] < 1
@@ -79,7 +79,7 @@ if (!function_exists('info_freiblock_show')) {
                 $text = str_replace('{X_XOOPSUSER}', _GUESTS, $text);
                 $text = str_replace('{X_XOOPSUSERID}', '0', $text);
             }
-            if (trim($text) != '') {
+            if ('' != trim($text)) {
                 $text       = str_replace('<div style="page-break-after: always;"><span style="display: none;"> </span></div>', '[pagebreak]', $text);
                 $infotext   = explode('[pagebreak]', $text);
                 $info_pages = count($infotext);

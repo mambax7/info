@@ -86,7 +86,7 @@ switch ($op) {
             $content    = setPost($content, $_POST);
             $oldstoryid = $content->getVar('info_id');
             $content->setVar('info_id', $content->getVar('old_id'));
-            if ($content->getVar('info_id') == 0) {
+            if (0 == $content->getVar('info_id')) {
                 $content->setNew();
             }
             $content->setVar('edited_time', time());
@@ -171,7 +171,7 @@ switch ($op) {
 
             // Upload
             if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name'])
-                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
+                && '' != $_FILES[$_POST['xoops_upload_file'][0]]['name']) {
                 require_once XOOPS_ROOT_PATH . '/class/uploader.php';
                 $allowed_mimetypes = require_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
                 $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size') * 1024 * 1024;
@@ -261,7 +261,7 @@ switch ($op) {
             foreach ($id as $storyid) {
                 if ((int)$storyid > 0) {
                     $fpp = ($storyid == $fp) ? 1 : 0;
-                    if ($fpp == 1) {
+                    if (1 == $fpp) {
                         $sql    = 'UPDATE ' . $xoopsDB->prefix($xoopsModule->getVar('dirname')) . ' SET frontpage=0 WHERE frontpage>0';
                         $result = $xoopsDB->query($sql);
                         $key    = $xoopsModule->getVar('dirname') . '_' . 'startpage';
@@ -355,7 +355,7 @@ switch ($op) {
             echo "<tr class='odd'>";
             echo '<td>';
             if (in_array($tcontent['link'], [0, 1, 4, 5])) {
-                $check = ($tcontent['frontpage'] == 1) ? 'checked' : '';
+                $check = (1 == $tcontent['frontpage']) ? 'checked' : '';
                 echo "<input type='radio' name='fp[]' value='" . $tcontent['info_id'] . "' " . $check . '>';
             } else {
                 echo '&nbsp;';
@@ -366,13 +366,13 @@ switch ($op) {
             echo '</td><td>';
             $title =& $myts->displayTarea($tcontent['title'], 0, 0, 0);
             echo "<input type='hidden' name='title[" . $tcontent['info_id'] . "]' value='" . $title . "'>";
-            if ($tcontent['st'] == 2 || $tcontent['st'] == 0) {
+            if (2 == $tcontent['st'] || 0 == $tcontent['st']) {
                 echo '<font color="red">' . _MI_INFO_GESPERRT . '</font>&nbsp;';
             }
-            if ($tcontent['visible'] == 0 && $tcontent['submenu'] == 0) {
+            if (0 == $tcontent['visible'] && 0 == $tcontent['submenu']) {
                 echo '<font color="red">' . _AM_INFO_INAKTIVE . '</font>&nbsp;';
             }
-            if ($tcontent['link'] == 3) { //kategorie
+            if (3 == $tcontent['link']) { //kategorie
                 echo '<b>' . $title . '</b>';
             } else {
                 echo "<a href='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . '/index.php?content=' . $tcontent['info_id'] . "'>" . $title . '</a>';
@@ -382,18 +382,18 @@ switch ($op) {
             echo '</td>';
             $check1 = "selected='selected'";
             $check2 = '';
-            if ($tcontent['visible'] == '1') {
+            if ('1' == $tcontent['visible']) {
                 $check1 = '';
                 $check2 = "selected='selected'";
             }
-            if ($tcontent['nocomments'] == '1') {
+            if ('1' == $tcontent['nocomments']) {
                 $check4 = "selected='selected'";
                 $check5 = '';
             } else {
                 $check4 = '';
                 $check5 = "selected='selected'";
             }
-            if ($tcontent['submenu'] == '0') {
+            if ('0' == $tcontent['submenu']) {
                 $check6 = "selected='selected'";
                 $check7 = '';
             } else {
@@ -402,16 +402,16 @@ switch ($op) {
             }
             echo "<td width=\"1%\" nowrap><select name='visible[" . $tcontent['info_id'] . "]'><option value='0' " . $check1 . '>' . _NO . "</option><option value='1' " . $check2 . '>' . _YES . '</option></select></td>';
             echo "<td width=\"1%\" nowrap>&nbsp;";
-            if ($tcontent['link'] != 3) {
+            if (3 != $tcontent['link']) {
                 echo "<select name='submenu[" . $tcontent['info_id'] . "]'><option value='0' " . $check5 . '>' . _NO . "</option><option value='1' " . $check7 . '>' . _YES . '</option></select>';
             } else {
                 echo "<input type=\"hidden\" name=\"submenu[" . $tcontent['info_id'] . "]\" value=\"" . $tcontent['submenu'] . "\">";
             }
             echo '</td>';
             echo "<td width=\"1%\" nowrap>&nbsp;";
-            if ($tcontent['link'] == 0
-                || $tcontent['link'] == 4
-                || $tcontent['link'] == 5) {
+            if (0 == $tcontent['link']
+                || 4 == $tcontent['link']
+                || 5 == $tcontent['link']) {
                 echo "<select name='nocomments[" . $tcontent['info_id'] . "]'><option value='1' " . $check4 . '>' . _NO . "</option><option value='0' " . $check5 . '>' . _YES . '</option></select>';
             } else {
                 echo "<input type='hidden' name='nocomments[" . $tcontent['info_id'] . "]' value='" . $tcontent['nocomments'] . "'>";
@@ -451,7 +451,7 @@ function show_list($cat0 = 0, $groupid = 0, $cat = 0, $aktuell = 0)
             continue;
         }
         $groups = explode(',', $t['visible_group']);
-        if ($groupid == 0) {
+        if (0 == $groupid) {
             $info[$s] = $t;
         } elseif (in_array($groupid, $groups)) {
             $info[$s] = $t;

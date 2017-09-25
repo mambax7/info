@@ -54,10 +54,10 @@ switch ($op) {
         break;
     case 'blockcat':
         $cate = $catHandler->get($cat);
-        if ($_REQUEST['post'] == _DELETE) {
+        if (_DELETE == $_REQUEST['post']) {
             xoops_cp_header();
             $adminObject->displayNavigation(basename(__FILE__));
-            if ($cat == 1) {
+            if (1 == $cat) {
                 redirect_header('admin_categorie.php', 3, _INFO_ERROR_NODEFAULT);
             } else {
                 $msg     = _INFO_SETDELETE . '<br>' . sprintf(_INFO_SETDELETE_FRAGE, $cate->getVar('title'));
@@ -69,7 +69,7 @@ switch ($op) {
                 xoops_confirm($hiddens, 'admin_categorie.php', $msg);
             }
             xoops_cp_footer();
-        } elseif ($_REQUEST['post'] === 'itsdelete') {
+        } elseif ('itsdelete' === $_REQUEST['post']) {
             if ($GLOBALS['xoopsSecurity']->check()) {
                 if ($catHandler->delete($cate)) {
                     redirect_header('admin_categorie.php', 2, _INFO_DBUPDATED);
@@ -110,7 +110,7 @@ function makecat($cat = 0)
     global $catHandler, $xoopsModule;
 
     $cate   = $catHandler->get($cat);
-    $tueber = ($cat == 0) ? _INFO_ADDBLOCKCAT : _INFO_EDITBLOCKCAT;
+    $tueber = (0 == $cat) ? _INFO_ADDBLOCKCAT : _INFO_EDITBLOCKCAT;
     $form   = new XoopsThemeForm($tueber, $xoopsModule->getVar('dirname') . '_form_edit', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_categorie.php', 'post', true);
     $form->setExtra('enctype="multipart/form-data"');
     $form->addElement(new XoopsFormHidden('cat', $cate->getVar('cat_id')));

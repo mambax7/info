@@ -49,12 +49,12 @@ if (!function_exists('info_navblock_edit')) {
             $form .= '<br>' . _INFO_BL_OPTION1 . '&nbsp;&nbsp;';
             $form .= "<select name='options[2]' size='1'>";
             $form .= "<option value='dynamisch'";
-            if (isset($options[2]) && $options[2] === 'dynamisch') {
+            if (isset($options[2]) && 'dynamisch' === $options[2]) {
                 $form .= ' selected';
             }
             $form .= '> ' . _INFO_BL_OPTION2 . ' </option>';
             $form .= "<option value='fest'";
-            if (isset($options[2]) && $options[2] === 'fest') {
+            if (isset($options[2]) && 'fest' === $options[2]) {
                 $form .= ' selected';
             }
             $form .= '> ' . _INFO_BL_OPTION3 . ' </option>';
@@ -116,10 +116,10 @@ if (!function_exists('info_block_nav')) {
         foreach ($arr as $i => $tc) {
             $link    = [];
             $visible = $infoTree->checkperm($tc['visible_group'], $groups);
-            if ($tc['st'] != 1 || $tc['visible'] == 0) {
+            if (1 != $tc['st'] || 0 == $tc['visible']) {
                 $visible = false;
             }
-            if ($visible === true) {
+            if (true === $visible) {
                 $sub = [];
                 if ($id > 0) {
                     $key = $infoModule->getVar('dirname') . '_' . 'firstblock_' . $id;
@@ -150,20 +150,20 @@ if (!function_exists('info_block_nav')) {
                     'cat'   => $tc['cat']
                 ];
                 $ctURL          = makeSeoUrl($mode);
-                if ($tc['link'] == 1) { //int.Link
-                    if (substr($tc['address'], -1) === '/'
-                        || substr($tc['address'], -1) === "\\") {
+                if (1 == $tc['link']) { //int.Link
+                    if ('/' === substr($tc['address'], -1)
+                        || "\\" === substr($tc['address'], -1)) {
                         $tc['address'] .= 'index.php';
                     }
-                    $link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
-                } elseif ($tc['link'] == 2) { // ext.Link
+                    $link['target'] = (1 == (int)$tc['self']) ? '_blank' : '_self';
+                } elseif (2 == $tc['link']) { // ext.Link
                     $ok = (0 === strpos($tc['address'], 'http')
                            || 0 === strpos($tc['address'], 'ftp')) ? 1 : 0;
-                    if ($ok == 1) {
+                    if (1 == $ok) {
                         $contentURL = $tc['address'];
                     }
-                    $link['target'] = ((int)$tc['self'] == 1) ? '_blank' : '_self';
-                } elseif ($tc['link'] == 3) {
+                    $link['target'] = (1 == (int)$tc['self']) ? '_blank' : '_self';
+                } elseif (3 == $tc['link']) {
                     $mode = [
                         'seo'   => $seo,
                         'id'    => $tc['info_id'],
@@ -177,18 +177,18 @@ if (!function_exists('info_block_nav')) {
                 }
 
                 $link['address'] = trim($ctURL);
-                if ($tc['tooltip'] != '') {
+                if ('' != $tc['tooltip']) {
                     $tooltext        = strip_tags($tc['tooltip']);
                     $link['tooltip'] = $tooltext;
                 } else {
                     $link['tooltip'] = $link['title'];
                 }
 
-                if ($options[2] === 'fest') {
+                if ('fest' === $options[2]) {
                     $link['aktiv'] = 1;
                 } else {
                     $link['aktiv'] = 0;
-                    if ($tc['parent_id'] == $id || $tc['parent_id'] == 0) {
+                    if ($tc['parent_id'] == $id || 0 == $tc['parent_id']) {
                         $link['aktiv'] = 1;
                     }
                     if (in_array((int)$tc['info_id'], $sub)) {

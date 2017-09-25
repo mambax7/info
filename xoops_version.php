@@ -98,7 +98,7 @@ require_once __DIR__ . '/include/function.php';
 
 $info_isactiv = xoops_isActiveModule($infoname);
 
-if ($info_isactiv === true) {
+if (true === $info_isactiv) {
     //Modul ist aktiv
     require_once __DIR__ . '/class/infotree.php';
     $id = $cat = $pid = $i = 0;
@@ -115,7 +115,7 @@ if ($info_isactiv === true) {
                         && $GLOBALS['xoopsUser']->isAdmin()) ? true : false;
 
     if (($mod_isAdmin || in_array(_CON_INFO_CANCREATE, $show_info_perm))
-        && $infoModulConfig[$infoname . '_createlink'] == 1) {
+        && 1 == $infoModulConfig[$infoname . '_createlink']) {
         $modversion['sub'][$i]['name'] = _MI_INFO_CREATESITE;
         $modversion['sub'][$i]['url']  = 'submit.php';
         $i++;
@@ -153,13 +153,13 @@ if ($info_isactiv === true) {
             $vscount--;
         }
 
-        if ($tcontent['st'] != 1 || $tcontent['submenu'] == 0) {
+        if (1 != $tcontent['st'] || 0 == $tcontent['submenu']) {
             $visible = false;
         }
 
         $data = [];
-        if ($visible == 1) {
-            if ($tcontent['parent_id'] != 0 && $tcontent['parent_id'] != $id) {
+        if (1 == $visible) {
+            if (0 != $tcontent['parent_id'] && $tcontent['parent_id'] != $id) {
                 if (!in_array((int)$tcontent['info_id'], $sub)) {
                     continue;
                 }

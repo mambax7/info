@@ -61,7 +61,7 @@ if (!empty($_POST)) {
 $approve = 0;
 if (in_array(_CON_INFO_CANUPDATEALL, $show_info_perm) || $mod_isAdmin) {
     $approve = 1;
-} elseif (in_array(_CON_INFO_CANCREATE, $show_info_perm) && $id == 0) {
+} elseif (in_array(_CON_INFO_CANCREATE, $show_info_perm) && 0 == $id) {
     $approve = 1;
 } elseif ($xoopsUser
           && ($xoopsUser->uid() == $content->getVar('owner'))) { // eigene Seite
@@ -70,7 +70,7 @@ if (in_array(_CON_INFO_CANUPDATEALL, $show_info_perm) || $mod_isAdmin) {
     }
 }
 
-if ($approve == 0) {
+if (0 == $approve) {
     $mode = [
         'seo'   => $seo,
         'id'    => $content->getVar('info_id'),
@@ -81,7 +81,7 @@ if ($approve == 0) {
     redirect_header(makeSeoUrl($mode), 3, _INFO_MA_NOEDITRIGHT);
 }
 
-if ($op === 'edit') {
+if ('edit' === $op) {
     if (isset($_POST['post'])) {
         if (!$GLOBALS['xoopsSecurity']->check()) {
             //redirect_header("index.php",3,implode('<br>', $GLOBALS['xoopsSecurity']->getErrors()));
@@ -97,7 +97,7 @@ if ($op === 'edit') {
 
         if (in_array(_CON_INFO_ALLCANUPLOAD, $show_info_perm) || $mod_isAdmin) {
             if (isset($_FILES[$_POST['xoops_upload_file'][0]]['name'])
-                && $_FILES[$_POST['xoops_upload_file'][0]]['name'] != '') {
+                && '' != $_FILES[$_POST['xoops_upload_file'][0]]['name']) {
                 require_once XOOPS_ROOT_PATH . '/class/uploader.php';
                 $allowed_mimetypes = require_once XOOPS_ROOT_PATH . '/include/mimetypes.inc.php';
                 $maxfilesize       = ((int)ini_get('post_max_size') < 1) ? 204800 : (int)ini_get('post_max_size') * 1024 * 1024;
@@ -117,13 +117,13 @@ if ($op === 'edit') {
                     if (count($uploader->errors) > 0) {
                         require_once XOOPS_ROOT_PATH . '/header.php';
                         $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
-                        if ($sbl == 0) {
+                        if (0 == $sbl) {
                             // no blocks
-                        } elseif ($sbl == 1) {
+                        } elseif (1 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
-                        } elseif ($sbl == 2) {
+                        } elseif (2 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
-                        } elseif ($sbl == 3) {
+                        } elseif (3 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
                             $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
                         }
@@ -138,13 +138,13 @@ if ($op === 'edit') {
                         if (count($uploader->errors) > 0) {
                             require_once XOOPS_ROOT_PATH . '/header.php';
                             $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
-                            if ($sbl == 0) {
+                            if (0 == $sbl) {
                                 // no blocks
-                            } elseif ($sbl == 1) {
+                            } elseif (1 == $sbl) {
                                 $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
-                            } elseif ($sbl == 2) {
+                            } elseif (2 == $sbl) {
                                 $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
-                            } elseif ($sbl == 3) {
+                            } elseif (3 == $sbl) {
                                 $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
                                 $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
                             }
@@ -160,13 +160,13 @@ if ($op === 'edit') {
                     if (count($uploader->errors) > 0) {
                         require_once XOOPS_ROOT_PATH . '/header.php';
                         $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
-                        if ($sbl == 0) {
+                        if (0 == $sbl) {
                             // no blocks
-                        } elseif ($sbl == 1) {
+                        } elseif (1 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
-                        } elseif ($sbl == 2) {
+                        } elseif (2 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
-                        } elseif ($sbl == 3) {
+                        } elseif (3 == $sbl) {
                             $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
                             $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
                         }
@@ -182,7 +182,7 @@ if ($op === 'edit') {
         }
 
         if ((in_array(_CON_INFO_ALLCANUPDATE_SITEFULL, $show_info_perm)
-             && $id == 0)
+             && 0 == $id)
             || (in_array(_CON_INFO_CANUPDATE_SITEFULL, $show_info_perm)
                 && $id > 0)
             || $mod_isAdmin) {
@@ -196,7 +196,7 @@ if ($op === 'edit') {
             $res     = $infowaitHandler->insert($content);
         }
 
-        if ((int)$_POST['ret'] == 1) {
+        if (1 == (int)$_POST['ret']) {
             $mode = [
                 'seo'   => $seo,
                 'id'    => 0,
@@ -230,7 +230,7 @@ if ($op === 'edit') {
         if (!$infowaitHandler->readbakid($id)) {
             $ret = 0;
             require_once XOOPS_ROOT_PATH . '/header.php';
-            if ((int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'] == 1) {
+            if (1 == (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock']) {
                 $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
             }
             require_once __DIR__ . '/include/form.php';
@@ -246,7 +246,7 @@ if ($op === 'edit') {
             redirect_header(makeSeoUrl($mode), 3, _MA_INFO_WAITTOFREE);
         }
     }
-} elseif ($op === 'delete') {
+} elseif ('delete' === $op) {
     if (!in_array(_CON_INFO_CANUPDATE_DELETE, $show_info_perm)) {
         $mode = [
             'seo'   => $seo,
@@ -256,7 +256,7 @@ if ($op === 'edit') {
             'cat'   => $content->getVar('cat')
         ];
         redirect_header(makeSeoUrl($mode), 3, _NOPERM);
-    } elseif (!empty($_POST['delok']) && (int)$_POST['delok'] == 1) {
+    } elseif (!empty($_POST['delok']) && 1 == (int)$_POST['delok']) {
         if ($GLOBALS['xoopsSecurity']->check()) {
             if ($infoHandler->delete($content)) {
                 $key = $xoopsModule->getVar('dirname') . '_' . '*';
@@ -285,13 +285,13 @@ if ($op === 'edit') {
 } else {
     require_once XOOPS_ROOT_PATH . '/header.php';
     $sbl = (int)$xoopsModuleConfig[$xoopsModule->getVar('dirname') . '_showrblock'];
-    if ($sbl == 0) {
+    if (0 == $sbl) {
         // no blocks
-    } elseif ($sbl == 1) {
+    } elseif (1 == $sbl) {
         $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
-    } elseif ($sbl == 2) {
+    } elseif (2 == $sbl) {
         $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
-    } elseif ($sbl == 3) {
+    } elseif (3 == $sbl) {
         $GLOBALS['xoopsTpl']->assign('xoops_showrblock', 0);
         $GLOBALS['xoopsTpl']->assign('xoops_showlblock', 0);
     }

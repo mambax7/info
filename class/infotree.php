@@ -69,12 +69,12 @@ if (!class_exists('InfoTree')) {
             $sel_id = (int)$sel_id;
             $arr    = [];
             $sql    = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
             $count  = $this->db->getRowsNum($result);
-            if ($count == 0) {
+            if (0 == $count) {
                 return $arr;
             }
             while ($myrow = $this->db->fetchArray($result)) {
@@ -95,7 +95,7 @@ if (!class_exists('InfoTree')) {
             $result = $this->db->query('SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '');
             $count  = $this->db->getRowsNum($result);
             list($r_id) = $this->db->fetchRow($result);
-            if ($count == 0 || $r_id == 0) {
+            if (0 == $count || 0 == $r_id) {
                 return $sel_id;
             }
             $r_id = $this->getFirstId($r_id);
@@ -115,7 +115,7 @@ if (!class_exists('InfoTree')) {
             $idarray = [];
             $result  = $this->db->query('SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '');
             $count   = $this->db->getRowsNum($result);
-            if ($count == 0) {
+            if (0 == $count) {
                 return $idarray;
             }
             while (list($id) = $this->db->fetchRow($result)) {
@@ -137,12 +137,12 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->id . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '';
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
             $count  = $this->db->getRowsNum($result);
-            if ($count == 0) {
+            if (0 == $count) {
                 return $idarray;
             }
             while (list($r_id) = $this->db->fetchRow($result)) {
@@ -165,12 +165,12 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
             list($r_id) = $this->db->fetchRow($result);
-            if ($r_id == 0) {
+            if (0 == $r_id) {
                 return $idarray;
             }
             array_push($idarray, $r_id);
@@ -194,12 +194,12 @@ if (!class_exists('InfoTree')) {
         ) {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->pid . ', title, info_id FROM ' . $this->table . ' WHERE ' . $this->id . '=' . $sel_id . '';
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
             list($r_id, $r_title, $r_storyid) = $this->db->fetchRow($result);
-            if ($r_id == 0) {
+            if (0 == $r_id) {
                 return $idarray;
             }
             $idarray[$r_storyid] = $r_title;
@@ -220,14 +220,14 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id = (int)$sel_id;
             $result = $this->db->query('SELECT ' . $this->pid . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id");
-            if ($this->db->getRowsNum($result) == 0) {
+            if (0 == $this->db->getRowsNum($result)) {
                 return $path;
             }
             list($parentid, $name) = $this->db->fetchRow($result);
             $myts = MyTextSanitizer::getInstance();
             $name = $myts->htmlspecialchars($name);
             $path = '/' . $name . $path . '';
-            if ($parentid == 0) {
+            if (0 == $parentid) {
                 return $path;
             }
             $path = $this->getPathFromId($parentid, $title, $path);
@@ -256,17 +256,17 @@ if (!class_exists('InfoTree')) {
             $onchange = '',
             $extra = null
         ) {
-            if ($sel_name == '') {
+            if ('' == $sel_name) {
                 $sel_name = $this->id;
             }
             $myts = MyTextSanitizer::getInstance();
             echo "<select name='" . $sel_name . "'";
-            if ($onchange != '') {
+            if ('' != $onchange) {
                 echo " onchange='" . $onchange . "'";
             }
             echo ">\n";
             $sql = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0 ' . $extra;
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
@@ -312,7 +312,7 @@ if (!class_exists('InfoTree')) {
             $ret  = [];
             $myts = MyTextSanitizer::getInstance();
             $sql  = 'SELECT ' . $this->id . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->pid . '=0 ' . $extra;
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
@@ -348,14 +348,14 @@ if (!class_exists('InfoTree')) {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT ' . $this->pid . ', ' . $title . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id";
             $result = $this->db->query($sql);
-            if ($this->db->getRowsNum($result) == 0) {
+            if (0 == $this->db->getRowsNum($result)) {
                 return $path;
             }
             list($parentid, $name) = $this->db->fetchRow($result);
             $myts = MyTextSanitizer::getInstance();
             $name = $myts->htmlspecialchars($name);
             $path = "<a href='" . $funcURL . '&amp;' . $this->id . '=' . $sel_id . "'>" . $name . '</a>' . $path . '';
-            if ($parentid == 0) {
+            if (0 == $parentid) {
                 return $path;
             }
             $path = $this->getNicePathFromId($parentid, $title, $funcURL, $path);
@@ -374,12 +374,12 @@ if (!class_exists('InfoTree')) {
         {
             $sel_id = (int)$sel_id;
             $result = $this->db->query('SELECT ' . $this->pid . ' FROM ' . $this->table . ' WHERE ' . $this->id . "=$sel_id");
-            if ($this->db->getRowsNum($result) == 0) {
+            if (0 == $this->db->getRowsNum($result)) {
                 return $path;
             }
             list($parentid) = $this->db->fetchRow($result);
             $path = '/' . $sel_id . $path . '';
-            if ($parentid == 0) {
+            if (0 == $parentid) {
                 return $path;
             }
             $path = $this->getIdPathFromId($parentid, $path);
@@ -404,12 +404,12 @@ if (!class_exists('InfoTree')) {
         ) {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '' . $extra;
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
             $result = $this->db->query($sql);
             $count  = $this->db->getRowsNum($result);
-            if ($count == 0) {
+            if (0 == $count) {
                 return $parray;
             }
             while ($row = $this->db->fetchArray($result)) {
@@ -439,21 +439,21 @@ if (!class_exists('InfoTree')) {
         ) {
             $sel_id = (int)$sel_id;
             $sql    = 'SELECT * FROM ' . $this->table . ' WHERE ' . $this->pid . '=' . $sel_id . '' . $extra;
-            if ($order != '') {
+            if ('' != $order) {
                 $sql .= " ORDER BY $order";
             }
 
             $result = $this->db->query($sql);
             $count  = $this->db->getRowsNum($result);
-            if ($count == 0) {
+            if (0 == $count) {
                 return $parray;
             }
             while ($row = $this->db->fetchArray($result)) {
-                if ($sel_id != 0) {
+                if (0 != $sel_id) {
                     $row['prefix'] = $r_prefix . '&nbsp;';
                 }
                 array_push($parray, $row);
-                if ($sel_id == 0) {
+                if (0 == $sel_id) {
                     $row['prefix'] = $r_prefix . '&nbsp;';
                 }
                 $parray = $this->getChildTreeArray($row[$this->id], $order, $parray, $row['prefix'], $extra);
