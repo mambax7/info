@@ -62,7 +62,7 @@ echo '<td><strong>' . $title . '</strong></td>';
 echo '</tr>';
 echo '<tr valign="top">';
 echo '<td style="padding-top:0px;">';
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 $text = str_replace('{X_XOOPSURL}', XOOPS_URL . '/', $text);
 $text = str_replace('{X_SITEURL}', XOOPS_URL . '/', $text);
 if (is_object($xoopsUser)) {

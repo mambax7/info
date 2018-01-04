@@ -307,7 +307,7 @@ switch ($op) {
         $sseite    = _AM_HP_SEITE . ' ';
         $startpage = $infoHandler->readStartpage();
         if (is_array($startpage)) {
-            $sseite .= "<a href=\"admin_seiten.php?op=delhp&amp;cat=" . $cat . '&amp;id=' . $startpage['0'] . "\">" . $startpage['1'] . '</a>';
+            $sseite .= '<a href="admin_seiten.php?op=delhp&amp;cat=' . $cat . '&amp;id=' . $startpage['0'] . '">' . $startpage['1'] . '</a>';
         } else {
             $sseite .= _AM_HP_SEITE_NODEF;
         }
@@ -319,7 +319,7 @@ switch ($op) {
         $result      = $xoopsDB->query($sql);
         $blist       = [];
         if ($result) {
-            while ($myrow = $xoopsDB->fetcharray($result)) {
+            while ($myrow = $xoopsDB->fetchArray($result)) {
                 $blist[$myrow['cat_id']] = $myrow['title'];
             }
         }
@@ -341,14 +341,14 @@ switch ($op) {
 
         echo "<table border='1' cellpadding='0' cellspacing='1' width='100%' class='outer'>";
         echo "<tr class='odd'>";
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_FRONTPAGE . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_POSITION . '</b></td>';
-        echo "<td width=\"93%\" nowrap><b>" . _INFO_LINKNAME . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_LINKID . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_VISIBLE . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_SUBMENU . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _COMMENTS . '</b></td>';
-        echo "<td width=\"1%\" nowrap><b>" . _INFO_ACTION . '</b></td></tr>';
+        echo '<td width="1%" nowrap><b>' . _INFO_FRONTPAGE . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _INFO_POSITION . '</b></td>';
+        echo '<td width="93%" nowrap><b>' . _INFO_LINKNAME . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _INFO_LINKID . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _INFO_VISIBLE . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _INFO_SUBMENU . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _COMMENTS . '</b></td>';
+        echo '<td width="1%" nowrap><b>' . _INFO_ACTION . '</b></td></tr>';
         echo '</tr>';
         $info = show_list(0, $groupid, $cat, $id);
         foreach ($info as $z => $tcontent) {
@@ -401,14 +401,14 @@ switch ($op) {
                 $check7 = "selected='selected'";
             }
             echo "<td width=\"1%\" nowrap><select name='visible[" . $tcontent['info_id'] . "]'><option value='0' " . $check1 . '>' . _NO . "</option><option value='1' " . $check2 . '>' . _YES . '</option></select></td>';
-            echo "<td width=\"1%\" nowrap>&nbsp;";
+            echo '<td width="1%" nowrap>&nbsp;';
             if (3 != $tcontent['link']) {
                 echo "<select name='submenu[" . $tcontent['info_id'] . "]'><option value='0' " . $check5 . '>' . _NO . "</option><option value='1' " . $check7 . '>' . _YES . '</option></select>';
             } else {
-                echo "<input type=\"hidden\" name=\"submenu[" . $tcontent['info_id'] . "]\" value=\"" . $tcontent['submenu'] . "\">";
+                echo '<input type="hidden" name="submenu[' . $tcontent['info_id'] . ']" value="' . $tcontent['submenu'] . '">';
             }
             echo '</td>';
-            echo "<td width=\"1%\" nowrap>&nbsp;";
+            echo '<td width="1%" nowrap>&nbsp;';
             if (0 == $tcontent['link']
                 || 4 == $tcontent['link']
                 || 5 == $tcontent['link']) {

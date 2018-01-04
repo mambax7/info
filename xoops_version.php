@@ -20,6 +20,8 @@
 
 defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
 
+include __DIR__ . '/preloads/autoloader.php';
+
 // read the Name of the Folder
 $infoname = basename(__DIR__);
 

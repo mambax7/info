@@ -38,7 +38,7 @@ if (!function_exists('info_navblock_edit')) {
             $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
             $form .= "<input type='hidden' name='options[0]' value='" . $module_name . "'>";
             $form .= "<select name='options[1]' size='1'>";
-            while ($row = $xoopsDB->fetcharray($result)) {
+            while ($row = $xoopsDB->fetchArray($result)) {
                 $form .= "<option value='" . $row['cat_id'] . "'";
                 if ($options[1] == $row['cat_id']) {
                     $form .= ' selected';
@@ -89,7 +89,7 @@ if (!function_exists('info_block_nav')) {
             return $block;
         }
         $groups = $xoopsUser ? $xoopsUser->getGroups() : [XOOPS_GROUP_ANONYMOUS];
-        //        $myts             = MyTextSanitizer::getInstance();
+        //        $myts             = \MyTextSanitizer::getInstance();
         $infoModule       = $moduleHandler->getByDirname($options[0]);
         $infoModuleConfig = $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
         $seo              = (!empty($infoModuleConfig[$options[0] . '_seourl'])

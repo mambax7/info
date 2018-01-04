@@ -272,7 +272,7 @@ if (!function_exists('clearInfoCache')) {
                 closedir($handle);
             }
         } else {
-            $files = (array)glob($root_path . "/*{$dirname}_{$name}*.php");
+            $files = glob($root_path . "/*{$dirname}_{$name}*.php");
             foreach ($files as $file) {
                 @unlink($file);
             }

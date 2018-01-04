@@ -27,10 +27,10 @@ $wait_site   = $infowaitHandler->getCount();
 $adminObject = \Xmf\Module\Admin::getInstance();
 $adminObject->addInfoBox(_INFO_ADMINTITLE);
 
-$adminObject->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . sprintf(_AM_INFO_INFOBOX_CAT, $anz_cat) . '</infotext>');
-$adminObject->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . sprintf(_AM_INFO_INFOBOX_SITE, $anz_site) . '</infotext>');
-$adminObject->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext></infotext>');
-$adminObject->addInfoBoxLine(_INFO_ADMINTITLE, '<infotext>' . _AM_INFO_INFOBOX_WAITSITE . '</infotext>', $wait_site, 'Red');
+$adminObject->addInfoBoxLine(sprintf('<infotext>' . sprintf(_AM_INFO_INFOBOX_CAT, $anz_cat) . '</infotext>'), '');
+$adminObject->addInfoBoxLine(sprintf('<infotext>' . sprintf(_AM_INFO_INFOBOX_SITE, $anz_site) . '</infotext>'), '');
+$adminObject->addInfoBoxLine(sprintf('<infotext></infotext>'), '');
+$adminObject->addInfoBoxLine(sprintf('<infotext>' . _AM_INFO_INFOBOX_WAITSITE . '</infotext>', $wait_site, 'Red'), '');
 
 $adminObject->displayNavigation(basename(__FILE__));
 $adminObject->displayIndex();

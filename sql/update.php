@@ -21,7 +21,7 @@
 include dirname(__DIR__) . '/include/function.php';
 
 //Install
-eval('function xoops_module_pre_install_' . $module_name . '(&$module) {
+eval('function xoops_module_pre_install_' . $module_name . '($module) {
   // clear cache
   xoops_load("XoopsCache");
 	$key = $module->getInfo("dirname") . "_*";

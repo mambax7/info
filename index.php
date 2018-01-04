@@ -26,7 +26,7 @@ xoops_loadLanguage('modinfo', $module_name);
 xoops_loadLanguage('main', $module_name);
 
 xoops_load('XoopsCache');
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 
 $seo  = (!empty($xoopsModuleConfig[$module_name . '_seourl'])
          && $xoopsModuleConfig[$module_name . '_seourl'] > 0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;

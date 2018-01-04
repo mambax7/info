@@ -28,7 +28,7 @@ if (!function_exists('info_freiblock_show')) {
     function info_freiblock_show($options)
     {
         global $xoopsDB, $xoopsUser;
-        $myts = MyTextSanitizer::getInstance();
+        $myts = \MyTextSanitizer::getInstance();
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
         $block  = [];
         $result = $xoopsDB->query('SELECT * FROM ' . $xoopsDB->prefix($options[0]) . ' WHERE info_id=' . $options[1]);
@@ -111,7 +111,7 @@ if (!function_exists('info_freiblock_edit')) {
             $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
             $form .= "<input type='hidden' name='options[0]' value='" . $module_name . "'>";
             $form .= "<select name='options[1]' size='1'>";
-            while ($row = $xoopsDB->fetcharray($result)) {
+            while ($row = $xoopsDB->fetchArray($result)) {
                 $form .= "<option value='" . $row['info_id'] . "'";
                 if ($options[1] == $row['info_id']) {
                     $form .= ' selected';

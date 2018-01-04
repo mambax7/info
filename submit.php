@@ -32,7 +32,7 @@ xoops_loadLanguage('modinfo', $module_name);
 
 $seo  = (!empty($xoopsModuleConfig[$module_name . '_seourl'])
          && $xoopsModuleConfig[$module_name . '_seourl'] > 0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;
-$myts = MyTextSanitizer::getInstance();
+$myts = \MyTextSanitizer::getInstance();
 
 $infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
 $infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
