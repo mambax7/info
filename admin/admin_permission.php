@@ -24,7 +24,7 @@ require_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 xoops_cp_header();
 $adminObject->displayNavigation(basename(__FILE__));
 
-$form = new XoopsGroupPermForm(_AM_INFO_PERMISSIONS, $xoopsModule->mid(), _CON_INFO_PERMNAME, '', '/admin/admin_permission.php', false);
+$form = new \XoopsGroupPermForm(_AM_INFO_PERMISSIONS, $xoopsModule->mid(), _CON_INFO_PERMNAME, '', '/admin/admin_permission.php', false);
 $form->addItem(_CON_INFO_CANCREATE, _AM_INFO_CANCREATE, 0);
 $form->addItem(_CON_INFO_CANUPDATE, _AM_INFO_CANUPDATE, 0);
 

@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
+defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 if (!function_exists('info_freiblock_show')) {
     /**
@@ -43,7 +43,7 @@ if (!function_exists('info_freiblock_show')) {
                 ob_end_clean();
                 $row['nohtml'] = 0;
             }
-            $html   = (1 == (int)$row['nohtml']) ? 0 : 1;
+            $html   = (1 == $row['nohtml']) ? 0 : 1;
             $smiley = (1 == (int)$row['nosmiley']) ? 0 : 1;
             $breaks = (1 == $html) ? 0 : 1;
             if (4 == (int)$row['link']) {
@@ -111,7 +111,7 @@ if (!function_exists('info_freiblock_edit')) {
             $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
             $form .= "<input type='hidden' name='options[0]' value='" . $module_name . "'>";
             $form .= "<select name='options[1]' size='1'>";
-            while ($row = $xoopsDB->fetchArray($result)) {
+            while (false !== ($row = $xoopsDB->fetchArray($result))) {
                 $form .= "<option value='" . $row['info_id'] . "'";
                 if ($options[1] == $row['info_id']) {
                     $form .= ' selected';

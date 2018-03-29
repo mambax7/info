@@ -78,7 +78,7 @@ if (!class_exists('InfoInfoHandler')) {
     {
         /**
          * InfoInfoHandler constructor.
-         * @param null|XoopsDatabase $db
+         * @param null|\XoopsDatabase $db
          * @param string             $mname
          */
         public function __construct($db, $mname)
@@ -123,7 +123,7 @@ if (!class_exists('InfoInfoHandler')) {
          * @param bool        $force
          * @return bool
          */
-        public function insert(XoopsObject $object, $force = true)
+        public function insert(\XoopsObject $object, $force = true)
         {
             if (parent::insert($object, $force)) {
                 if ('' != $object->getVar('tags', 'n')) {

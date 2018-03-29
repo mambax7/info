@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
+defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 $module_name = basename(dirname(__DIR__));
 
@@ -36,7 +36,7 @@ if (!function_exists('Info_Load_CSS')) {
             $rel_path = '';
             if (file_exists($GLOBALS['xoops']->path($theme_path . '/style.css'))) {
                 $rel_path = XOOPS_URL . $theme_path . '/style.css';
-                //default
+            //default
             } else {
                 $rel_path = XOOPS_URL . $default_path . '/style.css';
             }

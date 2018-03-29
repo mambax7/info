@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access');
 
 if (!class_exists('InfoTree')) {
 
@@ -51,7 +51,7 @@ if (!class_exists('InfoTree')) {
          */
         public function __construct($table_name, $id_name, $pid_name)
         {
-            $this->db    = XoopsDatabaseFactory::getDatabaseConnection();
+            $this->db    = \XoopsDatabaseFactory::getDatabaseConnection();
             $this->table = $table_name;
             $this->id    = $id_name;
             $this->pid   = $pid_name;
@@ -77,7 +77,7 @@ if (!class_exists('InfoTree')) {
             if (0 == $count) {
                 return $arr;
             }
-            while ($myrow = $this->db->fetchArray($result)) {
+            while (false !== ($myrow = $this->db->fetchArray($result))) {
                 array_push($arr, $myrow);
             }
 
@@ -118,7 +118,7 @@ if (!class_exists('InfoTree')) {
             if (0 == $count) {
                 return $idarray;
             }
-            while (list($id) = $this->db->fetchRow($result)) {
+            while (false !== (list($id) = $this->db->fetchRow($result))) {
                 array_push($idarray, $id);
             }
 
@@ -145,7 +145,7 @@ if (!class_exists('InfoTree')) {
             if (0 == $count) {
                 return $idarray;
             }
-            while (list($r_id) = $this->db->fetchRow($result)) {
+            while (false !== (list($r_id) = $this->db->fetchRow($result))) {
                 array_push($idarray, $r_id);
                 $idarray = $this->getAllChildId($r_id, $order, $idarray);
             }
@@ -273,7 +273,7 @@ if (!class_exists('InfoTree')) {
             if ($none) {
                 echo "<option value='0'>----</option>\n";
             }
-            while (list($cat_id, $name) = $this->db->fetchRow($result)) {
+            while (false !== (list($cat_id, $name) = $this->db->fetchRow($result))) {
                 $sel = '';
                 if ($cat_id == $preset_id) {
                     $sel = " selected='selected'";
@@ -319,7 +319,7 @@ if (!class_exists('InfoTree')) {
             if ($none) {
                 $ret[0] = '----';
             }
-            while (list($cat_id, $name) = $this->db->fetchRow($result)) {
+            while (false !== (list($cat_id, $name) = $this->db->fetchRow($result))) {
                 $arr          = $this->getChildTreeArray($cat_id, $order, [], '', $extra);
                 $ret[$cat_id] = $name;
                 foreach ($arr as $option) {
@@ -412,7 +412,7 @@ if (!class_exists('InfoTree')) {
             if (0 == $count) {
                 return $parray;
             }
-            while ($row = $this->db->fetchArray($result)) {
+            while (false !== ($row = $this->db->fetchArray($result))) {
                 array_push($parray, $row);
                 $parray = $this->getAllChild($row[$this->id], $order, $parray);
             }
@@ -448,7 +448,7 @@ if (!class_exists('InfoTree')) {
             if (0 == $count) {
                 return $parray;
             }
-            while ($row = $this->db->fetchArray($result)) {
+            while (false !== ($row = $this->db->fetchArray($result))) {
                 if (0 != $sel_id) {
                     $row['prefix'] = $r_prefix . '&nbsp;';
                 }

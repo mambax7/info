@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
+defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 require_once dirname(__DIR__) . '/include/function.php';
 $module_name = basename(dirname(__DIR__));

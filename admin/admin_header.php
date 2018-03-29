@@ -18,6 +18,8 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
+
 require_once __DIR__ . '/../../../include/cp_header.php';
 
 //global $xoopsModule;
@@ -27,7 +29,7 @@ require_once __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/../include/function.php';
 
 $moduleDirName = basename(dirname(__DIR__));
-$helper = \Xmf\Module\Helper::getHelper($moduleDirName);
+$helper = Info\Helper::getInstance();
 $adminObject = \Xmf\Module\Admin::getInstance();
 
 $pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
@@ -35,9 +37,9 @@ $pathIcon32    = \Xmf\Module\Admin::iconUrl('', 32);
 $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-require_once __DIR__ . '/../class/infotree.php';
-require_once __DIR__ . '/../class/info.php';
-require_once __DIR__ . '/../class/category.php';
+// require_once __DIR__ . '/../class/infotree.php';
+// require_once __DIR__ . '/../class/info.php';
+// require_once __DIR__ . '/../class/category.php';
 
 //Handlers
 $infoHandler     = new InfoInfoHandler($xoopsDB, $moduleDirName);

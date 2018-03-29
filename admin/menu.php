@@ -19,9 +19,10 @@
  */
 
 use XoopsModules\Info;
+
 $moduleDirName = basename(dirname(__DIR__));
 
-require_once __DIR__ . '/../class/Helper.php';
+// require_once __DIR__ . '/../class/Helper.php';
 //require_once __DIR__ . '/../include/common.php';
 $helper = info\Helper::getInstance();
 

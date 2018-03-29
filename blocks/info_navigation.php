@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
+defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 require_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
@@ -38,7 +38,7 @@ if (!function_exists('info_navblock_edit')) {
             $form = '' . _INFO_BL_OPTION . '&nbsp;&nbsp;';
             $form .= "<input type='hidden' name='options[0]' value='" . $module_name . "'>";
             $form .= "<select name='options[1]' size='1'>";
-            while ($row = $xoopsDB->fetchArray($result)) {
+            while (false !== ($row = $xoopsDB->fetchArray($result))) {
                 $form .= "<option value='" . $row['cat_id'] . "'";
                 if ($options[1] == $row['cat_id']) {
                     $form .= ' selected';

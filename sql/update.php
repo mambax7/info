@@ -51,7 +51,7 @@ eval('function xoops_module_update_' . $module_name . '($module) {
  * @param XoopsModule $module
  * @return bool
  */
-function update_infotable(XoopsModule $module)
+function update_infotable(\XoopsModule $module)
 {
     global $xoopsDB;
     $err = true;
@@ -83,7 +83,7 @@ function update_infotable(XoopsModule $module)
  * @param XoopsModule $module
  * @return bool
  */
-function check_infotemplates(XoopsModule $module)
+function check_infotemplates(\XoopsModule $module)
 {
     $err = true;
     if (!file_exists(XOOPS_ROOT_PATH . '/modules/' . $module->getInfo('dirname') . '/templates/' . $module->getInfo('dirname') . '_index.tpl')) {
@@ -115,7 +115,7 @@ function check_infotemplates(XoopsModule $module)
  * @param XoopsModule $module
  * @return bool
  */
-function check_infotable(XoopsModule $module)
+function check_infotable(\XoopsModule $module)
 {
     global $xoopsDB;
     $err = true;

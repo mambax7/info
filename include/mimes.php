@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || exit('XOOPS_ROOT_PATH not defined!');
+defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 return [
     'doc'   => 'application/msword',

@@ -36,14 +36,14 @@ echo '<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="' . _LANGCODE . '" la
     <head>
     <meta http-equiv="content-type" content="text/html; charset=' . _CHARSET . '">
     <meta http-equiv="content-language" content="' . _LANGCODE . '">
-    <meta name="robots" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_robots']) . '">
-    <meta name="keywords" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_keywords']) . '">
-    <meta name="description" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_desc']) . '">
-    <meta name="rating" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_rating']) . '">
-    <meta name="author" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_author']) . '">
-    <meta name="copyright" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_copyright']) . '">
+    <meta name="robots" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_robots'], ENT_QUOTES | ENT_HTML5) . '">
+    <meta name="keywords" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_keywords'], ENT_QUOTES | ENT_HTML5) . '">
+    <meta name="description" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_desc'], ENT_QUOTES | ENT_HTML5) . '">
+    <meta name="rating" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_rating'], ENT_QUOTES | ENT_HTML5) . '">
+    <meta name="author" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_author'], ENT_QUOTES | ENT_HTML5) . '">
+    <meta name="copyright" content="' . htmlspecialchars($xoopsConfigMetaFooter['meta_copyright'], ENT_QUOTES | ENT_HTML5) . '">
     <meta name="generator" content="SIMPLE-XOOPS - http://www.simple-xoops.de">
-    <title>' . htmlspecialchars($xoopsConfig['sitename']) . '</title>';
+    <title>' . htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES | ENT_HTML5) . '</title>';
 echo '</head>';
 
 $result = $xoopsDB->query('SELECT info_id, title, text, visible, nohtml, nosmiley, nobreaks, nocomments, link, address FROM ' . $xoopsDB->prefix($xoopsModule->dirname()) . " WHERE info_id=$id");

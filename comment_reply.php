@@ -18,8 +18,12 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Gwiki;
+/** @var Gwiki\Helper $helper */
+$helper = Gwiki\Helper::getInstance();
+
 include __DIR__ . '/../../mainfile.php';
-if (!$xoopsUser && empty($xoopsModuleConfig['com_anonpost'])) {
+if (!$xoopsUser && empty($helper->getConfig('com_anonpost'))) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
 }
 include XOOPS_ROOT_PATH . '/include/comment_reply.php';

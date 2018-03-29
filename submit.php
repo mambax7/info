@@ -104,7 +104,7 @@ if ('edit' === $op) {
                 // $maxfilewidth = 120;
                 // $maxfileheight = 120;
                 $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
-                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
+                $uploader   = new \XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
 
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                     if ($uploader->mediaSize < 1) {

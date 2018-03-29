@@ -44,7 +44,7 @@ if (!class_exists('InfoCategoryHandler')) {
     {
         /**
          * InfoCategoryHandler constructor.
-         * @param null|XoopsDatabase $db
+         * @param null|\XoopsDatabase $db
          * @param string             $mname
          */
         public function __construct($db, $mname)

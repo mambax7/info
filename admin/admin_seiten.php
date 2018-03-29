@@ -68,14 +68,14 @@ switch ($op) {
             'edited_time',
             'edited_user'
         ], false, false);
-        $form     = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=approved');
+        $form     = new \XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_wait', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=approved');
         $form->setExtra('enctype="multipart/form-data"');
         xoops_load('XoopsUserUtility');
         foreach ($infowait as $t => $tc) {
             $dellink  = "<a href='admin_seiten.php?op=appdel&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/delete.png' title='" . _DELETE . "' alt='" . _DELETE . "'></a>";
             $editlink = "<a href='admin_seiten.php?op=appedit&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/edit.png' title='" . _EDIT . "' alt='" . _EDIT . "'></a>";
             $edittime = formatTimestamp($tc['edited_time'], 'l');
-            $form->addElement(new XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'], _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT, XoopsUserUtility::getUnameFromId($tc['edited_user'], 0, false), $edittime)));
+            $form->addElement(new \XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'], _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT, XoopsUserUtility::getUnameFromId($tc['edited_user'], 0, false), $edittime)));
         }
         $form->display();
         xoops_cp_footer();
@@ -178,7 +178,7 @@ switch ($op) {
                 // $maxfilewidth = 120;
                 // $maxfileheight = 120;
                 $upload_dir = XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/files';
-                $uploader   = new XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
+                $uploader   = new \XoopsMediaUploader($upload_dir, $allowed_mimetypes, $maxfilesize/*, $maxfilewidth, $maxfileheight */);
 
                 if ($uploader->fetchMedia($_POST['xoops_upload_file'][0])) {
                     if ($uploader->mediaSize < 1) {
@@ -312,26 +312,26 @@ switch ($op) {
             $sseite .= _AM_HP_SEITE_NODEF;
         }
         echo $sseite;
-        $form = new XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_groupcat', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=show');
+        $form = new \XoopsThemeForm('', $xoopsModule->getVar('dirname') . '_form_groupcat', XOOPS_URL . '/modules/' . $xoopsModule->getVar('dirname') . '/admin/admin_seiten.php?op=show');
         $form->setExtra('enctype="multipart/form-data"');
-        $option_tray = new XoopsFormElementTray('', '');
+        $option_tray = new \XoopsFormElementTray('', '');
         $sql         = 'SELECT cat_id,title FROM ' . $xoopsDB->prefix($xoopsModule->getVar('dirname') . '_cat') . ' ORDER BY title ASC';
         $result      = $xoopsDB->query($sql);
         $blist       = [];
         if ($result) {
-            while ($myrow = $xoopsDB->fetchArray($result)) {
+            while (false !== ($myrow = $xoopsDB->fetchArray($result))) {
                 $blist[$myrow['cat_id']] = $myrow['title'];
             }
         }
-        $block_select = new XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $cat);
+        $block_select = new \XoopsFormSelect(_INFO_HOMEPAGE, 'cat', $cat);
         $block_select->addOptionArray($blist);
         $block_select->setextra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($block_select);
-        $group_select = new XoopsFormSelectGroup(_INFO_AM_GROUP, 'groupid', true, $groupid, 1, false);
+        $group_select = new \XoopsFormSelectGroup(_INFO_AM_GROUP, 'groupid', true, $groupid, 1, false);
         $group_select->addOptionArray([0 => _ALL]);
         $group_select->setExtra('onchange="document.forms.' . $xoopsModule->getVar('dirname') . '_form_groupcat' . '.submit()"');
         $option_tray->addElement($group_select);
-        $submit = new XoopsFormButton('', 'post', _SUBMIT, 'submit');
+        $submit = new \XoopsFormButton('', 'post', _SUBMIT, 'submit');
         $option_tray->addElement($submit);
         $form->addElement($option_tray);
         $form->display();
