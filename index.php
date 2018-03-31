@@ -41,7 +41,7 @@ $cat = (int)$para['cid'];
 $pid = (int)$para['pid'];
 
 $sgroups  = $xoopsUser ? $xoopsUser->getGroups() : [0 => XOOPS_GROUP_ANONYMOUS];
-$infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+$infopage = \Xmf\Request::getInt('page', 0, 'GET');
 
 $GLOBALS['xoopsOption']['template_main'] = $module_name . '_index.tpl';
 require_once $GLOBALS['xoops']->path('/header.php');

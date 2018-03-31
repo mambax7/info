@@ -25,7 +25,7 @@ if (!in_array($op, ['list', 'blockcat', 'blockcat_insert'])) {
     $op = 'list';
 }
 //$id  	= ( isset($_REQUEST['id']) )  	? intval($_REQUEST['id']) 	: 0;
-$cat = isset($_REQUEST['cat']) ? (int)$_REQUEST['cat'] : 0;
+$cat = \Xmf\Request::getInt('cat', 0, 'REQUEST');
 
 switch ($op) {
     case 'list':

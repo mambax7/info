@@ -24,8 +24,8 @@ error_reporting(0);
 $xoopsLogger->activated = false;
 
 xoops_loadLanguage('modinfo', $xoopsModule->dirname());
-$id       = isset($_GET['content']) ? (int)$_GET['content'] : 0;
-$infopage = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+$id       = \Xmf\Request::getInt('content', 0, 'GET');
+$infopage = \Xmf\Request::getInt('page', 0, 'GET');
 if (empty($id)) {
     redirect_header('index.php');
 }
