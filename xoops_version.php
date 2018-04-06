@@ -18,6 +18,8 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
+
 defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 include __DIR__ . '/preloads/autoloader.php';
@@ -102,14 +104,13 @@ $info_isactiv = xoops_isActiveModule($infoname);
 
 if (true === $info_isactiv) {
     //Modul ist aktiv
-    require_once __DIR__ . '/class/infotree.php';
     $id = $cat = $pid = $i = 0;
 
     $configHandler   = xoops_getHandler('config');
     $infoModulConfig = $configHandler->getConfigsByCat(0, $infomodul->getVar('mid'));
     $seo             = (!empty($infoModulConfig[$infoname . '_seourl'])
                         && $infoModulConfig[$infoname . '_seourl'] > 0) ? (int)$infoModulConfig[$infoname . '_seourl'] : 0;
-    $infoTree        = new InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
+    $infoTree        = new Info\InfoTree($GLOBALS['xoopsDB']->prefix($infoname), 'info_id', 'parent_id');
     $groups          = is_object($GLOBALS['xoopsUser']) ? $GLOBALS['xoopsUser']->getGroups() : [XOOPS_GROUP_ANONYMOUS];
     $infopermHandler = xoops_getHandler('groupperm');
     $show_info_perm  = $infopermHandler->getItemIds('InfoPerm', $groups, $infomodul->getVar('mid'));

@@ -19,19 +19,21 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
 
 /**
- * Class Category
+ * Class CategoryHandler
  */
-class Category extends \XoopsObject
+class CategoryHandler extends \XoopsPersistableObjectHandler
 {
     /**
-     * Category constructor.
+     * CategoryHandler constructor.
+     * @param null|\XoopsDatabase $db
+     * @param string              $mname
      */
-    public function __construct()
+    public function __construct($db, $mname)
     {
-        $this->initVar('cat_id', XOBJ_DTYPE_INT, null, false);
-        $this->initVar('visible', XOBJ_DTYPE_INT, 1, false);
-        $this->initVar('title', XOBJ_DTYPE_TXTBOX, null, true, 255, true);
+        parent::__construct($db, $mname . '_cat', Category::class, 'cat_id', 'title');
     }
 }
+

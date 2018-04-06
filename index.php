@@ -19,8 +19,6 @@
  */
 
 use XoopsModules\Info;
-/** @var Info\Helper $helper */
-$helper = Info\Helper::getInstance();
 
 require_once __DIR__ . '/../../mainfile.php';
 require_once __DIR__ . '/include/constants.php';
@@ -28,6 +26,9 @@ require_once __DIR__ . '/include/function.php';
 
 xoops_loadLanguage('modinfo', $module_name);
 xoops_loadLanguage('main', $module_name);
+
+/** @var Info\Helper $helper */
+$helper = Info\Helper::getInstance();
 
 xoops_load('XoopsCache');
 $myts = \MyTextSanitizer::getInstance();

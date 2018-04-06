@@ -18,9 +18,11 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
+
 require_once __DIR__ . '/admin_header.php';
 
-$op = isset($_REQUEST['op']) ? $_REQUEST['op'] : 'list';
+$op = \Xmf\Request::getCmd('op', 'list', 'REQUEST');
 if (!in_array($op, ['list', 'blockcat', 'blockcat_insert'])) {
     $op = 'list';
 }

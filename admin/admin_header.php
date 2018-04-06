@@ -27,24 +27,19 @@ require_once __DIR__ . '/../../../include/cp_header.php';
 //$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
 //$module_name   = $xoopsModule->getVar('dirname');
 require_once __DIR__ . '/../include/function.php';
+require_once __DIR__ . '/../include/common.php';
 
 $moduleDirName = basename(dirname(__DIR__));
+/** @var Info\Helper $helper */
 $helper = Info\Helper::getInstance();
 $adminObject = \Xmf\Module\Admin::getInstance();
 
-$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32    = \Xmf\Module\Admin::iconUrl('', 32);
-$pathModIcon32 = $helper->getModule()->getInfo('modicons32');
-
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-// require_once __DIR__ . '/../class/infotree.php';
-// require_once __DIR__ . '/../class/info.php';
-// require_once __DIR__ . '/../class/category.php';
 
 //Handlers
-$infoHandler     = new InfoInfoHandler($xoopsDB, $moduleDirName);
-$infowaitHandler = new InfoInfoHandler($xoopsDB, $moduleDirName . '_bak');
-$catHandler      = new InfoCategoryHandler($xoopsDB, $moduleDirName);
-$infoTree        = new InfoTree($xoopsDB->prefix($moduleDirName), 'info_id', 'parent_id');
+$infoHandler     = new Info\MyInfoHandler($xoopsDB, $moduleDirName);
+$infowaitHandler = new Info\MyInfoHandler($xoopsDB, $moduleDirName . '_bak');
+$catHandler      = new Info\CategoryHandler($xoopsDB, $moduleDirName);
+$infoTree        = new Info\InfoTree($xoopsDB->prefix($moduleDirName), 'info_id', 'parent_id');
 
 $myts = \MyTextSanitizer::getInstance();

@@ -9,6 +9,8 @@
  * @package        module::info
  */
 
+use XoopsModules\Info;
+
 //if (!defined('XOOPS_ROOT_PATH')) { exit(); }
 
 $infoname = basename(dirname(__DIR__));
@@ -42,9 +44,8 @@ eval(' function ' . $infoname . '_tag_iteminfo(&$items)
 		foreach (array_keys($items[$cat_id]) as $item_id) {
 			$items_id[] = intval($item_id);
 		}
-	}
-	require_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
-	$itemHandler = new InfoInfoHandler( $xoopsDB, "' . $infoname . '");
+	}	
+	$itemHandler = new Info\MyInfoHandler( $xoopsDB, "' . $infoname . '");
 	$inids = implode(", ", $items_id);
 	$items_obj = $itemHandler->getObjects("", true);	
 	foreach(array_keys($items) as $cat_id){
@@ -75,8 +76,7 @@ eval(' function ' . $infoname . '_tag_iteminfo(&$items)
  */
 eval(' function ' . $infoname . '_tag_synchronization($mid)
 {
-	require_once "' . XOOPS_ROOT_PATH . '/modules/' . $infoname . '/class/info.php";
-	$itemHandler = new InfoInfoHandler( $xoopsDB, "' . $infoname . '");
+	$itemHandler = new MyInfoHandler( $xoopsDB, "' . $infoname . '");
 	$linkHandler = xoops_getModuleHandler("link", "tag");
         
 	/* clear tag-item links */

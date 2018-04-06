@@ -30,8 +30,7 @@ $pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
 $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 
 require_once dirname(__DIR__) . '/include/constants.php';
-require_once dirname(__DIR__) . '/class/info.php';
-$infowaitHandler = new InfoInfoHandler($GLOBALS['xoopsDB'], $moduleDirName . '_bak');
+$infowaitHandler = new Info\MyInfoHandler($GLOBALS['xoopsDB'], $moduleDirName . '_bak');
 $wait_site       = $infowaitHandler->getCount();
 
 $adminmenu[] = [

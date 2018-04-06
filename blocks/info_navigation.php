@@ -18,7 +18,9 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
+use XoopsModules\Info;
+
+//defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 require_once dirname(__DIR__) . '/include/function.php';
 Info_Load_CSS();
@@ -82,7 +84,6 @@ if (!function_exists('info_block_nav')) {
             $configHandler = xoops_getHandler('config');
         }
         require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/include/constants.php';
-        require_once XOOPS_ROOT_PATH . '/modules/' . $options[0] . '/class/infotree.php';
         //Variablen erstellen
         $block = [];
         if (empty($options)) {
@@ -94,7 +95,7 @@ if (!function_exists('info_block_nav')) {
         $infoModuleConfig = $configHandler->getConfigsByCat(0, $infoModule->getVar('mid'));
         $seo              = (!empty($infoModuleConfig[$options[0] . '_seourl'])
                              && $infoModuleConfig[$options[0] . '_seourl'] > 0) ? (int)$infoModuleConfig[$options[0] . '_seourl'] : 0;
-        $infoTree         = new InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
+        $infoTree         = new Info\InfoTree($xoopsDB->prefix($options[0]), 'info_id', 'parent_id');
 
         $key = $infoModule->getVar('dirname') . '_' . 'block_' . $options[1];
         if (!$arr = XoopsCache::read($key)) {

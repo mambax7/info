@@ -254,8 +254,8 @@ switch ($op) {
             $blockid    = $_POST['blockid'];
             $visible    = $_POST['visible'];
             $title      = $_POST['title'];
-            $hp         = isset($_POST['hp'][0]) ? (int)$_POST['hp'] : 0;
-            $fp         = isset($_POST['fp'][0]) ? (int)$_POST['fp'][0] : 0;
+            $hp         = isset($_POST['hp'][0]) ? \Xmf\Request::getInt('hp', 0, 'POST') : 0;
+            $fp         = isset($_POST['fp'][0]) ? \Xmf\Request::getInt('fp', 0, 'POST')[0] : 0;
             $nocomments = $_POST['nocomments'];
             $submenu    = $_POST['submenu'];
             foreach ($id as $storyid) {

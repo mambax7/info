@@ -36,11 +36,11 @@ if (!defined('_INFO_ADMINTITLE')) {
     define('_INFO_URL_EXTLINK', 'External Link');
     define('_INFO_URL_INTDATEI', 'Local File');
 
-    define('_INFO_LISTBLOCKCAT', 'List Blocks');
-    define('_INFO_ADDBLOCKCAT', 'Add Blocks');
-    define('_INFO_EDITBLOCKCAT', 'Edit Blocks');
-    define('_INFO_ERROR_NOBLOCKTITLE', 'Block title required!');
-    define('_INFO_ERROR_ISSETBLOCKTITLE', 'Block title already exists!');
+    define('_INFO_LISTBLOCKCAT', 'List Categories');
+    define('_INFO_ADDBLOCKCAT', 'Add Category');
+    define('_INFO_EDITBLOCKCAT', 'Edit Category');
+    define('_INFO_ERROR_NOBLOCKTITLE', 'Category title required!');
+    define('_INFO_ERROR_ISSETBLOCKTITLE', 'Category title already exists!');
     define('_INFO_ERROR_NOINSERTDB', 'Could not update Content!');
     define('_INFO_SETDELETE', 'Are you sure you want to delete?');
     define('_INFO_SETDELETE_FRAGE', 'Are you sure you want to delete this Category with all its pages:<br><strong>%s</strong> ?');

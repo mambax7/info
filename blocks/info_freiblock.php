@@ -18,6 +18,8 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
+
 defined('XOOPS_ROOT_PATH') || die('XOOPS_ROOT_PATH not defined!');
 
 if (!function_exists('info_freiblock_show')) {
@@ -35,7 +37,7 @@ if (!function_exists('info_freiblock_show')) {
         $row    = $xoopsDB->fetchArray($result);
         $text   = trim($row['text']);
         if (0 != (int)$row['info_id']) {
-            $GLOBALS['xoopsOption']['template_main'] = $options[0] . '_startblock.html';
+//            $GLOBALS['xoopsOption']['template_main'] = $options[0] . '_startblock.tpl';
             if (6 == $row['link']) {
                 ob_start();
                 echo eval($text);

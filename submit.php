@@ -18,15 +18,14 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
+use XoopsModules\Info;
+
 include __DIR__ . '/../../mainfile.php';
 $module_name = basename(__DIR__);
 
 require_once __DIR__ . '/include/function.php';
 require_once __DIR__ . '/include/constants.php';
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/infotree.php';
-require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/info.php';
-require_once XOOPS_ROOT_PATH . '/modules/' . $module_name . '/class/category.php';
 xoops_loadLanguage('admin', $module_name);
 xoops_loadLanguage('modinfo', $module_name);
 
@@ -34,10 +33,10 @@ $seo  = (!empty($xoopsModuleConfig[$module_name . '_seourl'])
          && $xoopsModuleConfig[$module_name . '_seourl'] > 0) ? (int)$xoopsModuleConfig[$module_name . '_seourl'] : 0;
 $myts = \MyTextSanitizer::getInstance();
 
-$infoHandler     = new InfoInfoHandler($xoopsDB, $module_name);
-$infowaitHandler = new InfoInfoHandler($xoopsDB, $module_name . '_bak');
-$catHandler      = new InfoCategoryHandler($xoopsDB, $module_name);
-$infoTree        = new InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
+$infoHandler     = new Info\MyInfoHandler($xoopsDB, $module_name);
+$infowaitHandler = new Info\MyInfoHandler($xoopsDB, $module_name . '_bak');
+$catHandler      = new Info\CategoryHandler($xoopsDB, $module_name);
+$infoTree        = new Info\InfoTree($xoopsDB->prefix($module_name), 'info_id', 'parent_id');
 
 $op = info_cleanVars($_REQUEST, 'op', '', 'string');
 if (!in_array($op, ['edit', 'delete'])) {
@@ -196,7 +195,7 @@ if ('edit' === $op) {
             $res     = $infowaitHandler->insert($content);
         }
 
-        if (1 == (int)$_POST['ret']) {
+        if (1 == \Xmf\Request::getInt('ret', 0, 'POST')) {
             $mode = [
                 'seo'   => $seo,
                 'id'    => 0,
@@ -256,7 +255,7 @@ if ('edit' === $op) {
             'cat'   => $content->getVar('cat')
         ];
         redirect_header(makeSeoUrl($mode), 3, _NOPERM);
-    } elseif (!empty($_POST['delok']) && 1 == (int)$_POST['delok']) {
+    } elseif (!empty($_POST['delok']) && 1 == \Xmf\Request::getInt('delok', 0, 'POST')) {
         if ($GLOBALS['xoopsSecurity']->check()) {
             if ($infoHandler->delete($content)) {
                 $key = $xoopsModule->getVar('dirname') . '_' . '*';

@@ -1,3 +1,8 @@
+<h5>2.8 Beta 1  [NOT RELEASED]</h5>  Dev: Xoops 2.5.9, PHP 7.2.4
+<hr>
+- namespaces, autoloading (mamba)
+- WORK IN PROGRESS
+
 Version 2.7
 --------------
 NEU:    Automatisches Clonen des Modules (nur Verzeichnisname anpassen)
