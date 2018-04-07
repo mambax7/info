@@ -82,7 +82,7 @@ switch ($op) {
         break;
     case 'appedit':
         $content = $infowaitHandler->get($id);
-        if (!empty($_POST['post'])) {
+       if (\Xmf\Request::hasVar('post', 'POST')) {
             $content    = setPost($content, $_POST);
             $oldstoryid = $content->getVar('info_id');
             $content->setVar('info_id', $content->getVar('old_id'));
