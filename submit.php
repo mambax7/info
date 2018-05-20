@@ -20,7 +20,7 @@
 
 use XoopsModules\Info;
 
-include __DIR__ . '/../../mainfile.php';
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
 $module_name = basename(__DIR__);
 
 require_once __DIR__ . '/include/function.php';

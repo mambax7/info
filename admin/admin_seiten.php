@@ -19,7 +19,7 @@
  */
 
 require_once __DIR__ . '/admin_header.php';
-require_once __DIR__ . '/../include/function.php';
+require_once  dirname(__DIR__) . '/include/function.php';
 
 global $xoopsUser, $indexAdmin;
 $op          = info_cleanVars($_REQUEST, 'op', 'show', 'string');
@@ -75,7 +75,7 @@ switch ($op) {
             $dellink  = "<a href='admin_seiten.php?op=appdel&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/delete.png' title='" . _DELETE . "' alt='" . _DELETE . "'></a>";
             $editlink = "<a href='admin_seiten.php?op=appedit&cat=" . $cat . '&id=' . $tc['info_id'] . "'><img src='" . $pathIcon16 . "/edit.png' title='" . _EDIT . "' alt='" . _EDIT . "'></a>";
             $edittime = formatTimestamp($tc['edited_time'], 'l');
-            $form->addElement(new \XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'], _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT, XoopsUserUtility::getUnameFromId($tc['edited_user'], 0, false), $edittime)));
+            $form->addElement(new \XoopsFormLabel($editlink . ' | ' . $dellink . ' ' . $tc['title'], _INFO_LAST_EDITED . ': ' . sprintf(_INFO_LAST_EDITEDTEXT, \XoopsUserUtility::getUnameFromId($tc['edited_user'], 0, false), $edittime)));
         }
         $form->display();
         xoops_cp_footer();
@@ -108,7 +108,7 @@ switch ($op) {
             xoops_cp_header();
             $adminObject->displayNavigation(basename(__FILE__));
             $op = 'appedit';
-            require_once __DIR__ . '/../include/form.php';
+            require_once  dirname(__DIR__) . '/include/form.php';
             xoops_cp_footer();
         }
         break;
@@ -195,7 +195,7 @@ switch ($op) {
                         $adminObject->displayButton('left');
                         $ret    = 0;
                         $errors = $uploader->getErrors();
-                        require_once __DIR__ . '/../include/form.php';
+                        require_once  dirname(__DIR__) . '/include/form.php';
                         xoops_cp_footer();
                         exit();
                     }
@@ -208,7 +208,7 @@ switch ($op) {
                             $adminObject->displayButton('left');
                             $ret    = 0;
                             $errors = $uploader->getErrors();
-                            require_once __DIR__ . '/../include/form.php';
+                            require_once  dirname(__DIR__) . '/include/form.php';
                             xoops_cp_footer();
                             exit();
                         }
@@ -221,7 +221,7 @@ switch ($op) {
                         $adminObject->displayButton('left');
                         $ret    = 0;
                         $errors = $uploader->getErrors();
-                        require_once __DIR__ . '/../include/form.php';
+                        require_once  dirname(__DIR__) . '/include/form.php';
                         xoops_cp_footer();
                         exit();
                     }
@@ -243,7 +243,7 @@ switch ($op) {
             $adminObject->addItemButton(_MI_INFO_VIEWSITE, 'admin_seiten.php?cat=' . $cat, $icon = 'index');
             $adminObject->displayButton('left');
             $ret = 0;
-            require_once __DIR__ . '/../include/form.php';
+            require_once  dirname(__DIR__) . '/include/form.php';
             xoops_cp_footer();
         }
         break;

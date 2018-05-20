@@ -19,10 +19,12 @@
  */
 
 use XoopsModules\Gwiki;
+
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
+
 /** @var Gwiki\Helper $helper */
 $helper = Gwiki\Helper::getInstance();
 
-include __DIR__ . '/../../mainfile.php';
 $com_itemid = \Xmf\Request::getInt('com_itemid', 0, 'GET');
 if (!$xoopsUser && empty($helper->getConfig('com_anonpost'))) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);

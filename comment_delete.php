@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-include __DIR__ . '/../../mainfile.php';
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
 if (!$xoopsUser) {
     redirect_header(XOOPS_URL . '/', 3, _NOPERM);
 }

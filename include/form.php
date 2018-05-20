@@ -19,8 +19,6 @@
  */
 
 use XoopsModules\Info;
-/** @var Info\Helper $helper */
-$helper = Info\Helper::getInstance();
 
 if (isset($_POST) && count($_POST) > 0) {
     setPost($content, $_POST);
@@ -206,6 +204,9 @@ if ((in_array(_CON_INFO_ALLCANUPDATE_GROUPS, $show_info_perm) && 0 == $id)
     }
 }
 
+/** @var Info\Helper $helper */
+$helper = Info\Helper::getInstance();
+
 $form->addElement(new \XoopsFormRadioYN(_INFO_VISIBLE_LEFTBLOCK, 'bl_left', $content->getVar('bl_left'), $yes = _YES, $no = _NO));
 $form->addElement(new \XoopsFormRadioYN(_INFO_VISIBLE_RIGHTBLOCK, 'bl_right', $content->getVar('bl_right'), $yes = _YES, $no = _NO));
 
@@ -335,7 +336,7 @@ if (0 == (int)$content->getVar('link')
 
 xoops_load('XoopsUserUtility');
 $euser = $content->getVar('edited_user');
-$eUser = XoopsUserUtility::getUnameFromId($euser, 0, false);
+$eUser = \XoopsUserUtility::getUnameFromId($euser, 0, false);
 if (-1 == $content->getVar('owner')) {
     if ($xoopsUser) {
         $content->setVar('owner', $xoopsUser->uid());
@@ -344,7 +345,7 @@ if (-1 == $content->getVar('owner')) {
     }
 }
 $ouser = $content->getVar('owner');
-$oUser = XoopsUserUtility::getUnameFromId($ouser, 0, false);
+$oUser = \XoopsUserUtility::getUnameFromId($ouser, 0, false);
 
 $form->addElement(new \XoopsFormHidden('owner', $content->getVar('owner')));
 $form->addElement(new \XoopsFormLabel(_INFO_OWNER, $oUser));

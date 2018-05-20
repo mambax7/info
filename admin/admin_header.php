@@ -20,14 +20,14 @@
 
 use XoopsModules\Info;
 
-require_once __DIR__ . '/../../../include/cp_header.php';
+require_once  dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
 
 //global $xoopsModule;
 //$moduleHandler = xoops_getHandler('module');
 //$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
 //$module_name   = $xoopsModule->getVar('dirname');
-require_once __DIR__ . '/../include/function.php';
-require_once __DIR__ . '/../include/common.php';
+require_once  dirname(__DIR__) . '/include/function.php';
+require_once  dirname(__DIR__) . '/include/common.php';
 
 $moduleDirName = basename(dirname(__DIR__));
 /** @var Info\Helper $helper */

@@ -18,7 +18,7 @@
  * @author       Dirk Herrmann <alfred@simple-xoops.de>
  */
 
-include __DIR__ . '/../../mainfile.php';
+include  dirname(dirname(__DIR__)) . '/mainfile.php';
 
 error_reporting(0);
 $xoopsLogger->activated = false;
